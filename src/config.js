@@ -10,9 +10,7 @@ export default function() {
         SERVER_URL: 'http://localhost:5000'
       };
     case 'production':
-      return {
-        SERVER_URL: 'http://:5000'
-      };
+      return { SERVER_URL: 'http://52.79.211.21:5000' };
     default:
       return;
   }

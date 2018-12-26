@@ -1,9 +1,10 @@
 {
-  "name": "router-app",
+  "name": "im09-joy-client-im09-prj-joy",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "bootstrap": "4.1.1",
+    "dotenv": "^6.2.0",
     "query-string": "^6.2.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",

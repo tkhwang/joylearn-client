@@ -1,16 +1,28 @@
 import React, { Component } from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import Movies from './components/Movies';
+import Rentals from './components/Rentals';
+import Customers from './components/Customers';
+import NotFound from './components/notFound';
+import NavBar from './components/NavBar';
 import './App.css';
-import config from './config';
-const { SERVER_URL } = config();
 
 class App extends Component {
   render() {
-    console.log(process.env.REACT_APP_NODE_ENV);
-
     return (
-      <div className="App">
-        <h1>Joy project</h1>
-      </div>
+      <React.Fragment>
+        <NavBar />
+        <main className="content">
+          <Switch>
+            <Route path="/movies" component={Movies} />
+            <Route path="/customers" component={Customers} />
+            <Route path="/rentals" component={Rentals} />
+            <Route path="/not-found" component={NotFound} />
+            <Redirect from="/" exact to="/movies" />
+            <Redirect to="/not-found" />
+          </Switch>
+        </main>
+      </React.Fragment>
     );
   }
 }

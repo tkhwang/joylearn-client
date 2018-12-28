@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const NavBar = () => {
+const NavBar = ({ user }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <Link className="navbar-brand" to="/">
@@ -33,12 +33,29 @@ const NavBar = () => {
           <NavLink className="nav-item nav-link" to="/courses">
             Courses
           </NavLink>
-          <NavLink className="nav-item nav-link navbar-right" to="/login">
-            Login
-          </NavLink>
-          <NavLink className="nav-item nav-link navbar-right" to="/register">
-            Register
-          </NavLink>
+          {!user && (
+            <React.Fragment>
+              <NavLink className="nav-item nav-link navbar-right" to="/login">
+                Login
+              </NavLink>
+              <NavLink
+                className="nav-item nav-link navbar-right"
+                to="/register"
+              >
+                Register
+              </NavLink>
+            </React.Fragment>
+          )}
+          {user && (
+            <React.Fragment>
+              <NavLink className="nav-item nav-link navbar-right" to="/profile">
+                {user.name}
+              </NavLink>
+              <NavLink className="nav-item nav-link navbar-right" to="/logout">
+                Logout
+              </NavLink>
+            </React.Fragment>
+          )}
         </div>
       </div>
     </nav>

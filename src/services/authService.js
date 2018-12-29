@@ -5,13 +5,13 @@ const { SERVER_URL } = config();
 
 const TOKEN_KEY = 'token';
 
+http.setJwt(getJwt());
+
 export async function login(email, password) {
   // MySQL
   const apiEndpoint = SERVER_URL + '/auth/login';
   // MongoDB
   // const apiEndpoint = SERVER_URL + '/api/auth';
-
-  http.setJwt(getJwt());
 
   const { data: jwt } = await http.post(apiEndpoint, { email, password });
   localStorage.setItem(TOKEN_KEY, jwt);
@@ -21,12 +21,19 @@ export function loginWithJwt(jwt) {
   localStorage.setItem(TOKEN_KEY, jwt);
 }
 
-export async function loginKakao() {
-  await http.get(SERVER_URL + '/auth/kakao');
-}
+// export async function loginKakao() {
+//   const { data: jwt } = await http.get(SERVER_URL + '/auth/kakao');
+//   localStorage.setItem(TOKEN_KEY, jwt);
+// }
 
-export async function loginGithub() {
-  await http.get(SERVER_URL + '/auth/github');
+// export async function loginGithub() {
+//   const { data: jwt } = await http.get(SERVER_URL + '/auth/github');
+//   localStorage.setItem(TOKEN_KEY, jwt);
+// }
+
+export async function loginSocial(site) {
+  const { data: jwt } = await http.get(`${SERVER_URL}/auth/${site}`);
+  localStorage.setItem(TOKEN_KEY, jwt);
 }
 
 export function logout() {
@@ -49,8 +56,9 @@ export function getJwt() {
 export default {
   login,
   loginWithJwt,
-  loginKakao,
-  loginGithub,
+  loginSocial,
+  // loginKakao,
+  // loginGithub,
   logout,
   getCurrentUser,
   getJwt

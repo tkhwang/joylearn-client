@@ -55,11 +55,10 @@ class LoginForm extends Form {
         </form>
         <div className="social-login">
           <h3>You may also connect with </h3>
-          <a href={urlAuthGithub}>
+          <a href={urlAuthKakao}>
             <img
               src={require('./img/kakao_account_login_btn_medium_wide.png')}
               alt="loginKakaoButton"
-              // onClick={() => auth.loginSocial('kakao')}
             />
           </a>
           <a href={urlAuthGithub}>

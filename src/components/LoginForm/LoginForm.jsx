@@ -4,9 +4,11 @@ import { Redirect } from 'react-router-dom';
 import Joi from 'joi-browser';
 import { GithubLoginButton } from 'react-social-login-buttons';
 
+import './LoginForm.css';
 import Form from '../common/Form';
 import auth from '../../services/authService';
-import './LoginForm.css';
+import config from '../../config';
+const { SERVER_URL } = config();
 
 class LoginForm extends Form {
   state = {
@@ -41,6 +43,8 @@ class LoginForm extends Form {
 
   render() {
     if (auth.getCurrentUser()) return <Redirect to="/" />;
+    const urlAuthGithub = `${SERVER_URL}/auth/github`;
+    const urlAuthKakao = `${SERVER_URL}/auth/kakao`;
     return (
       <div className="login">
         <h1>Login</h1>
@@ -51,11 +55,16 @@ class LoginForm extends Form {
         </form>
         <div className="social-login">
           <h3>You may also connect with </h3>
-          <img
-            src={require('./img/kakao_account_login_btn_medium_wide.png')}
-            onClick={() => auth.loginKakao()}
-          />
-          <GithubLoginButton onClick={() => auth.loginGithub()} />
+          <a href={urlAuthGithub}>
+            <img
+              src={require('./img/kakao_account_login_btn_medium_wide.png')}
+              onClick={() => auth.loginKakao()}
+            />
+          </a>
+          <a href={urlAuthGithub}>
+            {/* <GithubLoginButton onClick={() => auth.loginGithub()} /> */}
+            <GithubLoginButton />
+          </a>
         </div>
       </div>
     );

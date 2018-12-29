@@ -10,6 +10,7 @@ import Lecture from './components/Lecture/Lecture';
 import Instructor from './components/Instructor/Instructor';
 import NotFound from './components/notFound';
 import NavBar from './components/NavBar';
+import Login from './components/Login';
 import LoginForm from './components/LoginForm/LoginForm';
 import RegisterForm from './components/LoginForm/RegisterForm';
 import Logout from './components/Logout';

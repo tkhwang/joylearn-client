@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import Input from '../common/Input';
 import { Redirect } from 'react-router-dom';
 import Joi from 'joi-browser';
+import { GithubLoginButton } from 'react-social-login-buttons';
+
 import Form from '../common/Form';
 import auth from '../../services/authService';
+import './LoginForm.css';
 
 class LoginForm extends Form {
   state = {
@@ -46,6 +49,14 @@ class LoginForm extends Form {
           {this.renderInput('password', 'Password', 'password')}
           {this.renderButton('Login')}
         </form>
+        <div className="social-login">
+          <h3>You may also connect with </h3>
+          <img
+            src={require('./img/kakao_account_login_btn_medium_wide.png')}
+            onClick={() => auth.loginKakao()}
+          />
+          <GithubLoginButton onClick={() => auth.loginGithub()} />
+        </div>
       </div>
     );
   }

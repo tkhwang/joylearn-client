@@ -3,7 +3,11 @@ import http from './httpService';
 import config from '../config';
 const { SERVER_URL } = config();
 
-const apiEndpoint = SERVER_URL + '/api/auth';
+// MySQL
+const apiEndpoint = SERVER_URL + '/auth/login';
+// MongoDB
+// const apiEndpoint = SERVER_URL + '/api/auth';
+
 const TOKEN_KEY = 'token';
 
 http.setJwt(getJwt());

@@ -8,6 +8,8 @@ import { faGrinAlt } from '@fortawesome/free-solid-svg-icons';
 import Course from './components/Course/Course';
 import Lecture from './components/Lecture/Lecture';
 import Instructor from './components/Instructor/Instructor';
+import Topic from './components/Topic/Topic';
+import Profile from './components/Profile/Profile';
 import NotFound from './components/notFound';
 import NavBar from './components/NavBar';
 import LoginForm from './components/LoginForm/LoginForm';
@@ -25,6 +27,8 @@ class App extends Component {
   state = {};
 
   componentDidMount = () => {
+    console.log('[+] NODE_ENV =', process.env.REACT_APP_NODE_ENV);
+
     const user = auth.getCurrentUser();
     this.setState({ user });
   };
@@ -41,8 +45,10 @@ class App extends Component {
             <ProtectedRoute path="/instructors" component={Instructor} />
             <ProtectedRoute path="/lectures" component={Lecture} />
             <ProtectedRoute path="/courses" component={Course} />
+            <ProtectedRoute path="/profile" exact component={Profile} />
             <Route path="/not-found" component={NotFound} />
-            <Redirect from="/" exact to="/instructors" />
+            <ProtectedRoute path="/" exact component={Topic} />
+            {/* <Redirect from="/" exact to="/instructors" /> */}
             <Redirect to="/not-found" />
           </Switch>
         </main>

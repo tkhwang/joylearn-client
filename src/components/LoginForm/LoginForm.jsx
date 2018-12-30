@@ -1,18 +1,11 @@
-import React, { Component } from 'react';
-import Input from '../common/Input';
+import React from 'react';
 import { Redirect } from 'react-router-dom';
 import Joi from 'joi-browser';
-import {
-  GithubLoginButton,
-  FacebookLoginButton,
-  GoogleLoginButton
-} from 'react-social-login-buttons';
 
 import './LoginForm.css';
+import SocialLoginButton from './SocialLoginButton';
 import Form from '../common/Form';
 import auth from '../../services/authService';
-import config from '../../config';
-const { SERVER_URL } = config();
 
 class LoginForm extends Form {
   state = {
@@ -47,10 +40,7 @@ class LoginForm extends Form {
 
   render() {
     if (auth.getCurrentUser()) return <Redirect to="/" />;
-    const urlAuthGithub = `${SERVER_URL}/auth/github`;
-    const urlAuthFacebook = `${SERVER_URL}/auth/facebook`;
-    const urlAuthGoogle = `${SERVER_URL}/auth/google`;
-    const urlAuthKakao = `${SERVER_URL}/auth/kakao`;
+    // const urlAuthKakao = `${SERVER_URL}/auth/kakao`;
     return (
       <div className="login">
         <h1>Login</h1>
@@ -61,21 +51,14 @@ class LoginForm extends Form {
         </form>
         <div className="social-login">
           <h3>You may also connect with </h3>
-          <a href={urlAuthKakao}>
-            <img
-              src={require('./img/kakao_account_login_btn_medium_wide.png')}
-              alt="loginKakaoButton"
-            />
-          </a>
-          <a href={urlAuthGithub}>
-            <GithubLoginButton />
-          </a>
-          <a href={urlAuthFacebook}>
-            <FacebookLoginButton />
-          </a>
-          <a href={urlAuthGoogle}>
-            <GoogleLoginButton />
-          </a>
+          <SocialLoginButton social="github" />
+          <SocialLoginButton social="facebook" />
+          <SocialLoginButton social="google" />
+          <img
+            src={require('./img/kakao_account_login_btn_medium_wide.png')}
+            alt="loginKakaoButton"
+            onClick={() => auth.loginSocial('kakao')}
+          />
         </div>
       </div>
     );

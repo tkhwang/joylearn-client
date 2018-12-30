@@ -21,16 +21,6 @@ export function loginWithJwt(jwt) {
   localStorage.setItem(TOKEN_KEY, jwt);
 }
 
-// export async function loginKakao() {
-//   const { data: jwt } = await http.get(SERVER_URL + '/auth/kakao');
-//   localStorage.setItem(TOKEN_KEY, jwt);
-// }
-
-// export async function loginGithub() {
-//   const { data: jwt } = await http.get(SERVER_URL + '/auth/github');
-//   localStorage.setItem(TOKEN_KEY, jwt);
-// }
-
 export async function loginSocial(site) {
   const { data: jwt } = await http.get(`${SERVER_URL}/auth/${site}`);
   localStorage.setItem(TOKEN_KEY, jwt);

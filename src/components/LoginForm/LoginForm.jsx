@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import Input from '../common/Input';
 import { Redirect } from 'react-router-dom';
 import Joi from 'joi-browser';
-import { GithubLoginButton } from 'react-social-login-buttons';
+import {
+  GithubLoginButton,
+  FacebookLoginButton,
+  GoogleLoginButton
+} from 'react-social-login-buttons';
 
 import './LoginForm.css';
 import Form from '../common/Form';
@@ -44,6 +48,8 @@ class LoginForm extends Form {
   render() {
     if (auth.getCurrentUser()) return <Redirect to="/" />;
     const urlAuthGithub = `${SERVER_URL}/auth/github`;
+    const urlAuthFacebook = `${SERVER_URL}/auth/facebook`;
+    const urlAuthGoogle = `${SERVER_URL}/auth/google`;
     const urlAuthKakao = `${SERVER_URL}/auth/kakao`;
     return (
       <div className="login">
@@ -63,6 +69,12 @@ class LoginForm extends Form {
           </a>
           <a href={urlAuthGithub}>
             <GithubLoginButton />
+          </a>
+          <a href={urlAuthFacebook}>
+            <FacebookLoginButton />
+          </a>
+          <a href={urlAuthGoogle}>
+            <GoogleLoginButton />
           </a>
         </div>
       </div>

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+// import { ToastContainer, toast } from 'react-toastify';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGrinAlt } from '@fortawesome/free-solid-svg-icons';
 
 import Course from './components/Course/Course';

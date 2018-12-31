@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import http from '../../services/httpService';
-import auth from '../../services/authService';
-import querystring from 'query-string';
 
 import TopicsSearch from './TopicsSearch';
 import TopicsDetail from './TopicsDetail';
@@ -63,9 +61,6 @@ export default class Topics extends Component {
 
   async componentDidMount() {
     console.log(this.props.location.search);
-
-    const values = querystring.parse(this.props.location.search);
-    if (values) auth.loginWithJwt(values.token);
 
     const topics = await http.get(SERVER_URL + '/topics');
     console.log(topics);

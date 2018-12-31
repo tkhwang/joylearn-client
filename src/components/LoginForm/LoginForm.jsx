@@ -39,8 +39,11 @@ class LoginForm extends Form {
   };
 
   render() {
-    if (auth.getCurrentUser()) return <Redirect to="/" />;
-    // const urlAuthKakao = `${SERVER_URL}/auth/kakao`;
+    if (auth.getCurrentUser()) {
+      console.log('[+] LoginForm : moved to /');
+      return <Redirect to="/" />;
+    }
+
     return (
       <div className="login">
         <h1>Login</h1>

@@ -14,6 +14,7 @@ export async function login(email, password) {
   // const apiEndpoint = SERVER_URL + '/api/auth';
 
   const { data: jwt } = await http.post(apiEndpoint, { email, password });
+  console.log('[+] /auth/login : token = ', jwt);
   localStorage.setItem(TOKEN_KEY, jwt);
 }
 

@@ -22,6 +22,17 @@ const SocialLoginButton = ({ social }) => {
     case 'google':
       Button = <GoogleLoginButton onClick={() => auth.loginSocial(social)} />;
       break;
+    case 'kakao':
+      Button = (
+        <a href={urlSocialAuth}>
+          <img
+            src={require('./img/kakao_account_login_btn_medium_wide.png')}
+            alt="loginKakaoButton"
+            onClick={() => auth.loginSocial('kakao')}
+          />
+        </a>
+      );
+      break;
     default:
       break;
   }

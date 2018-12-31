@@ -51,10 +51,10 @@ class LoginForm extends Form {
         </form>
         <div className="social-login">
           <h3>You may also connect with </h3>
+          <SocialLoginButton social="kakao" />
           <SocialLoginButton social="github" />
           <SocialLoginButton social="facebook" />
           <SocialLoginButton social="google" />
-          <SocialLoginButton social="kakao" />
         </div>
       </div>
     );

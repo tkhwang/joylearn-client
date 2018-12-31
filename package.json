@@ -11,7 +11,6 @@
     "joi-browser": "^13.4.0",
     "jwt-decode": "^2.2.0",
     "prop-types": "^15.6.2",
-    "query-string": "^6.2.0",
     "raven-js": "^3.27.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",

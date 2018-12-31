@@ -1,10 +1,12 @@
-import React, { Component } from "react";
-import http from "../../services/httpService";
+import React, { Component } from 'react';
+import http from '../../services/httpService';
+import auth from '../../services/authService';
+import querystring from 'query-string';
 
 import TopicsSearch from './TopicsSearch';
 import TopicsDetail from './TopicsDetail';
 
-import './Topics.css'
+import './Topics.css';
 import config from '../../config';
 const { SERVER_URL } = config();
 // 로그인을 했을 때의 홈 화면
@@ -48,42 +50,47 @@ export default class Topics extends Component {
     //     logo: "https://teamextension.es/dist/img/skills/angularjs_og.png",
     //   },
     // ]
-  }
+  };
 
   // constructor가 필요하지 않나?
   // constructor(props){
   //   super(props);
 
-  //   // binding 
+  //   // binding
   // }
-
 
   // axious!!
 
   async componentDidMount() {
-    const topics = await http.get(SERVER_URL + "/topics")
+    console.log(this.props.location.search);
+
+    const values = querystring.parse(this.props.location.search);
+    if (values) auth.loginWithJwt(values.token);
+
+    const topics = await http.get(SERVER_URL + '/topics');
     console.log(topics);
     this.setState({
       topics: topics.data
-    })
+    });
   }
 
   _renderTopics = () => {
-    return(
+    return (
       <div className="topics">
         {this.state.topics.map((topic, index) => {
-          return <TopicsDetail name={topic.name} logo={topic.logo} key={index} />
+          return (
+            <TopicsDetail name={topic.name} logo={topic.logo} key={index} />
+          );
         })}
       </div>
-    ) 
+    );
+  };
 
-  }
-
-  render(){
-    return(
+  render() {
+    return (
       <div>
         <TopicsSearch />
-        {this.state.topics ? this._renderTopics() : "Loadings"}
+        {this.state.topics ? this._renderTopics() : 'Loadings'}
       </div>
       // <React.Fragment>
       //   <TopicsSearch />

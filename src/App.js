@@ -8,7 +8,7 @@ import { faGrinAlt } from '@fortawesome/free-solid-svg-icons';
 import Course from './components/Course/Course';
 import Lecture from './components/Lecture/Lecture';
 import Instructor from './components/Instructor/Instructor';
-import Topic from './components/Topic/Topic';
+import Topics from './components/Topics/Topics';
 import Profile from './components/Profile/Profile';
 import NotFound from './components/notFound';
 import NavBar from './components/NavBar';
@@ -47,7 +47,7 @@ class App extends Component {
             <ProtectedRoute path="/courses" component={Course} />
             <ProtectedRoute path="/profile" exact component={Profile} />
             <Route path="/not-found" component={NotFound} />
-            <ProtectedRoute path="/" exact component={Topic} />
+            <Route path="/" exact component={Topics} />
             {/* <Redirect from="/" exact to="/instructors" /> */}
             <Redirect to="/not-found" />
           </Switch>

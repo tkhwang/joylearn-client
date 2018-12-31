@@ -54,11 +54,7 @@ class LoginForm extends Form {
           <SocialLoginButton social="github" />
           <SocialLoginButton social="facebook" />
           <SocialLoginButton social="google" />
-          <img
-            src={require('./img/kakao_account_login_btn_medium_wide.png')}
-            alt="loginKakaoButton"
-            onClick={() => auth.loginSocial('kakao')}
-          />
+          <SocialLoginButton social="kakao" />
         </div>
       </div>
     );

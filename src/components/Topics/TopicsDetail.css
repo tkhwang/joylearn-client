@@ -1,0 +1,23 @@
+.logoimage {
+  max-width: 60px;
+  max-height: 60px;
+  /* height: 100px; */
+}
+
+.topic-title {
+  font-size: 30px;
+}
+
+.topic {
+  width: 30%;
+  display: flex;
+  border: solid 1px;
+  margin: 10px;
+}
+
+.topic:hover {
+  /* color: red; */
+  /* transform: translate(-5px, -5px, 10px); */
+  transform: translate3d(-3px, -3px, 100px);
+  box-shadow: 5px 10px #888888;
+}

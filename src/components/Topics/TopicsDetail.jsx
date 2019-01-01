@@ -9,15 +9,15 @@ import './TopicsDetail.css';
 // topics list (로그인 했을 때 홈 화면에서)
 const TopicsDetail = ({ name, logo }) => {
   return (
-    <div className="topic">
+    <div className="topics">
       <TopicsLogo image={logo} />
-      <h1 className="topic-title">{name}</h1>
+      <h1 className="topics-title">{name}</h1>
     </div>
   );
 };
 
 function TopicsLogo({ image }) {
-  return <img className="logoimage" src={image} alt="Topic Logo" />;
+  return <img className="logoimages" src={image} alt="Topic Logo" />;
 }
 
 TopicsDetail.propTypes = {

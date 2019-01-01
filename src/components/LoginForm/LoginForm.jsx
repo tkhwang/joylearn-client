@@ -55,6 +55,7 @@ class LoginForm extends Form {
           <SocialLoginButton social="github" />
           <SocialLoginButton social="facebook" />
           <SocialLoginButton social="google" />
+          <SocialLoginButton social="instagram" />
         </div>
       </div>
     );

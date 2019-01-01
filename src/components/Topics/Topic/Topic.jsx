@@ -1,29 +1,67 @@
 import React, { Component } from 'react';
+import http from '../../../services/httpService';
 
 import TopicTitle from './TopicTitle';
 import TopicInstructors from './TopicInstructors';
 import TopicLectures from './TopicLectures';
 import TopicCourses from './TopicCourses';
 
-// selected topic 
+import config from '../../../config';
+const { SERVER_URL } = config();
+
+// selected topic
 class Topic extends Component {
-  constructor(props){
-    super(props);
+  state = {
+    title: [
+      {
+        name: 'JavaScript',
+        logo:
+          'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png'
+      }
+    ],
+    instructor: [
+      {
+        name: 'nicolas',
+        image:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcHqqV6R7odc2hUTo6Z7Tu4pInnkrugrviuguEKgoaVi4fS3mq'
+      }
+    ],
+    lecture: [
+      {
+        name: 'react',
+        image: 'https://tryolabs.com/images/blog/social/react.736da783.png'
+      }
+    ],
+    courese: [
+      {
+        name: 'tutorial',
+        id: '1'
+      }
+    ]
+  };
 
-    this.state = {
+  // constructor(props){
+  //   super(props);
 
-    };
-  }
+  // }
 
-  render(){
-    return(
+  // async componentDidMount() {
+  //   const topic = await http.get(SERVER_URL + '/topics:topicid');
+  //   // console.log(topics);
+  //   this.setState({
+  //     topics: topics.data
+  //   });
+  // }
+
+  render() {
+    return (
       <React.Fragment>
-        <TopicTitle title={this.props.topic.title} />
-        <TopicInstructors instructors={this.props.topic.instructors}/>
-        <TopicLectures lectures={this.props.topic.lectures}/>
-        <TopicCourses courses={this.props.topic.courses}/>
+        <TopicTitle title={this.state.title} />
+        <TopicInstructors instructors={this.state.instructors} />
+        <TopicLectures lectures={this.state.lectures} />
+        <TopicCourses courses={this.state.courses} />
       </React.Fragment>
-    )
+    );
   }
 }
 

@@ -21,6 +21,8 @@ class RegisterForm extends Form {
       .label('Password'),
     name: Joi.string()
       .required()
+      .min(2)
+      .max(50)
       .label('Name')
   };
 

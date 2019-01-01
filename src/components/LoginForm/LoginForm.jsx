@@ -39,10 +39,7 @@ class LoginForm extends Form {
   };
 
   render() {
-    if (auth.getCurrentUser()) {
-      console.log('[+] LoginForm : moved to /');
-      return <Redirect to="/" />;
-    }
+    if (auth.getCurrentUser()) return <Redirect to="/" />;
 
     return (
       <div className="login">

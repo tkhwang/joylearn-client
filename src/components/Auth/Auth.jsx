@@ -13,7 +13,11 @@ class Auth extends Component {
   }
 
   render() {
-    return <Redirect to="/" />;
+    if (auth.getCurrentUser()) return <Redirect to="/" />;
+    else <Redirect to="/login" />;
+
+    return <h1>Auth</h1>;
+    // return <Redirect to="/topics" />;
   }
 }
 

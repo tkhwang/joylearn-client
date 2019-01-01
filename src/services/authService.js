@@ -15,16 +15,19 @@ export async function login(email, password) {
 
   const { data: jwt } = await http.post(apiEndpoint, { email, password });
   console.log('[+] /auth/login : token = ', jwt);
-  localStorage.setItem(TOKEN_KEY, jwt);
+  // localStorage.setItem(TOKEN_KEY, jwt);
+  saveJwt(jwt);
 }
 
 export function loginWithJwt(jwt) {
-  localStorage.setItem(TOKEN_KEY, jwt);
+  // localStorage.setItem(TOKEN_KEY, jwt);
+  saveJwt(jwt);
 }
 
 export async function loginSocial(site) {
   const { data: jwt } = await http.get(`${SERVER_URL}/auth/${site}`);
-  localStorage.setItem(TOKEN_KEY, jwt);
+  // localStorage.setItem(TOKEN_KEY, jwt);
+  saveJwt(jwt);
 }
 
 export function logout() {
@@ -42,6 +45,12 @@ export function getCurrentUser() {
 
 export function getJwt() {
   return localStorage.getItem(TOKEN_KEY);
+}
+
+function saveJwt(jwt) {
+  if (!jwt || jwt !== 'undefined' || jwt !== undefined) {
+    localStorage.setItem(TOKEN_KEY, jwt);
+  }
 }
 
 export default {

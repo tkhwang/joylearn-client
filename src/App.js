@@ -10,7 +10,6 @@ import Lecture from './components/Lecture/Lecture';
 import Instructor from './components/Instructor/Instructor';
 import Topics from './components/Topics/Topics';
 import Profile from './components/Profile/Profile';
-import Auth from './components/Auth/Auth';
 import NotFound from './components/notFound';
 import NavBar from './components/NavBar';
 import LoginForm from './components/LoginForm/LoginForm';
@@ -43,8 +42,7 @@ class App extends Component {
             <Route path="/register" component={RegisterForm} />
             <Route path="/login" component={LoginForm} />
             <Route path="/logout" component={Logout} />
-            <Route path="/topics" component={Topics} />
-            <Route path="/auth" component={Auth} />
+            <ProtectedRoute path="/topics" component={Topics} />
             <ProtectedRoute path="/instructors" component={Instructor} />
             <ProtectedRoute path="/lectures" component={Lecture} />
             <ProtectedRoute path="/courses" component={Course} />

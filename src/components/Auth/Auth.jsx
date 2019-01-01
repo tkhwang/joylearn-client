@@ -14,9 +14,8 @@ class Auth extends Component {
 
   render() {
     if (auth.getCurrentUser()) return <Redirect to="/" />;
-    else <Redirect to="/login" />;
-
-    return <h1>Auth</h1>;
+    else return <Redirect to="/login" />;
+    // return <h1>Auth</h1>;
     // return <Redirect to="/topics" />;
   }
 }

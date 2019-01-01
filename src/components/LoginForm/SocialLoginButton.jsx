@@ -2,7 +2,8 @@ import React from 'react';
 import {
   GithubLoginButton,
   FacebookLoginButton,
-  GoogleLoginButton
+  GoogleLoginButton,
+  InstagramLoginButton
 } from 'react-social-login-buttons';
 
 import auth from '../../services/authService';
@@ -21,6 +22,11 @@ const SocialLoginButton = ({ social }) => {
       break;
     case 'google':
       Button = <GoogleLoginButton onClick={() => auth.loginSocial(social)} />;
+      break;
+    case 'instagram':
+      Button = (
+        <InstagramLoginButton onClick={() => auth.loginSocial(social)} />
+      );
       break;
     case 'kakao':
       Button = (

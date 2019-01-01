@@ -9,6 +9,7 @@ import Course from './components/Course/Course';
 import Lecture from './components/Lecture/Lecture';
 import Instructor from './components/Instructor/Instructor';
 import Topics from './components/Topics/Topics';
+import Topic from './components/Topics/Topic/Topic';
 import Profile from './components/Profile/Profile';
 import NotFound from './components/notFound';
 import NavBar from './components/NavBar';
@@ -30,7 +31,9 @@ class App extends Component {
     console.log('[+] NODE_ENV =', process.env.REACT_APP_NODE_ENV);
 
     const user = auth.getCurrentUser();
-    this.setState({ user });
+    this.setState({
+      user
+    });
   };
 
   render() {
@@ -48,10 +51,11 @@ class App extends Component {
             <ProtectedRoute path="/courses" component={Course} />
             <ProtectedRoute path="/profile" exact component={Profile} />
             <Route path="/not-found" component={NotFound} />
-            <Route path="/" exact component={Topics} />
+            <Route path="/topics" exact component={Topics} />
+            <Route path="/" exact component={Topic} />
             <Redirect to="/not-found" />
-          </Switch>
-        </main>
+          </Switch>{' '}
+        </main>{' '}
       </React.Fragment>
     );
   }

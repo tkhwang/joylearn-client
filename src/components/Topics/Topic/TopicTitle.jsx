@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import { Link } from 'react-router-dom';
 
-// className(topic / topic-title) 수정할 수도 있음
+import './TopicTitle.css';
+
 class TopicTitle extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
@@ -22,7 +23,6 @@ class TopicTitle extends Component {
   }
 }
 
-// alt => Topic Logo로 수정할수도 있음
 const TopicLogo = ({ image }) => {
   return <img className="logoimage" src={image} alt="Selected Topic Logo" />;
 };

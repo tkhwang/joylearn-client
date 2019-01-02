@@ -1,0 +1,18 @@
+.logoimage {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.topic {
+  width: 40%;
+  /* border: solid 1px; */
+  display: flex;
+}
+
+.topic-title {
+  font-size: 30px;
+}
+
+.topic-content {
+  font-size: 20px;
+}

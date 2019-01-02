@@ -1,10 +1,21 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+// import { Link } from 'react-router-dom';
 
-class CoursesList extends Component {
-  state = {};
-  render() {
-    return;
-  }
-}
+import './CoursesList.css';
+
+const CoursesList = ({ name, period }) => {
+  return (
+    <div>
+      <h3>{name}</h3>
+      <h5>{period}</h5>
+    </div>
+  );
+};
+
+CoursesList.propTypes = {
+  name: PropTypes.string.isRequired,
+  period: PropTypes.number.isRequired
+};
 
 export default CoursesList;

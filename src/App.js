@@ -10,6 +10,8 @@ import Lecture from './components/Lecture/Lecture';
 import Instructor from './components/Instructor/Instructor';
 import Topics from './components/Topics/Topics';
 import Topic from './components/Topics/Topic/Topic';
+import Lectures from './components/Lectures/Lectures';
+import Courses from './components/Courses/Courses';
 import Profile from './components/Profile/Profile';
 import NotFound from './components/notFound';
 import NavBar from './components/NavBar';
@@ -51,8 +53,10 @@ class App extends Component {
             <ProtectedRoute path="/courses" component={Course} />
             <ProtectedRoute path="/profile" exact component={Profile} />
             <Route path="/not-found" component={NotFound} />
-            <Route path="/topics" exact component={Topics} />
-            <Route path="/" exact component={Topics} />
+            <Route path="/topics" component={Topics} />
+            <Route path="/" exact component={Topic} />
+            <Route path="/lectures" exact component={Lectures} />
+            <Route path='/courses' exact component={Courses} />
             <Redirect to="/not-found" />
           </Switch>{' '}
         </main>{' '}

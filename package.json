@@ -10,6 +10,7 @@
     "bootstrap": "4.1.1",
     "joi-browser": "^13.4.0",
     "jwt-decode": "^2.2.0",
+    "prettier": "^1.15.3",
     "prop-types": "^15.6.2",
     "raven-js": "^3.27.0",
     "react": "^16.4.1",
@@ -28,6 +29,6 @@
   "devDependencies": {
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-prettier": "^3.0.1",
-    "prettier": "^1.15.3"
+    "prettier": "^1.15.3"  
   }
 }

@@ -13,7 +13,7 @@ class RegisterForm extends Form {
   schema = {
     username: Joi.string()
       .required()
-      .email()
+      .email({ minDomainAtoms: 2 })
       .label('Username'),
     password: Joi.string()
       .required()

@@ -16,6 +16,7 @@ class LoginForm extends Form {
   schema = {
     username: Joi.string()
       .required()
+      .email({ minDomainAtoms: 2 })
       .label('Username'),
     password: Joi.string()
       .required()

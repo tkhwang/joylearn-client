@@ -19,6 +19,7 @@ import LoginForm from './components/LoginForm/LoginForm';
 import RegisterForm from './components/LoginForm/RegisterForm';
 import Logout from './components/Logout';
 import ProtectedRoute from './components/common/ProtectedRoute';
+import Movies from './components/Movies/Movies';
 import auth from './services/authService';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -53,6 +54,7 @@ class App extends Component {
             <ProtectedRoute path="/courses" component={Course} />
             <ProtectedRoute path="/profile" exact component={Profile} />
             <Route path="/not-found" component={NotFound} />
+            <Route path="/movies" component={Movies} />
             <Route path="/topics" component={Topics} />
             <Route path="/lectures" exact component={Lectures} />
             <Route path="/courses" exact component={Courses} />

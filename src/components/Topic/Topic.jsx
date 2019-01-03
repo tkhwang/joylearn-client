@@ -5,10 +5,9 @@ import auth from '../../services/authService';
 
 class Topic extends Component {
   componentDidMount() {
-    console.log(this.props.location.search);
-
     const values = querystring.parse(this.props.location.search);
-    if (values) auth.loginWithJwt(values.token);
+    console.log('[+] Topics : jwt = ', values);
+    if (values.token) auth.loginWithJwt(values.token);
   }
   render() {
     return (

@@ -6,6 +6,7 @@ import './LoginForm.css';
 import SocialLoginButton from './SocialLoginButton';
 import Form from '../common/Form';
 import auth from '../../services/authService';
+import Emoji from '../common/Emoji';
 
 class LoginForm extends Form {
   state = {
@@ -44,21 +45,25 @@ class LoginForm extends Form {
 
     return (
       <div className="login">
-        <h1>Login</h1>
+        <h1>Great to have you</h1>
+        <br />
+        <div className="social-login">
+          <h4>We require social login to prevent abuse.</h4>
+          <SocialLoginButton social="github" />
+          <SocialLoginButton social="facebook" />
+          <SocialLoginButton social="google" />
+          <SocialLoginButton social="instagram" />
+          <SocialLoginButton social="kakao" />
+          <br />
+          Made with <Emoji symbol="❤️" label="smile" /> in Korea
+        </div>
+        <br />
+        <h4>will not be used later.</h4>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput('username', 'Email')}
           {this.renderInput('password', 'Password', 'password')}
           {this.renderButton('Login')}
         </form>
-        <div className="social-login">
-          <h3>You may also connect with </h3>
-          <SocialLoginButton social="kakao" />
-          <SocialLoginButton social="github" />
-          <SocialLoginButton social="instagram" />
-          <h4>not yet</h4>
-          <SocialLoginButton social="facebook" />
-          <SocialLoginButton social="google" />
-        </div>
       </div>
     );
   }

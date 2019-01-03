@@ -24,6 +24,9 @@ const NavBar = ({ user }) => {
           {/* <NavLink className="nav-item nav-link active" to="/instructor">
             Instructors <span className="sr-only">(current)</span>
           </NavLink> */}
+          <NavLink className="nav-item nav-link" to="/topic">
+            Topic
+          </NavLink>
           <NavLink className="nav-item nav-link" to="/instructors">
             Instructors
           </NavLink>

@@ -39,6 +39,17 @@ const SocialLoginButton = ({ social }) => {
         </a>
       );
       break;
+    case 'naver':
+      Button = (
+        <a href={urlSocialAuth}>
+          <img
+            src={require('./img/naver_login.png')}
+            alt="loginNaverButton"
+            onClick={() => auth.loginSocial('naver')}
+          />
+        </a>
+      );
+      break;
     default:
       break;
   }

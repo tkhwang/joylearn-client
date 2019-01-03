@@ -55,7 +55,7 @@ class LoginForm extends Form {
           <SocialLoginButton social="instagram" />
           <SocialLoginButton social="kakao" />
           <br />
-          Made with <Emoji symbol="❤️" label="smile" /> in Korea
+          Made with <Emoji symbol="❤️" label="smile" />
         </div>
         <br />
         <h4>will not be used later.</h4>

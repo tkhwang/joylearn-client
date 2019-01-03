@@ -50,12 +50,14 @@ class LoginForm extends Form {
         <div className="social-login">
           <h4>We require social login to prevent abuse.</h4>
           <SocialLoginButton social="github" />
-          <SocialLoginButton social="facebook" />
           <SocialLoginButton social="google" />
           <SocialLoginButton social="instagram" />
           <SocialLoginButton social="kakao" />
+          <SocialLoginButton social="naver" />
+          Not yet
+          <SocialLoginButton social="facebook" />
           <br />
-          Made with <Emoji symbol="❤️" label="smile" /> in Korea
+          Made with <Emoji symbol="❤️" label="smile" />
         </div>
         <br />
         <h4>will not be used later.</h4>

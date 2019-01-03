@@ -3,8 +3,8 @@ export default function() {
     case 'development':
       return { SERVER_URL: 'http://localhost:5000' };
     case 'production':
-      return { SERVER_URL: 'http://joy-learn.com' };
+      return { SERVER_URL: 'https://joy-learn.com' };
     default:
-      return { SERVER_URL: 'http://joy-learn.com' };
+      return { SERVER_URL: 'https://joy-learn.com' };
   }
 }

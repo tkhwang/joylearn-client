@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const NavBar = ({ user }) => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-dark py-0 bg-info navbar-expand-lg py-md-0">
+      {/* <nav className="navbar navbar-expand-lg navbar-light bg-light"> */}
       <Link className="navbar-brand" to="/">
         J<FontAwesomeIcon icon="grin-alt" />Y
       </Link>
@@ -24,6 +25,12 @@ const NavBar = ({ user }) => {
           {/* <NavLink className="nav-item nav-link active" to="/instructor">
             Instructors <span className="sr-only">(current)</span>
           </NavLink> */}
+          <NavLink className="nav-item nav-link" to="/topic">
+            Topic
+          </NavLink>
+          <NavLink className="nav-item nav-link" to="/movies">
+            (study) Movies
+          </NavLink>
           <NavLink className="nav-item nav-link" to="/instructors">
             Instructors
           </NavLink>

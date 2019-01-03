@@ -6,7 +6,7 @@ import LectureTitle from './LectureTitle';
 // import LectureBar from './LectureBar';
 // import LectureComments from './LectureComments';
 
-import './Lecture.css';
+// import './Lecture.css';
 import config from '../../../config';
 const { SERVER_URL } = config();
 

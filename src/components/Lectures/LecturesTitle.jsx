@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import { Link } from 'react-router-dom';
 
-import './LecturesTitle.css';
+// import './LecturesTitle.css';
 
 // array로 받을 때 / if object로 받을 때 코드 수정 필요
 class LecturesTitle extends Component {

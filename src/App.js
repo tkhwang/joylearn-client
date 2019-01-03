@@ -54,9 +54,9 @@ class App extends Component {
             <ProtectedRoute path="/profile" exact component={Profile} />
             <Route path="/not-found" component={NotFound} />
             <Route path="/topics" component={Topics} />
-            <Route path="/" exact component={Topic} />
             <Route path="/lectures" exact component={Lectures} />
-            <Route path='/courses' exact component={Courses} />
+            <Route path="/courses" exact component={Courses} />
+            <Route path="/" exact component={Topic} />
             <Redirect to="/not-found" />
           </Switch>{' '}
         </main>{' '}

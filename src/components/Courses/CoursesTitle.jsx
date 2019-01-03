@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import { Link } from 'react-router-dom';
 
-import './CoursesTitle.css';
+// import './CoursesTitle.css';
 
 // className 변경 해야되나?
 class CoursesTitle extends Component {

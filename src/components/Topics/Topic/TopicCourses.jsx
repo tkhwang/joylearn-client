@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import { Link } from 'react-router-dom';
 
-import './TopicCourses.css';
-
 // 추천수도 보여줄 필요가 있어 보임 (스키마가 바뀔 필요가 있어 보임)
 const TopicCourses = ({ name, period }) => {
   return (

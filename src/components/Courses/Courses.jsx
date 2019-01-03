@@ -7,7 +7,7 @@ import CoursesTitle from './CoursesTitle';
 import CoursesList from './CoursesList';
 // import CoursesFilter from './CoursesFilter';
 
-import './Courses.css';
+// import './Courses.css';
 import config from '../../config';
 const { SERVER_URL } = config();
 

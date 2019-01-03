@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import http from '../../../services/httpService';
 
 import TopicTitle from './TopicTitle';
@@ -6,7 +7,7 @@ import TopicInstructors from './TopicInstructors';
 import TopicLectures from './TopicLectures';
 import TopicCourses from './TopicCourses';
 
-import './Topic.css';
+// import './Topic.css';
 import config from '../../../config';
 const { SERVER_URL } = config();
 
@@ -166,7 +167,7 @@ class Topic extends Component {
         <h1>Best Instructors</h1>
         {this.state.instructors.map((instructor, index) => {
           return (
-            <div className="best-topic-instructors">
+            <BestTopicInstructors>
               <TopicInstructors
                 name={instructor.name}
                 git={instructor.github}
@@ -174,7 +175,7 @@ class Topic extends Component {
                 image={instructor.image}
                 key={index}
               />
-            </div>
+            </BestTopicInstructors>
           );
         })}
         {/* <TopicInstructors instructors={this.state.instructors} /> */}
@@ -209,5 +210,12 @@ class Topic extends Component {
     );
   }
 }
+
+const BestTopicInstructors = styled.div`
+  display: flex;
+  display: inline-block;
+  margin-right: 10px;
+  margin-left: 10px;
+`;
 
 export default Topic;

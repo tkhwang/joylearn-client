@@ -7,7 +7,7 @@ import LecturesTitle from './LecturesTitle';
 import LecturesList from './LecturesList';
 // import LecturesFilter from './LecturesFilter';
 
-import './Lectures.css';
+// import './Lectures.css';
 import config from '../../config';
 const { SERVER_URL } = config();
 

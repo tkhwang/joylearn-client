@@ -19,7 +19,7 @@ class TopicInstructors extends Component {
         <p>{this.props.git}</p>
         <p>{this.props.url}</p>
         <a class="btn">Read More </a>
-        <div class="space" />
+        <div className="space" />
       </div>
     );
   }

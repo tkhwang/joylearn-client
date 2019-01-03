@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import http from '../../services/httpService';
 import auth from '../../services/authService';
 import querystring from 'query-string';
@@ -6,7 +7,7 @@ import querystring from 'query-string';
 import TopicsSearch from './TopicsSearch';
 import TopicsDetail from './TopicsDetail';
 
-import './Topics.css';
+// import './Topics.css';
 import config from '../../config';
 const { SERVER_URL } = config();
 
@@ -28,13 +29,13 @@ export default class Topics extends Component {
 
   _renderTopics = () => {
     return (
-      <div className="topics">
+      <TopicsMenu>
         {this.state.topics.map((topic, index) => {
           return (
             <TopicsDetail name={topic.name} logo={topic.logo} key={index} />
           );
         })}
-      </div>
+      </TopicsMenu>
     );
   };
 
@@ -47,5 +48,10 @@ export default class Topics extends Component {
     );
   }
 }
+
+const TopicsMenu = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
 
 // export default Topics;

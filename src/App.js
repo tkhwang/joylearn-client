@@ -6,11 +6,12 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faGrinAlt } from '@fortawesome/free-solid-svg-icons';
 
 import Course from './components/Course/Course';
-import Lecture from './components/Lecture/Lecture';
+// import Lecture from './components/Lecture/Lecture';
 import Instructor from './components/Instructor/Instructor';
 import Topics from './components/Topics/Topics';
 import Topic from './components/Topics/Topic/Topic';
 import Lectures from './components/Lectures/Lectures';
+import Lecture from './components/Lectures/Lecture/Lecture';
 import Courses from './components/Courses/Courses';
 import Profile from './components/Profile/Profile';
 import NotFound from './components/notFound';
@@ -54,12 +55,13 @@ class App extends Component {
             <ProtectedRoute path="/profile" exact component={Profile} />
             <Route path="/not-found" component={NotFound} />
             <Route path="/topics" component={Topics} />
-            <Route path="/lectures" exact component={Lectures} />
-            <Route path="/courses" exact component={Courses} />
+            <Route path="/lectures" component={Lectures} />
+            <Route path="/courses" component={Courses} />
             <Route path="/" exact component={Topic} />
+            {/* <Route path="/" exact component={Lecture} /> */}
             <Redirect to="/not-found" />
-          </Switch>{' '}
-        </main>{' '}
+          </Switch>
+        </main>
       </React.Fragment>
     );
   }

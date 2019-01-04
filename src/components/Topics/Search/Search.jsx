@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-// import './TopicsSearch.css';
-
 // topic search bar (로그인 했을 때 홈 화면에서)
 // function보다 class를 써야 할 수 있다.
 // input 태그 안에 함수를 설정해주는 경우 => 보기에는 편하지만 속도가 느려질 수 있다. (분리를 해주자)
-class TopicsSearch extends Component {
+class Search extends Component {
   state = {
     term: ''
   };
@@ -49,4 +47,4 @@ const SearchBar = styled.input`
   flex-shrink: 1;
 `;
 
-export default TopicsSearch;
+export default Search;

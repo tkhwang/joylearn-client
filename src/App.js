@@ -59,8 +59,8 @@ class App extends Component {
             <Route path="/topics" component={Topics} />
             <Route path="/lectures" exact component={Lectures} />
             <Route path="/courses" exact component={Courses} />
-            <Route path="/topic" exact component={Topic} />
-            <Route path="/" exact component={Topics} />
+            <Route path="/" exact component={Topic} />
+            {/* <Route path="/" exact component={Topics} /> */}
             <Redirect to="/not-found" />
           </Switch>
         </main>

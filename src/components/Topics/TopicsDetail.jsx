@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 // import { Link } from 'react-router-dom';
@@ -25,18 +25,48 @@ import styled from 'styled-components';
 
 // styled components 적용!!
 const TopicsDetail = ({ name, logo }) => {
+  // console.log({ name });
+  // onClick={() => _onTopicSelect()}
   return (
-    <Topics>
-      <TopicsLogo image={logo} />
-      <TopicsTitle className="topics-title">{name}</TopicsTitle>
-    </Topics>
+    <BindedTopics name={name} onClick={_onTopicSelect(name)}>
+      <Topics>
+        <TopicsLogo image={logo} />
+        <TopicsTitle className="topics-title">{name}</TopicsTitle>
+      </Topics>
+    </BindedTopics>
   );
 };
+
+const BindedTopics = ({ name }) => {
+  // console.log(name);
+};
+
+const _onTopicSelect = ({ name }) => {
+  console.log(name);
+};
+
+// class TopicsDetail extends Component {
+//   render() {
+//     // console.log(this.props);
+//     return (
+//       <Topics
+//         name={this.props.name}
+//         onClick={() => _onTopicSelect(this.props.name)}
+//       >
+//         <TopicsLogo image={this.props.logo} />
+//         <TopicsTitle className="topics-title">{this.props.name}</TopicsTitle>
+//       </Topics>
+//     );
+//   }
+// }
+
+// const _onTopicSelect = ({ name }) => {
+//   console.log(name);
+// };
 
 function TopicsLogo({ image }) {
   return <Img className="logoimages" src={image} alt="Topic Logo" />;
 }
-
 TopicsDetail.propTypes = {
   name: PropTypes.string.isRequired,
   logo: PropTypes.string.isRequired
@@ -47,23 +77,27 @@ TopicsLogo.propTypes = {
 };
 
 const Topics = styled.div`
-  width: 30%;
   display: flex;
-  border: solid 1px;
+  flex-wrap: wrap;
+  width: 30%;
+  border: solid 1px gray;
   margin: 10px;
   &:hover {
-    transform: translate3d(-3px, -3px, 100px);
-    box-shadow: 5px 10px #888888;
+    transform: scale(1.05, 1.05);
+    box-shadow: 3px 5px #ced6e0;
   }
 `;
 
 const TopicsTitle = styled.h1`
-  font-size: 30px;
+  font-size: 1.3rem;
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
 `;
 
 const Img = styled.img`
-  max-width: 60px;
-  max-height: 60px;
+  max-width: 2.7rem;
+  max-height: 2.7rem;
+  margin: 3px;
 `;
 
 export default TopicsDetail;

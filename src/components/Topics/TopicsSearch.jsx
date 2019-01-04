@@ -9,7 +9,9 @@ class TopicsSearch extends Component {
   render() {
     return (
       <Search>
-        <h1>Find the Best Programming Tutorials and Courses</h1>
+        <TopicsTitle>
+          Find the Best Programming Tutorials and Courses
+        </TopicsTitle>
         <SearchBar
           type="text"
           autofocus
@@ -22,11 +24,19 @@ class TopicsSearch extends Component {
 
 const Search = styled.div`
   text-align: center;
+  display: flex;
+  flex-direction: column;
+`;
+
+const TopicsTitle = styled.h1`
+  font-size: 1.8rem;
 `;
 
 const SearchBar = styled.input`
-  width: 1000px;
+  flex-basis: 2rem;
   height: 40px;
+  margin: 20px;
+  flex-shrink: 1;
 `;
 
 export default TopicsSearch;

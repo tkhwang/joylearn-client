@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import http from '../../../services/httpService';
+import http from '../../services/httpService';
 
-import TopicTitle from './TopicTitle';
-import TopicInstructors from './TopicInstructors';
-import TopicLectures from './TopicLectures';
-import TopicCourses from './TopicCourses';
+import Title from './Title/Title';
+import Instructors from './Instructors/Instructors';
+import Lectures from './Lectures/Lectures';
+import Courses from './Courses/Courses';
 
 // import './Topic.css';
-import config from '../../../config';
+import config from '../../config';
 const { SERVER_URL } = config();
 
 // selected topic
@@ -162,13 +162,13 @@ class Topic extends Component {
   render() {
     return (
       <React.Fragment>
-        <TopicTitle title={this.state.title} />
+        <Title title={this.state.title} />
         <hr />
         <BestTopicInstructorsTitle>Best Instructors</BestTopicInstructorsTitle>
         {this.state.instructors.map((instructor, index) => {
           return (
             <BestTopicInstructors>
-              <TopicInstructors
+              <Instructors
                 name={instructor.name}
                 git={instructor.github}
                 url={instructor.mainurl}
@@ -182,7 +182,7 @@ class Topic extends Component {
         <a href="">more</a>
         {this.state.lectures.map((lecture, index) => {
           return (
-            <TopicLectures
+            <Lectures
               title={lecture.title}
               url={lecture.url}
               name={lecture.name}
@@ -197,11 +197,7 @@ class Topic extends Component {
         <a href="">more</a>
         {this.state.courses.map((course, index) => {
           return (
-            <TopicCourses
-              name={course.name}
-              period={course.period}
-              key={index}
-            />
+            <Courses name={course.name} period={course.period} key={index} />
           );
         })}
         {/* <TopicCourses courses={this.state.courses} /> */}

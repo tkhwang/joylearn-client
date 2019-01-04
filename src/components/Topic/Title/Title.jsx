@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 // import { Link } from 'react-router-dom';
 
-import './TopicTitle.css';
+import './Title.css';
 
-class TopicTitle extends Component {
+class Title extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
     logo: PropTypes.string.isRequired
@@ -32,4 +32,4 @@ TopicLogo.propTypes = {
   image: PropTypes.string.isRequired
 };
 
-export default TopicTitle;
+export default Title;

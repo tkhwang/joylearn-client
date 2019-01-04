@@ -4,7 +4,7 @@ import http from '../../services/httpService';
 import auth from '../../services/authService';
 import querystring from 'query-string';
 
-import TopicsSearch from './Search/Search';
+import Search from './Search/Search';
 import Button from './Button/Button';
 
 // import './Topics.css';
@@ -41,7 +41,7 @@ export default class Topics extends Component {
   render() {
     return (
       <React.Fragment>
-        <TopicsSearch />
+        <Search />
         {this.state.topics ? this._renderTopics() : 'Loadings'}
       </React.Fragment>
     );

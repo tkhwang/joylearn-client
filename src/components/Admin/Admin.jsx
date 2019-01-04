@@ -2,13 +2,12 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import Joi from 'joi-browser';
 
-import './LoginForm.css';
-import SocialLoginButton from './SocialLoginButton';
+import './Admin.css';
+import RegisterForm from '../LoginForm/RegisterForm';
 import Form from '../common/Form';
 import auth from '../../services/authService';
-import Emoji from '../common/Emoji';
 
-class LoginForm extends Form {
+class Admin extends Form {
   state = {
     data: { username: '', password: '' },
     errors: {}
@@ -45,23 +44,17 @@ class LoginForm extends Form {
 
     return (
       <div className="login">
-        <h1>Great to have you</h1>
-        <br />
-        <div className="social-login">
-          <h4>We require social login to prevent abuse.</h4>
-          <SocialLoginButton social="facebook" />
-          <SocialLoginButton social="instagram" />
-          <SocialLoginButton social="github" />
-          <SocialLoginButton social="google" />
-          <SocialLoginButton social="kakao" />
-          Now under : now in review by Naver
-          <SocialLoginButton social="naver" />
-          <br />
-          Made with <Emoji symbol="❤️" label="smile" />
-        </div>
+        <h4>Admin : Only for local testing w/o social login.</h4>
+        <form onSubmit={this.handleSubmit}>
+          {this.renderInput('username', 'Email')}
+          {this.renderInput('password', 'Password', 'password')}
+          {this.renderButton('Login')}
+        </form>
+        <hr />
+        <RegisterForm />
       </div>
     );
   }
 }
 
-export default LoginForm;
+export default Admin;

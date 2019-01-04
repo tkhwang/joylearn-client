@@ -17,10 +17,10 @@ import Profile from './components/Profile/Profile';
 import NotFound from './components/notFound';
 import NavBar from './components/NavBar';
 import LoginForm from './components/LoginForm/LoginForm';
-import RegisterForm from './components/LoginForm/RegisterForm';
 import Logout from './components/Logout';
 import ProtectedRoute from './components/common/ProtectedRoute';
 import Movies from './components/Movies/Movies';
+import Admin from './components/Admin/Admin';
 import auth from './services/authService';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -46,9 +46,10 @@ class App extends Component {
         <NavBar user={this.state.user} />
         <main className="content">
           <Switch>
-            <Route path="/register" component={RegisterForm} />
+            {/* <Route path="/register" component={RegisterForm} /> */}
             <Route path="/login" component={LoginForm} />
             <Route path="/logout" component={Logout} />
+            <Route path="/admin" exact component={Admin} />
             <ProtectedRoute path="/topics" component={Topics} />
             <ProtectedRoute path="/instructors" component={Instructor} />
             <ProtectedRoute path="/lectures" component={Lecture} />

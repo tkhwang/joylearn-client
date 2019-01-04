@@ -5,7 +5,7 @@ import auth from '../../services/authService';
 import querystring from 'query-string';
 
 import TopicsSearch from './Search/Search';
-import TopicsDetail from './Button/Button';
+import Button from './Button/Button';
 
 // import './Topics.css';
 import config from '../../config';
@@ -31,9 +31,7 @@ export default class Topics extends Component {
     return (
       <TopicsMenu>
         {this.state.topics.map((topic, index) => {
-          return (
-            <TopicsDetail name={topic.name} logo={topic.logo} key={index} />
-          );
+          return <Button name={topic.name} logo={topic.logo} key={index} />;
         })}
       </TopicsMenu>
     );

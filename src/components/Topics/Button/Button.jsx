@@ -1,17 +1,38 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 // import Topic from '';
 
-const Button = ({ name, logo }) => {
-  return (
-    <Topics>
-      <TopicsLogo image={logo} />
-      <TopicsTitle className="topics-title">{name}</TopicsTitle>
-    </Topics>
-  );
-};
+class Button extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { clicked: false };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState({
+      clicked: true
+    });
+  }
+
+  render() {
+    return this.state.clicked ? (
+      // <NavLink className="nav-item nav-link" to="/topic">
+      //   Topic
+      // </NavLink>
+      <Redirect to={`/topic?topic=${this.props.name}`} />
+    ) : (
+      <Topics onClick={() => this.handleClick(this.props.name)}>
+        <TopicsLogo image={this.props.logo} />
+        <TopicsTitle className="topics-title">{this.props.name}</TopicsTitle>
+      </Topics>
+    );
+  }
+}
 
 function TopicsLogo({ image }) {
   return <Img src={image} alt="Topic Logo" />;

@@ -5,7 +5,12 @@ import styled from 'styled-components';
 
 // topic search bar (로그인 했을 때 홈 화면에서)
 // function보다 class를 써야 할 수 있다.
+// input 태그 안에 함수를 설정해주는 경우 => 보기에는 편하지만 속도가 느려질 수 있다. (분리를 해주자)
 class TopicsSearch extends Component {
+  state = {
+    term: ''
+  };
+
   render() {
     return (
       <Search>
@@ -16,10 +21,15 @@ class TopicsSearch extends Component {
           type="text"
           autofocus
           placeholder="Search for the language you want to learn: Python, JavaScript..."
+          onChange={event => this._onInputChange(event.target.value)}
         />
       </Search>
     );
   }
+
+  _onInputChange = term => {
+    this.setState({ term });
+  };
 }
 
 const Search = styled.div`

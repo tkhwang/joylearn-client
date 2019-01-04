@@ -9,7 +9,7 @@ import Course from './components/Course/Course';
 // import Lecture from './components/Lecture/Lecture';
 import Instructor from './components/Instructor/Instructor';
 import Topics from './components/Topics/Topics';
-import Topic from './components/Topics/Topic/Topic';
+import Topic from './components/Topic/Topic';
 import Lectures from './components/Lectures/Lectures';
 import Lecture from './components/Lectures/Lecture/Lecture';
 import Courses from './components/Courses/Courses';

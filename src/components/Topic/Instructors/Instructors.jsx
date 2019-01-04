@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 // import { Link } from 'react-router-dom';
 
-import './TopicInstructors.css';
+import './Instructors.css';
 
-class TopicInstructors extends Component {
+class Instructors extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired
@@ -34,4 +34,4 @@ InsImage.propTypes = {
   image: PropTypes.string.isRequired
 };
 
-export default TopicInstructors;
+export default Instructors;

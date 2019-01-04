@@ -11,7 +11,7 @@ class Search extends Component {
 
   render() {
     return (
-      <Search>
+      <BindedSearch>
         <TopicsTitle>
           Find the Best Programming Tutorials and Courses
         </TopicsTitle>
@@ -21,7 +21,7 @@ class Search extends Component {
           placeholder="Search for the language you want to learn: Python, JavaScript..."
           onChange={event => this._onInputChange(event.target.value)}
         />
-      </Search>
+      </BindedSearch>
     );
   }
 
@@ -30,7 +30,7 @@ class Search extends Component {
   };
 }
 
-const Search = styled.div`
+const BindedSearch = styled.div`
   text-align: center;
   display: flex;
   flex-direction: column;

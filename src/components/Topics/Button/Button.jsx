@@ -4,7 +4,7 @@ import styled from 'styled-components';
 // import { Link } from 'react-router-dom';
 // import Topic from '';
 
-const TopicsDetail = ({ name, logo }) => {
+const Button = ({ name, logo }) => {
   return (
     <Topics>
       <TopicsLogo image={logo} />
@@ -14,10 +14,10 @@ const TopicsDetail = ({ name, logo }) => {
 };
 
 function TopicsLogo({ image }) {
-  return <Img className="logoimages" src={image} alt="Topic Logo" />;
+  return <Img src={image} alt="Topic Logo" />;
 }
 
-TopicsDetail.propTypes = {
+Button.propTypes = {
   name: PropTypes.string.isRequired,
   logo: PropTypes.string.isRequired
 };
@@ -50,4 +50,4 @@ const Img = styled.img`
   margin: 3px;
 `;
 
-export default TopicsDetail;
+export default Button;

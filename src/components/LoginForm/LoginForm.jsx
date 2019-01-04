@@ -49,18 +49,18 @@ class LoginForm extends Form {
         <br />
         <div className="social-login">
           <h4>We require social login to prevent abuse.</h4>
+          <SocialLoginButton social="facebook" />
+          <SocialLoginButton social="instagram" />
           <SocialLoginButton social="github" />
           <SocialLoginButton social="google" />
-          <SocialLoginButton social="instagram" />
           <SocialLoginButton social="kakao" />
+          Now under : now in review by Naver
           <SocialLoginButton social="naver" />
-          Not yet
-          <SocialLoginButton social="facebook" />
           <br />
           Made with <Emoji symbol="❤️" label="smile" />
         </div>
         <br />
-        <h4>will not be used later.</h4>
+        <h4>Admin : Only for local testing w/o social login.</h4>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput('username', 'Email')}
           {this.renderInput('password', 'Password', 'password')}

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
-// import Topic from '';
 
 class Button extends Component {
   constructor(props) {
@@ -20,15 +19,13 @@ class Button extends Component {
   }
 
   render() {
+    const { name } = this.props;
     return this.state.clicked ? (
-      // <NavLink className="nav-item nav-link" to="/topic">
-      //   Topic
-      // </NavLink>
-      <Redirect to={`/topic?topic=${this.props.name}`} />
+      <Redirect to={`/topic?topic=${name}`} />
     ) : (
-      <Topics onClick={() => this.handleClick(this.props.name)}>
+      <Topics onClick={() => this.handleClick(name)}>
         <TopicsLogo image={this.props.logo} />
-        <TopicsTitle className="topics-title">{this.props.name}</TopicsTitle>
+        <TopicsTitle className="topics-title">{name}</TopicsTitle>
       </Topics>
     );
   }

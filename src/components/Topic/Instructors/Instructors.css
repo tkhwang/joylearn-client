@@ -8,7 +8,7 @@
   font-size: 30px;
 } */
 
-.topic-instructors {
+/* .topic-instructors {
   margin: 10vh auto;
   min-width: 20vw;
   max-width: 60vh;
@@ -18,13 +18,14 @@
   transition: .6s ease;
   background: white;
   text-align: center;
-  /* display: flex; */
+
   flex-direction: row;
-}
+} */
 
 .topic-instructors:hover {
   box-shadow: 0 18px 35px rgba(50, 50, 90, .1), 0 8px 15px rgba(0, 0, 0, .07);
   transform: translateY(-1px);
+
 }
 
 img {

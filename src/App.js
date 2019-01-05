@@ -15,7 +15,7 @@ import Lecture from './components/Lectures/Lecture/Lecture';
 import Courses from './components/Courses/Courses';
 import Profile from './components/Profile/Profile';
 import NotFound from './components/notFound';
-import NavBar from './components/NavBar';
+import NavBar from './components/NavBar/NavBar.good';
 import LoginForm from './components/LoginForm/LoginForm';
 import Logout from './components/Logout';
 import ProtectedRoute from './components/common/ProtectedRoute';

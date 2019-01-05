@@ -45,10 +45,10 @@ class LoginForm extends Form {
 
     return (
       <div className="login">
-        <h1>Great to have you</h1>
-        <br />
+        <h1>Welcome back.</h1>
+        {/* <br /> */}
         <div className="social-login">
-          <h4>We require social login to prevent abuse.</h4>
+          Sign up using :
           <SocialLoginButton social="facebook" />
           <SocialLoginButton social="instagram" />
           <SocialLoginButton social="github" />

@@ -6,14 +6,11 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  // NavLink,
-  NavItem,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
+  UncontrolledDropdown
 } from 'reactstrap';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import UserButton from './UserButton';
 
 class NavBar extends Component {
   constructor(props) {
@@ -59,51 +56,7 @@ class NavBar extends Component {
                 Courses
               </NavLink>
               <UncontrolledDropdown nav inNavbar>
-                {!user && (
-                  <DropdownToggle nav caret>
-                    Login/Signup
-                  </DropdownToggle>
-                )}
-                {user && (
-                  <DropdownToggle nav caret>
-                    {user.name}
-                  </DropdownToggle>
-                )}
-                <DropdownMenu right>
-                  {!user && (
-                    <DropdownItem>
-                      <NavLink
-                        className="nav-item nav-link navbar-right"
-                        to="/login"
-                      >
-                        Login
-                      </NavLink>
-                    </DropdownItem>
-                  )}
-
-                  {user && (
-                    <DropdownItem>
-                      <NavLink
-                        className="nav-item nav-link navbar-right"
-                        to="/profile"
-                      >
-                        profile
-                      </NavLink>
-                    </DropdownItem>
-                  )}
-                  {user && (
-                    <DropdownItem>
-                      <NavLink
-                        className="nav-item nav-link navbar-right"
-                        to="/logout"
-                      >
-                        Logout
-                      </NavLink>
-                    </DropdownItem>
-                  )}
-                  <DropdownItem divider />
-                  <DropdownItem>Later...</DropdownItem>
-                </DropdownMenu>
+                <UserButton user={user} />
               </UncontrolledDropdown>
             </Nav>
           </Collapse>

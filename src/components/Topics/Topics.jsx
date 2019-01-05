@@ -20,18 +20,26 @@ export default class Topics extends Component {
     console.log('[+] Topics : jwt = ', values);
     if (values.token) auth.loginWithJwt(values.token);
 
-    const topics = await http.get(SERVER_URL + '/topics');
-    // console.log(topics);
+    const { data: topics } = await http.get(SERVER_URL + '/topics');
+    console.log('[+] Topics = ', topics);
+
     this.setState({
-      topics: topics.data
+      topics: topics
     });
   }
 
   _renderTopics = () => {
     return (
       <TopicsMenu>
-        {this.state.topics.map((topic, index) => {
-          return <Button name={topic.name} logo={topic.logo} key={index} />;
+        {this.state.topics.map((topic, index, topics) => {
+          return (
+            <Button
+              name={topic.name}
+              logo={topic.logo}
+              key={index}
+              topics={topics}
+            />
+          );
         })}
       </TopicsMenu>
     );

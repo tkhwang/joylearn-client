@@ -8,11 +8,16 @@ import logger from './services/logService';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
 
+import { Provider } from 'react-redux';
+import store from './store/configureStore';
+
 logger.init();
 
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </BrowserRouter>,
   document.getElementById('root')
 );

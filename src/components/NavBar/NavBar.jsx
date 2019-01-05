@@ -34,9 +34,12 @@ class NavBar extends Component {
     return (
       <div>
         <Navbar color="info" light expand="md">
-          <NavbarBrand href="/">
+          {/* <NavbarBrand href="/">
             J<FontAwesomeIcon icon="grin-alt" />Y
-          </NavbarBrand>
+          </NavbarBrand> */}
+          <NavLink className="nav-item nav-link" to="/">
+            J<FontAwesomeIcon icon="grin-alt" />Y
+          </NavLink>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

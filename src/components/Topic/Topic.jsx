@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import http from '../../services/httpService';
 import querystring from 'query-string';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as signinActions from '../../actions/signin';
+import * as topicsActiosn from '../../actions/topics';
 
 import Title from './Title/Title';
 import Instructors from './Instructors/Instructors';
@@ -17,12 +21,14 @@ class Topic extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      topic: '',
+      topic: {},
       instructors: []
     };
   }
 
   async componentDidMount() {
+    console.log('[+] Topic = (redux) ', this.props);
+
     const { topic } = querystring.parse(this.props.location.search);
     console.log('[+] Topic : values = ', topic);
 
@@ -30,6 +36,16 @@ class Topic extends Component {
       ...this.state,
       topic: topic
     });
+
+    const { topics } = this.props.topics;
+    console.log(`[+] Topic : topics = ${topics}, topic = ${topic}`);
+    // console.log(topics.name[topic]);
+
+    const selectedTopic = topics.filter(obj => {
+      return obj.name === topic;
+    })[0];
+    console.log('[+] selectedTopic = ', selectedTopic);
+    this.setState({ ...this.state, topic: selectedTopic });
 
     const { data: instructors } = await http.get(SERVER_URL + '/instructors');
     console.log(instructors);
@@ -41,9 +57,10 @@ class Topic extends Component {
   }
 
   render() {
+    const { isSignin } = this.props.signin;
+
     return (
       <React.Fragment>
-        <h1>{this.state.topic} @ Topic</h1>
         <Title title={this.state.topic} />
         <hr />
         <CardsContatiner>
@@ -123,4 +140,14 @@ const BestTopicInstructors = styled.div`
   margin-left: 10px;
 `;
 
-export default Topic;
+export default connect(
+  state => ({
+    // TODO: How store state is linked to this ?
+    signin: state.signin,
+    topics: state.topics
+  }),
+  dispatch => ({
+    signinActions: bindActionCreators(signinActions, dispatch),
+    topicsActiosn: bindActionCreators(topicsActiosn, dispatch)
+  })
+)(Topic);

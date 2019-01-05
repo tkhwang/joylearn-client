@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 import http from '../../services/httpService';
 import auth from '../../services/authService';
 import querystring from 'query-string';
@@ -7,24 +10,36 @@ import querystring from 'query-string';
 import Search from './Search/Search';
 import Button from './Button/Button';
 
+import * as signinActions from '../../actions/signin';
+import * as topicsActiosn from '../../actions/topics';
+
 // import './Topics.css';
 import config from '../../config';
 const { SERVER_URL } = config();
 
 // 로그인을 했을 때의 홈 화면
-export default class Topics extends Component {
+class Topics extends Component {
   state = {};
 
   async componentDidMount() {
+    const { topicsActions } = this.props;
+
+    console.log('[+] redux = ', this.props);
+    const { userSigninActions } = this.props;
+
     const values = querystring.parse(this.props.location.search);
     console.log('[+] Topics : jwt = ', values);
-    if (values.token) auth.loginWithJwt(values.token);
+    if (values.token) {
+      auth.loginWithJwt(values.token);
+      userSigninActions.signin();
+    }
 
-    const { data: topics } = await http.get(SERVER_URL + '/topics');
-    console.log('[+] Topics = ', topics);
+    const data = await http.get(SERVER_URL + '/topics');
+    console.log('[+] Topics = ', data);
 
+    topicsActions.set_topics(data.data);
     this.setState({
-      topics: topics
+      topics: data.data
     });
   }
 
@@ -63,3 +78,15 @@ const TopicsMenu = styled.div`
 `;
 
 // export default Topics;
+
+export default connect(
+  state => ({
+    // TODO: How store state is linked to this ?
+    signin: state.signin,
+    topics: state.topics
+  }),
+  dispatch => ({
+    signinActions: bindActionCreators(signinActions, dispatch),
+    topicsActions: bindActionCreators(topicsActiosn, dispatch)
+  })
+)(Topics);

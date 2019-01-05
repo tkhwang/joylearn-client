@@ -1,5 +1,6 @@
 import jwtDecode from 'jwt-decode';
 import http from './httpService';
+
 import config from '../config';
 const { SERVER_URL } = config();
 

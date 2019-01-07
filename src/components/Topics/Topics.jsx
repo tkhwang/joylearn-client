@@ -7,9 +7,10 @@ import http from '../../services/httpService';
 import auth from '../../services/authService';
 import querystring from 'query-string';
 
-import Search from './Search/Search';
+// import Search from './Search/Search';
 // import Button from './Button/Button';
 import CardTopic from '../common/Card/CardTopic';
+import Input from '../common/Input/Input';
 
 import * as signinActions from '../../actions/signin';
 import * as topicsActiosn from '../../actions/topics';
@@ -44,13 +45,6 @@ class Topics extends Component {
     });
   }
 
-  //   <Button
-  //   name={topic.name}
-  //   logo={topic.logo}
-  //   key={index}
-  //   topics={topics}
-  // />
-
   _renderTopics = () => {
     return (
       <TopicsMenu>
@@ -67,7 +61,8 @@ class Topics extends Component {
   render() {
     return (
       <React.Fragment>
-        <Search />
+        {/* <Search /> */}
+        <Input label="Search Topics which you want to learn." />
         {this.state.topics ? this._renderTopics() : 'Loadings'}
       </React.Fragment>
     );

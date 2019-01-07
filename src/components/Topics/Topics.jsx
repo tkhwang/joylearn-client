@@ -9,6 +9,8 @@ import querystring from 'query-string';
 
 import Search from './Search/Search';
 import Button from './Button/Button';
+import CardTopic from '../common/Card/CardTopic';
+import Input from '../common/Input/Input';
 
 import * as signinActions from '../../actions/signin';
 import * as topicsActiosn from '../../actions/topics';
@@ -43,17 +45,19 @@ class Topics extends Component {
     });
   }
 
+  //   <Button
+  //   name={topic.name}
+  //   logo={topic.logo}
+  //   key={index}
+  //   topics={topics}
+  // />
+
   _renderTopics = () => {
     return (
       <TopicsMenu>
         {this.state.topics.map((topic, index, topics) => {
           return (
-            <Button
-              name={topic.name}
-              logo={topic.logo}
-              key={index}
-              topics={topics}
-            />
+            <CardTopic image={topic.logo} title={topic.name} description={''} />
           );
         })}
       </TopicsMenu>

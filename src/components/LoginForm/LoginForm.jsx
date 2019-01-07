@@ -4,6 +4,7 @@ import Joi from 'joi-browser';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as signinActions from '../../actions/signin';
+import * as topicsActions from '../../actions/topics';
 
 import './LoginForm.css';
 import SocialLoginButton from './SocialLoginButton';
@@ -33,13 +34,13 @@ class LoginForm extends Form {
 
   doSubmit = async () => {
     console.log('[+] this.props @LoginForm = ', this.props);
-    const { signinActions } = this.props;
+    const { actionsSign } = this.props;
 
     try {
       const { data } = this.state;
       await auth.login(data.username, data.password);
 
-      signinActions.user_signin();
+      actionsSign.signin();
 
       const { state } = this.props.location;
       window.location = state ? state.from.pathname : '/';
@@ -80,10 +81,11 @@ class LoginForm extends Form {
 
 export default connect(
   state => ({
-    // TODO: How store state is linked to this ?
-    signin: state.signin
+    storeSignin: state.signin,
+    storeTopics: state.topics
   }),
   dispatch => ({
-    signinActions: bindActionCreators(signinActions, dispatch)
+    actionsSign: bindActionCreators(signinActions, dispatch),
+    actionTopics: bindActionCreators(topicsActions, dispatch)
   })
 )(LoginForm);

@@ -28,8 +28,9 @@ class Topic extends Component {
 
   async componentDidMount() {
     console.log('[+] Topic = (redux) ', this.props);
+    const { topic } = this.props.topic.match.params;
 
-    const { topic } = querystring.parse(this.props.location.search);
+    // const { topic } = querystring.parse(this.props.location.search);
     console.log('[+] Topic : values = ', topic);
 
     this.setState({

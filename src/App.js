@@ -58,7 +58,8 @@ class App extends Component {
             <Route path="/not-found" component={NotFound} />
             <Route path="/movies" component={Movies} />
             <Route path="/topics" component={Topics} />
-            <Route path="/topic" component={Topic} />
+            {/* <Route path="/j/:topicId" component={Topic} /> */}
+            <Route path="/j/:topic" render={topic => <Topic topic={topic} />} />
             <Route path="/lectures" exact component={Lectures} />
             <Route path="/courses" exact component={Courses} />
             {/* <Route path="/" exact component={Topic} /> */}

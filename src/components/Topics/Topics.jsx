@@ -25,13 +25,13 @@ class Topics extends Component {
     const { actionTopics } = this.props;
 
     console.log('[+] redux = ', this.props);
-    const { userSigninActions } = this.props;
+    const { actionsSign } = this.props;
 
     const values = querystring.parse(this.props.location.search);
     console.log('[+] Topics : jwt = ', values);
     if (values.token) {
       auth.loginWithJwt(values.token);
-      userSigninActions.signin();
+      actionsSign.signin();
     }
 
     const data = await http.get(SERVER_URL + '/topics');

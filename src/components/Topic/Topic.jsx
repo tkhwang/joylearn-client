@@ -37,7 +37,7 @@ class Topic extends Component {
       topic: topic
     });
 
-    const { topics } = this.props.topics;
+    const { topics } = this.props.storeTopics;
     console.log(`[+] Topic : topics = ${topics}, topic = ${topic}`);
     // console.log(topics.name[topic]);
 
@@ -57,8 +57,6 @@ class Topic extends Component {
   }
 
   render() {
-    const { isSignin } = this.props.signin;
-
     return (
       <React.Fragment>
         <Title title={this.state.topic} />
@@ -142,12 +140,11 @@ const BestTopicInstructors = styled.div`
 
 export default connect(
   state => ({
-    // TODO: How store state is linked to this ?
-    signin: state.signin,
-    topics: state.topics
+    storeSignin: state.signin,
+    storeTopics: state.topics
   }),
   dispatch => ({
-    signinActions: bindActionCreators(signinActions, dispatch),
-    topicsActiosn: bindActionCreators(topicsActiosn, dispatch)
+    actionsSign: bindActionCreators(signinActions, dispatch),
+    actionTopics: bindActionCreators(topicsActiosn, dispatch)
   })
 )(Topic);

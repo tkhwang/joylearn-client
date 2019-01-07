@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import { SET_TOPICS } from '../actions/topics';
+import { GET_TOPICS } from '../actions/topics';
 
 const initialState = {
   topics: []
@@ -7,7 +7,7 @@ const initialState = {
 
 export default handleActions(
   {
-    [SET_TOPICS]: (state, action) => {
+    [GET_TOPICS]: (state, action) => {
       return {
         ...state,
         topics: action.payload.topics

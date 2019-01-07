@@ -1,5 +1,5 @@
-export const SET_TOPICS = 'topics/SET_TOPICS';
+export const GET_TOPICS = 'topics/GET_TOPICS';
 
-export const set_topics = topics => {
-  return { type: SET_TOPICS, payload: { topics: topics } };
+export const get_topics = topics => {
+  return { type: GET_TOPICS, payload: { topics: topics } };
 };

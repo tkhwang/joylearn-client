@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import http from '../../services/httpService';
-import querystring from 'query-string';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as signinActions from '../../actions/signin';

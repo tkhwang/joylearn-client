@@ -8,9 +8,8 @@ import auth from '../../services/authService';
 import querystring from 'query-string';
 
 import Search from './Search/Search';
-import Button from './Button/Button';
+// import Button from './Button/Button';
 import CardTopic from '../common/Card/CardTopic';
-import Input from '../common/Input/Input';
 
 import * as signinActions from '../../actions/signin';
 import * as topicsActiosn from '../../actions/topics';

@@ -22,7 +22,7 @@ class Topics extends Component {
   state = {};
 
   async componentDidMount() {
-    const { topicsActions } = this.props;
+    const { actionTopics } = this.props;
 
     console.log('[+] redux = ', this.props);
     const { userSigninActions } = this.props;
@@ -37,7 +37,7 @@ class Topics extends Component {
     const data = await http.get(SERVER_URL + '/topics');
     console.log('[+] Topics = ', data);
 
-    topicsActions.set_topics(data.data);
+    actionTopics.get_topics(data.data);
     this.setState({
       topics: data.data
     });
@@ -81,12 +81,11 @@ const TopicsMenu = styled.div`
 
 export default connect(
   state => ({
-    // TODO: How store state is linked to this ?
-    signin: state.signin,
-    topics: state.topics
+    storeSignin: state.signin,
+    storeTopics: state.topics
   }),
   dispatch => ({
-    signinActions: bindActionCreators(signinActions, dispatch),
-    topicsActions: bindActionCreators(topicsActiosn, dispatch)
+    actionsSign: bindActionCreators(signinActions, dispatch),
+    actionTopics: bindActionCreators(topicsActiosn, dispatch)
   })
 )(Topics);

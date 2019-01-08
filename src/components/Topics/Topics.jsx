@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Loader from 'react-loader-spinner';
 
 import http from '../../services/httpService';
 import auth from '../../services/authService';
@@ -21,23 +22,23 @@ const { SERVER_URL } = config();
 
 // 로그인을 했을 때의 홈 화면
 class Topics extends Component {
-  state = {};
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+  }
 
   async componentDidMount() {
     const { actionTopics } = this.props;
-
-    console.log('[+] redux = ', this.props);
     const { actionsSign } = this.props;
 
     const values = querystring.parse(this.props.location.search);
-    console.log('[+] Topics : jwt = ', values);
     if (values.token) {
       auth.loginWithJwt(values.token);
       actionsSign.signin();
     }
 
     const data = await http.get(SERVER_URL + '/topics');
-    console.log('[+] Topics = ', data);
 
     actionTopics.get_topics(data.data);
     this.setState({
@@ -47,35 +48,54 @@ class Topics extends Component {
 
   _renderTopics = () => {
     return (
-      <TopicsMenu>
+      <DivTopicsMenu>
         {this.state.topics.map((topic, index, topics) => {
           return (
-            <CardTopic image={topic.logo} title={topic.name} description={''} />
+            <CardTopic
+              image={topic.logo}
+              title={topic.name}
+              description={''}
+              key={topic}
+            />
           );
         })}
-      </TopicsMenu>
+      </DivTopicsMenu>
     );
   };
 
-  // TODO:Change Loading
   render() {
     return (
       <React.Fragment>
         {/* <Search /> */}
         <Input label="Search Topics which you want to learn." />
-        {this.state.topics ? this._renderTopics() : 'Loadings'}
+        {this.state.topics ? (
+          this._renderTopics()
+        ) : (
+          <DivSpinner>
+            <Loader type="Triangle" color="#00BFFF" height="200" width="200" />
+          </DivSpinner>
+        )}
       </React.Fragment>
     );
   }
 }
 
-const TopicsMenu = styled.div`
+const DivTopicsMenu = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: 30px 30px 30px 30px;
 `;
 
+const DivSpinner = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -100px;
+`;
+
 // export default Topics;
+// 리액트일 경우에만 사용 / 리덕스인 경우 아래를 export
 
 export default connect(
   state => ({

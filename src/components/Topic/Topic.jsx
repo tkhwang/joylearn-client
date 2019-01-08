@@ -3,15 +3,15 @@ import styled from 'styled-components';
 import http from '../../services/httpService';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Loader from 'react-loader-spinner';
 import * as signinActions from '../../actions/signin';
 import * as topicsActiosn from '../../actions/topics';
 
 import Title from './Title/Title';
 import Instructors from './Instructors/Instructors';
-// import Lectures from './Lectures/Lectures';
+import Lectures from './Lectures/Lectures';
 // import Courses from './Courses/Courses';
 
-// import './Topic.css';
 import config from '../../config';
 const { SERVER_URL } = config();
 
@@ -21,16 +21,14 @@ class Topic extends Component {
     super(props);
     this.state = {
       topic: {},
-      instructors: []
+      instructors: [],
+      lectures: [],
+      courses: []
     };
   }
 
   async componentDidMount() {
-    console.log('[+] Topic = (redux) ', this.props);
     const { topic } = this.props.topic.match.params;
-
-    // const { topic } = querystring.parse(this.props.location.search);
-    console.log('[+] Topic : values = ', topic);
 
     this.setState({
       ...this.state,
@@ -38,37 +36,32 @@ class Topic extends Component {
     });
 
     const { topics } = this.props.storeTopics;
-    console.log(`[+] Topic : topics = ${topics}, topic = ${topic}`);
-    // console.log(topics.name[topic]);
 
     const selectedTopic = topics.filter(obj => {
       return obj.name === topic;
     })[0];
-    console.log('[+] selectedTopic = ', selectedTopic);
     this.setState({ ...this.state, topic: selectedTopic });
 
-    const { data: instructors } = await http.get(SERVER_URL + '/instructors');
-    console.log(instructors);
+    const { data } = await http.get(`${SERVER_URL}/t/${topic}`);
 
     this.setState({
       ...this.state,
-      instructors: instructors
+      instructors: data.instructors,
+      lectures: data.lectures
     });
   }
 
-  render() {
+  _renderTopic = () => {
     return (
       <React.Fragment>
-        <Title title={this.state.topic} />
-        <hr />
         <CardsContatiner>
           {this.state.instructors.map(instructor => {
             return (
               <BestTopicInstructors>
                 <Instructors
                   name={instructor.name}
-                  git={instructor.git}
-                  url={instructor.mainurl}
+                  git={instructor.gitHub}
+                  url={instructor.mainUrl}
                   image={instructor.image}
                   key={instructor.name}
                 />
@@ -76,6 +69,38 @@ class Topic extends Component {
             );
           })}
         </CardsContatiner>
+        <CardsContatiner>
+          {this.state.lectures.map(lecture => {
+            return (
+              <Lectures
+                name={lecture.name}
+                // instructor={lecture.instructor}
+                image={lecture.screenshot}
+                url={lecture.url}
+                lang={lecture.lang}
+                free={lecture.free}
+              />
+            );
+          })}
+        </CardsContatiner>
+      </React.Fragment>
+    );
+  };
+
+  render() {
+    return (
+      <React.Fragment>
+        <Title title={this.state.topic} />
+
+        <hr />
+
+        {this.state.instructors && this.state.lectures ? (
+          this._renderTopic()
+        ) : (
+          <DivSpinner>
+            <Loader type="Triangle" color="#00BFFF" height="200" width="200" />
+          </DivSpinner>
+        )}
       </React.Fragment>
     );
   }
@@ -122,20 +147,32 @@ class Topic extends Component {
 //   <h1>{this.state.topic} @ Topic</h1>
 // </React.Fragment>
 
-const BestTopicInstructorsTitle = styled.h1`
-  font-size: 1.3rem;
-`;
+//----
+
+// const BestTopicInstructorsTitle = styled.h1`
+//   font-size: 1.3rem;
+// `;
 
 const CardsContatiner = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-around;
+  margin: 30px 30px 30px 30px;
 `;
+// flex-direction: row
 
 const BestTopicInstructors = styled.div`
   display: flex;
   margin-right: 10px;
   margin-left: 10px;
+`;
+
+const DivSpinner = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -100px;
 `;
 
 export default connect(

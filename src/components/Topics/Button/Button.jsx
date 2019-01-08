@@ -23,10 +23,10 @@ class Button extends Component {
     return this.state.clicked ? (
       <Redirect to={`/topic?topic=${name}`} />
     ) : (
-      <Topics onClick={() => this.handleClick(name)}>
+      <DivTopics onClick={() => this.handleClick(name)}>
         <TopicsLogo image={this.props.logo} />
-        <TopicsTitle className="topics-title">{name}</TopicsTitle>
-      </Topics>
+        <H1TopicsTitle className="topics-title">{name}</H1TopicsTitle>
+      </DivTopics>
     );
   }
 }
@@ -44,7 +44,7 @@ TopicsLogo.propTypes = {
   image: PropTypes.string.isRequired
 };
 
-const Topics = styled.div`
+const DivTopics = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 30%;
@@ -56,7 +56,7 @@ const Topics = styled.div`
   }
 `;
 
-const TopicsTitle = styled.h1`
+const H1TopicsTitle = styled.h1`
   font-size: 1.3rem;
   margin-top: 0.5rem;
   margin-left: 0.5rem;

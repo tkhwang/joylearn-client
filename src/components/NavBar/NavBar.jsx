@@ -4,7 +4,6 @@ import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   UncontrolledDropdown
 } from 'reactstrap';
@@ -30,7 +29,6 @@ class NavBar extends Component {
 
   render() {
     const { user } = this.props;
-    console.log(user);
     return (
       <div>
         <Navbar color="info" light expand="md">

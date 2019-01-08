@@ -1,7 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const Course = () => {
-  return <h1>Course</h1>;
-};
+import CourseTitle from './Title/Title';
+import CourseMain from './Main/Main';
+import CourseComments from './Comments/Comments';
+
+class Course extends Component {
+  state = {};
+
+  render() {
+    return (
+      <React.Fragment>
+        <CourseTitle />
+        <CourseMain />
+        <CourseComments />
+      </React.Fragment>
+    );
+  }
+}
 
 export default Course;

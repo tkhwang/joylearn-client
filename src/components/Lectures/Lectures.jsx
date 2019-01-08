@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
-import http from '../../services/httpService';
-import auth from '../../services/authService';
-import querystring from 'query-string';
+// import PropTypes from 'prop-types';
+// import styled from 'styled-components';
+// import { connect } from 'react-redux';
+// import { bindActionCreators } from 'redux';
 
-import LecturesTitle from './LecturesTitle';
-import LecturesList from './LecturesList';
-// import LecturesFilter from './LecturesFilter';
+// import http from '../../services/httpService';
+// import auth from '../../services/authService';
+// import querystring from 'query-string';
 
-// import './Lectures.css';
-import config from '../../config';
-const { SERVER_URL } = config();
+import Title from './Title/Title';
+import List from './List/List';
+// import Filter from './Filter/Filter';
+
+// import config from '../../config';
+// const { SERVER_URL } = config();
 
 // title이 array로 올지 object로 올지
 class Lectures extends Component {
@@ -83,21 +87,21 @@ class Lectures extends Component {
   // }
 
   // async componentDidMount() {
-  //   const topic = await http.get(SERVER_URL + '/topics:topicid');
-  //   // console.log(topics);
+  //   const lectures = await http.get(SERVER_URL + '/lectures:topicid');
+  //   // console.log(lectures);
   //   this.setState({
-  //     topics: topics.data
+  //     topics: lectures.data
   //   });
   // }
 
   render() {
     return (
       <React.Fragment>
-        <LecturesTitle title={this.state.title} />
+        <Title title={this.state.title} />
         <hr />
         {this.state.lectures.map((lecture, index) => {
           return (
-            <LecturesList
+            <List
               title={lecture.title}
               url={lecture.url}
               name={lecture.name}
@@ -108,7 +112,7 @@ class Lectures extends Component {
             />
           );
         })}
-        {/* <LecturesFilter /> */}
+        {/* <Filter /> */}
       </React.Fragment>
     );
   }

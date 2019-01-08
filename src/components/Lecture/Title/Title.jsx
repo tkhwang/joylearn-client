@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import { Link } from 'react-router-dom';
 
-// import './LectureTitle.css';
-
 class LectureTitle extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,

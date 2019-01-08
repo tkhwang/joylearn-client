@@ -8,7 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 // import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import MaterialIcon /*, { colorPalette }*/ from 'material-icons-react';
+// import MaterialIcon, { colorPalette } from 'material-icons-react';
 import { Redirect } from 'react-router';
 
 const styles = {
@@ -17,11 +17,11 @@ const styles = {
     margin: 10
   },
   media: {
-    height: 100
+    height: 300
   }
 };
 
-class CardTopic extends Component {
+class CardInstructor extends Component {
   constructor(props) {
     super(props);
 
@@ -30,6 +30,7 @@ class CardTopic extends Component {
   }
 
   handleClick() {
+    console.log('[+] CardTopics : this = ', this.props.title);
     this.setState({
       clicked: true
     });
@@ -38,11 +39,11 @@ class CardTopic extends Component {
   // <Redirect to={`/topic?topic=${title}`} />
 
   render() {
-    const { classes, image, title } = this.props;
+    const { classes, image, title, description } = this.props;
     return (
       <div onClick={this.handleClick}>
         {this.state.clicked ? (
-          <Redirect to={`/j/${title}`} />
+          <Redirect to={`/t/${title}`} />
         ) : (
           <Card className={classes.card}>
             <CardActionArea>
@@ -55,9 +56,7 @@ class CardTopic extends Component {
                 <Typography gutterBottom variant="h5" component="h2">
                   {title}
                 </Typography>
-                <Typography component="p">
-                  <MaterialIcon icon="verified_user" />
-                </Typography>
+                <Typography component="p">{description}</Typography>
               </CardContent>
             </CardActionArea>
           </Card>
@@ -67,8 +66,8 @@ class CardTopic extends Component {
   }
 }
 
-CardTopic.propTypes = {
+CardInstructor.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(CardTopic);
+export default withStyles(styles)(CardInstructor);

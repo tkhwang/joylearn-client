@@ -12,7 +12,6 @@ class LecturesTitle extends Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <div className="lectures">
         <LecturesLogo image={this.props.title.logo} />

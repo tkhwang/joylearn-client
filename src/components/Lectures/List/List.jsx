@@ -30,7 +30,7 @@ class LecturesList extends Component {
 
 // 코드의 재사용을 어떻게?
 const LectureScreenshot = ({ image }) => {
-  return <img className="lectureimage" src={image} alt="Lecture Image" />;
+  return <img className="lectureimage" src={image} alt="Lecture" />;
 };
 
 const Free = ({ free }) => {

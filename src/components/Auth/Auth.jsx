@@ -7,8 +7,6 @@ import auth from '../../services/authService';
 class Auth extends Component {
   componentDidMount() {
     const values = querystring.parse(this.props.location.search);
-    console.log(values);
-
     if (values) auth.loginWithJwt(values.token);
   }
 

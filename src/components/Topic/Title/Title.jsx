@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 // import { Link } from 'react-router-dom';
 
-// import './Title.css';
-
 class Title extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
@@ -12,7 +10,6 @@ class Title extends Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <Container>
         <Topic>
@@ -45,8 +42,11 @@ const Container = styled.div`
 
 const Topic = styled.div`
   display: flex;
-  border: 1px solid black;
   width: 90%;
+  box-shadow: 2px 2px 2px 2px gray inset;
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
 `;
 
 const TopicChildren = styled.div`

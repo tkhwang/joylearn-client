@@ -11,17 +11,17 @@ class Search extends Component {
 
   render() {
     return (
-      <BindedSearch>
-        <TopicsTitle>
+      <DivBindedSearch>
+        <H1TopicsTitle>
           Find the Best Programming Tutorials and Courses
-        </TopicsTitle>
-        <SearchBar
+        </H1TopicsTitle>
+        <InputSearchBar
           type="text"
           autofocus
           placeholder="Search for the language you want to learn: Python, JavaScript..."
           onChange={event => this._onInputChange(event.target.value)}
         />
-      </BindedSearch>
+      </DivBindedSearch>
     );
   }
 
@@ -30,17 +30,17 @@ class Search extends Component {
   };
 }
 
-const BindedSearch = styled.div`
+const DivBindedSearch = styled.div`
   text-align: center;
   display: flex;
   flex-direction: column;
 `;
 
-const TopicsTitle = styled.h1`
+const H1TopicsTitle = styled.h1`
   font-size: 1.8rem;
 `;
 
-const SearchBar = styled.input`
+const InputSearchBar = styled.input`
   flex-basis: 2rem;
   height: 40px;
   margin: 20px;

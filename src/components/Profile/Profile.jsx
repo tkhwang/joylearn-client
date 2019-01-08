@@ -3,7 +3,6 @@ import auth from '../../services/authService';
 
 const Profile = props => {
   const user = auth.getCurrentUser();
-  console.log(user);
   return (
     <div>
       <h1>Profile : {user.name} </h1>

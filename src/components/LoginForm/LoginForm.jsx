@@ -28,12 +28,9 @@ class LoginForm extends Form {
       .label('Password')
   };
 
-  componentDidMount() {
-    console.log('[+] this.props @LoginForm = ', this.props);
-  }
+  componentDidMount() {}
 
   doSubmit = async () => {
-    console.log('[+] this.props @LoginForm = ', this.props);
     const { actionsSign } = this.props;
 
     try {

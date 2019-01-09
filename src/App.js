@@ -13,7 +13,7 @@ import Topic from './components/Topic/Topic';
 import Lectures from './components/Lectures/Lectures';
 import Lecture from './components/Lecture/Lecture';
 import Courses from './components/Courses/Courses';
-import Profile from './components/Profile/Profile';
+import Setting from './components/Setting/Setting';
 import NotFound from './components/notFound';
 import NavBar from './components/NavBar/NavBar';
 import LoginForm from './components/LoginForm/LoginForm';
@@ -54,7 +54,7 @@ class App extends Component {
             <ProtectedRoute path="/instructors" component={Instructor} />
             <ProtectedRoute path="/lectures" component={Lecture} />
             <ProtectedRoute path="/courses" component={Course} />
-            <ProtectedRoute path="/profile" exact component={Profile} />
+            <ProtectedRoute path="/setting" exact component={Setting} />
             <Route path="/not-found" component={NotFound} />
             <Route path="/movies" component={Movies} />
             <Route path="/topics" component={Topics} />

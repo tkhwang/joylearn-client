@@ -24,6 +24,7 @@
     "react-scripts": "1.1.4",
     "react-settings-pane": "^0.1.5",
     "react-social-login-buttons": "^2.3.0",
+    "react-svg": "^7.2.2",
     "react-toastify": "^4.5.1",
     "reactstrap": "^7.0.2",
     "redux": "^4.0.1",

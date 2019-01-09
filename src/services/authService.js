@@ -5,6 +5,7 @@ import config from '../config';
 const { SERVER_URL } = config();
 
 const TOKEN_KEY = 'token';
+const AVATAR_KEY = 'avatar';
 
 http.setJwt(getJwt());
 
@@ -33,6 +34,7 @@ export async function loginSocial(site) {
 
 export function logout() {
   localStorage.removeItem(TOKEN_KEY);
+  localStorage.removeItem(AVATAR_KEY);
 }
 
 export function getCurrentUser() {
@@ -48,10 +50,14 @@ export function getJwt() {
   return localStorage.getItem(TOKEN_KEY);
 }
 
-function saveJwt(jwt) {
+async function saveJwt(jwt) {
   if (!jwt || jwt !== 'undefined' || jwt !== undefined) {
     localStorage.setItem(TOKEN_KEY, jwt);
   }
+  const { id } = jwtDecode(jwt);
+
+  const { data } = await http.get(`${SERVER_URL}/api/users/${id}`);
+  localStorage.setItem(AVATAR_KEY, data.user.avatar);
 }
 
 export default {

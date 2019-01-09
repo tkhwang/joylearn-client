@@ -8,18 +8,7 @@ import {
 } from 'react-settings-pane';
 import './Setting.css';
 
-// const Profile = props => {
-//   const user = auth.getCurrentUser();
-//   return (
-//     <div>
-//       <h1>Profile : {user.name} </h1>
-//       <ul>
-//         <li>{user.name}</li>
-//         <li>{user.email}</li>
-//       </ul>
-//     </div>
-//   );
-// };
+const AVATAR_KEY = 'avatar';
 
 class Setting extends Component {
   constructor(props) {
@@ -28,7 +17,7 @@ class Setting extends Component {
       settings: {
         'mysettings.general.name': '',
         'mysettings.general.lang': 'eng',
-        'mysettings.general.avatar': ''
+        avatar: ''
       }
     };
   }
@@ -38,8 +27,11 @@ class Setting extends Component {
     console.log(user);
     this.setState({
       ...this.state,
-      'mysettings.general.name': user.name,
-      'mysettings.general.avatar': user.avatar
+      settings: {
+        ...this.state.settings,
+        'mysettings.general.name': user.name,
+        avatar: localStorage.getItem(AVATAR_KEY)
+      }
     });
   }
 
@@ -95,6 +87,7 @@ class Setting extends Component {
       // this is triggered onChange of the inputs
     };
 
+    console.log('[+] avatar = ', settings.avatar);
     // Return your Settings Pane
     return (
       <SettingsPane
@@ -122,7 +115,7 @@ class Setting extends Component {
                 defaultValue={settings['mysettings.general.name']}
               />
               <label for="profileName">Avatar: </label>
-              {this.state.avatar}
+              <img src="{settings.avatar}" />
             </fieldset>
             <fieldset className="form-group">
               <label for="profileColor">Language :</label>

@@ -14,9 +14,8 @@ import CardTopic from '../common/Card/CardTopic';
 import Input from '../common/Input/Input';
 
 import * as signinActions from '../../actions/signin';
-import * as topicsActiosn from '../../actions/topics';
+import * as topicsActions from '../../actions/topics';
 
-// import './Topics.css';
 import config from '../../config';
 const { SERVER_URL } = config();
 
@@ -104,6 +103,6 @@ export default connect(
   }),
   dispatch => ({
     actionsSign: bindActionCreators(signinActions, dispatch),
-    actionTopics: bindActionCreators(topicsActiosn, dispatch)
+    actionTopics: bindActionCreators(topicsActions, dispatch)
   })
 )(Topics);

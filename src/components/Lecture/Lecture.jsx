@@ -1,34 +1,68 @@
 import React, { Component } from 'react';
-// import http from '../../services/httpService';
+import { connect } from 'react-redux';
+import { bindActionCreators } from '../../../../../../Library/Caches/typescript/3.2/node_modules/redux';
+// import Loader from 'react-loader-spinner';
 
-import LectureTitle from './Title/Title';
+// import http from '../../services/httpService';
+// import auth from '../../services/authService';
+// import querystring from 'query-string';
+
+import LectureTitle from '../common/Title/Title';
 // import LectureProfile from './LectureProfile';
 // import LectureBar from './LectureBar';
 // import LectureComments from './LectureComments';
 
-// import './Lecture.css';
+import * as signinActions from '../../actions/signin';
+import * as topicsActions from '../../actions/topics';
+
 // import config from '../../config';
 // const { SERVER_URL } = config();
 
 class Lecture extends Component {
-  state = {
-    title: {
-      name: 'JavaScript',
-      logo:
-        'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png'
-    }
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+  }
+
+  async componentDidMount() {
+    // const { actionTopics } = this.props;
+    // const { actionsSign } = this.props;
+    // const values = querystring.parse(this.props.location.search);
+    // if (values.token) {
+    //   auth.loginWithJwt(values.token);
+    //   actionsSign.signin();
+    // }
+    // const data = await http.get(`${SERVER_URL}/l/${topic}`);
+    // const data = await http.get(`${SERVER_URL}/l`);
+    // actionTopics.get_topics(data.data);
+    // this.setState({
+    //   topics: data.data
+    // });
+  }
 
   render() {
+    // console.log('이걸 확인', this.props);
     return (
       <React.Fragment>
         <LectureTitle title={this.state.title} />
-        {/* <LectureProfile />
-        <LectureBar />
-        <LectureComments /> */}
+        {/* <LectureProfile /> */}
+        {/* <LectureBar /> */}
+        {/* <LectureComments /> */}
       </React.Fragment>
     );
   }
 }
 
-export default Lecture;
+// export default Lecture;
+
+export default connect(
+  state => ({
+    storeSignin: state.signin,
+    storeTopics: state.topics
+  }),
+  dispatch => ({
+    actionSign: bindActionCreators(signinActions, dispatch),
+    actionTopics: bindActionCreators(topicsActions, dispatch)
+  })
+)(Lecture);

@@ -4,9 +4,10 @@ import http from '../../services/httpService';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Loader from 'react-loader-spinner';
+
+import Emoji from '../common/Emoji';
 import * as signinActions from '../../actions/signin';
 import * as topicsActiosn from '../../actions/topics';
-
 import Title from './Title/Title';
 import Instructors from './Instructors/Instructors';
 import Lectures from './Lectures/Lectures';
@@ -54,6 +55,9 @@ class Topic extends Component {
   _renderTopic = () => {
     return (
       <React.Fragment>
+        <h3>
+          Instructors <Emoji symbol="🎓" label="smile" />
+        </h3>
         <CardsContatiner>
           {this.state.instructors.map(instructor => {
             return (
@@ -69,13 +73,17 @@ class Topic extends Component {
             );
           })}
         </CardsContatiner>
+        <h3>
+          Lectures <Emoji symbol="📘" label="smile" />
+        </h3>
         <CardsContatiner>
           {this.state.lectures.map(lecture => {
             return (
               <Lectures
                 name={lecture.name}
-                // instructor={lecture.instructor}
-                image={lecture.screenshot}
+                image={
+                  lecture.screenshot // instructor={lecture.instructor}
+                }
                 url={lecture.url}
                 lang={lecture.lang}
                 free={lecture.free}

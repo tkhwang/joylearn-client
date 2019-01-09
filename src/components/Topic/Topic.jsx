@@ -53,6 +53,7 @@ class Topic extends Component {
   }
 
   _renderTopic = () => {
+    const avatar = localStorage.getItem('avatar');
     return (
       <React.Fragment>
         <h3>

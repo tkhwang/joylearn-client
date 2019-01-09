@@ -34,8 +34,8 @@ const UserButton = ({ user }) => {
 
         {user && (
           <DropdownItem>
-            <NavLink className="nav-item nav-link navbar-right" to="/profile">
-              profile
+            <NavLink className="nav-item nav-link navbar-right" to="/setting">
+              Setting
             </NavLink>
           </DropdownItem>
         )}

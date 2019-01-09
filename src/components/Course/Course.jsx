@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import CourseTitle from './Title/Title';
-import CourseMain from './Main/Main';
-import CourseComments from './Comments/Comments';
+import Title from '../common/Title/Title';
+import Main from './Main/Main';
+import Comments from './Comments/Comments';
 
 class Course extends Component {
   state = {};
@@ -10,9 +10,9 @@ class Course extends Component {
   render() {
     return (
       <React.Fragment>
-        <CourseTitle />
-        <CourseMain />
-        <CourseComments />
+        <Title />
+        <Main />
+        <Comments />
       </React.Fragment>
     );
   }

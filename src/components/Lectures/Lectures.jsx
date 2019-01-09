@@ -1,105 +1,75 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 // import styled from 'styled-components';
-// import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
+// import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-// import http from '../../services/httpService';
+import http from '../../services/httpService';
 // import auth from '../../services/authService';
 // import querystring from 'query-string';
 
-import Title from './Title/Title';
-import List from './List/List';
+import Title from '../common/Title/Title';
+// import List from './List/List';
 // import Filter from './Filter/Filter';
 
-// import config from '../../config';
-// const { SERVER_URL } = config();
+import * as signinActions from '../../actions/signin';
+import * as topicsActions from '../../actions/topics';
 
-// title이 array로 올지 object로 올지
+import config from '../../config';
+const { SERVER_URL } = config();
+
 class Lectures extends Component {
-  state = {
-    title: {
-      name: 'JavaScript',
-      logo:
-        'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png'
-    },
-    lectures: [
-      {
-        title: 'JavaScript',
-        url: 'https://academy.nomadcoders.co/courses/enrolled/435558',
-        name: 'JavaScript for beginer',
-        screenshot:
-          'https://process.fs.teachablecdn.com/ADNupMnWyR7kCWRvm76Laz/resize=width:705/https://www.filepicker.io/api/file/ySY5plO8Tay6VFtYnfD9',
-        free: true,
-        instructor: 'nicolas'
-      },
-      {
-        title: 'JavaScript',
-        url: 'https://codewithmosh.com/courses/enrolled/324741',
-        name: 'JavaScript Basics for Beginners',
-        screenshot:
-          'https://process.fs.teachablecdn.com/ADNupMnWyR7kCWRvm76Laz/resize=width:705/https://www.filepicker.io/api/file/4JkBtVU9QUwcwFCWi3AV',
-        free: true,
-        instructor: 'mosh'
-      },
-      {
-        title: 'JavaScript',
-        url: 'https://wesbos.com/courses/',
-        name: 'JavaScript',
-        screenshot:
-          'https://steemitimages.com/DQmP18L6k8EMHNfsvRNaRFWvka2GnRo8b8CpDuM3hbYGnqp/ff3ywn-1-800x533.jpg',
-        free: true,
-        instructor: 'WesBos'
-      },
-      {
-        title: 'JavaScript',
-        url: 'https://tylermcginnis.com/',
-        name: 'Modern JavaScript',
-        screenshot:
-          'http://www.ddaily.co.kr/data/photos/20150313/art_1427325311.jpg',
-        free: true,
-        instructor: 'TylerMcGinnis'
-      },
-      {
-        title: 'JavaScript',
-        url: 'www.zerocho.com',
-        name: 'JavaScript 교과서',
-        screenshot:
-          'https://mygaming.co.za/news/wp-content/uploads/2016/12/Code.jpg',
-        free: true,
-        instructor: 'zerocho'
-      },
-      {
-        title: 'JavaScript',
-        url: 'velopert.com',
-        name: 'tutorials.log',
-        screenshot:
-          'https://cdn.pixabay.com/photo/2015/12/04/14/05/code-1076536_960_720.jpg',
-        free: true,
-        instructor: 'velopert'
-      }
-    ]
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      topic: {},
+      lectures: []
+    };
+  }
+
+  static proptypes = {
+    topic: PropTypes.object.isRequired,
+    lectures: PropTypes.array.isRequired
   };
 
-  // constructor(props){
-  //   super(props);
+  async componentDidMount() {
+    // const { actionTopics } = this.props;
+    // const { actionsSign } = this.props;
 
-  // }
+    const { topic } = this.props.topic.match.params;
+    console.log('이건 토픽', topic);
 
-  // async componentDidMount() {
-  //   const lectures = await http.get(SERVER_URL + '/lectures:topicid');
-  //   // console.log(lectures);
-  //   this.setState({
-  //     topics: lectures.data
-  //   });
-  // }
+    const { topics } = this.props.storeTopics;
+    const selectedTopic = topics.filter(list => {
+      return list.name === topic;
+    })[0];
+    console.log('이건 선택된 토픽', selectedTopic);
+
+    this.setState({
+      ...this.state,
+      topic: selectedTopic
+    });
+
+    const { data } = await http.get(`${SERVER_URL}/l/${topic}`);
+
+    this.setState({
+      ...this.state,
+      lectures: data.lectures
+    });
+  }
+
+  _renderLecture = () => {};
 
   render() {
+    // console.log('이건 스테이트', this.state);
+    // console.log('이건 프롭스', this.props);
     return (
       <React.Fragment>
-        <Title title={this.state.title} />
+        <Title title={this.state.topic} />
         <hr />
-        {this.state.lectures.map((lecture, index) => {
+        {/* {this.state.lectures.map((lecture, index) => {
           return (
             <List
               title={lecture.title}
@@ -111,11 +81,20 @@ class Lectures extends Component {
               key={index}
             />
           );
-        })}
+        })} */}
         {/* <Filter /> */}
       </React.Fragment>
     );
   }
 }
 
-export default Lectures;
+export default connect(
+  state => ({
+    storeSignin: state.signin,
+    storeTopics: state.topics
+  }),
+  dispatch => ({
+    actionSign: bindActionCreators(signinActions, dispatch),
+    actionTopics: bindActionCreators(topicsActions, dispatch)
+  })
+)(Lectures);

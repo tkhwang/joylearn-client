@@ -26,7 +26,7 @@ class Instructors extends Component {
   // }
 
   render() {
-    console.log('확인 필요', this.props);
+    // console.log('확인 필요', this.props);
     // fullName / git / url
     return (
       <React.Fragment>

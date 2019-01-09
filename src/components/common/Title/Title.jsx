@@ -9,7 +9,6 @@ class Title extends Component {
   };
 
   render() {
-    console.log('얜 왜 안나와?');
     return (
       <Container>
         <Topic>
@@ -60,12 +59,12 @@ const LogoImage = styled.img`
 `;
 
 const TopicTitle = styled.h1`
-  fonst-size: 5rem;
+  /* font-size: 5rem; */
   margin-left: 1rem;
 `;
 
 const TopicContents = styled.h3`
-  fonst-size: 5rem;
+  /* font-size: 5rem; */
   margin-left: 1rem;
 `;
 

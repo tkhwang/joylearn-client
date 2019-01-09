@@ -4,11 +4,12 @@ import http from '../../services/httpService';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Loader from 'react-loader-spinner';
+import { Link } from 'react-router-dom';
 
 import Emoji from '../common/Emoji';
 import * as signinActions from '../../actions/signin';
-import * as topicsActiosn from '../../actions/topics';
-import Title from './Title/Title';
+import * as topicsActions from '../../actions/topics';
+import Title from '../common/Title/Title';
 import Instructors from './Instructors/Instructors';
 import Lectures from './Lectures/Lectures';
 // import Courses from './Courses/Courses';
@@ -56,9 +57,11 @@ class Topic extends Component {
     const avatar = localStorage.getItem('avatar');
     return (
       <React.Fragment>
-        <h3>
-          Instructors <Emoji symbol="🎓" label="smile" />
-        </h3>
+        <Link to={`/i/${this.state.topic.name}`}>
+          <h3>
+            Instructors <Emoji symbol="🎓" label="smile" />
+          </h3>
+        </Link>
         <CardsContatiner>
           {this.state.instructors.map(instructor => {
             return (
@@ -74,9 +77,12 @@ class Topic extends Component {
             );
           })}
         </CardsContatiner>
-        <h3>
-          Lectures <Emoji symbol="📘" label="smile" />
-        </h3>
+
+        <Link to={`/l/${this.state.topic.name}`}>
+          <h3>
+            Lectures <Emoji symbol="📘" label="smile" />
+          </h3>
+        </Link>
         <CardsContatiner>
           {this.state.lectures.map(lecture => {
             return (
@@ -92,6 +98,12 @@ class Topic extends Component {
             );
           })}
         </CardsContatiner>
+
+        <Link to={`/c/${this.state.topic.name}`}>
+          <h3>
+            Courses <Emoji symbol="📘" label="smile" />
+          </h3>
+        </Link>
       </React.Fragment>
     );
   };
@@ -191,6 +203,6 @@ export default connect(
   }),
   dispatch => ({
     actionsSign: bindActionCreators(signinActions, dispatch),
-    actionTopics: bindActionCreators(topicsActiosn, dispatch)
+    actionTopics: bindActionCreators(topicsActions, dispatch)
   })
 )(Topic);

@@ -7,6 +7,7 @@ import { faGrinAlt } from '@fortawesome/free-solid-svg-icons';
 
 import Course from './components/Course/Course';
 // import Lecture from './components/Lecture/Lecture';
+import Instructors from './components/Instructors/Instructors';
 import Instructor from './components/Instructor/Instructor';
 import Topics from './components/Topics/Topics';
 import Topic from './components/Topic/Topic';
@@ -51,8 +52,9 @@ class App extends Component {
             <Route path="/logout" component={Logout} />
             <Route path="/admin" exact component={Admin} />
             <ProtectedRoute path="/topics" component={Topics} />
-            <ProtectedRoute path="/instructors" component={Instructor} />
-            <ProtectedRoute path="/lectures" component={Lecture} />
+            <ProtectedRoute path="/instructor" component={Instructor} />
+            {/* <ProtectedRoute path="/lectures" component={Lecture} /> */}
+            <ProtectedRoute path="/lecture" exact component={Lecture} />
             <ProtectedRoute path="/courses" component={Course} />
             <ProtectedRoute path="/setting" exact component={Setting} />
             <Route path="/not-found" component={NotFound} />
@@ -60,7 +62,9 @@ class App extends Component {
             <Route path="/topics" component={Topics} />
             {/* <Route path="/j/:topicId" component={Topic} /> */}
             <Route path="/j/:topic" render={topic => <Topic topic={topic} />} />
-            <Route path="/lectures" exact component={Lectures} />
+            <Route path="/l/:topic" render={topic => <Lectures topic={topic} />} />
+            <Route path="/i/:topic" render={topic => <Instructors topic={topic} />} />
+            <Route path="/c/:topic" render={topic => <Courses topic={topic} />} />
             <Route path="/courses" exact component={Courses} />
             {/* <Route path="/" exact component={Topic} /> */}
             <Route path="/" exact component={Topics} />

@@ -56,12 +56,30 @@ class App extends Component {
             <Route path="/not-found" component={NotFound} />
             <Route path="/movies" component={Movies} />
             <Route path="/j/:topic" render={topic => <Topic topic={topic} />} />
-            <Route path="/c/:topic" render={topic => <Courses topic={topic} />} />
-            <Route path="/l/:topic" render={topic => <Lectures topic={topic} />} />
-            <Route path="/i/:topic" render={topic => <Instructors topic={topic} />} />
-            <ProtectedRoute path="/course/:name" render={name => <Course name={name} />} />
-            <ProtectedRoute path="/lecture/:name" render={name => <Lecture name={name} />} />
-            <ProtectedRoute path="/instructor/:name" render={name => <Instructor name={name} />} />
+            <Route
+              path="/c/:topic"
+              render={topic => <Courses topic={topic} />}
+            />
+            <Route
+              path="/l/:topic"
+              render={topic => <Lectures topic={topic} />}
+            />
+            <Route
+              path="/i/:topic"
+              render={topic => <Instructors topic={topic} />}
+            />
+            <ProtectedRoute
+              path="/course/:name"
+              render={name => <Course name={name} />}
+            />
+            <ProtectedRoute
+              path="/lecture/:name"
+              render={name => <Lecture name={name} />}
+            />
+            <ProtectedRoute
+              path="/instructor/:name"
+              render={name => <Instructor name={name} />}
+            />
             {/* <Route path="/" exact component={Topic} /> */}
             <Route path="/" exact component={Topics} />
             <Redirect to="/not-found" />

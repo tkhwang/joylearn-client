@@ -6,12 +6,10 @@ import {
   SettingsContent,
   SettingsMenu
 } from 'react-settings-pane';
-import url from 'url';
 
 import './Setting.css';
 import { KEY_USER } from '../../services/authService';
 import ReactSVG from 'react-svg';
-import http from '../../services/httpService';
 
 class Setting extends Component {
   constructor(props) {

@@ -9,6 +9,9 @@ import http from '../../services/httpService';
 // import Lec from './Lec/Lec';
 // import Comments from './Comments/Comments';
 
+import InstructorCard from '../Instructor/Card/Card';
+import InstructorCardMk2 from '../Instructor/Card/CardMk2';
+
 import config from '../../config';
 const { SERVER_URL } = config();
 
@@ -27,10 +30,14 @@ class Instructor extends Component {
   static proptypes = {};
 
   async componentDidMount() {
-    // const { name }
-    // const { data } = await http.get(`${SERVER_URL}/instructor/${name}`);
+    const { name } = this.props.name.match.params;
+    const { data } = await http.get(`${SERVER_URL}/instructor/${name}`);
 
-    this.setState({});
+    this.setState({
+      ...this.state,
+      instructor: data.instructor[0],
+      lectures: data.lectures
+    });
   }
 
   _renderPage = () => {};
@@ -40,6 +47,17 @@ class Instructor extends Component {
     console.log('이건 강사 페이지의 프롭스', this.props);
     return (
       <React.Fragment>
+        <InstructorCard
+          name={this.state.instructor.name}
+          image={this.state.instructor.image}
+          github={this.state.instructor.gitHub}
+          // url={this.state.instructor.mainUrl}
+        />
+        <h1>Lecture</h1>
+        {this.state.lectures.map(lecture => {
+          return <InstructorCardMk2 name={lecture.name} url={lecture.url} />;
+        })}
+
         {/* <InstructorProfile />
         <InstructorHex />
         <InstructorJit />

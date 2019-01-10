@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // import Loader from 'react-loader-spinner';
 
-// import http from '../../services/httpService';
+import http from '../../services/httpService';
 // import auth from '../../services/authService';
 // import querystring from 'query-string';
 
@@ -15,8 +15,8 @@ import LectureTitle from '../common/Title/Title';
 import * as signinActions from '../../actions/signin';
 import * as topicsActions from '../../actions/topics';
 
-// import config from '../../config';
-// const { SERVER_URL } = config();
+import config from '../../config';
+const { SERVER_URL } = config();
 
 class Lecture extends Component {
   constructor(props) {
@@ -26,16 +26,10 @@ class Lecture extends Component {
   }
 
   async componentDidMount() {
-    // const { actionTopics } = this.props;
-    // const { actionsSign } = this.props;
-    // const values = querystring.parse(this.props.location.search);
-    // if (values.token) {
-    //   auth.loginWithJwt(values.token);
-    //   actionsSign.signin();
-    // }
-    // const data = await http.get(`${SERVER_URL}/l/${topic}`);
-    // const data = await http.get(`${SERVER_URL}/l`);
-    // actionTopics.get_topics(data.data);
+    const { name } = this.props.name.match.params;
+    const data = await http.get(`${SERVER_URL}/lecture/${name}`);
+    console.log('[*] lecture data : ', data);
+
     // this.setState({
     //   topics: data.data
     // });

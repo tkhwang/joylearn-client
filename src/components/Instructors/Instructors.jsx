@@ -13,7 +13,7 @@ import http from '../../services/httpService';
 import Title from '../common/Title/Title';
 // import List from './List/List';
 // import Filter from './Filter/Filter';
-import CardCardInstructors from '../common/Card/CardInstructors';
+import InstructorsCard from '../Instructors/Card/Card';
 
 import * as signinActions from '../../actions/signin';
 import * as topicsActions from '../../actions/topics';
@@ -61,7 +61,7 @@ class Instructors extends Component {
       <div>
         {this.state.instructors.map(instructor => {
           return (
-            <CardCardInstructors
+            <InstructorsCard
               name={instructor.name}
               image={instructor.image}
               lang={instructor.lang}

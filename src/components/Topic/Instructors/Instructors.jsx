@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import { Link } from 'react-router-dom';
 
-import CardInstructor from '../../common/Card/CardInstructor';
+import TopicInstructorsCard from '../../Topic/Instructors/Card/Card';
 
 class Instructors extends Component {
   static propTypes = {
@@ -30,7 +30,7 @@ class Instructors extends Component {
     // fullName / git / url
     return (
       <React.Fragment>
-        <CardInstructor
+        <TopicInstructorsCard
           image={this.props.image}
           title={!this.props.FullName ? this.props.name : this.props.FullName}
           description={this.props.url}

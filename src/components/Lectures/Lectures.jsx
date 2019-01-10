@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 // import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Loader from 'react-loader-spinner';
 
 import http from '../../services/httpService';
 // import auth from '../../services/authService';
@@ -12,6 +13,8 @@ import http from '../../services/httpService';
 import Title from '../common/Title/Title';
 // import List from './List/List';
 // import Filter from './Filter/Filter';
+import CardCardLecture from '../common/Card/CardLecture';
+import CardCardInstructors from '../common/Card/CardInstructors';
 
 import * as signinActions from '../../actions/signin';
 import * as topicsActions from '../../actions/topics';
@@ -35,17 +38,11 @@ class Lectures extends Component {
   };
 
   async componentDidMount() {
-    // const { actionTopics } = this.props;
-    // const { actionsSign } = this.props;
-
     const { topic } = this.props.topic.match.params;
-    console.log('이건 토픽', topic);
-
     const { topics } = this.props.storeTopics;
     const selectedTopic = topics.filter(list => {
       return list.name === topic;
     })[0];
-    console.log('이건 선택된 토픽', selectedTopic);
 
     this.setState({
       ...this.state,
@@ -53,40 +50,63 @@ class Lectures extends Component {
     });
 
     const { data } = await http.get(`${SERVER_URL}/l/${topic}`);
-
+    console.log('얘가 강좌 데이터', data);
     this.setState({
       ...this.state,
       lectures: data.lectures
     });
   }
 
-  _renderLecture = () => {};
+  _renderLecture = () => {
+    return (
+      <div>
+        {this.state.lectures.map(lecture => {
+          return (
+            <div>
+              <CardCardLecture
+                name={lecture.name}
+                image={lecture.screenshot}
+                free={lecture.free}
+                lang={lecture.lang}
+                url={lecture.url}
+                // topic={lecture.topic.name}
+              />
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
 
   render() {
-    // console.log('이건 스테이트', this.state);
-    // console.log('이건 프롭스', this.props);
+    console.log('이걸 꼭 확인', this.state.lectures);
+    console.log('이건 스테이트', this.state);
+    console.log('이건 프롭스', this.props);
     return (
       <React.Fragment>
         <Title title={this.state.topic} />
         <hr />
-        {/* {this.state.lectures.map((lecture, index) => {
-          return (
-            <List
-              title={lecture.title}
-              url={lecture.url}
-              name={lecture.name}
-              screenshot={lecture.screenshot}
-              free={lecture.free}
-              instructor={lecture.instructor}
-              key={index}
-            />
-          );
-        })} */}
+
+        {this.state.lectures ? (
+          this._renderLecture()
+        ) : (
+          <DivSpinner>
+            <Loader type="Triangle" color="#00BFFF" height="200" width="200" />
+          </DivSpinner>
+        )}
         {/* <Filter /> */}
       </React.Fragment>
     );
   }
 }
+
+const DivSpinner = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -100px;
+`;
 
 export default connect(
   state => ({

@@ -10,7 +10,7 @@ import querystring from 'query-string';
 
 // import Search from './Search/Search';
 // import Button from './Button/Button';
-import CardTopic from '../common/Card/CardTopic';
+import TopicsCard from './Card/Card';
 import Input from '../common/Input/Input';
 
 import * as signinActions from '../../actions/signin';
@@ -50,7 +50,7 @@ class Topics extends Component {
       <DivTopicsMenu>
         {this.state.topics.map((topic, index, topics) => {
           return (
-            <CardTopic
+            <TopicsCard
               image={topic.logo}
               title={topic.name}
               description={''}

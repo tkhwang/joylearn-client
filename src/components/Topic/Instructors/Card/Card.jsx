@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
+import { default as MaterialCard } from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 // import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -21,7 +21,8 @@ const styles = {
   }
 };
 
-class CardInstructor extends Component {
+// /t/topic => topic list에서 쓰이는 카드
+class Card extends Component {
   constructor(props) {
     super(props);
 
@@ -30,7 +31,7 @@ class CardInstructor extends Component {
   }
 
   handleClick() {
-    console.log('[+] CardTopics : this = ', this.props.title);
+    console.log('[+] TopicInstructorsCard : this = ', this.props.title);
     this.setState({
       clicked: true
     });
@@ -45,7 +46,7 @@ class CardInstructor extends Component {
         {this.state.clicked ? (
           <Redirect to={`/instructor/${title}`} />
         ) : (
-          <Card className={classes.card}>
+          <MaterialCard className={classes.card}>
             <CardActionArea>
               <CardMedia
                 className={classes.media}
@@ -59,15 +60,15 @@ class CardInstructor extends Component {
                 <Typography component="p">{description}</Typography>
               </CardContent>
             </CardActionArea>
-          </Card>
+          </MaterialCard>
         )}
       </div>
     );
   }
 }
 
-CardInstructor.propTypes = {
+Card.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(CardInstructor);
+export default withStyles(styles)(Card);

@@ -13,8 +13,7 @@ import http from '../../services/httpService';
 import Title from '../common/Title/Title';
 // import List from './List/List';
 // import Filter from './Filter/Filter';
-import CardCardLecture from '../common/Card/CardLecture';
-import CardCardInstructors from '../common/Card/CardInstructors';
+import LecturesCard from '../Lectures/Card/Card';
 
 import * as signinActions from '../../actions/signin';
 import * as topicsActions from '../../actions/topics';
@@ -63,7 +62,7 @@ class Lectures extends Component {
         {this.state.lectures.map(lecture => {
           return (
             <div>
-              <CardCardLecture
+              <LecturesCard
                 name={lecture.name}
                 image={lecture.screenshot}
                 free={lecture.free}

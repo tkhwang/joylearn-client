@@ -42,34 +42,40 @@ class CardTopic extends Component {
   render() {
     const { classes, image, name } = this.props;
     return (
-      <Card className={classes.card}>
-        <CardActionArea>
-          <CardMedia className={classes.media} image={image} title={name} />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {name}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Fab
-            variant="extended"
-            size="medium"
-            color="primary"
-            aria-label="Add"
-            className={classes.margin}
-          >
-            <NavigationIcon className={classes.extendedIcon} />
-            Recommend
-          </Fab>
-          <Button size="small" color="primary">
-            Share
-          </Button>
-          <Button size="small" color="primary">
-            Learn More
-          </Button>
-        </CardActions>
-      </Card>
+      <div onClick={this.handleClick}>
+        {this.state.clicked ? (
+          <Redirect to={`/lecture/${name}`} />
+        ) : (
+          <Card className={classes.card}>
+            <CardActionArea>
+              <CardMedia className={classes.media} image={image} title={name} />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                  {name}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+            <CardActions>
+              <Fab
+                variant="extended"
+                size="medium"
+                color="primary"
+                aria-label="Add"
+                className={classes.margin}
+              >
+                <NavigationIcon className={classes.extendedIcon} />
+                Recommend
+              </Fab>
+              <Button size="small" color="primary">
+                Share
+              </Button>
+              <Button size="small" color="primary">
+                Learn More
+              </Button>
+            </CardActions>
+          </Card>
+        )}
+      </div>
     );
   }
 }

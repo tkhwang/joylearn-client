@@ -4,8 +4,8 @@ import http from './httpService';
 import config from '../config';
 const { SERVER_URL } = config();
 
-const TOKEN_KEY = 'token';
-const AVATAR_KEY = 'avatar';
+export const KEY_TOKEN = 'token';
+export const KEY_USER = 'user';
 
 http.setJwt(getJwt());
 
@@ -17,29 +17,29 @@ export async function login(email, password) {
 
   const { data: jwt } = await http.post(apiEndpoint, { email, password });
   console.log('[+] /auth/login : token = ', jwt);
-  // localStorage.setItem(TOKEN_KEY, jwt);
+  // localStorage.setItem(KEY_TOKEN, jwt);
   saveJwt(jwt);
 }
 
 export function loginWithJwt(jwt) {
-  // localStorage.setItem(TOKEN_KEY, jwt);
+  // localStorage.setItem(KEY_TOKEN, jwt);
   saveJwt(jwt);
 }
 
 export async function loginSocial(site) {
   const { data: jwt } = await http.get(`${SERVER_URL}/auth/${site}`);
-  // localStorage.setItem(TOKEN_KEY, jwt);
+  // localStorage.setItem(KEY_TOKEN, jwt);
   saveJwt(jwt);
 }
 
 export function logout() {
-  localStorage.removeItem(TOKEN_KEY);
-  localStorage.removeItem(AVATAR_KEY);
+  localStorage.removeItem(KEY_TOKEN);
+  localStorage.removeItem(KEY_USER);
 }
 
 export function getCurrentUser() {
   try {
-    const jwt = localStorage.getItem(TOKEN_KEY);
+    const jwt = localStorage.getItem(KEY_TOKEN);
     return jwtDecode(jwt);
   } catch (ex) {
     return null;
@@ -47,17 +47,18 @@ export function getCurrentUser() {
 }
 
 export function getJwt() {
-  return localStorage.getItem(TOKEN_KEY);
+  return localStorage.getItem(KEY_TOKEN);
 }
 
 async function saveJwt(jwt) {
   if (!jwt || jwt !== 'undefined' || jwt !== undefined) {
-    localStorage.setItem(TOKEN_KEY, jwt);
+    localStorage.setItem(KEY_TOKEN, jwt);
   }
   const { id } = jwtDecode(jwt);
-
   const { data } = await http.get(`${SERVER_URL}/api/users/${id}`);
-  localStorage.setItem(AVATAR_KEY, data.user.avatar);
+
+  console.log(JSON.stringify(data.user));
+  localStorage.setItem(KEY_USER, JSON.stringify(data.user));
 }
 
 export default {

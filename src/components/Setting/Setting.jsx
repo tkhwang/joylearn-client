@@ -6,33 +6,37 @@ import {
   SettingsContent,
   SettingsMenu
 } from 'react-settings-pane';
-import './Setting.css';
+import url from 'url';
 
-const AVATAR_KEY = 'avatar';
+import './Setting.css';
+import { KEY_USER } from '../../services/authService';
+import ReactSVG from 'react-svg';
+import http from '../../services/httpService';
 
 class Setting extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      settings: {
-        'mysettings.general.name': '',
-        'mysettings.general.lang': 'eng',
-        avatar: ''
-      }
+      name: '',
+      lang: 'eng',
+      avatar: ''
     };
   }
 
   componentDidMount() {
     const user = auth.getCurrentUser();
     console.log(user);
+    const userSetting = JSON.parse(localStorage.getItem(KEY_USER));
     this.setState({
       ...this.state,
-      settings: {
-        ...this.state.settings,
-        'mysettings.general.name': user.name,
-        avatar: localStorage.getItem(AVATAR_KEY)
-      }
+      name: user.name,
+      avatar: userSetting.avatar
     });
+    // TODO: avatar file creation. HWY ?
+    // let file = fs.createWriteStream('avatar.svg');
+    // let requrest = http.get(userSetting.avatar, res => {
+    //   res.pipe(file);
+    // });
   }
 
   // Render function of any of your components:
@@ -42,7 +46,8 @@ class Setting extends Component {
     //let settings = settings;
 
     //But here is an example of how it should look like:
-    let { settings } = this.state;
+    // let { settings } = this.state;
+
     // let settings = {
     //   'mysettings.general.name': user.name,
     //   'mysettings.general.color-theme': 'purple',
@@ -87,13 +92,13 @@ class Setting extends Component {
       // this is triggered onChange of the inputs
     };
 
-    console.log('[+] avatar = ', settings.avatar);
+    console.log('[+]//////// ', this.state.avatar);
     // Return your Settings Pane
     return (
       <SettingsPane
         items={menu}
         index="/settings/general"
-        settings={settings}
+        settings={this.state}
         onPaneLeave={leavePaneHandler}
       >
         <SettingsMenu headline="General Settings" />
@@ -112,10 +117,17 @@ class Setting extends Component {
                 placeholder="Name"
                 id="general.ame"
                 onChange={settingsChanged}
-                defaultValue={settings['mysettings.general.name']}
+                defaultValue={this.state.name}
               />
-              <label for="profileName">Avatar: </label>
-              <img src="{settings.avatar}" />
+              <label for="profileName">Avatar: </label>{' '}
+              <div>
+                <img
+                  src={this.state.avatar}
+                  alt="avatar"
+                  width="30"
+                  height="30"
+                />
+              </div>
             </fieldset>
             <fieldset className="form-group">
               <label for="profileColor">Language :</label>
@@ -123,7 +135,7 @@ class Setting extends Component {
                 name="mysettings.general.lang"
                 id="settingLang"
                 className="form-control"
-                defaultValue={settings['mysettings.general.lang']}
+                defaultValue={this.state.lang}
               >
                 <option value="eng">English</option>
                 <option value="kor">Korean</option>

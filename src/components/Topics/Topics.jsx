@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Loader from 'react-loader-spinner';
+import { InputGroup, InputGroupAddon, Button, Input } from 'reactstrap';
 
 import http from '../../services/httpService';
 import auth from '../../services/authService';
@@ -11,7 +12,7 @@ import querystring from 'query-string';
 // import Search from './Search/Search';
 // import Button from './Button/Button';
 import CardTopic from '../common/Card/CardTopic';
-import Input from '../common/Input/Input';
+// import Input from '../common/Input/Input';
 
 import * as signinActions from '../../actions/signin';
 import * as topicsActions from '../../actions/topics';
@@ -24,7 +25,10 @@ class Topics extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      topics: [],
+      value: ''
+    };
   }
 
   async componentDidMount() {
@@ -41,9 +45,31 @@ class Topics extends Component {
 
     actionTopics.get_topics(data.data);
     this.setState({
+      ...this.state,
       topics: data.data
     });
   }
+
+  handleChange = event => {
+    console.log('[+] handleChange = ', event.target.value);
+
+    this.setState(
+      {
+        ...this.state,
+        value: event.target.value
+      },
+      () => {
+        const { topics } = this.props.storeTopics;
+        let topicSelected = topics.filter(topic => {
+          return topic.name.indexOf(this.state.value) !== -1;
+        });
+        this.setState({
+          ...this.state,
+          topics: topicSelected
+        });
+      }
+    );
+  };
 
   _renderTopics = () => {
     return (
@@ -66,7 +92,15 @@ class Topics extends Component {
     return (
       <React.Fragment>
         {/* <Search /> */}
-        <Input label="Search Topics which you want to learn." />
+        {/* <Input label="Search Topics which you want to learn." /> */}
+        <InputGroup>
+          <InputGroupAddon addonType="prepend">?</InputGroupAddon>
+          <Input
+            placeholder="Search Topics which you want to learn."
+            value={this.state.value}
+            onChange={this.handleChange}
+          />
+        </InputGroup>
         {this.state.topics ? (
           this._renderTopics()
         ) : (

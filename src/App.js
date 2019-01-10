@@ -51,21 +51,17 @@ class App extends Component {
             <Route path="/login" component={LoginForm} />
             <Route path="/logout" component={Logout} />
             <Route path="/admin" exact component={Admin} />
-            <ProtectedRoute path="/topics" component={Topics} />
-            <ProtectedRoute path="/instructor" component={Instructor} />
-            {/* <ProtectedRoute path="/lectures" component={Lecture} /> */}
-            <ProtectedRoute path="/lecture" exact component={Lecture} />
             <ProtectedRoute path="/courses" component={Course} />
             <ProtectedRoute path="/setting" exact component={Setting} />
             <Route path="/not-found" component={NotFound} />
             <Route path="/movies" component={Movies} />
-            <Route path="/topics" component={Topics} />
-            {/* <Route path="/j/:topicId" component={Topic} /> */}
             <Route path="/j/:topic" render={topic => <Topic topic={topic} />} />
+            <Route path="/c/:topic" render={topic => <Courses topic={topic} />} />
             <Route path="/l/:topic" render={topic => <Lectures topic={topic} />} />
             <Route path="/i/:topic" render={topic => <Instructors topic={topic} />} />
-            <Route path="/c/:topic" render={topic => <Courses topic={topic} />} />
-            <Route path="/courses" exact component={Courses} />
+            <ProtectedRoute path="/course/:name" render={name => <Course name={name} />} />
+            <ProtectedRoute path="/lecture/:name" render={name => <Lecture name={name} />} />
+            <ProtectedRoute path="/instructor/:name" render={name => <Instructor name={name} />} />
             {/* <Route path="/" exact component={Topic} /> */}
             <Route path="/" exact component={Topics} />
             <Redirect to="/not-found" />

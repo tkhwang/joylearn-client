@@ -10,18 +10,18 @@ class Title extends Component {
 
   render() {
     return (
-      <Container>
-        <Topic>
+      <DivContainer>
+        <DivTopic>
           <TopicLogo image={this.props.title.logo} />
-          <TopicChildren>
-            <TopicTitle>{this.props.title.name}</TopicTitle>
-            <TopicContents>{`${
+          <DivTopicChildren>
+            <H1TopicTitle>{this.props.title.name}</H1TopicTitle>
+            <H3TopicContents>{`${
               this.props.title.name
-            } Tutorials and Courses`}</TopicContents>
+            } Tutorials and Courses`}</H3TopicContents>
             <Button>+ Follow</Button>
-          </TopicChildren>
-        </Topic>
-      </Container>
+          </DivTopicChildren>
+        </DivTopic>
+      </DivContainer>
     );
   }
 }
@@ -34,12 +34,12 @@ TopicLogo.propTypes = {
   image: PropTypes.string.isRequired
 };
 
-const Container = styled.div`
+const DivContainer = styled.div`
   display: flex;
   justify-content: space-around;
 `;
 
-const Topic = styled.div`
+const DivTopic = styled.div`
   display: flex;
   width: 90%;
   box-shadow: 2px 2px 2px 2px gray inset;
@@ -48,7 +48,7 @@ const Topic = styled.div`
   padding: 20px;
 `;
 
-const TopicChildren = styled.div`
+const DivTopicChildren = styled.div`
   display: flex;
   flex-direction: column;
 `;
@@ -58,12 +58,12 @@ const LogoImage = styled.img`
   max-height: 10rem;
 `;
 
-const TopicTitle = styled.h1`
+const H1TopicTitle = styled.h1`
   /* font-size: 5rem; */
   margin-left: 1rem;
 `;
 
-const TopicContents = styled.h3`
+const H3TopicContents = styled.h3`
   /* font-size: 5rem; */
   margin-left: 1rem;
 `;

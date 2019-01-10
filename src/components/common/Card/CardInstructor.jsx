@@ -43,7 +43,7 @@ class CardInstructor extends Component {
     return (
       <div onClick={this.handleClick}>
         {this.state.clicked ? (
-          <Redirect to={`/t/${title}`} />
+          <Redirect to={`/instructor/${title}`} />
         ) : (
           <Card className={classes.card}>
             <CardActionArea>

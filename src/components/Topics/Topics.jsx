@@ -3,7 +3,12 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Loader from 'react-loader-spinner';
-import { InputGroup, InputGroupAddon, Button, Input } from 'reactstrap';
+import {
+  InputGroup,
+  InputGroupAddon,
+  Button,
+  Input as ReactstrapInput
+} from 'reactstrap';
 
 import http from '../../services/httpService';
 import auth from '../../services/authService';
@@ -96,7 +101,7 @@ class Topics extends Component {
         {/* <Input label="Search Topics which you want to learn." /> */}
         <InputGroup>
           <InputGroupAddon addonType="prepend">?</InputGroupAddon>
-          <Input
+          <ReactstrapInput
             placeholder="Search Topics which you want to learn."
             value={this.state.value}
             onChange={this.handleChange}

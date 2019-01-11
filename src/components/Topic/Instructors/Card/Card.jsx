@@ -21,7 +21,6 @@ const styles = {
   }
 };
 
-// /t/topic => topic list에서 쓰이는 카드
 class Card extends Component {
   constructor(props) {
     super(props);
@@ -36,8 +35,6 @@ class Card extends Component {
       clicked: true
     });
   }
-
-  // <Redirect to={`/topic?topic=${title}`} />
 
   render() {
     const { classes, image, title, description } = this.props;

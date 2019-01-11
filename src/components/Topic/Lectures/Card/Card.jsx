@@ -11,6 +11,8 @@ import Typography from '@material-ui/core/Typography';
 // import MaterialIcon, { colorPalette } from 'material-icons-react';
 import { Redirect } from 'react-router';
 
+import urlencode from 'urlencode';
+
 const styles = {
   card: {
     width: 250,
@@ -21,7 +23,6 @@ const styles = {
   }
 };
 
-// /t/topic => topic list에서 쓰이는 카드
 class Card extends Component {
   constructor(props) {
     super(props);
@@ -37,14 +38,15 @@ class Card extends Component {
     });
   }
 
-  // <Redirect to={`/topic?topic=${title}`} />
-
   render() {
+    // console.log(this.props);
     const { classes, image, title, description } = this.props;
+    console.log('lecture list name encode : ', urlencode(title));
+    console.log('lecture list name decode : ', urlencode.decode(title));
     return (
       <div onClick={this.handleClick}>
         {this.state.clicked ? (
-          <Redirect to={`/lecture/${title}`} />
+          <Redirect to={`/lecture/${urlencode(title)}`} />
         ) : (
           <MaterialCard className={classes.card}>
             <CardActionArea>

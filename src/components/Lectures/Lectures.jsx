@@ -49,7 +49,6 @@ class Lectures extends Component {
     });
 
     const { data } = await http.get(`${SERVER_URL}/l/${topic}`);
-    console.log('얘가 강좌 데이터', data);
     this.setState({
       ...this.state,
       lectures: data.lectures
@@ -78,9 +77,6 @@ class Lectures extends Component {
   };
 
   render() {
-    console.log('이걸 꼭 확인', this.state.lectures);
-    console.log('이건 스테이트', this.state);
-    console.log('이건 프롭스', this.props);
     return (
       <React.Fragment>
         <Title title={this.state.topic} />

@@ -31,7 +31,6 @@ class Topic extends Component {
 
   async componentDidMount() {
     const { topic } = this.props.topic.match.params;
-
     this.setState({
       ...this.state,
       topic: topic
@@ -98,6 +97,12 @@ class Topic extends Component {
             );
           })}
         </CardsContatiner>
+
+        <Link to={`/b/${this.state.topic.name}`}>
+          <h3>
+            Books <Emoji symbol="📘" label="smile" />
+          </h3>
+        </Link>
 
         <Link to={`/c/${this.state.topic.name}`}>
           <h3>

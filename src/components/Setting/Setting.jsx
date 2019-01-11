@@ -8,8 +8,8 @@ import {
 } from 'react-settings-pane';
 
 import './Setting.css';
-import { KEY_USER } from '../../services/authService';
-import ReactSVG from 'react-svg';
+
+import Avatar from '../Avatar/Avatar';
 
 class Setting extends Component {
   constructor(props) {
@@ -23,12 +23,9 @@ class Setting extends Component {
 
   componentDidMount() {
     const user = auth.getCurrentUser();
-    console.log(user);
-    const userSetting = JSON.parse(localStorage.getItem(KEY_USER));
     this.setState({
       ...this.state,
-      name: user.name,
-      avatar: userSetting.avatar
+      name: user.name
     });
     // TODO: avatar file creation. HWY ?
     // let file = fs.createWriteStream('avatar.svg');
@@ -39,7 +36,6 @@ class Setting extends Component {
 
   // Render function of any of your components:
   render() {
-    const user = auth.getCurrentUser();
     // You will maybe receive your settings from this.props or do a fetch request in your componentWillMount
     //let settings = settings;
 
@@ -90,7 +86,6 @@ class Setting extends Component {
       // this is triggered onChange of the inputs
     };
 
-    console.log('[+]//////// ', this.state.avatar);
     // Return your Settings Pane
     return (
       <SettingsPane
@@ -119,12 +114,7 @@ class Setting extends Component {
               />
               <label for="profileName">Avatar: </label>{' '}
               <div>
-                <img
-                  src={this.state.avatar}
-                  alt="avatar"
-                  width="30"
-                  height="30"
-                />
+                <Avatar width="30" height="30" />
               </div>
             </fieldset>
             <fieldset className="form-group">

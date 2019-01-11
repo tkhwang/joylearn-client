@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-// import Loader from 'react-loader-spinner';
+import styled from 'styled-components';
+import Loader from 'react-loader-spinner';
 
 import http from '../../services/httpService';
 // import auth from '../../services/authService';
@@ -51,9 +52,13 @@ class Lecture extends Component {
     console.log('state check: ', this.state);
     return (
       <React.Fragment>
-        {this.state.lecture && this.state.instructor
-          ? this._renderPage()
-          : 'loading'}
+        {this.state.lecture && this.state.instructor ? (
+          this._renderPage()
+        ) : (
+          <DivSpinner>
+            <Loader type="Triangle" color="#00BFFF" height="200" width="200" />
+          </DivSpinner>
+        )}
         {/* <LectureBar /> */}
         {/* <LectureComments /> */}
       </React.Fragment>
@@ -61,7 +66,13 @@ class Lecture extends Component {
   }
 }
 
-// export default Lecture;
+const DivSpinner = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -100px;
+`;
 
 export default connect(
   state => ({

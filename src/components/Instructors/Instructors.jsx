@@ -5,6 +5,12 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Loader from 'react-loader-spinner';
+import {
+  InputGroup,
+  InputGroupAddon,
+  Button,
+  Input as ReactstrapInput
+} from 'reactstrap';
 
 import http from '../../services/httpService';
 // import auth from '../../services/authService';
@@ -14,6 +20,7 @@ import Title from '../common/Title/Title';
 // import List from './List/List';
 // import Filter from './Filter/Filter';
 import InstructorsCard from '../Instructors/Card/Card';
+import filterByInput from '../../services/searchService';
 
 import * as signinActions from '../../actions/signin';
 import * as topicsActions from '../../actions/topics';
@@ -27,7 +34,9 @@ class Instructors extends Component {
 
     this.state = {
       topic: {},
-      instructors: []
+      instructors: [],
+      fullInstructors: [],
+      value: ''
     };
   }
 
@@ -49,12 +58,32 @@ class Instructors extends Component {
     });
 
     const { data } = await http.get(`${SERVER_URL}/i/${topic}`);
-    console.log('얘가 강사 데이터', data);
     this.setState({
       ...this.state,
-      instructors: data.instructors
+      instructors: data.instructors,
+      fullInstructors: data.instructors
     });
   }
+
+  // 변하지 않는 기준점이 있어야 한다. (filter의 기준점이 될)
+  _handleChange = event => {
+    this.setState(
+      {
+        ...this.state,
+        value: event.target.value
+      },
+      () => {
+        let selectedInstructor = filterByInput(
+          this.state.fullInstructors,
+          this.state.value
+        );
+        this.setState({
+          ...this.state,
+          instructors: selectedInstructor
+        });
+      }
+    );
+  };
 
   _renderInstructor = () => {
     return (
@@ -75,12 +104,19 @@ class Instructors extends Component {
   };
 
   render() {
-    console.log('이건 스테이트', this.state);
-    console.log('이건 프롭스', this.props);
     return (
       <React.Fragment>
         <Title title={this.state.topic} />
         <hr />
+
+        <InputGroup>
+          <InputGroupAddon addonType="prepend">?</InputGroupAddon>
+          <ReactstrapInput
+            placeholder="Search your mentor"
+            value={this.state.value}
+            onChange={this._handleChange}
+          />
+        </InputGroup>
 
         {this.state.instructors ? (
           this._renderInstructor()

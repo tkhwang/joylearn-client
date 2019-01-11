@@ -45,8 +45,10 @@ class Topics extends Component {
     const values = querystring.parse(this.props.location.search);
     if (values.token) {
       auth.loginWithJwt(values.token);
-      actionsSign.signin();
     }
+
+    const user = auth.getCurrentUser();
+    actionsSign.signin(user);
 
     const data = await http.get(SERVER_URL + '/topics');
 

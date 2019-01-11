@@ -11,6 +11,12 @@ import http from '../../services/httpService';
 
 import InstructorCard from '../Instructor/Card/Card';
 import InstructorCardMk2 from '../Instructor/Card/CardMk2';
+import CommonComment from '../common/Comment/Comment.jsx';
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as signinActions from '../../actions/signin';
+import * as topicsActions from '../../actions/topics';
 
 import config from '../../config';
 const { SERVER_URL } = config();
@@ -43,19 +49,24 @@ class Instructor extends Component {
   _renderPage = () => {};
 
   render() {
+    const { user } = this.props.storeSignin;
     return (
       <React.Fragment>
         <InstructorCard
           name={this.state.instructor.name}
           image={this.state.instructor.image}
           github={this.state.instructor.gitHub}
-          // url={this.state.instructor.mainUrl}
+          url={this.state.instructor.mainUrl}
+        />
+        <CommonComment
+          type="instructor"
+          name={this.state.instructor.name}
+          user={user.id}
         />
         <h1>Lecture</h1>
         {this.state.lectures.map(lecture => {
           return <InstructorCardMk2 name={lecture.name} url={lecture.url} />;
         })}
-
         {/* <InstructorProfile />
         <InstructorHex />
         <InstructorJit />
@@ -66,4 +77,15 @@ class Instructor extends Component {
   }
 }
 
-export default Instructor;
+// export default Instructor;
+
+export default connect(
+  state => ({
+    storeSignin: state.signin,
+    storeTopics: state.topics
+  }),
+  dispatch => ({
+    actionsSign: bindActionCreators(signinActions, dispatch),
+    actionTopics: bindActionCreators(topicsActions, dispatch)
+  })
+)(Instructor);

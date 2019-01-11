@@ -37,6 +37,7 @@ class Comment extends React.Component {
   };
 
   render() {
+    console.log('[+] ////// ', this.props.comments);
     return (
       <div>
         <h1>Comment</h1>
@@ -71,6 +72,15 @@ class Comment extends React.Component {
               .processSync(this.state.text).contents
           }
         </DivFull>
+
+        {this.props.comments.map((comment, index, comments) => {
+          return (
+            <ul>
+              <li>{comment.content}</li>
+              <li>{comment.writer}</li>
+            </ul>
+          );
+        })}
       </div>
     );
   }

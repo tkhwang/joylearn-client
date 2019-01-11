@@ -57,8 +57,6 @@ class Topics extends Component {
   }
 
   handleChange = event => {
-    console.log('[+] handleChange = ', event.target.value);
-
     this.setState(
       {
         ...this.state,

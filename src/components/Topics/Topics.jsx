@@ -95,7 +95,6 @@ class Topics extends Component {
   render() {
     return (
       <React.Fragment>
-        {/* <Search /> */}
         {/* <Input label="Search Topics which you want to learn." /> */}
         <InputGroup>
           <InputGroupAddon addonType="prepend">?</InputGroupAddon>

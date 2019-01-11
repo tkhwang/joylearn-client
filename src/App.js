@@ -55,7 +55,9 @@ class App extends Component {
             <ProtectedRoute path="/setting" exact component={Setting} />
             <Route path="/not-found" component={NotFound} />
             <Route path="/movies" component={Movies} />
+            {/* /t/:topic 으로 바뀔 예정? */}
             <Route path="/j/:topic" render={topic => <Topic topic={topic} />} />
+            {/* <Route path="/b/:topic" render={topic => <Books topic={topic} />} /> */}
             <Route
               path="/c/:topic"
               render={topic => <Courses topic={topic} />}

@@ -2,6 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Button, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
+import Avatar from '../Avatar/Avatar';
+
 const UserButton = ({ user }) => {
   return (
     <div>
@@ -17,6 +19,7 @@ const UserButton = ({ user }) => {
           <Button outline color="warning" size="sm">
             {user.name}
           </Button>{' '}
+          <Avatar width="30" height="30" />
         </DropdownToggle>
       )}
       <DropdownMenu right>

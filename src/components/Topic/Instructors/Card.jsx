@@ -42,47 +42,26 @@ class Card extends Component {
   render() {
     const { classes, fullName, name, git, url, image } = this.props;
     return (
-      <Link to={`instructor/${name}`}>
-        <MaterialCard className={classes.card}>
-          <CardActionArea>
-            <CardMedia className={classes.media} image={image} name={name} />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                {fullName ? fullName : name}
-              </Typography>
-              <Typography component="p">{git}</Typography>
-              {/* <Typography component="p">{url}</Typography> */}
-            </CardContent>
-          </CardActionArea>
-        </MaterialCard>
-      </Link>
+      <div onClick={this.handleClick}>
+        {this.state.clicked ? (
+          <Redirect to={`/instructor/${name}`} />
+        ) : (
+          <MaterialCard className={classes.card}>
+            <CardActionArea>
+              <CardMedia className={classes.media} image={image} name={name} />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                  {fullName ? fullName : name}
+                </Typography>
+                <Typography component="p">{git}</Typography>
+                {/* <Typography component="p">{url}</Typography> */}
+              </CardContent>
+            </CardActionArea>
+          </MaterialCard>
+        )}
+      </div>
     );
   }
-
-  // render() {
-  //   const { classes, fullName, name, git, url, image } = this.props;
-  //   return (
-  //     <div onClick={this.handleClick}>
-  //       {this.state.clicked ? (
-  //         <Redirect to={`/instructor/${name}`} />
-  //         // <Link to={`instructor/${name}`} />
-  //       ) : (
-  //         <MaterialCard className={classes.card}>
-  //           <CardActionArea>
-  //             <CardMedia className={classes.media} image={image} name={name} />
-  //             <CardContent>
-  //               <Typography gutterBottom variant="h5" component="h2">
-  //                 {fullName ? fullName : name}
-  //               </Typography>
-  //               <Typography component="p">{git}</Typography>
-  //               {/* <Typography component="p">{url}</Typography> */}
-  //             </CardContent>
-  //           </CardActionArea>
-  //         </MaterialCard>
-  //       )}
-  //     </div>
-  //   );
-  // }
 }
 
 Card.propTypes = {

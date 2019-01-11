@@ -7,10 +7,9 @@ import http from '../../services/httpService';
 // import auth from '../../services/authService';
 // import querystring from 'query-string';
 
-import LectureTitle from '../common/Title/Title';
-// import LectureProfile from './LectureProfile';
-// import LectureBar from './LectureBar';
-// import LectureComments from './LectureComments';
+import LectureProfile from '../Lecture/Profile/Profile';
+// import LectureBar from '../Lecture/Bar/Bar';
+// import LectureComments from '../Lecture/Comments/Comments';
 
 import * as signinActions from '../../actions/signin';
 import * as topicsActions from '../../actions/topics';
@@ -30,17 +29,31 @@ class Lecture extends Component {
     const data = await http.get(`${SERVER_URL}/lecture/${name}`);
     console.log('[*] lecture data : ', data);
 
-    // this.setState({
-    //   topics: data.data
-    // });
+    this.setState({
+      ...this.state,
+      lecture: data.data.lecture[0],
+      instructor: data.data.instructor[0]
+    });
   }
 
+  _renderPage = () => (
+    <LectureProfile
+      name={this.state.lecture.name}
+      image={this.state.lecture.screenshot}
+      url={this.state.lecture.url}
+      free={this.state.lecture.free}
+      lang={this.state.lecture.lang}
+      tname={this.state.instructor.name}
+    />
+  );
+
   render() {
-    // console.log('이걸 확인', this.props);
+    console.log('state check: ', this.state);
     return (
       <React.Fragment>
-        <LectureTitle title={this.state.title} />
-        {/* <LectureProfile /> */}
+        {this.state.lecture && this.state.instructor
+          ? this._renderPage()
+          : 'loading'}
         {/* <LectureBar /> */}
         {/* <LectureComments /> */}
       </React.Fragment>

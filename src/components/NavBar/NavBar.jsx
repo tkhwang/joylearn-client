@@ -9,6 +9,7 @@ import {
 } from 'reactstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import UserButton from './UserButton';
 
 class NavBar extends Component {

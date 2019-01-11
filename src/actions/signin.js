@@ -6,11 +6,11 @@ export const SIGNOUT = 'sign/SIGNOUT';
 // export const signin = createActions(SIGNIN);
 // export const signout = createActions(SIGNOUT);
 
-export const signin = name => {
+export const signin = user => {
   return {
     type: SIGNIN,
     payload: {
-      name: name
+      user: user
     }
   };
 };
@@ -19,7 +19,7 @@ export const signout = name => {
   return {
     type: SIGNOUT,
     payload: {
-      name: name
+      user: ''
     }
   };
 };

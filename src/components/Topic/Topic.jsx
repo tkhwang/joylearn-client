@@ -9,9 +9,10 @@ import Loader from 'react-loader-spinner';
 import Emoji from '../common/Emoji';
 import * as signinActions from '../../actions/signin';
 import * as topicsActions from '../../actions/topics';
+
 import Title from '../common/Title/Title';
-import Instructors from './Instructors/Instructors';
-import Lectures from './Lectures/Lectures';
+import InstructorsCard from '../Topic/Instructors/Card';
+import LecturesCard from '../Topic/Lectures/Card';
 // import Courses from './Courses/Courses';
 
 import config from '../../config';
@@ -64,15 +65,15 @@ class Topic extends Component {
         <CardsContatiner>
           {this.state.instructors.map(instructor => {
             return (
-              <BestTopicInstructors>
-                <Instructors
-                  name={instructor.name}
-                  git={instructor.gitHub}
-                  url={instructor.mainUrl}
-                  image={instructor.image}
-                  key={instructor.name}
-                />
-              </BestTopicInstructors>
+              <InstructorsCard
+                fullName={instructor.fullName}
+                name={instructor.name}
+                git={instructor.gitHub}
+                url={instructor.mainUrl}
+                image={instructor.image}
+                lang={instructor.lang}
+                key={instructor.name}
+              />
             );
           })}
         </CardsContatiner>
@@ -85,11 +86,9 @@ class Topic extends Component {
         <CardsContatiner>
           {this.state.lectures.map(lecture => {
             return (
-              <Lectures
+              <LecturesCard
                 name={lecture.name}
-                image={
-                  lecture.screenshot // instructor={lecture.instructor}
-                }
+                image={lecture.screenshot}
                 url={lecture.url}
                 lang={lecture.lang}
                 free={lecture.free}
@@ -114,6 +113,8 @@ class Topic extends Component {
   };
 
   render() {
+    console.log('topic / this.state : ', this.state);
+
     return (
       <React.Fragment>
         <Title title={this.state.topic} />
@@ -132,53 +133,6 @@ class Topic extends Component {
   }
 }
 
-// <React.Fragment>
-//   <Title title={this.state.title} />
-//   <hr />
-//   <BestTopicInstructorsTitle>Best Instructors</BestTopicInstructorsTitle>
-//   {this.state.instructors.map((instructor, index) => {
-//     return (
-//       <BestTopicInstructors>
-//         <Instructors
-//           name={instructor.name}
-//           git={instructor.github}
-//           url={instructor.mainurl}
-//           image={instructor.image}
-//           key={index}
-//         />
-//       </BestTopicInstructors>
-//     );
-//   })}
-//   <a href="">more</a>
-//   {this.state.lectures.map((lecture, index) => {
-//     return (
-//       <Lectures
-//         title={lecture.title}
-//         url={lecture.url}
-//         name={lecture.name}
-//         screenshot={lecture.screenshot}
-//         free={lecture.free}
-//         instructor={lecture.instructor}
-//         key={index}
-//       />
-//     );
-//   })}
-//   <a href="">more</a>
-//   {this.state.courses.map((course, index) => {
-//     return (
-//       <Courses name={course.name} period={course.period} key={index} />
-//     );
-//   })}
-//   <a href="">more</a>
-//   <h1>{this.state.topic} @ Topic</h1>
-// </React.Fragment>
-
-//----
-
-// const BestTopicInstructorsTitle = styled.h1`
-//   font-size: 1.3rem;
-// `;
-
 const CardsContatiner = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -186,12 +140,6 @@ const CardsContatiner = styled.div`
   margin: 30px 30px 30px 30px;
 `;
 // flex-direction: row
-
-const BestTopicInstructors = styled.div`
-  display: flex;
-  margin-right: 10px;
-  margin-left: 10px;
-`;
 
 const DivSpinner = styled.div`
   position: fixed;

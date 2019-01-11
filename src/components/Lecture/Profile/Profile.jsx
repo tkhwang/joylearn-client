@@ -29,7 +29,6 @@ class Card extends Component {
   }
 
   render() {
-    console.log('Profile Card: ', this.props);
     const { classes, name, image, url, free, lang, tname } = this.props;
     return (
       <MaterialCard className={classes.card}>

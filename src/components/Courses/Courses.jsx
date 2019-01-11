@@ -36,13 +36,10 @@ class Courses extends Component {
 
   async componentDidMount() {
     const { topic } = this.props.topic.match.params;
-    console.log('이건 토픽', topic);
-
     const { topics } = this.props.storeTopics;
     const selectedTopic = topics.filter(list => {
       return list.name === topic;
     })[0];
-    console.log('이건 선택된 토픽', selectedTopic);
 
     this.setState({
       ...this.state,
@@ -53,9 +50,6 @@ class Courses extends Component {
   _renderCourses = () => {};
 
   render() {
-    console.log('이건 스테이트', this.state);
-    console.log('이건 프롭스', this.props);
-
     return (
       <React.Fragment>
         <Title title={this.state.topic} />

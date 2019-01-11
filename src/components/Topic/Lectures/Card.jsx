@@ -15,7 +15,8 @@ import urlencode from 'urlencode';
 
 const styles = {
   card: {
-    width: 250,
+    // width: 250,
+    width: 350,
     margin: 10
   },
   media: {
@@ -32,34 +33,29 @@ class Card extends Component {
   }
 
   handleClick() {
-    console.log('[+] TopicLecturesCard : this = ', this.props.title);
     this.setState({
       clicked: true
     });
   }
 
   render() {
-    // console.log(this.props);
-    const { classes, image, title, description } = this.props;
-    console.log('lecture list name encode : ', urlencode(title));
-    console.log('lecture list name decode : ', urlencode.decode(title));
+    console.log('card props : ', this.props);
+    const { classes, name, image, url, lang, free } = this.props;
     return (
       <div onClick={this.handleClick}>
         {this.state.clicked ? (
-          <Redirect to={`/lecture/${urlencode(title)}`} />
+          <Redirect to={`/lecture/${urlencode(name)}`} />
         ) : (
           <MaterialCard className={classes.card}>
             <CardActionArea>
-              <CardMedia
-                className={classes.media}
-                image={image}
-                title={title}
-              />
+              <CardMedia className={classes.media} image={image} title={name} />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
-                  {title}
+                  {name}
                 </Typography>
-                <Typography component="p">{description}</Typography>
+                <Typography component="p">{url}</Typography>
+                <Typography component="p">{`language : ${lang}`}</Typography>
+                <Typography component="p">{free ? 'Free' : 'Paid'}</Typography>
               </CardContent>
             </CardActionArea>
           </MaterialCard>

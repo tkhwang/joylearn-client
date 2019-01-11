@@ -28,7 +28,6 @@ class Lecture extends Component {
   async componentDidMount() {
     const { name } = this.props.name.match.params;
     const data = await http.get(`${SERVER_URL}/lecture/${name}`);
-    console.log('[*] lecture data : ', data);
 
     this.setState({
       ...this.state,
@@ -49,7 +48,6 @@ class Lecture extends Component {
   );
 
   render() {
-    console.log('state check: ', this.state);
     return (
       <React.Fragment>
         {this.state.lecture && this.state.instructor ? (

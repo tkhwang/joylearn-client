@@ -49,8 +49,6 @@ class Instructor extends Component {
   _renderPage = () => {};
 
   render() {
-    console.log('이건 강사 페이지의 스테이트', this.state);
-    console.log('이건 강사 페이지의 프롭스', this.props);
     const { user } = this.props.storeSignin;
     return (
       <React.Fragment>

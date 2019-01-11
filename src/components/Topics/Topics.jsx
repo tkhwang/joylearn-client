@@ -97,8 +97,6 @@ class Topics extends Component {
 
   render() {
     const { topics } = this.props.storeTopics;
-    console.log('check : ', topics);
-    // console.log('this.props.storeTopics : ', this.props.storeTopics);
     return (
       <React.Fragment>
         <InputGroup>

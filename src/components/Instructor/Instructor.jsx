@@ -29,7 +29,8 @@ class Instructor extends Component {
 
     this.state = {
       instructor: {},
-      lectures: []
+      lectures: [],
+      comments: []
     };
   }
 
@@ -42,7 +43,8 @@ class Instructor extends Component {
     this.setState({
       ...this.state,
       instructor: data.instructor[0],
-      lectures: data.lectures
+      lectures: data.lectures,
+      comments: data.comments
     });
   }
 
@@ -64,6 +66,7 @@ class Instructor extends Component {
           type="instructor"
           name={this.state.instructor.name}
           user={user.id}
+          comments={this.state.comments}
         />
         <h1>Lecture</h1>
         {this.state.lectures.map(lecture => {

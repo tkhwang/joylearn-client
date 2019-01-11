@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import http from '../../services/httpService';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Loader from 'react-loader-spinner';
 import { Link } from 'react-router-dom';
+import Loader from 'react-loader-spinner';
 
 import Emoji from '../common/Emoji';
 import * as signinActions from '../../actions/signin';

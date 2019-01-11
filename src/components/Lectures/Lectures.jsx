@@ -5,6 +5,12 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Loader from 'react-loader-spinner';
+import {
+  InputGroup,
+  InputGroupAddon,
+  Button,
+  Input as ReactstrapInput
+} from 'reactstrap';
 
 import http from '../../services/httpService';
 // import auth from '../../services/authService';
@@ -14,6 +20,7 @@ import Title from '../common/Title/Title';
 // import List from './List/List';
 // import Filter from './Filter/Filter';
 import LecturesCard from '../Lectures/Card/Card';
+import filterByInput from '../../services/searchService';
 
 import * as signinActions from '../../actions/signin';
 import * as topicsActions from '../../actions/topics';
@@ -27,7 +34,9 @@ class Lectures extends Component {
 
     this.state = {
       topic: {},
-      lectures: []
+      lectures: [],
+      fullLectures: [],
+      value: ''
     };
   }
 
@@ -51,9 +60,29 @@ class Lectures extends Component {
     const { data } = await http.get(`${SERVER_URL}/l/${topic}`);
     this.setState({
       ...this.state,
-      lectures: data.lectures
+      lectures: data.lectures,
+      fullLectures: data.lectures
     });
   }
+
+  _handleChange = e => {
+    this.setState(
+      {
+        ...this.state,
+        value: e.target.value
+      },
+      () => {
+        let selectedLecture = filterByInput(
+          this.state.fullLectures,
+          this.state.value
+        );
+        this.setState({
+          ...this.state,
+          lectures: selectedLecture
+        });
+      }
+    );
+  };
 
   _renderLecture = () => {
     return (
@@ -81,6 +110,15 @@ class Lectures extends Component {
       <React.Fragment>
         <Title title={this.state.topic} />
         <hr />
+
+        <InputGroup>
+          <InputGroupAddon addonType="prepend">?</InputGroupAddon>
+          <ReactstrapInput
+            placeholder="Search lecture which you want to learn"
+            value={this.state.value}
+            onChange={this._handleChange}
+          />
+        </InputGroup>
 
         {this.state.lectures ? (
           this._renderLecture()

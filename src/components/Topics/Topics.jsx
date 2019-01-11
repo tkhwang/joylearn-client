@@ -19,6 +19,7 @@ import querystring from 'query-string';
 
 import TopicsCard from './Card/Card';
 import Input from '../common/Input/Input';
+import filterByInput from '../../services/searchService';
 
 import * as signinActions from '../../actions/signin';
 import * as topicsActions from '../../actions/topics';
@@ -64,9 +65,9 @@ class Topics extends Component {
       },
       () => {
         const { topics } = this.props.storeTopics;
-        let topicSelected = topics.filter(topic => {
-          return topic.name.indexOf(this.state.value) !== -1;
-        });
+        // let topicSelected = topics.filter(topic => {
+        //   return topic.name.indexOf(this.state.value) !== -1;
+        let topicSelected = filterByInput(topics, this.state.value);
         this.setState({
           ...this.state,
           topics: topicSelected
@@ -93,9 +94,11 @@ class Topics extends Component {
   };
 
   render() {
+    const { topics } = this.props.storeTopics;
+    console.log('check : ', topics);
+    // console.log('this.props.storeTopics : ', this.props.storeTopics);
     return (
       <React.Fragment>
-        {/* <Input label="Search Topics which you want to learn." /> */}
         <InputGroup>
           <InputGroupAddon addonType="prepend">?</InputGroupAddon>
           <ReactstrapInput

@@ -42,7 +42,7 @@ class CardTopic extends Component {
     return (
       <div onClick={this.handleClick}>
         {this.state.clicked ? (
-          <Redirect to={`/j/${title}`} />
+          <Redirect to={`/t/${title}`} />
         ) : (
           <Card className={classes.card}>
             <CardActionArea>

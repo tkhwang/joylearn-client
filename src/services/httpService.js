@@ -2,6 +2,9 @@ import axios from 'axios';
 import Raven from 'raven-js';
 import { toast } from 'react-toastify';
 
+import config from '../config';
+export const { SERVER_URL } = config();
+
 axios.interceptors.response.use(null, error => {
   const expectedError =
     error.response &&

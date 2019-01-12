@@ -39,8 +39,7 @@ class Topics extends Component {
   }
 
   async componentDidMount() {
-    const { actionTopics } = this.props;
-    const { actionsSign } = this.props;
+    const { actionTopics, actionsSign } = this.props;
 
     const values = querystring.parse(this.props.location.search);
     if (values.token) {

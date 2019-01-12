@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import {
   Collapse,
   Navbar,
@@ -7,10 +9,13 @@ import {
   Nav,
   UncontrolledDropdown
 } from 'reactstrap';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import Avatar from '../Avatar/Avatar';
 import UserButton from './UserButton';
+
+import auth from '../../services/authService';
+import * as signinActions from '../../actions/signin';
 
 class NavBar extends Component {
   constructor(props) {
@@ -18,8 +23,24 @@ class NavBar extends Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: false,
+      user: ''
     };
+  }
+
+  componentDidMount() {
+    const { actionsSign } = this.props;
+    const user = auth.getCurrentUser();
+
+    this.setState(
+      {
+        ...this.state,
+        user: user
+      },
+      () => {
+        actionsSign.signin(user);
+      }
+    );
   }
 
   toggle() {
@@ -58,6 +79,7 @@ class NavBar extends Component {
                 <UserButton user={user} />
               </UncontrolledDropdown>
             </Nav>
+            {this.state.user && <Avatar width="30" height="30" />}
           </Collapse>
         </Navbar>
       </div>
@@ -65,4 +87,12 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar;
+// export default NavBar;
+export default connect(
+  state => ({
+    storeSignin: state.signin
+  }),
+  dispatch => ({
+    actionsSign: bindActionCreators(signinActions, dispatch)
+  })
+)(NavBar);

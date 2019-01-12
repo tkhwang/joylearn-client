@@ -7,6 +7,8 @@ import { faGrinAlt } from '@fortawesome/free-solid-svg-icons';
 
 import Course from './components/Course/Course';
 // import Lecture from './components/Lecture/Lecture';
+import Books from './components/Books/Books';
+import Book from './components/Book/Book';
 import Instructors from './components/Instructors/Instructors';
 import Instructor from './components/Instructor/Instructor';
 import Topics from './components/Topics/Topics';
@@ -68,6 +70,14 @@ class App extends Component {
             <Route
               path="/i/:topic"
               render={topic => <Instructors topic={topic} />}
+            />
+            <Route
+              path="/b/:topic"
+              render={topic => <Books topic={topic} />}
+            />
+            <ProtectedRoute
+              path="/book/:name"
+              render={name => <Book name={name} />}
             />
             <ProtectedRoute
               path="/course/:name"

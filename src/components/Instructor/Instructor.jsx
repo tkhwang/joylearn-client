@@ -37,7 +37,8 @@ class Instructor extends Component {
     this.state = {
       instructor: {},
       lectures: [],
-      comments: []
+      comments: [],
+      books: []
     };
   }
 
@@ -53,7 +54,8 @@ class Instructor extends Component {
     const instructor = {
       instructor: data.instructor[0],
       lectures: data.lectures,
-      comments: data.comments
+      comments: data.comments,
+      books: data.books
     };
     actionInstructor.set_all(instructor);
 
@@ -61,7 +63,8 @@ class Instructor extends Component {
       ...this.state,
       instructor: data.instructor[0],
       lectures: data.lectures,
-      comments: data.comments
+      comments: data.comments,
+      books: data.books
     });
   }
 
@@ -73,19 +76,29 @@ class Instructor extends Component {
     const { comments } = this.props.storeInstructor;
     console.log('[+] Instructor : comments = ', comments);
 
+    /* return <InstructorCardMk2 name={lecture.name} url={lecture.url} />; */
+
     return (
       <React.Fragment>
         <InstructorCard instructor={this.state.instructor} />
-        <PaperSheet title="Lecures">
+        <PaperSheet title="Lectures">
           {this.state.lectures.map(lecture => {
-            {
-              /* return <InstructorCardMk2 name={lecture.name} url={lecture.url} />; */
-            }
             return (
               <CommonCardList
                 title={lecture.name}
                 url={lecture.url}
                 image={lecture.screenshot}
+              />
+            );
+          })}
+        </PaperSheet>
+        <PaperSheet title="Books">
+          {this.state.books.map(book => {
+            return (
+              <CommonCardList
+                title={book.name}
+                url={book.url}
+                image={book.screenshot}
               />
             );
           })}

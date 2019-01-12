@@ -11,7 +11,6 @@ import {
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import Avatar from '../Avatar/Avatar';
 import UserButton from './UserButton';
 
 import auth from '../../services/authService';
@@ -79,7 +78,6 @@ class NavBar extends Component {
                 <UserButton user={user} />
               </UncontrolledDropdown>
             </Nav>
-            {this.state.user && <Avatar width="30" height="30" />}
           </Collapse>
         </Navbar>
       </div>

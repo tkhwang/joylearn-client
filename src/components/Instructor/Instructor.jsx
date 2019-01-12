@@ -17,6 +17,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as signinActions from '../../actions/signin';
 import * as topicsActions from '../../actions/topics';
+import * as instructorActions from '../../actions/instructor';
 
 import config from '../../config';
 const { SERVER_URL } = config();
@@ -39,6 +40,16 @@ class Instructor extends Component {
   async componentDidMount() {
     const { name } = this.props.name.match.params;
     const { data } = await http.get(`${SERVER_URL}/instructor/${name}`);
+    const { actionInstructor } = this.props;
+
+    console.log('[+] Insturcotr : props = ', this.props);
+
+    const instructor = {
+      instructor: data.instructor[0],
+      lectures: data.lectures,
+      comments: data.comments
+    };
+    actionInstructor.set_all(instructor);
 
     this.setState({
       ...this.state,
@@ -52,6 +63,9 @@ class Instructor extends Component {
 
   render() {
     const { user } = this.props.storeSignin;
+    const { comments } = this.props.storeInstructor;
+    console.log('[+] Instructor : comments = ', comments);
+
     return (
       <React.Fragment>
         <InstructorCard
@@ -63,8 +77,8 @@ class Instructor extends Component {
         <CommonComment
           type="instructor"
           name={this.state.instructor.name}
-          user={user.id}
-          comments={this.state.comments}
+          user={user.id} // comments={this.state.comments}
+          comments={comments}
         />
         <h1>Lecture</h1>
         {this.state.lectures.map(lecture => {
@@ -85,10 +99,12 @@ class Instructor extends Component {
 export default connect(
   state => ({
     storeSignin: state.signin,
-    storeTopics: state.topics
+    storeTopics: state.topics,
+    storeInstructor: state.instructor
   }),
   dispatch => ({
     actionsSign: bindActionCreators(signinActions, dispatch),
-    actionTopics: bindActionCreators(topicsActions, dispatch)
+    actionTopics: bindActionCreators(topicsActions, dispatch),
+    actionInstructor: bindActionCreators(instructorActions, dispatch)
   })
 )(Instructor);

@@ -4,8 +4,13 @@ import remark from 'remark';
 import remark2react from 'remark-react';
 import styled from 'styled-components';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as instructorActions from '../../../actions/instructor';
+
 import http from '../../../services/httpService';
 import { SERVER_URL } from '../../../services/httpService';
+import CommonCommentList from '../../../components/common/Comment/List/List.jsx';
 
 class Comment extends React.Component {
   constructor() {
@@ -24,11 +29,20 @@ class Comment extends React.Component {
 
   handleClick = e => {
     console.log(this.state.text);
-    const { type, name } = this.props;
+    const { type, name, actionInstructor } = this.props;
     const apiEndpoint = `${SERVER_URL}/api/${type}/${name}`;
+
     console.log(apiEndpoint);
 
-    console.log('[+] //////// user @ Comment = ', this.props);
+    if (type === 'instructor') {
+      const comments = { writer: this.props.user, content: this.state.text };
+      console.log('[+] Comment : comments = ', comments);
+
+      actionInstructor.add_comments(comments);
+      this.setState({
+        text: ''
+      });
+    }
 
     return http.post(apiEndpoint, {
       writer: this.props.user,
@@ -37,13 +51,18 @@ class Comment extends React.Component {
   };
 
   render() {
-    console.log('[+] ////// ', this.props.comments);
     return (
       <div>
         <h1>Comment</h1>
+        {Object.keys(this.props.comments).length !== 0 ? (
+          <CommonCommentList comments={this.props.comments} />
+        ) : (
+          'nothing'
+        )}
+        <h4>Share your comment/wisdom...</h4>
         <Form onSubmit={this.handleSubmit}>
           <FormGroup>
-            <Label for="exampleText">Edit...</Label>
+            {/* <Label for="exampleText">Edit...</Label> */}
             <Input
               type="textarea"
               name="text"
@@ -52,12 +71,6 @@ class Comment extends React.Component {
               style={{ height: 200 }}
               value={this.state.text}
               onChange={this.handleChange}
-            />
-            <Input
-              color="primary"
-              type="submit"
-              value="Submit"
-              style={{ color: 'blue' }}
             />
             <Button color="primary" size="lg" block onClick={this.handleClick}>
               Submit
@@ -72,15 +85,6 @@ class Comment extends React.Component {
               .processSync(this.state.text).contents
           }
         </DivFull>
-
-        {this.props.comments.map((comment, index, comments) => {
-          return (
-            <ul>
-              <li>{comment.content}</li>
-              <li>{comment.writer}</li>
-            </ul>
-          );
-        })}
       </div>
     );
   }
@@ -94,4 +98,12 @@ const DivFull = styled.div`
   background-color: lightgray;
 `;
 
-export default Comment;
+// export default Comment;
+export default connect(
+  state => ({
+    storeInstructor: state.instructor
+  }),
+  dispatch => ({
+    actionInstructor: bindActionCreators(instructorActions, dispatch)
+  })
+)(Comment);

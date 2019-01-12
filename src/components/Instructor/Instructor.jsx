@@ -15,6 +15,7 @@ import Typography from '@material-ui/core/Typography';
 
 import InstructorCard from '../Instructor/Card/Card';
 import InstructorCardMk2 from '../Instructor/Card/CardMk2';
+import CommonCardList from '../common/Card/CardList.jsx';
 import CommonComment from '../common/Comment/Comment.jsx';
 import PaperSheet from '../common/PaperSheet/PaperSheet.jsx';
 
@@ -77,7 +78,16 @@ class Instructor extends Component {
         <InstructorCard instructor={this.state.instructor} />
         <PaperSheet title="Lecures">
           {this.state.lectures.map(lecture => {
-            return <InstructorCardMk2 name={lecture.name} url={lecture.url} />;
+            {
+              /* return <InstructorCardMk2 name={lecture.name} url={lecture.url} />; */
+            }
+            return (
+              <CommonCardList
+                title={lecture.name}
+                url={lecture.url}
+                image={lecture.screenshot}
+              />
+            );
           })}
         </PaperSheet>
         {/* <InstructorProfile />

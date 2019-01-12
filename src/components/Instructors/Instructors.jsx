@@ -19,6 +19,7 @@ import http from '../../services/httpService';
 import Title from '../common/Title/Title';
 // import List from './List/List';
 import InstructorsCard from '../Instructors/Card/Card';
+
 import InstructorsFilter from '../Instructors/Filter/Filter';
 import filterByInput from '../../services/searchService';
 

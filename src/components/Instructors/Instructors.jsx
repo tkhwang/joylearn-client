@@ -133,8 +133,8 @@ class Instructors extends Component {
               />
             </DivSpinner>
           )}
-
-          <InstructorsFilter />
+          {/* TODO: disable filter for fixing error. */}
+          {/* <InstructorsFilter /> */}
         </DivContainer>
       </React.Fragment>
     );

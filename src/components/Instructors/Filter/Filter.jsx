@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 
 class InstructorsFilter extends Component {
-  state = {};
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+  }
   render() {
     return;
   }

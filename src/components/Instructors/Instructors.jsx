@@ -18,8 +18,8 @@ import http from '../../services/httpService';
 
 import Title from '../common/Title/Title';
 // import List from './List/List';
-// import Filter from './Filter/Filter';
 import InstructorsCard from '../Instructors/Card/Card';
+import InstructorsFilter from '../Instructors/Filter/Filter';
 import filterByInput from '../../services/searchService';
 
 import * as signinActions from '../../actions/signin';
@@ -118,20 +118,31 @@ class Instructors extends Component {
           />
         </InputGroup>
 
-        {this.state.instructors ? (
-          this._renderInstructor()
-        ) : (
-          <DivSpinner>
-            <Loader type="Triangle" color="#00BFFF" height="200" width="200" />
-          </DivSpinner>
-        )}
+        <DivContainer>
+          {this.state.instructors ? (
+            this._renderInstructor()
+          ) : (
+            <DivSpinner>
+              <Loader
+                type="Triangle"
+                color="#00BFFF"
+                height="200"
+                width="200"
+              />
+            </DivSpinner>
+          )}
 
-        {/* <List />
-        <Filter /> */}
+          <InstructorsFilter />
+        </DivContainer>
       </React.Fragment>
     );
   }
 }
+
+const DivContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 
 const DivSpinner = styled.div`
   position: fixed;

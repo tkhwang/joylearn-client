@@ -4,6 +4,9 @@ import remark from 'remark';
 import remark2react from 'remark-react';
 import styled from 'styled-components';
 
+import PaperSheet from '../../common/PaperSheet/PaperSheet.jsx';
+import CommonCommentRender from '../../common/Comment/Render/Render.jsx';
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as instructorActions from '../../../actions/instructor';
@@ -53,38 +56,40 @@ class Comment extends React.Component {
   render() {
     return (
       <div>
-        <h1>Comment</h1>
-        {Object.keys(this.props.comments).length !== 0 ? (
-          <CommonCommentList comments={this.props.comments} />
-        ) : (
-          'nothing'
-        )}
-        <h4>Share your comment/wisdom...</h4>
-        <Form onSubmit={this.handleSubmit}>
-          <FormGroup>
-            {/* <Label for="exampleText">Edit...</Label> */}
-            <Input
-              type="textarea"
-              name="text"
-              id="exampleText"
-              placeholder="Please share your thought. (Markdown syntax supported.)"
-              style={{ height: 200 }}
-              value={this.state.text}
-              onChange={this.handleChange}
-            />
-            <Button color="primary" size="lg" block onClick={this.handleClick}>
-              Submit
-            </Button>
-          </FormGroup>
-        </Form>
-        <Label for="exampleText">It will be displayed when submited.</Label>
-        <DivFull>
+        <PaperSheet title="Comment">
+          {Object.keys(this.props.comments).length !== 0 ? (
+            <CommonCommentList comments={this.props.comments} />
+          ) : (
+            'nothing'
+          )}
+        </PaperSheet>
+        <PaperSheet title="Share your comment /wisdom...">
           {
-            remark()
-              .use(remark2react)
-              .processSync(this.state.text).contents
+            <Form onSubmit={this.handleSubmit}>
+              <FormGroup>
+                {/* <Label for="exampleText">Edit...</Label> */}
+                <Input
+                  type="textarea"
+                  name="text"
+                  id="exampleText"
+                  placeholder="Please share your thought. (Markdown syntax supported.)"
+                  style={{ height: 200 }}
+                  value={this.state.text}
+                  onChange={this.handleChange}
+                />
+                <Button
+                  color="primary"
+                  size="lg"
+                  block
+                  onClick={this.handleClick}
+                >
+                  Submit
+                </Button>
+              </FormGroup>
+              <CommonCommentRender>{this.state.text}</CommonCommentRender>
+            </Form>
           }
-        </DivFull>
+        </PaperSheet>
       </div>
     );
   }

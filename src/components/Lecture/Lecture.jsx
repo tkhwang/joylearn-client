@@ -48,6 +48,9 @@ class Lecture extends Component {
   );
 
   render() {
+    console.log('[+] lecture = ', this.state.lecture);
+    console.log('[+] instrucgtor = ', this.state.instructor);
+
     return (
       <React.Fragment>
         {this.state.lecture && this.state.instructor ? (

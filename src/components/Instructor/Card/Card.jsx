@@ -1,10 +1,28 @@
 import React from 'react';
-import { Card, Icon, Image } from 'semantic-ui-react';
+import PaperSheet from '../../common/PaperSheet/PaperSheet.jsx';
+import { Card as SemanticCard, Icon, Image } from 'semantic-ui-react';
 
-const TestCard = ({ name, image, github, url }) => (
+const InstructorCardInner = ({ instructor }) => {
+  return (
+    <ul>
+      <li>
+        Url : <a href={instructor.mainUrl}>{instructor.mainUrl}</a>
+      </li>
+      <li>
+        Github: <a href={instructor.gitHub}>{instructor.gitHub}</a>
+      </li>
+    </ul>
+  );
+};
+
+const Card = ({ instructor }) => (
   <React.Fragment>
-    <h1>Instructor : {name}</h1>
-    <Card>
+    <PaperSheet
+      title={instructor.fullName ? instructor.fullName : instructor.name}
+    >
+      <InstructorCardInner instructor={instructor} />
+    </PaperSheet>
+    {/* <SemanticCard>
       <Image src={image} />
       <Card.Content>
         <Card.Header>{name}</Card.Header>
@@ -21,8 +39,8 @@ const TestCard = ({ name, image, github, url }) => (
           {url}
         </a>
       </Card.Content>
-    </Card>
+    </SemanticCard> */}
   </React.Fragment>
 );
 
-export default TestCard;
+export default Card;

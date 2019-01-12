@@ -8,10 +8,15 @@ import http from '../../services/httpService';
 // import Jit from './Jit/Jit';
 // import Lec from './Lec/Lec';
 // import Comments from './Comments/Comments';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 import InstructorCard from '../Instructor/Card/Card';
 import InstructorCardMk2 from '../Instructor/Card/CardMk2';
 import CommonComment from '../common/Comment/Comment.jsx';
+import PaperSheet from '../common/PaperSheet/PaperSheet.jsx';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -63,32 +68,29 @@ class Instructor extends Component {
 
   render() {
     const { user } = this.props.storeSignin;
+    const { classes } = this.props;
     const { comments } = this.props.storeInstructor;
     console.log('[+] Instructor : comments = ', comments);
 
     return (
       <React.Fragment>
-        <InstructorCard
-          name={this.state.instructor.name}
-          image={this.state.instructor.image}
-          github={this.state.instructor.gitHub}
-          url={this.state.instructor.mainUrl}
-        />
-        <CommonComment
-          type="instructor"
-          name={this.state.instructor.name}
-          user={user.id} // comments={this.state.comments}
-          comments={comments}
-        />
-        <h1>Lecture</h1>
-        {this.state.lectures.map(lecture => {
-          return <InstructorCardMk2 name={lecture.name} url={lecture.url} />;
-        })}
+        <InstructorCard instructor={this.state.instructor} />
+        <PaperSheet title="Lecures">
+          {this.state.lectures.map(lecture => {
+            return <InstructorCardMk2 name={lecture.name} url={lecture.url} />;
+          })}
+        </PaperSheet>
         {/* <InstructorProfile />
         <InstructorHex />
         <InstructorJit />
         <InstructorLec />
         <InstructorComments /> */}
+        <CommonComment
+          type="instructor"
+          name={this.state.instructor.name}
+          user={user.id}
+          comments={comments}
+        />
       </React.Fragment>
     );
   }

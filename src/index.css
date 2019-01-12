@@ -10,10 +10,11 @@ body {
 
 main {
   margin-left: 2rem;
+  margin-right: 2rem;
 }
 
 * {
-  font-family: 'Exo 2', sans-serif;
+  /* font-family: 'Exo 2', sans-serif; */
 }
 
 .navbar {

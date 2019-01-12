@@ -26,6 +26,7 @@ class Topic extends Component {
       topic: {},
       instructors: [],
       lectures: [],
+      books: [],
       courses: []
     };
   }

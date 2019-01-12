@@ -42,7 +42,9 @@ class Instructors extends Component {
 
   static proptypes = {
     topic: PropTypes.object.isRequired,
-    instructors: PropTypes.array.isRequired
+    instructors: PropTypes.array.isRequired,
+    fullInstructors: PropTypes.array.isRequired,
+    value: PropTypes.string.isRequired
   };
 
   async componentDidMount() {

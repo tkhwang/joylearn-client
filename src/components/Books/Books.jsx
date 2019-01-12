@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-// import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Loader from 'react-loader-spinner';
@@ -13,14 +12,10 @@ import {
 } from 'reactstrap';
 
 import http from '../../services/httpService';
-// import auth from '../../services/authService';
-// import querystring from 'query-string';
 
 import Title from '../common/Title/Title';
-// import List from './List/List';
-import InstructorsCard from '../Instructors/Card/Card';
-import InstructorsFilter from '../Instructors/Filter/Filter';
 import filterByInput from '../../services/searchService';
+import BooksCard from '../Books/Card/Card';
 
 import * as signinActions from '../../actions/signin';
 import * as topicsActions from '../../actions/topics';
@@ -28,22 +23,22 @@ import * as topicsActions from '../../actions/topics';
 import config from '../../config';
 const { SERVER_URL } = config();
 
-class Instructors extends Component {
+class Books extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       topic: {},
-      instructors: [],
-      fullInstructors: [],
+      books: [],
+      fullBooks: [],
       value: ''
     };
   }
 
   static proptypes = {
     topic: PropTypes.object.isRequired,
-    instructors: PropTypes.array.isRequired,
-    fullInstructors: PropTypes.array.isRequired,
+    books: PropTypes.array.isRequired,
+    fullBooks: PropTypes.array.isRequired,
     value: PropTypes.string.isRequired
   };
 
@@ -59,15 +54,15 @@ class Instructors extends Component {
       topic: selectedTopic
     });
 
-    const { data } = await http.get(`${SERVER_URL}/i/${topic}`);
+    const { data } = await http.get(`${SERVER_URL}/b/${topic}`);
+    console.log('books data : ', data);
     this.setState({
       ...this.state,
-      instructors: data.instructors,
-      fullInstructors: data.instructors
+      books: data.books,
+      fullBooks: data.books
     });
   }
 
-  // 변하지 않는 기준점이 있어야 한다. (filter의 기준점이 될)
   _handleChange = event => {
     this.setState(
       {
@@ -75,29 +70,29 @@ class Instructors extends Component {
         value: event.target.value
       },
       () => {
-        let selectedInstructor = filterByInput(
-          this.state.fullInstructors,
+        let selectedBooks = filterByInput(
+          this.state.fullBooks,
           this.state.value
         );
         this.setState({
           ...this.state,
-          instructors: selectedInstructor
+          books: selectedBooks
         });
       }
     );
   };
 
-  _renderInstructor = () => {
+  _renderBooks = () => {
     return (
       <div>
-        {this.state.instructors.map(instructor => {
+        {this.state.books.map(book => {
           return (
-            <InstructorsCard
-              name={instructor.name}
-              image={instructor.image}
-              lang={instructor.lang}
-              url={instructor.mainUrl}
-              // topic={lecture.topic.name}
+            <BooksCard
+              name={book.name}
+              image={book.screenshot}
+              lang={book.lang}
+              url={book.mainUrl}
+              free={book.free}
             />
           );
         })}
@@ -109,20 +104,19 @@ class Instructors extends Component {
     return (
       <React.Fragment>
         <Title title={this.state.topic} />
-        <hr />
 
         <InputGroup>
           <InputGroupAddon addonType="prepend">?</InputGroupAddon>
           <ReactstrapInput
-            placeholder="Search your mentor"
+            placeholder="Search your bible"
             value={this.state.value}
             onChange={this._handleChange}
           />
         </InputGroup>
 
         <DivContainer>
-          {this.state.instructors ? (
-            this._renderInstructor()
+          {this.state.books ? (
+            this._renderBooks()
           ) : (
             <DivSpinner>
               <Loader
@@ -134,7 +128,7 @@ class Instructors extends Component {
             </DivSpinner>
           )}
 
-          <InstructorsFilter />
+          {/* <InstructorsFilter /> */}
         </DivContainer>
       </React.Fragment>
     );
@@ -163,4 +157,4 @@ export default connect(
     actionSign: bindActionCreators(signinActions, dispatch),
     actionTopics: bindActionCreators(topicsActions, dispatch)
   })
-)(Instructors);
+)(Books);

@@ -36,7 +36,9 @@ class Lectures extends Component {
       topic: {},
       lectures: [],
       fullLectures: [],
-      value: ''
+      value: '',
+
+      freeChecked: false
     };
   }
 
@@ -84,6 +86,47 @@ class Lectures extends Component {
     );
   };
 
+  _freeHandleClick() {
+    if (this.state.freeChecked === false) {
+      this.setState({ freeChecked: true }),
+        () => {
+          let checkedLecture = this.state.fullLectures.filter(obj => {
+            return obj.free === true;
+          });
+          this.setState({
+            ...this.state,
+            lectures: checkedLecture
+          });
+        };
+    } else {
+      this.setState({ freeChecked: false }),
+        () => {
+          this.setState({
+            ...this.state,
+            lectures: this.state.fullLectures
+          });
+        };
+    }
+    // this.state.freeChecked === false
+    //   ? this.setState(
+    //       {
+    //         freeChecked: true
+    //       },
+    //       () => {
+    //         let checkedLecture = this.state.lectures.filter(obj => {
+    //           return obj.free === true;
+    //         });
+    //         this.setState({
+    //           ...this.state,
+    //           lectures: checkedLecture
+    //         });
+    //       }
+    //     )
+    //   : this.setState({
+    //       freeChecked: false
+    //     });
+  }
+
   _renderLecture = () => {
     return (
       <div>
@@ -106,6 +149,7 @@ class Lectures extends Component {
   };
 
   render() {
+    console.log('[+] : ', this.state);
     return (
       <React.Fragment>
         <Title title={this.state.topic} />

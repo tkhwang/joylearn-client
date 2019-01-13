@@ -33,6 +33,7 @@ class Topic extends Component {
 
   async componentDidMount() {
     const { topic } = this.props.topic.match.params;
+
     this.setState({
       ...this.state,
       topic: topic

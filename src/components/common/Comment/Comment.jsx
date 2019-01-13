@@ -1,11 +1,10 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import remark from 'remark';
-import remark2react from 'remark-react';
 import styled from 'styled-components';
 
 import PaperSheet from '../../common/PaperSheet/PaperSheet.jsx';
 import CommonCommentRender from '../../common/Comment/Render/Render.jsx';
+import CommonCommentList from '../../common/Comment/List/List.jsx';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -13,13 +12,13 @@ import * as instructorActions from '../../../actions/instructor';
 
 import http from '../../../services/httpService';
 import { SERVER_URL } from '../../../services/httpService';
-import CommonCommentList from '../../../components/common/Comment/List/List.jsx';
 
 class Comment extends React.Component {
   constructor() {
     super();
-    this.state = { text: '' };
+    this.state = { text: '', clicked: false };
 
+    this.handleClickComment = this.handleClickComment.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
@@ -29,6 +28,13 @@ class Comment extends React.Component {
   handleChange(e) {
     this.setState({ text: e.target.value });
   }
+
+  handleClickComment = e => {
+    this.setState(prevState => ({
+      ...this.state,
+      clicked: !prevState.clicked
+    }));
+  };
 
   handleClick = e => {
     console.log(this.state.text);
@@ -57,26 +63,30 @@ class Comment extends React.Component {
     return (
       <div>
         <PaperSheet title="Comment">
-          {Object.keys(this.props.comments).length !== 0 ? (
-            <CommonCommentList comments={this.props.comments} />
-          ) : (
-            'nothing'
-          )}
-        </PaperSheet>
-        <PaperSheet title="Share your comment /wisdom...">
-          {
-            <Form onSubmit={this.handleSubmit}>
-              <FormGroup>
-                {/* <Label for="exampleText">Edit...</Label> */}
-                <Input
-                  type="textarea"
-                  name="text"
-                  id="exampleText"
-                  placeholder="Please share your thought. (Markdown syntax supported.)"
-                  style={{ height: 200 }}
-                  value={this.state.text}
-                  onChange={this.handleChange}
-                />
+          {this.state.clicked ? (
+            <React.Fragment>
+              <Button
+                color="secondary"
+                size="lg"
+                block
+                onClick={this.handleClickComment}
+              >
+                Cancle to comment...
+              </Button>
+              <Form onSubmit={this.handleSubmit}>
+                <FormGroup>
+                  {/* <Label for="exampleText">Edit...</Label> */}
+                  <Input
+                    type="textarea"
+                    name="text"
+                    id="exampleText"
+                    placeholder="Please share your thought. (Markdown syntax supported.)"
+                    style={{ height: 200 }}
+                    value={this.state.text}
+                    onChange={this.handleChange}
+                  />
+                </FormGroup>
+                <CommonCommentRender comments={this.state.text} />
                 <Button
                   color="primary"
                   size="lg"
@@ -85,10 +95,23 @@ class Comment extends React.Component {
                 >
                   Submit
                 </Button>
-              </FormGroup>
-              <CommonCommentRender>{this.state.text}</CommonCommentRender>
-            </Form>
-          }
+              </Form>
+            </React.Fragment>
+          ) : (
+            <Button
+              color="primary"
+              size="lg"
+              block
+              onClick={this.handleClickComment}
+            >
+              Click to comment
+            </Button>
+          )}
+          {Object.keys(this.props.comments).length !== 0 ? (
+            <CommonCommentList comments={this.props.comments} />
+          ) : (
+            ''
+          )}
         </PaperSheet>
       </div>
     );

@@ -12,6 +12,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import { Button } from 'reactstrap';
 
 import InstructorCard from '../Instructor/Card/Card';
 import InstructorCardMk2 from '../Instructor/Card/CardMk2';
@@ -38,8 +39,13 @@ class Instructor extends Component {
       instructor: {},
       lectures: [],
       comments: [],
-      books: []
+      books: [],
+      review: { clicked: false },
+      comment: { clicked: false }
     };
+
+    this.handleClickReview = this.handleClickReview.bind(this);
+    this.handleClickComment = this.handleClickComment.bind(this);
   }
 
   static proptypes = {};
@@ -67,6 +73,26 @@ class Instructor extends Component {
       books: data.books
     });
   }
+
+  handleClickReview = e => {
+    this.setState(prevState => ({
+      ...this.state,
+      review: {
+        ...this.state.review,
+        clicked: !prevState.review.clicked
+      }
+    }));
+  };
+
+  handleClickComment = e => {
+    this.setState(prevState => ({
+      ...this.state,
+      comment: {
+        ...this.state.review,
+        clicked: !prevState.comment.clicked
+      }
+    }));
+  };
 
   _renderPage = () => {};
 
@@ -114,6 +140,27 @@ class Instructor extends Component {
           user={user.id}
           comments={comments}
         />
+        <PaperSheet title="Review">
+          {this.state.review.clicked ? (
+            <Button
+              color="secondary"
+              size="lg"
+              block
+              onClick={this.handleClickReview}
+            >
+              Cancle to review
+            </Button>
+          ) : (
+            <Button
+              color="primary"
+              size="lg"
+              block
+              onClick={this.handleClickReview}
+            >
+              Review on {this.state.instructor.name}
+            </Button>
+          )}
+        </PaperSheet>
       </React.Fragment>
     );
   }

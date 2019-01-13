@@ -90,6 +90,7 @@ class Topic extends Component {
             {this.state.instructors.map(instructor => {
               return (
                 <CommonCardList
+                  type="instructor"
                   title={instructor.name}
                   url={instructor.mainUrl}
                   image={instructor.image}
@@ -125,6 +126,7 @@ class Topic extends Component {
             {this.state.lectures.map(lecture => {
               return (
                 <CommonCardList
+                  type="lecture"
                   title={lecture.name}
                   url={lecture.url}
                   image={lecture.screenshot}
@@ -147,6 +149,7 @@ class Topic extends Component {
             {this.state.books.map(book => {
               return (
                 <CommonCardList
+                  type="book"
                   title={book.name}
                   url={book.url}
                   image={book.screenshot}

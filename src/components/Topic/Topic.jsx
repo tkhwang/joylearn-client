@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 
+import PaperSheet from '../common/PaperSheet/PaperSheet.jsx';
 import Emoji from '../common/Emoji';
 import * as signinActions from '../../actions/signin';
 import * as topicsActions from '../../actions/topics';
@@ -59,57 +60,77 @@ class Topic extends Component {
     const avatar = localStorage.getItem('avatar');
     return (
       <React.Fragment>
-        <Link to={`/i/${this.state.topic.name}`}>
-          <h3>
-            Instructors <Emoji symbol="🎓" label="smile" />
-          </h3>
-        </Link>
-        <CardsContatiner>
-          {this.state.instructors.map(instructor => {
-            return (
-              <InstructorsCard
-                fullName={instructor.fullName}
-                name={instructor.name}
-                git={instructor.gitHub}
-                url={instructor.mainUrl}
-                image={instructor.image}
-                lang={instructor.lang}
-                key={instructor.name}
-              />
-            );
-          })}
-        </CardsContatiner>
+        <PaperSheet
+          title={
+            <Link to={`/i/${this.state.topic.name}`}>
+              <h3>
+                Instructors <Emoji symbol="🎓" label="smile" />
+              </h3>
+            </Link>
+          }
+        >
+          <CardsContatiner>
+            {this.state.instructors.map(instructor => {
+              return (
+                <InstructorsCard
+                  fullName={instructor.fullName}
+                  name={instructor.name}
+                  git={instructor.gitHub}
+                  url={instructor.mainUrl}
+                  image={instructor.image}
+                  lang={instructor.lang}
+                  key={instructor.name}
+                />
+              );
+            })}
+          </CardsContatiner>
+        </PaperSheet>
 
-        <Link to={`/l/${this.state.topic.name}`}>
-          <h3>
-            Lectures <Emoji symbol="📘" label="smile" />
-          </h3>
-        </Link>
-        <CardsContatiner>
-          {this.state.lectures.map(lecture => {
-            return (
-              <LecturesCard
-                name={lecture.name}
-                image={lecture.screenshot}
-                url={lecture.url}
-                lang={lecture.lang}
-                free={lecture.free}
-              />
-            );
-          })}
-        </CardsContatiner>
+        <PaperSheet
+          title={
+            <Link to={`/l/${this.state.topic.name}`}>
+              <h3>
+                Lectures <Emoji symbol="📘" label="smile" />
+              </h3>
+            </Link>
+          }
+        >
+          <CardsContatiner>
+            {this.state.lectures.map(lecture => {
+              return (
+                <LecturesCard
+                  name={lecture.name}
+                  image={lecture.screenshot}
+                  url={lecture.url}
+                  lang={lecture.lang}
+                  free={lecture.free}
+                />
+              );
+            })}
+          </CardsContatiner>
+        </PaperSheet>
 
-        <Link to={`/b/${this.state.topic.name}`}>
-          <h3>
-            Books <Emoji symbol="📘" label="smile" />
-          </h3>
-        </Link>
+        <PaperSheet
+          title={
+            <Link to={`/b/${this.state.topic.name}`}>
+              <h3>
+                Books <Emoji symbol="📘" label="smile" />
+              </h3>
+            </Link>
+          }
+          symbol="📘"
+          label="smile"
+        />
 
-        <Link to={`/c/${this.state.topic.name}`}>
-          <h3>
-            Courses <Emoji symbol="📘" label="smile" />
-          </h3>
-        </Link>
+        <PaperSheet
+          title={
+            <Link to={`/c/${this.state.topic.name}`}>
+              <h3>
+                Courses <Emoji symbol="📘" label="smile" />
+              </h3>
+            </Link>
+          }
+        />
       </React.Fragment>
     );
   };

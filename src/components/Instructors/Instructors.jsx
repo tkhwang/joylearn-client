@@ -12,6 +12,7 @@ import {
   Input as ReactstrapInput
 } from 'reactstrap';
 
+import PaperSheet from '../common/PaperSheet/PaperSheet.jsx';
 import http from '../../services/httpService';
 // import auth from '../../services/authService';
 // import querystring from 'query-string';
@@ -121,22 +122,24 @@ class Instructors extends Component {
           />
         </InputGroup>
 
-        <DivContainer>
-          {this.state.instructors ? (
-            this._renderInstructor()
-          ) : (
-            <DivSpinner>
-              <Loader
-                type="Triangle"
-                color="#00BFFF"
-                height="200"
-                width="200"
-              />
-            </DivSpinner>
-          )}
-          {/* TODO: disable filter for fixing error. */}
-          {/* <InstructorsFilter /> */}
-        </DivContainer>
+        <PaperSheet title="Instructors">
+          <DivContainer>
+            {this.state.instructors ? (
+              this._renderInstructor()
+            ) : (
+              <DivSpinner>
+                <Loader
+                  type="Triangle"
+                  color="#00BFFF"
+                  height="200"
+                  width="200"
+                />
+              </DivSpinner>
+            )}
+            {/* TODO: disable filter for fixing error. */}
+            {/* <InstructorsFilter /> */}
+          </DivContainer>
+        </PaperSheet>
       </React.Fragment>
     );
   }

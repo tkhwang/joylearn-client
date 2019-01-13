@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 
+import CommonCardList from '../common/Card/CardList.jsx';
 import PaperSheet from '../common/PaperSheet/PaperSheet.jsx';
 import Emoji from '../common/Emoji';
 import * as signinActions from '../../actions/signin';
@@ -52,7 +53,8 @@ class Topic extends Component {
     this.setState({
       ...this.state,
       instructors: data.instructors,
-      lectures: data.lectures
+      lectures: data.lectures,
+      books: data.books
     });
   }
 
@@ -84,6 +86,17 @@ class Topic extends Component {
               );
             })}
           </CardsContatiner>
+          <PaperSheet title="More Instructors">
+            {this.state.instructors.map(instructor => {
+              return (
+                <CommonCardList
+                  title={instructor.name}
+                  url={instructor.mainUrl}
+                  image={instructor.image}
+                />
+              );
+            })}
+          </PaperSheet>
         </PaperSheet>
 
         <PaperSheet
@@ -108,6 +121,17 @@ class Topic extends Component {
               );
             })}
           </CardsContatiner>
+          <PaperSheet title="More Lectures">
+            {this.state.lectures.map(lecture => {
+              return (
+                <CommonCardList
+                  title={lecture.name}
+                  url={lecture.url}
+                  image={lecture.screenshot}
+                />
+              );
+            })}
+          </PaperSheet>
         </PaperSheet>
 
         <PaperSheet
@@ -118,9 +142,19 @@ class Topic extends Component {
               </h3>
             </Link>
           }
-          symbol="📘"
-          label="smile"
-        />
+        >
+          <PaperSheet title="More Books">
+            {this.state.books.map(book => {
+              return (
+                <CommonCardList
+                  title={book.name}
+                  url={book.url}
+                  image={book.screenshot}
+                />
+              );
+            })}
+          </PaperSheet>
+        </PaperSheet>
 
         <PaperSheet
           title={

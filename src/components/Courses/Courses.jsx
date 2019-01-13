@@ -9,6 +9,7 @@ import { bindActionCreators } from 'redux';
 // import auth from '../../services/authService';
 // import querystring from 'query-string';
 
+import PaperSheet from '../common/PaperSheet/PaperSheet.jsx';
 import Title from '../common/Title/Title';
 // import List from './List/List';
 // import Filter from './Filter/Filter';
@@ -18,6 +19,20 @@ import * as topicsActions from '../../actions/topics';
 
 // import config from '../../config';
 // const { SERVER_URL } = config();
+
+import Steps, { Step } from 'rc-steps';
+import 'rc-steps/assets/index.css';
+import 'rc-steps/assets/iconfont.css';
+
+import {
+  VerticalTimeline,
+  VerticalTimelineElement
+} from 'react-vertical-timeline-component';
+import 'react-vertical-timeline-component/style.min.css';
+
+import { FaJsSquare, FaReact, FaNodeJs } from 'react-icons/fa';
+import { Loader } from 'react-loader-spinner';
+import { blue } from '@material-ui/core/colors';
 
 class Courses extends Component {
   constructor(props) {
@@ -57,6 +72,86 @@ class Courses extends Component {
           return <List name={course.name} period={course.period} key={index} />;
         })} */}
         {/* <Filter /> */}
+        <PaperSheet title="Steps">
+          <Steps direction="vertical">
+            <Step title="javascript" description={'javascript'} />
+            <div>
+              <Step title="javascript" description={'javascript'} />
+              <Step title="html" description={'html'} />
+              <Step title="node.js" description={'node.js'} />
+              <Step title="react" description={'react'} />
+            </div>
+            <Step title="html" description={'html'} />
+            <Step title="node.js" description={'node.js'} />
+            <Step title="react" description={'react'} />
+          </Steps>
+        </PaperSheet>
+        <PaperSheet title="One-COlumn">
+          <VerticalTimeline layout={'one-column'}>
+            <VerticalTimelineElement
+              className="vertical-timeline-element--work"
+              date="2011 - present"
+              iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+              icon={<FaJsSquare />}
+            >
+              <h3 className="vertical-timeline-element-title">
+                Creative Director
+              </h3>
+              <h4 className="vertical-timeline-element-subtitle">Miami, FL</h4>
+              <p>
+                Creative Direction, User Experience, Visual Design, Project
+                Management, Team Leading
+              </p>
+            </VerticalTimelineElement>
+            <VerticalTimelineElement
+              className="vertical-timeline-element--education"
+              date="April 2013"
+              iconStyle={{ background: 'rgb(233, 30, 99)', color: '#fff' }}
+              icon={<FaReact />}
+            >
+              <h3 className="vertical-timeline-element-title">
+                Content Marketing for Web, Mobile and Social Media
+              </h3>
+              <h4 className="vertical-timeline-element-subtitle">
+                Online Course
+              </h4>
+              <p>Strategy, Social Media</p>
+            </VerticalTimelineElement>
+          </VerticalTimeline>
+        </PaperSheet>
+        <PaperSheet title="One-COlumn">
+          <VerticalTimeline>
+            <VerticalTimelineElement
+              className="vertical-timeline-element--work"
+              date="2011 - present"
+              iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+              icon={<FaJsSquare />}
+            >
+              <h3 className="vertical-timeline-element-title">
+                Creative Director
+              </h3>
+              <h4 className="vertical-timeline-element-subtitle">Miami, FL</h4>
+              <p>
+                Creative Direction, User Experience, Visual Design, Project
+                Management, Team Leading
+              </p>
+            </VerticalTimelineElement>
+            <VerticalTimelineElement
+              className="vertical-timeline-element--education"
+              date="April 2013"
+              iconStyle={{ background: 'rgb(233, 30, 99)', color: '#fff' }}
+              icon={<FaReact />}
+            >
+              <h3 className="vertical-timeline-element-title">
+                Content Marketing for Web, Mobile and Social Media
+              </h3>
+              <h4 className="vertical-timeline-element-subtitle">
+                Online Course
+              </h4>
+              <p>Strategy, Social Media</p>
+            </VerticalTimelineElement>
+          </VerticalTimeline>
+        </PaperSheet>
       </React.Fragment>
     );
   }

@@ -71,10 +71,7 @@ class App extends Component {
               path="/i/:topic"
               render={topic => <Instructors topic={topic} />}
             />
-            <Route
-              path="/b/:topic"
-              render={topic => <Books topic={topic} />}
-            />
+            <Route path="/b/:topic" render={topic => <Books topic={topic} />} />
             <ProtectedRoute
               path="/book/:name"
               render={name => <Book name={name} />}

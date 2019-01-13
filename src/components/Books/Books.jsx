@@ -12,6 +12,7 @@ import {
 } from 'reactstrap';
 
 import http from '../../services/httpService';
+import PaperSheet from '../common/PaperSheet/PaperSheet.jsx';
 
 import Title from '../common/Title/Title';
 import filterByInput from '../../services/searchService';
@@ -115,18 +116,20 @@ class Books extends Component {
         </InputGroup>
 
         <DivContainer>
-          {this.state.books ? (
-            this._renderBooks()
-          ) : (
-            <DivSpinner>
-              <Loader
-                type="Triangle"
-                color="#00BFFF"
-                height="200"
-                width="200"
-              />
-            </DivSpinner>
-          )}
+          <PaperSheet title="Books">
+            {this.state.books ? (
+              this._renderBooks()
+            ) : (
+              <DivSpinner>
+                <Loader
+                  type="Triangle"
+                  color="#00BFFF"
+                  height="200"
+                  width="200"
+                />
+              </DivSpinner>
+            )}
+          </PaperSheet>
 
           {/* <InstructorsFilter /> */}
         </DivContainer>

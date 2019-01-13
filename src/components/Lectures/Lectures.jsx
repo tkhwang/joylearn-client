@@ -16,6 +16,7 @@ import http from '../../services/httpService';
 // import auth from '../../services/authService';
 // import querystring from 'query-string';
 
+import PaperSheet from '../common/PaperSheet/PaperSheet.jsx';
 import Title from '../common/Title/Title';
 // import List from './List/List';
 // import LecturesFilter from '../Lectures/Filter/Filter';
@@ -165,18 +166,20 @@ class Lectures extends Component {
         </InputGroup>
 
         <DivContainer>
-          {this.state.lectures ? (
-            this._renderLecture()
-          ) : (
-            <DivSpinner>
-              <Loader
-                type="Triangle"
-                color="#00BFFF"
-                height="200"
-                width="200"
-              />
-            </DivSpinner>
-          )}
+          <PaperSheet title="Lecture">
+            {this.state.lectures ? (
+              this._renderLecture()
+            ) : (
+              <DivSpinner>
+                <Loader
+                  type="Triangle"
+                  color="#00BFFF"
+                  height="200"
+                  width="200"
+                />
+              </DivSpinner>
+            )}
+          </PaperSheet>
 
           <DivFilterContainer>
             <h2>Filter</h2>

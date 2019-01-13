@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import remark from 'remark';
-import remark2react from 'remark-react';
+import CommonCommentRender from '../../../common/Comment/Render/Render';
 
 const List = ({ comments }) => {
   return comments.map((comment, index, comments) => {
@@ -10,11 +9,7 @@ const List = ({ comments }) => {
         <li>
           By User {comment.writer}
           <DivFull>
-            {
-              remark()
-                .use(remark2react)
-                .processSync(comment.content).contents
-            }
+            <CommonCommentRender comments={comment.content} />
           </DivFull>
         </li>
       </ul>

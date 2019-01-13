@@ -1,18 +1,10 @@
 import React from 'react';
-import remark from 'remark';
-import remark2react from 'remark-react';
+import ReactMarkdown from 'react-markdown';
+
 import styled from 'styled-components';
 
-const Render = props => {
-  return (
-    <DivFull>
-      {
-        remark()
-          .use(remark2react)
-          .processSync(props.contents).contents
-      }
-    </DivFull>
-  );
+const Render = ({ comments }) => {
+  return <ReactMarkdown source={comments} />;
 };
 
 const DivFull = styled.div`

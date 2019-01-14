@@ -12,7 +12,7 @@ import CommonReview from '../common/Review/Review.jsx';
 import CommonComment from '../common/Comment/Comment.jsx';
 import PaperSheet from '../common/PaperSheet/PaperSheet.jsx';
 import LectureProfile from '../Lecture/Profile/Profile';
-// import LectureBar from '../Lecture/Bar/Bar';
+import LectureBar from '../Lecture/Bar/Bar';
 // import LectureComments from '../Lecture/Comments/Comments';
 
 import * as signinActions from '../../actions/signin';
@@ -28,6 +28,8 @@ class Lecture extends Component {
 
     this.state = {};
   }
+
+  static propTypes = {};
 
   async componentDidMount() {
     const { name } = this.props.name.match.params;
@@ -49,11 +51,11 @@ class Lecture extends Component {
 
   _renderPage = () => (
     <LectureProfile
-      name={this.state.lecture.name}
-      image={this.state.lecture.screenshot}
-      url={this.state.lecture.url}
-      free={this.state.lecture.free}
-      lang={this.state.lecture.lang}
+      // name={this.state.lecture.name}
+      // image={this.state.lecture.screenshot}
+      // url={this.state.lecture.url}
+      // free={this.state.lecture.free}
+      // lang={this.state.lecture.lang}
       tname={this.state.instructor.name}
     />
   );

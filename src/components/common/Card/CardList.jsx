@@ -10,6 +10,9 @@ import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 
+import CommonCommentRender from '../../../components/common/Comment/Render/Render.jsx';
+import http, { SERVER_URL } from '../../../services/httpService.js';
+
 const styles = theme => ({
   card: {
     display: 'flex'
@@ -37,7 +40,7 @@ const styles = theme => ({
 });
 
 function CardList(props) {
-  const { classes, theme, title, image, url } = props;
+  const { classes, theme, title, image, url, small, user } = props;
 
   return (
     <Card className={classes.card}>
@@ -49,6 +52,9 @@ function CardList(props) {
           </Typography>
           <Typography variant="subtitle1" color="textSecondary">
             <a href={url}>{url}</a>
+          </Typography>
+          <Typography variant="subtitle1" color="textSecondary">
+            {small}
           </Typography>
         </CardContent>
       </div>

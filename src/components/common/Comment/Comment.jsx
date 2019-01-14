@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import PaperSheet from '../../common/PaperSheet/PaperSheet.jsx';
 import CommonCommentRender from '../../common/Comment/Render/Render.jsx';
+import CommonCardList from '../../common/Card/CardList.jsx';
 import CommonCommentList from '../../common/Comment/List/List.jsx';
 
 import { connect } from 'react-redux';
@@ -17,7 +18,7 @@ import { SERVER_URL } from '../../../services/httpService';
 class Comment extends React.Component {
   constructor() {
     super();
-    this.state = { text: '', clicked: false };
+    this.state = { text: '', clicked: false, comments: {} };
 
     this.handleClickComment = this.handleClickComment.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -37,34 +38,25 @@ class Comment extends React.Component {
     }));
   };
 
-  handleClick = e => {
+  handleClick = async e => {
     console.log(this.state.text);
     const { type, name, actionInstructor, actionLecture } = this.props;
-    const apiEndpoint = `${SERVER_URL}/api/${type}/${name}`;
 
-    console.log(apiEndpoint);
-
+    const apiEndpoint = `${SERVER_URL}/api/comment/${type}/${name}`;
     const comments = { writer: this.props.user, content: this.state.text };
 
-    if (type === 'instructor') {
-      console.log('[+] Comment : comments = ', comments);
-
-      actionInstructor.add_comments(comments);
-      this.setState({
-        text: ''
-      });
-    } else if (type === 'lecture') {
-      actionLecture.add_comments(comments);
-
-      this.setState({
-        text: ''
-      });
-    }
-
-    return http.post(apiEndpoint, {
+    const newComments = await http.post(apiEndpoint, {
       writer: this.props.user,
       content: this.state.text
     });
+
+    if (type === 'instructor') {
+      actionInstructor.add_comments(comments);
+    } else if (type === 'lecture') {
+      actionLecture.add_comments(comments);
+    }
+
+    this.setState({ ...this.state, text: '', comments: newComments });
   };
 
   render() {
@@ -115,11 +107,24 @@ class Comment extends React.Component {
               Click to comment
             </Button>
           )}
-          {Object.keys(this.props.comments).length !== 0 ? (
-            <CommonCommentList comments={this.props.comments} />
-          ) : (
-            ''
-          )}
+          {/* <CommonCommentList comments={this.props.comments} /> */}
+          {/* return <CommonCommentRender comments={comment.content} />; */}
+          {Object.keys(this.props.comments).length !== 0
+            ? this.props.comments.map(comment => {
+                return (
+                  <CommonCommentList
+                    classes=""
+                    title=""
+                    image=""
+                    url=""
+                    comments={comment.content}
+                    small={comment.content}
+                    user={this.props.user}
+                    updated_at={comment.updated_at}
+                  />
+                );
+              })
+            : null}
         </PaperSheet>
       </div>
     );

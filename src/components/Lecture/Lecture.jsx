@@ -13,6 +13,7 @@ import CommonComment from '../common/Comment/Comment.jsx';
 import PaperSheet from '../common/PaperSheet/PaperSheet.jsx';
 import LectureProfile from '../Lecture/Profile/Profile';
 import LectureBar from '../Lecture/Bar/Bar';
+import LecturePie from '../Lecture/Pie/Pie';
 // import LectureComments from '../Lecture/Comments/Comments';
 
 import * as signinActions from '../../actions/signin';
@@ -49,16 +50,7 @@ class Lecture extends Component {
     );
   }
 
-  _renderPage = () => (
-    <LectureProfile
-      // name={this.state.lecture.name}
-      // image={this.state.lecture.screenshot}
-      // url={this.state.lecture.url}
-      // free={this.state.lecture.free}
-      // lang={this.state.lecture.lang}
-      tname={this.state.instructor.name}
-    />
-  );
+  _renderPage = () => {};
 
   render() {
     console.log('[+] lecture = ', this.state.lecture);
@@ -70,22 +62,26 @@ class Lecture extends Component {
     return (
       <React.Fragment>
         <PaperSheet title="Lecture : ">
-          {this.state.lecture ? (
-            <LectureProfile
-              name={this.state.lecture.name}
-              image={this.state.lecture.screenshot}
-              url={this.state.lecture.url}
-              free={this.state.lecture.free}
-              lang={this.state.lecture.lang}
-              tname={this.state.instructor.name}
-            />
-          ) : null}
+          <DivContainer>
+            <DivProfileChart>
+              {this.state.lecture ? (
+                <LectureProfile
+                  lecture={this.state.lecture}
+                  tname={this.state.instructor.name}
+                />
+              ) : null}
+              <LecturePie />
+            </DivProfileChart>
+          </DivContainer>
+          <LectureBar />
         </PaperSheet>
+
         <PaperSheet title="Review">
           {this.state.lecture ? (
             <CommonReview name={this.state.lecture.name} />
           ) : null}
         </PaperSheet>
+
         {this.state.lecture ? (
           <CommonComment
             type="lecture"
@@ -110,6 +106,15 @@ class Lecture extends Component {
 //         {/* <LectureBar /> */}
 // {/* <LectureComments /> */ }
 //       </React.Fragment >
+
+const DivContainer = styled.div`
+  display: flex;
+`;
+
+const DivProfileChart = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const DivSpinner = styled.div`
   position: fixed;

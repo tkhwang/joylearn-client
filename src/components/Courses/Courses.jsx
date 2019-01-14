@@ -152,6 +152,51 @@ class Courses extends Component {
             </VerticalTimelineElement>
           </VerticalTimeline>
         </PaperSheet>
+        <PaperSheet title="Nested" classes={{ color: '#AAAA' }}>
+          <VerticalTimeline layout={'one-column'}>
+            <VerticalTimelineElement
+              className="vertical-timeline-element--work"
+              date="2011 - present"
+              iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+              icon={<FaJsSquare />}
+            >
+              <h3 className="vertical-timeline-element-title">Javascript</h3>
+            </VerticalTimelineElement>
+            <VerticalTimeline layout={'one-column'}>
+              <VerticalTimelineElement
+                className="vertical-timeline-element--work"
+                date="2011 - present"
+                iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+                icon={<FaJsSquare />}
+              >
+                <h3 className="vertical-timeline-element-title">
+                  Creative Director
+                </h3>
+                <h4 className="vertical-timeline-element-subtitle">
+                  Miami, FL
+                </h4>
+                <p>
+                  Creative Direction, User Experience, Visual Design, Project
+                  Management, Team Leading
+                </p>
+              </VerticalTimelineElement>
+              <VerticalTimelineElement
+                className="vertical-timeline-element--education"
+                date="April 2013"
+                iconStyle={{ background: 'rgb(233, 30, 99)', color: '#fff' }}
+                icon={<FaReact />}
+              >
+                <h3 className="vertical-timeline-element-title">
+                  Content Marketing for Web, Mobile and Social Media
+                </h3>
+                <h4 className="vertical-timeline-element-subtitle">
+                  Online Course
+                </h4>
+                <p>Strategy, Social Media</p>
+              </VerticalTimelineElement>
+            </VerticalTimeline>
+          </VerticalTimeline>
+        </PaperSheet>
       </React.Fragment>
     );
   }

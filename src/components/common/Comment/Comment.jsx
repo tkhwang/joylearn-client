@@ -9,6 +9,7 @@ import CommonCommentList from '../../common/Comment/List/List.jsx';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as instructorActions from '../../../actions/instructor';
+import * as lectureActions from '../../../actions/lecture';
 
 import http from '../../../services/httpService';
 import { SERVER_URL } from '../../../services/httpService';
@@ -38,16 +39,23 @@ class Comment extends React.Component {
 
   handleClick = e => {
     console.log(this.state.text);
-    const { type, name, actionInstructor } = this.props;
+    const { type, name, actionInstructor, actionLecture } = this.props;
     const apiEndpoint = `${SERVER_URL}/api/${type}/${name}`;
 
     console.log(apiEndpoint);
 
+    const comments = { writer: this.props.user, content: this.state.text };
+
     if (type === 'instructor') {
-      const comments = { writer: this.props.user, content: this.state.text };
       console.log('[+] Comment : comments = ', comments);
 
       actionInstructor.add_comments(comments);
+      this.setState({
+        text: ''
+      });
+    } else if (type === 'lecture') {
+      actionLecture.add_comments(comments);
+
       this.setState({
         text: ''
       });
@@ -129,9 +137,11 @@ const DivFull = styled.div`
 // export default Comment;
 export default connect(
   state => ({
-    storeInstructor: state.instructor
+    storeInstructor: state.instructor,
+    storeLecture: state.lecture
   }),
   dispatch => ({
-    actionInstructor: bindActionCreators(instructorActions, dispatch)
+    actionInstructor: bindActionCreators(instructorActions, dispatch),
+    actionLecture: bindActionCreators(lectureActions, dispatch)
   })
 )(Comment);

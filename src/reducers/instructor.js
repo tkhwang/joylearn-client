@@ -9,7 +9,7 @@ import {
 
 const initialState = {
   instructor: {},
-  comments: {},
+  comments: [],
   lectures: {},
   books: {}
 };

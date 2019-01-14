@@ -13,16 +13,16 @@ class Title extends Component {
     return (
       <PaperSheet>
         <DivContainer>
-          {/* <DivTopic> */}
-          <TopicLogo image={this.props.title.logo} />
-          <DivTopicChildren>
-            <H1TopicTitle>{this.props.title.name}</H1TopicTitle>
-            <H3TopicContents>{`${
-              this.props.title.name
-            } Tutorials and Courses`}</H3TopicContents>
-            <Button>+ Follow</Button>
-          </DivTopicChildren>
-          {/* </DivTopic> */}
+          <DivTopic>
+            <TopicLogo image={this.props.title.logo} />
+            <DivTopicChildren>
+              <H1TopicTitle>{this.props.title.name}</H1TopicTitle>
+              <H3TopicContents>{`${
+                this.props.title.name
+              } Tutorials and Courses`}</H3TopicContents>
+              <Button>+ Follow</Button>
+            </DivTopicChildren>
+          </DivTopic>
         </DivContainer>
       </PaperSheet>
     );
@@ -39,16 +39,17 @@ TopicLogo.propTypes = {
 
 const DivContainer = styled.div`
   display: flex;
+  justify-content: space-around;
 `;
 
-// const DivTopic = styled.div`
-//   display: flex;
-//   width: 90%;
-//   box-shadow: 2px 2px 2px 2px gray inset;
-//   background-color: white;
-//   border-radius: 10px;
-//   padding: 20px;
-// `;
+const DivTopic = styled.div`
+  display: flex;
+  width: 90%;
+  box-shadow: 2px 2px 2px 2px gray inset;
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+`;
 
 const DivTopicChildren = styled.div`
   display: flex;

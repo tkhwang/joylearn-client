@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 // import { ToastContainer, toast } from 'react-toastify';
-import { library } from '@fortawesome/fontawesome-svg-core';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGrinAlt } from '@fortawesome/free-solid-svg-icons';
 
 import Course from './components/Course/Course';
 // import Lecture from './components/Lecture/Lecture';
@@ -24,12 +21,11 @@ import Logout from './components/Logout';
 import ProtectedRoute from './components/common/ProtectedRoute';
 import Movies from './components/Movies/Movies';
 import Admin from './components/Admin/Admin';
+import MenuAppBar from './components/MenuAppBar/MenuAppBar.jsx';
 import auth from './services/authService';
 
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
-
-library.add(faGrinAlt);
 
 class App extends Component {
   state = {};
@@ -46,6 +42,7 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
+        {/* <MenuAppBar user={this.state.user} /> */}
         <NavBar user={this.state.user} />
         <main className="content">
           <Switch>

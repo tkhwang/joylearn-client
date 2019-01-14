@@ -9,7 +9,7 @@ import {
   Nav,
   UncontrolledDropdown
 } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FaGrin } from 'react-icons/fa';
 
 import UserButton from './UserButton';
 
@@ -57,7 +57,7 @@ class NavBar extends Component {
             J<FontAwesomeIcon icon="grin-alt" />Y
           </NavbarBrand> */}
           <NavLink className="nav-item nav-link" to="/">
-            J<FontAwesomeIcon icon="grin-alt" />Y
+            J<FaGrin />Y
           </NavLink>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>

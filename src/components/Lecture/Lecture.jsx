@@ -81,14 +81,18 @@ class Lecture extends Component {
         </PaperSheet>
         <PaperSheet title="Review">
           {this.state.lecture ? (
-            <CommonReview name={this.state.lecture.name} />
+            <CommonReview
+              type="lecture"
+              name={this.state.lecture.name}
+              user={user.name}
+            />
           ) : null}
         </PaperSheet>
         {this.state.lecture ? (
           <CommonComment
             type="lecture"
             name={this.state.lecture.name}
-            user={user.id}
+            user={user.name}
             comments={comments}
           />
         ) : null}

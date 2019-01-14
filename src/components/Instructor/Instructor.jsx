@@ -18,6 +18,7 @@ import InstructorCard from '../Instructor/Card/Card';
 import InstructorCardMk2 from '../Instructor/Card/CardMk2';
 import CommonCardList from '../common/Card/CardList.jsx';
 import CommonComment from '../common/Comment/Comment.jsx';
+import CommonReview from '../common/Review/Review.jsx';
 import PaperSheet from '../common/PaperSheet/PaperSheet.jsx';
 
 import { connect } from 'react-redux';
@@ -139,29 +140,15 @@ class Instructor extends Component {
         <CommonComment
           type="instructor"
           name={this.state.instructor.name}
-          user={user.id}
+          user={user.name}
           comments={comments}
         />
         <PaperSheet title="Review">
-          {this.state.review.clicked ? (
-            <Button
-              color="secondary"
-              size="lg"
-              block
-              onClick={this.handleClickReview}
-            >
-              Cancle to review
-            </Button>
-          ) : (
-            <Button
-              color="primary"
-              size="lg"
-              block
-              onClick={this.handleClickReview}
-            >
-              Review on {this.state.instructor.name}
-            </Button>
-          )}
+          <CommonReview
+            type="instructor"
+            name={this.state.instructor.name}
+            user={user.name}
+          />
         </PaperSheet>
       </React.Fragment>
     );

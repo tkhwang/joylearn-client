@@ -8,7 +8,7 @@ import http from '../../services/httpService';
 // import Jit from './Jit/Jit';
 // import Lec from './Lec/Lec';
 // import Comments from './Comments/Comments';
-import PropTypes from 'prop-types';
+
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -154,8 +154,6 @@ class Instructor extends Component {
     );
   }
 }
-
-// export default Instructor;
 
 export default connect(
   state => ({

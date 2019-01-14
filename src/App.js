@@ -42,7 +42,7 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        {/* <MenuAppBar user={this.state.user} /> */}
+        <MenuAppBar user={this.state.user} />
         <NavBar user={this.state.user} />
         <main className="content">
           <Switch>

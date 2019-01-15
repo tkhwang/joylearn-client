@@ -55,25 +55,35 @@ class LoginForm extends Form {
     if (auth.getCurrentUser()) return <Redirect to="/" />;
 
     return (
-      <div className="login">
-        <h1>Welcome back.</h1>
-        <CommonPaperSheet title="">
-          <div className="social-login">
-            Sign up using :
-            <SocialLoginButton social="facebook" />
-            <SocialLoginButton social="instagram" />
-            <SocialLoginButton social="github" />
-            <SocialLoginButton social="google" />
-            <SocialLoginButton social="kakao" />
-            {/* Now under : now in review by Naver
+      <React.Fragment>
+        <div className="login">
+          <div className="item">
+            <h1>Welcome back.</h1>
+            <CommonPaperSheet title="">
+              <div className="social-login">
+                Sign up using :
+                <SocialLoginButton social="facebook" />
+                <SocialLoginButton social="instagram" />
+                <SocialLoginButton social="github" />
+                <SocialLoginButton social="google" />
+                <SocialLoginButton social="kakao" />
+                {/* Now under : now in review by Naver
             <SocialLoginButton social="naver" /> */}
-            <br />
+                <br />
+              </div>
+            </CommonPaperSheet>
           </div>
-        </CommonPaperSheet>
+          <div className="item">
+            <img
+              src="https://s3.ap-northeast-2.amazonaws.com/joy-learn-image/avatar/undraw_update_uxn2.svg"
+              alt="intro"
+            />
+          </div>
+        </div>
         <h4>
           Made with <Emoji symbol="❤️" label="smile" />
         </h4>
-      </div>
+      </React.Fragment>
     );
   }
 }

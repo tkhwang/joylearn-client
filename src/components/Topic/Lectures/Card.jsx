@@ -39,7 +39,8 @@ class Card extends Component {
   }
 
   render() {
-    console.log('card props : ', this.props);
+    // console.log('card props : ', this.props);
+
     const { classes, name, image, url, lang, free } = this.props;
     return (
       <div onClick={this.handleClick}>
@@ -50,12 +51,20 @@ class Card extends Component {
             <CardActionArea>
               <CardMedia className={classes.media} image={image} title={name} />
               <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  {name}
-                </Typography>
-                <Typography component="p">{url}</Typography>
-                <Typography component="p">{`language : ${lang}`}</Typography>
-                <Typography component="p">{free ? 'Free' : 'Paid'}</Typography>
+                {name && (
+                  <Typography gutterBottom variant="h5" component="h2">
+                    {name}
+                  </Typography>
+                )}
+                {url && <Typography component="p">{url}</Typography>}
+                {lang && (
+                  <Typography component="p">{`language : ${lang}`}</Typography>
+                )}
+                {free && (
+                  <Typography component="p">
+                    {free ? 'Free' : 'Paid'}
+                  </Typography>
+                )}
               </CardContent>
             </CardActionArea>
           </MaterialCard>

@@ -23,11 +23,13 @@ function PaperSheet(props) {
   return (
     <div>
       <Paper className={classes.root} elevation={1}>
-        <Typography variant="h5" component="h1">
-          {title}
-        </Typography>
+        {title && (
+          <Typography variant="h5" component="h1">
+            {title}
+          </Typography>
+        )}
         <br />
-        <Typography component="p">{props.children}</Typography>
+        <Typography component="span">{props.children}</Typography>
       </Paper>
     </div>
   );

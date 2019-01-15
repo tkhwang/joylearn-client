@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 
-import ReviewForm from './ReviewForm.jsx';
+// import ReviewForm from './ErrorReviewForm.jsx';
+import ReviewRadiostrap from '../Review/RadioButton/RadioStrap.jsx';
+import CommonCardList from '../../common/Card/CardList';
 
 class Review extends Component {
   constructor(props) {
@@ -25,7 +27,7 @@ class Review extends Component {
   handleSubmit = () => {};
 
   render() {
-    const { type, name, user } = this.props;
+    const { type, name, user, reviews } = this.props;
 
     return (
       <React.Fragment>
@@ -39,13 +41,26 @@ class Review extends Component {
             >
               Click to Review on {name}
             </Button>
-            <ReviewForm type={type} name={name} user={user} />
+            {/* <ReviewForm type={type} name={name} user={user} /> */}
+            <ReviewRadiostrap type={type} name={name} user={user} />
           </React.Fragment>
         ) : (
           <Button color="primary" size="lg" block onClick={this.handleClick}>
             Click to Review on {name}
           </Button>
         )}
+        {reviews.map(review => {
+          return (
+            <CommonCardList
+              type="instructor"
+              title={review.writer}
+              small={review.review}
+              url=""
+              image=""
+              time=""
+            />
+          );
+        })}
       </React.Fragment>
     );
   }

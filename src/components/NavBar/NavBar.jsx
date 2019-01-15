@@ -31,15 +31,15 @@ class NavBar extends Component {
     const { actionsSign } = this.props;
     const user = auth.getCurrentUser();
 
-    this.setState(
-      {
-        ...this.state,
-        user: user
-      },
-      () => {
-        actionsSign.signin(user);
-      }
-    );
+    // this.setState(
+    //   {
+    //     ...this.state,
+    //     user: user
+    //   },
+    //   () => {
+    //     actionsSign.signin(user);
+    //   }
+    // );
   }
 
   toggle() {

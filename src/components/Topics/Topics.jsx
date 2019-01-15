@@ -144,9 +144,6 @@ const DivSpinner = styled.div`
   margin-left: -100px;
 `;
 
-// export default Topics;
-// 리액트일 경우에만 사용 / 리덕스인 경우 아래를 export
-
 export default connect(
   state => ({
     storeSignin: state.signin,

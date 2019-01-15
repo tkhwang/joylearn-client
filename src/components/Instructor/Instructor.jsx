@@ -15,6 +15,8 @@ import Typography from '@material-ui/core/Typography';
 import { Button } from 'reactstrap';
 
 import InstructorCard from '../Instructor/Card/Card';
+import BarChart from '../common/Chart/Bar/Chart';
+// import BarChart from '../Instructor/Bar/Bar';
 import CommonCardList from '../common/Card/CardList.jsx';
 import CommonComment from '../common/Comment/Comment.jsx';
 import CommonReview from '../common/Review/Review.jsx';
@@ -44,6 +46,7 @@ class Instructor extends Component {
       reviews: [],
       review: { clicked: false },
       comment: { clicked: false }
+      // data: []
     };
 
     this.handleClickReview = this.handleClickReview.bind(this);
@@ -104,13 +107,16 @@ class Instructor extends Component {
     const { user } = this.props.storeSignin;
     const { classes } = this.props;
     const { comments, reviews } = this.props.storeInstructor;
-    console.log('[+] Instructor : comments = ', comments);
+    // console.log('[+] Instructor : comments = ', comments);
+    console.log(
+      'this.props.storeInstructor.reviews : ',
+      this.props.storeInstructor.reviews
+    );
 
     return (
       <React.Fragment>
         <InstructorCard instructor={this.state.instructor} />
-        {/* <Svg /> */}
-        {/* <TestChart /> */}
+        <BarChart reviews={this.props.storeInstructor.reviews} />
         <PaperSheet title="Lectures">
           {this.state.lectures.map(lecture => {
             return (

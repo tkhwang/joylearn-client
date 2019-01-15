@@ -13,6 +13,7 @@ import * as signinActions from '../../../actions/signin';
 import * as topicsActions from '../../../actions/topics';
 import * as instructorActions from '../../../actions/instructor';
 import * as bookActions from '../../../actions/book';
+import * as lectureActions from '../../../actions/lecture';
 
 import http from '../../../services/httpService';
 import { SERVER_URL } from '../../../services/httpService';
@@ -161,6 +162,7 @@ export default connect(
     actionsSign: bindActionCreators(signinActions, dispatch),
     actionTopics: bindActionCreators(topicsActions, dispatch),
     actionInstructor: bindActionCreators(instructorActions, dispatch),
+    actionLecture: bindActionCreators(lectureActions, dispatch),
     actionBook: bindActionCreators(bookActions, dispatch)
   })
 )(Comment);

@@ -3,11 +3,7 @@ import React, { Component } from 'react';
 // import styled from 'styled-components';
 import http from '../../services/httpService';
 
-// import Profile from './Profile/Profile';
-// import Hex from './Hex/Hex';
 // import Jit from './Jit/Jit';
-// import Lec from './Lec/Lec';
-// import Comments from './Comments/Comments';
 
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -16,7 +12,6 @@ import { Button } from 'reactstrap';
 
 import InstructorCard from '../Instructor/Card/Card';
 import BarChart from '../common/Chart/Bar/Chart';
-// import BarChart from '../Instructor/Bar/Bar';
 import CommonCardList from '../common/Card/CardList.jsx';
 import CommonComment from '../common/Comment/Comment.jsx';
 import CommonReview from '../common/Review/Review.jsx';
@@ -46,7 +41,6 @@ class Instructor extends Component {
       reviews: [],
       review: { clicked: false },
       comment: { clicked: false }
-      // data: []
     };
 
     this.handleClickReview = this.handleClickReview.bind(this);
@@ -107,11 +101,7 @@ class Instructor extends Component {
     const { user } = this.props.storeSignin;
     const { classes } = this.props;
     const { comments, reviews } = this.props.storeInstructor;
-    // console.log('[+] Instructor : comments = ', comments);
-    console.log(
-      'this.props.storeInstructor.reviews : ',
-      this.props.storeInstructor.reviews
-    );
+    console.log('[+] Instructor : comments = ', comments);
 
     return (
       <React.Fragment>
@@ -143,11 +133,7 @@ class Instructor extends Component {
             );
           })}
         </PaperSheet>
-        {/* <InstructorProfile />
-        <InstructorHex />
-        <InstructorJit />
-        <InstructorLec />
-        <InstructorComments /> */}
+
         <CommonComment
           type="instructor"
           name={this.state.instructor.name}

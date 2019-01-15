@@ -3,3 +3,5 @@ export default function filterByInput(array, input) {
     return obj.name.toLowerCase().indexOf(input.toLowerCase()) !== -1;
   });
 }
+
+

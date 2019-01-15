@@ -28,7 +28,6 @@ import * as topicsActions from '../../actions/topics';
 import config from '../../config';
 const { SERVER_URL } = config();
 
-// 로그인을 했을 때의 홈 화면
 class Topics extends Component {
   constructor(props) {
     super(props);

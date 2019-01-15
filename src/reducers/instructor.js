@@ -36,8 +36,9 @@ export default handleActions(
     },
     [INSTRUCTOR_ADD_REVIEWS]: (state, action) => {
       return {
-        ...state, // reviews: state.reviews.concat(action.payload.reviews)
-        reviews: action.payload.reviews
+        ...state,
+        reviews: state.reviews.concat(action.payload.reviews)
+        // reviews: action.payload.reviews
       };
     },
     [INSTRUCTOR_UPDATE_INSTRUCTOR]: (state, action) => {

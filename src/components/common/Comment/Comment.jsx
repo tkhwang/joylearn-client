@@ -9,8 +9,10 @@ import CommonCommentList from '../../common/Comment/List/List.jsx';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import * as signinActions from '../../../actions/signin';
+import * as topicsActions from '../../../actions/topics';
 import * as instructorActions from '../../../actions/instructor';
-import * as lectureActions from '../../../actions/lecture';
+import * as bookActions from '../../../actions/book';
 
 import http from '../../../services/httpService';
 import { SERVER_URL } from '../../../services/httpService';
@@ -39,8 +41,14 @@ class Comment extends React.Component {
   };
 
   handleClick = async e => {
-    console.log(this.state.text);
-    const { type, name, actionInstructor, actionLecture } = this.props;
+    console.log('[+] /////////// ', this.state.text, this.props.user);
+    const {
+      type,
+      name,
+      actionInstructor,
+      actionLecture,
+      actionBook
+    } = this.props;
 
     const apiEndpoint = `${SERVER_URL}/api/comment/${type}/${name}`;
 
@@ -54,6 +62,8 @@ class Comment extends React.Component {
       actionInstructor.add_comments(data);
     } else if (type === 'lecture') {
       actionLecture.add_comments(data);
+    } else if (type === 'book') {
+      actionBook.add_comments(data);
     }
 
     this.setState({ ...this.state, text: '', comments: data });
@@ -142,11 +152,15 @@ const DivFull = styled.div`
 // export default Comment;
 export default connect(
   state => ({
+    storeSignin: state.signin,
+    storeTopics: state.topics,
     storeInstructor: state.instructor,
-    storeLecture: state.lecture
+    storeBook: state.book
   }),
   dispatch => ({
+    actionsSign: bindActionCreators(signinActions, dispatch),
+    actionTopics: bindActionCreators(topicsActions, dispatch),
     actionInstructor: bindActionCreators(instructorActions, dispatch),
-    actionLecture: bindActionCreators(lectureActions, dispatch)
+    actionBook: bindActionCreators(bookActions, dispatch)
   })
 )(Comment);

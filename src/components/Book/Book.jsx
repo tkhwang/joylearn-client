@@ -3,15 +3,17 @@ import React, { Component } from 'react';
 import http from '../../services/httpService';
 import { Button } from 'reactstrap';
 
+import urlencode from 'urlencode';
 import BookCard from '../Book/Card/Card';
+import CommonReview from '../common/Review/Review.jsx';
 import CommonComment from '../common/Comment/Comment.jsx';
 import PaperSheet from '../common/PaperSheet/PaperSheet.jsx';
-import urlencode from 'urlencode';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as signinActions from '../../actions/signin';
 import * as topicsActions from '../../actions/topics';
+import * as instructorActions from '../../actions/instructor';
 import * as bookActions from '../../actions/book';
 
 import config from '../../config';
@@ -25,6 +27,7 @@ class Book extends Component {
       book: {},
       instructor: {},
       comments: [],
+      reviews: [],
       review: { clicked: false },
       comment: { clicked: false }
     };
@@ -45,7 +48,8 @@ class Book extends Component {
     const book = {
       book: data.book[0],
       instructor: data.instructor[0],
-      comments: data.comments
+      comments: data.comments,
+      reviews: data.reviews
     };
 
     actionBook.set_all(book);
@@ -54,7 +58,8 @@ class Book extends Component {
       ...this.state,
       book: data.book[0],
       instructor: data.instructor[0],
-      comments: data.comments
+      comments: data.comments,
+      reviews: data.reviews
     });
   }
 
@@ -81,7 +86,7 @@ class Book extends Component {
   render() {
     const { user } = this.props.storeSignin;
     const { classes } = this.props;
-    const { comments } = this.props.storeBook;
+    const { comments, reviews } = this.props.storeBook;
     console.log('[+] Instructor : comments = ', comments);
 
     return (
@@ -93,30 +98,17 @@ class Book extends Component {
         <CommonComment
           type="book"
           name={this.state.book.name}
-          user={user.id}
+          user={user.name}
           comments={comments}
         />
 
         <PaperSheet title="Review">
-          {this.state.review.clicked ? (
-            <Button
-              color="secondary"
-              size="lg"
-              block
-              onClick={this.handleClickReview}
-            >
-              Cancel to review
-            </Button>
-          ) : (
-            <Button
-              color="primary"
-              size="lg"
-              block
-              onClick={this.handleClickReview}
-            >
-              Review on {this.state.book.name}
-            </Button>
-          )}
+          <CommonReview
+            type="book"
+            name={this.state.book.name}
+            user={user.name}
+            reviews={reviews}
+          />
         </PaperSheet>
       </React.Fragment>
     );
@@ -127,11 +119,13 @@ export default connect(
   state => ({
     storeSignin: state.signin,
     storeTopics: state.topics,
+    storeInstructor: state.instructor,
     storeBook: state.book
   }),
   dispatch => ({
     actionsSign: bindActionCreators(signinActions, dispatch),
     actionTopics: bindActionCreators(topicsActions, dispatch),
+    actionInstructor: bindActionCreators(instructorActions, dispatch),
     actionBook: bindActionCreators(bookActions, dispatch)
   })
 )(Book);

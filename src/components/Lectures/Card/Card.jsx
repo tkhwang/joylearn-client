@@ -55,9 +55,11 @@ class Card extends Component {
             <CardActionArea>
               <CardMedia className={classes.media} image={image} title={name} />
               <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  {name}
-                </Typography>
+                {name && (
+                  <Typography gutterBottom variant="h5" component="h2">
+                    {name}
+                  </Typography>
+                )}
               </CardContent>
             </CardActionArea>
             <CardActions>

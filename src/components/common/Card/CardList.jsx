@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import moment from 'moment';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -40,22 +42,46 @@ const styles = theme => ({
 });
 
 function CardList(props) {
-  const { classes, theme, title, image, url, small, user } = props;
+  const {
+    classes,
+    theme,
+    title,
+    image,
+    url,
+    small,
+    user,
+    time,
+    avatar
+  } = props;
 
   return (
     <Card className={classes.card}>
-      <CardMedia className={classes.cover} image={image} title={title} />
+      {image && (
+        <CardMedia className={classes.cover} image={image} title={title} />
+      )}
+      {avatar && <img src={avatar} alt="avatar" width="50" height="50" />}
       <div className={classes.details}>
         <CardContent className={classes.content}>
-          <Typography component="h5" variant="h5">
-            {title}
-          </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
-            <a href={url}>{url}</a>
-          </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
-            {small}
-          </Typography>
+          {title && (
+            <Typography component="h6" variant="h6">
+              {title}
+            </Typography>
+          )}
+          {url && (
+            <Typography variant="subtitle1" color="textSecondary">
+              <a href={url}>{url}</a>
+            </Typography>
+          )}
+          {avatar && (
+            <Typography variant="subtitle1" color="textSecondary">
+              {user} @ {moment({ time }).fromNow()}
+            </Typography>
+          )}
+          {small && (
+            <Typography component="h6" variant="h6">
+              {small}
+            </Typography>
+          )}
         </CardContent>
       </div>
     </Card>

@@ -59,7 +59,7 @@ class Topic extends Component {
   }
 
   _renderTopic = () => {
-    const avatar = localStorage.getItem('avatar');
+    // const avatar = localStorage.getItem('avatar');
     return (
       <React.Fragment>
         <PaperSheet
@@ -94,6 +94,7 @@ class Topic extends Component {
                   title={instructor.name}
                   url={instructor.mainUrl}
                   image={instructor.image}
+                  time=""
                 />
               );
             })}
@@ -130,6 +131,7 @@ class Topic extends Component {
                   title={lecture.name}
                   url={lecture.url}
                   image={lecture.screenshot}
+                  time=""
                 />
               );
             })}
@@ -153,6 +155,7 @@ class Topic extends Component {
                   title={book.name}
                   url={book.url}
                   image={book.screenshot}
+                  time=""
                 />
               );
             })}
@@ -173,7 +176,7 @@ class Topic extends Component {
   };
 
   render() {
-    console.log('topic / this.state : ', this.state);
+    // console.log('topic / this.state : ', this.state);
 
     return (
       <React.Fragment>

@@ -116,6 +116,7 @@ class Instructor extends Component {
                 title={lecture.name}
                 url={lecture.url}
                 image={lecture.screenshot}
+                time=""
               />
             );
           })}
@@ -128,6 +129,7 @@ class Instructor extends Component {
                 title={book.name}
                 url={book.url}
                 image={book.screenshot}
+                time=""
               />
             );
           })}

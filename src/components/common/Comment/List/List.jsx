@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import CommonCommentRender from '../../../common/Comment/Render/Render';
 import CommonCommentList from '../../../common/Comment/List/List.jsx';
 import CommonPaperSheet from '../../../common/PaperSheet/PaperSheet.jsx';
+import CommonCardList from '../../../common/Card/CardList.jsx';
 import moment from 'moment';
 
 import Card from '@material-ui/core/Card';
@@ -21,13 +22,12 @@ class List extends Component {
 
   async componentDidMount() {
     const apiEndpoint = `${SERVER_URL}/api/users/${this.props.user}`;
-    const { avatar } = await http.get(apiEndpoint);
+    const { data } = await http.get(apiEndpoint);
+    const avatar = data.user.avatar;
+
     console.log('[+] ///////////// avatar = ', avatar);
 
-    this.setState({
-      ...this.state,
-      avatar: avatar
-    });
+    this.setState({ ...this.state, avatar: avatar });
   }
 
   render() {
@@ -38,29 +38,44 @@ class List extends Component {
     return (
       <React.Fragment>
         {/* <CommonCommentList title={comments.content} image="" url="" /> */}
-
-        <Card className={classes.card}>
-          <img src={this.state.avatar} alt="avatar" width="30" height="30" />
-          {user}
-          <div className={classes.details}>
-            <CardContent className={classes.content}>
-              <Typography component="h6" variant="h6">
-                <CommonCommentRender comments={comments} />
-              </Typography>
-              <Typography variant="subtitle1" color="textSecondary">
-                {user}@{time}
-              </Typography>
-              <Typography variant="subtitle1" color="textSecondary">
-                <a href={url}>{url}</a>
-              </Typography>
-            </CardContent>
-          </div>
-        </Card>
+        <CommonCardList
+          type="instructor"
+          small={<CommonCommentRender comments={comments} />}
+          url={url}
+          avatar={this.state.avatar}
+          user={user}
+          time={updated_at}
+        />
       </React.Fragment>
     );
   }
 }
 
+/*
+        <Card className={classes.card}>
+          <img src={this.state.avatar} alt="avatar" width="30" height="30" />
+          {user}
+          <div className={classes.details}>
+            <CardContent className={classes.content}>
+              {comments && (
+                <Typography component="h6" variant="h6">
+                  <CommonCommentRender comments={comments} />
+                </Typography>
+              )}
+              {user && (
+                <Typography variant="subtitle1" color="textSecondary">
+                  {user}@{time}
+                </Typography>
+              )}
+              {url && (
+                <Typography variant="subtitle1" color="textSecondary">
+                  <a href={url}>{url}</a>
+                </Typography>
+              )}
+            </CardContent>
+          </div>
+        </Card>
+*/
 const DivFull = styled.div`
   width: 1200px;
   right: 0px;

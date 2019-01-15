@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as instructorActions from '../../../../actions/instructor';
 import * as lectureActions from '../../../../actions/lecture';
+import * as bookActions from '../../../../actions/book';
 
 class RadioStrap extends Component {
   constructor(props) {
@@ -35,8 +36,15 @@ class RadioStrap extends Component {
   }
 
   handleClick = async e => {
-    const { type, name, user, actionInstructor, actionLecture } = this.props;
-    console.log('[+] //////// ', type, name, this.state.rSelected);
+    const {
+      type,
+      user,
+      actionInstructor,
+      actionLecture,
+      actionBook
+    } = this.props;
+    const name = decodeURIComponent(this.props.name);
+    console.log('[+] //////// ', type, name, this.state.rSelected, name);
 
     const apiEndpoint = `${SERVER_URL}/api/review/${type}/${name}`;
     const { data: reviews } = await http.post(apiEndpoint, {
@@ -49,6 +57,8 @@ class RadioStrap extends Component {
       actionInstructor.add_reviews(reviews);
     } else if (type === 'lecture') {
       actionLecture.add_reviews(reviews);
+    } else if (type === 'book') {
+      actionBook.add_reviews(reviews);
     }
   };
 
@@ -110,6 +120,7 @@ export default connect(
   }),
   dispatch => ({
     actionInstructor: bindActionCreators(instructorActions, dispatch),
-    actionLecture: bindActionCreators(lectureActions, dispatch)
+    actionLecture: bindActionCreators(lectureActions, dispatch),
+    actionBook: bindActionCreators(bookActions, dispatch)
   })
 )(RadioStrap);

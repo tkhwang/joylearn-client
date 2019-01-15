@@ -30,7 +30,10 @@ export default handleActions(
       };
     },
     [LECTURE_ADD_REVIEWS]: (state, action) => {
-      return { ...state, reviews: action.payload.reviews };
+      return {
+        ...state,
+        reviews: state.reviews.concat(action.payload.reviews)
+      }; // reviews: action.payload.reviews
     }
   },
   initialState

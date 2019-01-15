@@ -15,7 +15,6 @@ import Typography from '@material-ui/core/Typography';
 import { Button } from 'reactstrap';
 
 import InstructorCard from '../Instructor/Card/Card';
-import InstructorCardMk2 from '../Instructor/Card/CardMk2';
 import CommonCardList from '../common/Card/CardList.jsx';
 import CommonComment from '../common/Comment/Comment.jsx';
 import CommonReview from '../common/Review/Review.jsx';
@@ -102,8 +101,6 @@ class Instructor extends Component {
     const { classes } = this.props;
     const { comments } = this.props.storeInstructor;
     console.log('[+] Instructor : comments = ', comments);
-
-    /* return <InstructorCardMk2 name={lecture.name} url={lecture.url} />; */
 
     return (
       <React.Fragment>

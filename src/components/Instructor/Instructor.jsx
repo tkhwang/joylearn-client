@@ -19,6 +19,9 @@ import CommonCardList from '../common/Card/CardList.jsx';
 import CommonComment from '../common/Comment/Comment.jsx';
 import CommonReview from '../common/Review/Review.jsx';
 import PaperSheet from '../common/PaperSheet/PaperSheet.jsx';
+// import Svg from '../Instructor/Svg/Chart';
+// import Radar from '../Instructor/Radar/Chart';
+// import TestChart from '../Instructor/Svg/TestChart';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -29,8 +32,6 @@ import * as instructorActions from '../../actions/instructor';
 import config from '../../config';
 const { SERVER_URL } = config();
 
-// InstructorTitle 추가될 수 있음
-// InstructorReview 추가될 수 있음
 class Instructor extends Component {
   constructor(props) {
     super(props);
@@ -108,6 +109,8 @@ class Instructor extends Component {
     return (
       <React.Fragment>
         <InstructorCard instructor={this.state.instructor} />
+        {/* <Svg /> */}
+        {/* <TestChart /> */}
         <PaperSheet title="Lectures">
           {this.state.lectures.map(lecture => {
             return (

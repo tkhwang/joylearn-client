@@ -11,6 +11,7 @@ import SocialLoginButton from './SocialLoginButton';
 import Form from '../common/Form';
 import auth from '../../services/authService';
 import Emoji from '../common/Emoji';
+import CommonPaperSheet from '../common/PaperSheet/PaperSheet.jsx';
 
 class LoginForm extends Form {
   state = {
@@ -56,19 +57,22 @@ class LoginForm extends Form {
     return (
       <div className="login">
         <h1>Welcome back.</h1>
-        {/* <br /> */}
-        <div className="social-login">
-          Sign up using :
-          <SocialLoginButton social="facebook" />
-          <SocialLoginButton social="instagram" />
-          <SocialLoginButton social="github" />
-          <SocialLoginButton social="google" />
-          <SocialLoginButton social="kakao" />
-          Now under : now in review by Naver
-          <SocialLoginButton social="naver" />
-          <br />
+        <CommonPaperSheet title="">
+          <div className="social-login">
+            Sign up using :
+            <SocialLoginButton social="facebook" />
+            <SocialLoginButton social="instagram" />
+            <SocialLoginButton social="github" />
+            <SocialLoginButton social="google" />
+            <SocialLoginButton social="kakao" />
+            {/* Now under : now in review by Naver
+            <SocialLoginButton social="naver" /> */}
+            <br />
+          </div>
+        </CommonPaperSheet>
+        <h4>
           Made with <Emoji symbol="❤️" label="smile" />
-        </div>
+        </h4>
       </div>
     );
   }

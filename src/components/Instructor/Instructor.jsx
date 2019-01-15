@@ -39,8 +39,9 @@ class Instructor extends Component {
     this.state = {
       instructor: {},
       lectures: [],
-      comments: [],
       books: [],
+      comments: [],
+      reviews: [],
       review: { clicked: false },
       comment: { clicked: false }
     };
@@ -56,13 +57,14 @@ class Instructor extends Component {
     const { data } = await http.get(`${SERVER_URL}/instructor/${name}`);
     const { actionInstructor } = this.props;
 
-    console.log('[+] Insturcotr : props = ', this.props);
+    console.log('[+] Insturcotr : props = ', data);
 
     const instructor = {
       instructor: data.instructor[0],
       lectures: data.lectures,
+      books: data.books,
       comments: data.comments,
-      books: data.books
+      reviews: data.reviews
     };
     actionInstructor.set_all(instructor);
 
@@ -71,7 +73,8 @@ class Instructor extends Component {
       instructor: data.instructor[0],
       lectures: data.lectures,
       comments: data.comments,
-      books: data.books
+      books: data.books,
+      reviews: data.reviews
     });
   }
 
@@ -100,9 +103,8 @@ class Instructor extends Component {
   render() {
     const { user } = this.props.storeSignin;
     const { classes } = this.props;
-    const { comments } = this.props.storeInstructor;
-    // console.log('[+] Instructor : comments = ', comments);
-    console.log('this.state : ', this.state);
+    const { comments, reviews } = this.props.storeInstructor;
+    console.log('[+] Instructor : comments = ', comments);
 
     return (
       <React.Fragment>
@@ -151,6 +153,7 @@ class Instructor extends Component {
             type="instructor"
             name={this.state.instructor.name}
             user={user.name}
+            reviews={reviews}
           />
         </PaperSheet>
       </React.Fragment>

@@ -23,11 +23,8 @@ class List extends Component {
   async componentDidMount() {
     const apiEndpoint = `${SERVER_URL}/api/users/${this.props.user}`;
     const { data } = await http.get(apiEndpoint);
-    // const avatar = data.user.avatar;
-
-    // console.log('[+] ///////////// avatar = ', avatar);
-
-    // this.setState({ ...this.state, avatar: avatar });
+    const avatar = data.user.avatar;
+    this.setState({ ...this.state, avatar: avatar });
   }
 
   render() {
@@ -42,8 +39,7 @@ class List extends Component {
           type="instructor"
           small={<CommonCommentRender comments={comments} />}
           url={url}
-          // avatar={this.state.avatar}
-          avatar=""
+          avatar={this.state.avatar}
           user={user}
           time={updated_at}
         />
@@ -52,31 +48,6 @@ class List extends Component {
   }
 }
 
-/*
-        <Card className={classes.card}>
-          <img src={this.state.avatar} alt="avatar" width="30" height="30" />
-          {user}
-          <div className={classes.details}>
-            <CardContent className={classes.content}>
-              {comments && (
-                <Typography component="h6" variant="h6">
-                  <CommonCommentRender comments={comments} />
-                </Typography>
-              )}
-              {user && (
-                <Typography variant="subtitle1" color="textSecondary">
-                  {user}@{time}
-                </Typography>
-              )}
-              {url && (
-                <Typography variant="subtitle1" color="textSecondary">
-                  <a href={url}>{url}</a>
-                </Typography>
-              )}
-            </CardContent>
-          </div>
-        </Card>
-*/
 const DivFull = styled.div`
   width: 1200px;
   right: 0px;

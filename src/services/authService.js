@@ -54,8 +54,8 @@ async function saveJwt(jwt) {
   if (!jwt || jwt !== 'undefined' || jwt !== undefined) {
     localStorage.setItem(KEY_TOKEN, jwt);
   }
-  const { id } = jwtDecode(jwt);
-  const { data } = await http.get(`${SERVER_URL}/api/users/${id}`);
+  const { name } = jwtDecode(jwt);
+  const { data } = await http.get(`${SERVER_URL}/api/users/${name}`);
 
   console.log(JSON.stringify(data.user));
   localStorage.setItem(KEY_USER, JSON.stringify(data.user));

@@ -8,14 +8,13 @@ import http from '../../services/httpService';
 // import auth from '../../services/authService';
 // import querystring from 'query-string';
 
+import LectureCard from '../Lecture/Card/Card';
 import CommonReview from '../common/Review/Review.jsx';
 import CommonComment from '../common/Comment/Comment.jsx';
 import PaperSheet from '../common/PaperSheet/PaperSheet.jsx';
-import LectureProfile from '../Lecture/Profile/Profile';
+// import LectureProfile from '../Lecture/Profile/Profile';
 import BarChart from '../common/Chart/Bar/Chart';
-// import LectureBar from '../Lecture/Bar/Bar';
 import LecturePie from '../Lecture/Pie/Pie';
-// import LectureComments from '../Lecture/Comments/Comments';
 
 import * as signinActions from '../../actions/signin';
 import * as topicsActions from '../../actions/topics';
@@ -43,8 +42,9 @@ class Lecture extends Component {
     const { actionLecture } = this.props;
 
     const { data } = await http.get(`${SERVER_URL}/lecture/${name}`);
-    console.log('[+] ////////// data = ', data);
-
+    // console.log('[+] ////////// data = ', data);
+    console.log('did l:', data.lecture);
+    console.log('did i:', data.instructor);
     this.setState(
       {
         ...this.state,
@@ -62,15 +62,21 @@ class Lecture extends Component {
   _renderPage = () => {};
 
   render() {
-    console.log('[+] lecture = ', this.state.lecture);
-    console.log('[+] instrucgtor = ', this.state.instructor);
+    // console.log('[+] lecture = ', this.state.lecture);
+    // console.log('[+] instrucgtor = ', this.state.instructor);
     const { user } = this.props.storeSignin;
     const { comments, reviews } = this.props.storeLecture;
     const { lecture } = this.state;
 
+    console.log('이거 확인 l: ', this.state.lecture);
+    console.log('이 녀석도 확인 i: ', this.state.instructor);
     return (
       <React.Fragment>
-        <PaperSheet title="Lecture : ">
+        <LectureCard
+          lecture={this.state.lecture}
+          instructor={this.state.instructor}
+        />
+        {/* <PaperSheet title="Lecture : ">
           <DivContainer>
             <DivProfileChart>
               {this.state.lecture ? (
@@ -82,8 +88,8 @@ class Lecture extends Component {
               <LecturePie />
             </DivProfileChart>
           </DivContainer>
-        </PaperSheet>
-        {/* <BarChart reviews={this.props.storeLecture.reviews} /> */}
+        </PaperSheet> */}
+        <BarChart reviews={this.props.storeLecture.reviews} />
         <PaperSheet title="Review">
           {reviews ? (
             <CommonReview

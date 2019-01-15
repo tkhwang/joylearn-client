@@ -5,6 +5,7 @@ import { Button } from 'reactstrap';
 
 import urlencode from 'urlencode';
 import BookCard from '../Book/Card/Card';
+import BarChart from '../common/Chart/Bar/Chart';
 import CommonReview from '../common/Review/Review.jsx';
 import CommonComment from '../common/Comment/Comment.jsx';
 import PaperSheet from '../common/PaperSheet/PaperSheet.jsx';
@@ -92,7 +93,7 @@ class Book extends Component {
     return (
       <React.Fragment>
         <BookCard book={this.state.book} />
-
+        <BarChart reviews={this.props.storeBook.reviews} />
         <PaperSheet title="Instructor" />
 
         <CommonComment

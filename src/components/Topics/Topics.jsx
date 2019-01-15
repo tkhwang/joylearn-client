@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Loader from 'react-loader-spinner';
+import CommonPaperSheet from '../common/PaperSheet/PaperSheet.jsx';
 import {
   InputGroup,
   InputGroupAddon,
@@ -79,18 +80,22 @@ class Topics extends Component {
 
   _renderTopics = () => {
     return (
-      <DivTopicsMenu>
-        {this.state.topics.map((topic, index, topics) => {
-          return (
-            <TopicsCard
-              image={topic.logo}
-              title={topic.name}
-              description={''}
-              key={topic}
-            />
-          );
-        })}
-      </DivTopicsMenu>
+      <React.Fragment>
+        <CommonPaperSheet>
+          <DivTopicsMenu>
+            {this.state.topics.map((topic, index, topics) => {
+              return (
+                <TopicsCard
+                  image={topic.logo}
+                  title={topic.name}
+                  description={''}
+                  key={topic}
+                />
+              );
+            })}
+          </DivTopicsMenu>
+        </CommonPaperSheet>
+      </React.Fragment>
     );
   };
 
@@ -98,21 +103,28 @@ class Topics extends Component {
     const { topics } = this.props.storeTopics;
     return (
       <React.Fragment>
-        <InputGroup>
-          <InputGroupAddon addonType="prepend">?</InputGroupAddon>
-          <ReactstrapInput
-            placeholder="Search Topics which you want to learn."
-            value={this.state.value}
-            onChange={this.handleChange}
-          />
-        </InputGroup>
-        {this.state.topics ? (
-          this._renderTopics()
-        ) : (
-          <DivSpinner>
-            <Loader type="Triangle" color="#00BFFF" height="200" width="200" />
-          </DivSpinner>
-        )}
+        <CommonPaperSheet>
+          <InputGroup>
+            <InputGroupAddon addonType="prepend">?</InputGroupAddon>
+            <ReactstrapInput
+              placeholder="Search Topics which you want to learn."
+              value={this.state.value}
+              onChange={this.handleChange}
+            />
+          </InputGroup>
+          {this.state.topics ? (
+            this._renderTopics()
+          ) : (
+            <DivSpinner>
+              <Loader
+                type="Triangle"
+                color="#00BFFF"
+                height="200"
+                width="200"
+              />
+            </DivSpinner>
+          )}
+        </CommonPaperSheet>
       </React.Fragment>
     );
   }

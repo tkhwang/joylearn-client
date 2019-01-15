@@ -43,20 +43,20 @@ class Comment extends React.Component {
     const { type, name, actionInstructor, actionLecture } = this.props;
 
     const apiEndpoint = `${SERVER_URL}/api/comment/${type}/${name}`;
-    const comments = { writer: this.props.user, content: this.state.text };
 
-    const newComments = await http.post(apiEndpoint, {
+    const { data } = await http.post(apiEndpoint, {
       writer: this.props.user,
       content: this.state.text
     });
+    console.log('[+] //////////////// data = ', data);
 
     if (type === 'instructor') {
-      actionInstructor.add_comments(comments);
+      actionInstructor.add_comments(data);
     } else if (type === 'lecture') {
-      actionLecture.add_comments(comments);
+      actionLecture.add_comments(data);
     }
 
-    this.setState({ ...this.state, text: '', comments: newComments });
+    this.setState({ ...this.state, text: '', comments: data });
   };
 
   render() {

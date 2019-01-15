@@ -1,9 +1,15 @@
 import { handleActions } from 'redux-actions';
-import { LECTURE_SET_ALL, LECTURE_ADD_COMMENTS } from '../actions/lecture.js';
+import {
+  LECTURE_SET_ALL,
+  LECTURE_ADD_COMMENTS,
+  LECTURE_ADD_REVIEWS
+} from '../actions/lecture.js';
 
 const initialState = {
   lecture: {},
-  comments: []
+  instructor: {},
+  comments: [],
+  reviews: []
 };
 
 export default handleActions(
@@ -11,7 +17,10 @@ export default handleActions(
     [LECTURE_SET_ALL]: (state, action) => {
       return {
         ...state,
-        lecture: action.payload.lecture
+        lecture: action.payload.lecture,
+        instructor: action.payload.instructor,
+        comments: action.payload.comments,
+        reviews: action.payload.reviews
       };
     },
     [LECTURE_ADD_COMMENTS]: (state, action) => {
@@ -19,6 +28,9 @@ export default handleActions(
         ...state,
         comments: state.comments.concat(action.payload.comments)
       };
+    },
+    [LECTURE_ADD_REVIEWS]: (state, action) => {
+      return { ...state, reviews: action.payload.reviews };
     }
   },
   initialState

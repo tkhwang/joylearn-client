@@ -7,6 +7,7 @@ import http, { SERVER_URL } from '../../../../services/httpService.js';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as instructorActions from '../../../../actions/instructor';
+import * as lectureActions from '../../../../actions/lecture';
 
 class RadioStrap extends Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class RadioStrap extends Component {
   }
 
   handleClick = async e => {
-    const { type, name, user, actionInstructor } = this.props;
+    const { type, name, user, actionInstructor, actionLecture } = this.props;
     console.log('[+] //////// ', type, name, this.state.rSelected);
 
     const apiEndpoint = `${SERVER_URL}/api/review/${type}/${name}`;
@@ -43,7 +44,12 @@ class RadioStrap extends Component {
       review: this.state.rSelected
     });
     console.log('[+]///// data = ', reviews);
-    actionInstructor.add_reviews(reviews);
+
+    if (type === 'instructor') {
+      actionInstructor.add_reviews(reviews);
+    } else if (type === 'lecture') {
+      actionLecture.add_reviews(reviews);
+    }
   };
 
   render() {
@@ -103,6 +109,7 @@ export default connect(
     storeInstructor: state.instructor
   }),
   dispatch => ({
-    actionInstructor: bindActionCreators(instructorActions, dispatch)
+    actionInstructor: bindActionCreators(instructorActions, dispatch),
+    actionLecture: bindActionCreators(lectureActions, dispatch)
   })
 )(RadioStrap);

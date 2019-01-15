@@ -27,7 +27,12 @@ class Lecture extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      lecture: {},
+      instructor: {},
+      comments: [],
+      reviews: []
+    };
   }
 
   static propTypes = {};
@@ -36,16 +41,19 @@ class Lecture extends Component {
     const { name } = this.props.name.match.params;
     const { actionLecture } = this.props;
 
-    const data = await http.get(`${SERVER_URL}/lecture/${name}`);
+    const { data } = await http.get(`${SERVER_URL}/lecture/${name}`);
+    console.log('[+] ////////// data = ', data);
 
     this.setState(
       {
         ...this.state,
-        lecture: data.data.lecture[0],
-        instructor: data.data.instructor[0]
+        lecture: data.lecture[0],
+        instructor: data.instructor[0],
+        reviews: data.reviews,
+        comments: data.comments
       },
       () => {
-        actionLecture.set_all(this.state.lecture);
+        actionLecture.set_all(this.state);
       }
     );
   }
@@ -56,7 +64,7 @@ class Lecture extends Component {
     console.log('[+] lecture = ', this.state.lecture);
     console.log('[+] instrucgtor = ', this.state.instructor);
     const { user } = this.props.storeSignin;
-    const { comments } = this.props.storeLecture;
+    const { comments, reviews } = this.props.storeLecture;
     const { lecture } = this.state;
 
     return (
@@ -77,16 +85,17 @@ class Lecture extends Component {
         </PaperSheet>
 
         <PaperSheet title="Review">
-          {this.state.lecture ? (
+          {reviews ? (
             <CommonReview
               type="lecture"
               name={this.state.lecture.name}
               user={user.name}
+              reviews={reviews}
             />
           ) : null}
         </PaperSheet>
 
-        {this.state.lecture ? (
+        {comments ? (
           <CommonComment
             type="lecture"
             name={this.state.lecture.name}

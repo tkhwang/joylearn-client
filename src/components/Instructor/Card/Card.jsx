@@ -1,7 +1,5 @@
 import React from 'react';
 import PaperSheet from '../../common/PaperSheet/PaperSheet.jsx';
-// import Svg from '../../Instructor/Svg/Chart';
-// import Radar from '../../Instructor/Radar/Chart';
 
 const InstructorCardInner = ({ instructor }) => {
   return (
@@ -22,9 +20,6 @@ const Card = ({ instructor }) => (
       title={instructor.fullName ? instructor.fullName : instructor.name}
     >
       <InstructorCardInner instructor={instructor} />
-
-      {/* <Svg /> */}
-      {/* <Radar /> */}
     </PaperSheet>
   </React.Fragment>
 );

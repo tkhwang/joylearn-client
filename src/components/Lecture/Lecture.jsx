@@ -12,7 +12,8 @@ import CommonReview from '../common/Review/Review.jsx';
 import CommonComment from '../common/Comment/Comment.jsx';
 import PaperSheet from '../common/PaperSheet/PaperSheet.jsx';
 import LectureProfile from '../Lecture/Profile/Profile';
-import LectureBar from '../Lecture/Bar/Bar';
+import BarChart from '../common/Chart/Bar/Chart';
+// import LectureBar from '../Lecture/Bar/Bar';
 import LecturePie from '../Lecture/Pie/Pie';
 // import LectureComments from '../Lecture/Comments/Comments';
 
@@ -73,9 +74,8 @@ class Lecture extends Component {
               <LecturePie />
             </DivProfileChart>
           </DivContainer>
-          <LectureBar />
         </PaperSheet>
-
+        {/* <BarChart reviews={this.props.storeLecture.reviews} /> */}
         <PaperSheet title="Review">
           {this.state.lecture ? (
             <CommonReview

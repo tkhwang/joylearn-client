@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
 import moment from 'moment';
 import { withStyles } from '@material-ui/core/styles';
@@ -41,57 +42,84 @@ const styles = theme => ({
   }
 });
 
-function CardList(props) {
-  const {
-    classes,
-    theme,
-    title,
-    image,
-    url,
-    small,
-    user,
-    time,
-    avatar,
-    review
-  } = props;
+class CardList extends React.Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <Card className={classes.card}>
-      {image && (
-        <CardMedia className={classes.cover} image={image} title={title} />
-      )}
-      {avatar && <img src={avatar} alt="avatar" width="50" height="50" />}
-      <div className={classes.details}>
-        <CardContent className={classes.content}>
-          {review && (
-            <Typography component="h6" variant="h6">
-              {review}
-            </Typography>
-          )}
-          {title && (
-            <Typography component="h6" variant="h6">
-              {title}
-            </Typography>
-          )}
-          {url && (
-            <Typography variant="subtitle1" color="textSecondary">
-              <a href={url}>{url}</a>
-            </Typography>
-          )}
-          {avatar && (
-            <Typography variant="subtitle1" color="textSecondary">
-              {user} @ {moment({ time }).fromNow()}
-            </Typography>
-          )}
-          {small && (
-            <Typography component="h6" variant="h6">
-              {small}
-            </Typography>
-          )}
-        </CardContent>
-      </div>
-    </Card>
-  );
+    this.state = { isClicked: false };
+  }
+
+  handleClick = e => {
+    this.setState({
+      isClicked: true
+    });
+  };
+
+  render() {
+    const { props } = this;
+
+    const {
+      classes,
+      theme,
+      title,
+      type,
+      image,
+      url,
+      small,
+      user,
+      time,
+      avatar,
+      review
+    } = props;
+
+    return (
+      <React.Fragment>
+        {this.state.isClicked ? (
+          <Redirect to={`/${type}/${title}`} />
+        ) : (
+          <Card className={classes.card} onClick={this.handleClick}>
+            {image && (
+              <CardMedia
+                className={classes.cover}
+                image={image}
+                title={title}
+              />
+            )}
+            {avatar && <img src={avatar} alt="avatar" width="50" height="50" />}
+            <div className={classes.details}>
+              <CardContent className={classes.content}>
+                {review && (
+                  <Typography component="h6" variant="h6">
+                    {review}
+                  </Typography>
+                )}
+                {title && (
+                  <Typography component="h6" variant="h6">
+                    {title}
+                  </Typography>
+                )}
+                {url && (
+                  <Typography variant="subtitle1" color="textSecondary">
+                    <a href={url}>{url}</a>
+                  </Typography>
+                )}
+                {avatar && (
+                  <Typography variant="subtitle1" color="textSecondary">
+                    {user} @ {moment({ time }).fromNow()}
+                  </Typography>
+                )}
+                {small && (
+                  <Typography component="h6" variant="h6">
+                    {small}
+                  </Typography>
+                )}
+              </CardContent>
+            </div>
+          </Card>
+        )}
+      </React.Fragment>
+    );
+  }
 }
 
 CardList.propTypes = {

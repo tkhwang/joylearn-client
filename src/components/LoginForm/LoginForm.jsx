@@ -77,12 +77,16 @@ class LoginForm extends Form {
             <img
               src="https://s3.ap-northeast-2.amazonaws.com/joy-learn-image/avatar/undraw_update_uxn2.svg"
               alt="intro"
+              width="600"
+              style={{ marginLeft: 30, marginTop: 70 }}
             />
           </div>
         </div>
-        <h4>
-          Made with <Emoji symbol="❤️" label="smile" />
-        </h4>
+        {/* <div style={{ display: 'flex' }}>
+          <h4 style={{ justifyContent: 'center' }}>
+            Made with <Emoji symbol="❤️" label="smile" />
+          </h4>
+        </div> */}
       </React.Fragment>
     );
   }

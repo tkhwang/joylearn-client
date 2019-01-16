@@ -43,7 +43,6 @@ class Book extends Component {
     const { name } = this.props.name.match.params;
     const { data } = await http.get(`${SERVER_URL}/book/${urlencode(name)}`);
     const { actionBook } = this.props;
-    console.log('book data : ', data);
     console.log('[+] Book : props = ', this.props);
 
     const book = {
@@ -92,7 +91,7 @@ class Book extends Component {
 
     return (
       <React.Fragment>
-        <BookCard book={this.state.book} />
+        <BookCard book={this.state.book} instructor={this.state.instructor} />
         <BarChart reviews={this.props.storeBook.reviews} />
         <PaperSheet title="Instructor" />
 

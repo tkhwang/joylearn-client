@@ -14,7 +14,7 @@ import CommonComment from '../common/Comment/Comment.jsx';
 import PaperSheet from '../common/PaperSheet/PaperSheet.jsx';
 // import LectureProfile from '../Lecture/Profile/Profile';
 import BarChart from '../common/Chart/Bar/Chart';
-import LecturePie from '../Lecture/Pie/Pie';
+// import LecturePie from '../Lecture/Pie/Pie';
 
 import * as signinActions from '../../actions/signin';
 import * as topicsActions from '../../actions/topics';
@@ -43,8 +43,6 @@ class Lecture extends Component {
 
     const { data } = await http.get(`${SERVER_URL}/lecture/${name}`);
     // console.log('[+] ////////// data = ', data);
-    console.log('did l:', data.lecture);
-    console.log('did i:', data.instructor);
     this.setState(
       {
         ...this.state,
@@ -68,14 +66,23 @@ class Lecture extends Component {
     const { comments, reviews } = this.props.storeLecture;
     const { lecture } = this.state;
 
-    console.log('render l: ', this.state.lecture);
-    console.log('render i: ', this.state.instructor);
     return (
       <React.Fragment>
         <LectureCard
           lecture={this.state.lecture}
           instructor={this.state.instructor}
         />
+        <DivContainer>
+          <DivAverage>
+            <PaperSheet title="Reviews Average">
+              <DivDetail>{`${this.state.lecture.review} / 5`}</DivDetail>
+            </PaperSheet>
+          </DivAverage>
+
+          <DivChart>
+            <BarChart reviews={this.props.storeLecture.reviews} />
+          </DivChart>
+        </DivContainer>
         {/* <PaperSheet title="Lecture : ">
           <DivContainer>
             <DivProfileChart>
@@ -89,7 +96,6 @@ class Lecture extends Component {
             </DivProfileChart>
           </DivContainer>
         </PaperSheet> */}
-        <BarChart reviews={this.props.storeLecture.reviews} />
         <PaperSheet title="Review">
           {reviews ? (
             <CommonReview
@@ -128,19 +134,26 @@ class Lecture extends Component {
 
 const DivContainer = styled.div`
   display: flex;
+  flex-direction: row;
 `;
 
-const DivProfileChart = styled.div`
-  display: flex;
-  flex-direction: column;
+const DivAverage = styled.div`
+  flex-shrink: 0;
+  flex-grow: 0;
 `;
 
-const DivSpinner = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  margin-top: -50px;
-  margin-left: -100px;
+const DivDetail = styled.div`
+  font-size: 3rem;
+  padding: 1rem;
+  margin: 1rem;
+  flex-shrink: 0;
+`;
+
+const DivChart = styled.div`
+  margin: 1rem;
+  flex: 2;
+  flex-shrink: 1;
+  flex-grow: 3;
 `;
 
 export default connect(

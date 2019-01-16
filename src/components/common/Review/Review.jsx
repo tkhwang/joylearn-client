@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 
 // import ReviewForm from './ErrorReviewForm.jsx';
-import ReviewRadiostrap from '../Review/RadioButton/RadioStrap.jsx';
+import ReviewStar from '../Review/ReviewStar/ReviewStar';
 import CommonCardList from '../../common/Card/CardList';
 
 class Review extends Component {
@@ -42,7 +42,7 @@ class Review extends Component {
               Click to Review on {name}
             </Button>
             {/* <ReviewForm type={type} name={name} user={user} /> */}
-            <ReviewRadiostrap type={type} name={name} user={user} />
+            <ReviewStar type={type} name={name} user={user} />
           </React.Fragment>
         ) : (
           <Button color="primary" size="lg" block onClick={this.handleClick}>

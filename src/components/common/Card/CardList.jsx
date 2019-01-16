@@ -51,8 +51,10 @@ function CardList(props) {
     small,
     user,
     time,
-    avatar
+    avatar,
+    review
   } = props;
+  console.log('[+] /////////// ', props);
 
   return (
     <Card className={classes.card}>
@@ -62,6 +64,11 @@ function CardList(props) {
       {avatar && <img src={avatar} alt="avatar" width="50" height="50" />}
       <div className={classes.details}>
         <CardContent className={classes.content}>
+          {review && (
+            <Typography component="h6" variant="h6">
+              {review}
+            </Typography>
+          )}
           {title && (
             <Typography component="h6" variant="h6">
               {title}

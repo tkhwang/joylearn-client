@@ -95,6 +95,7 @@ class Topic extends Component {
                   url={instructor.mainUrl}
                   image={instructor.image}
                   time=""
+                  review={instructor.review}
                 />
               );
             })}
@@ -132,6 +133,7 @@ class Topic extends Component {
                   url={lecture.url}
                   image={lecture.screenshot}
                   time=""
+                  review={lecture.review}
                 />
               );
             })}
@@ -156,6 +158,7 @@ class Topic extends Component {
                   url={book.url}
                   image={book.screenshot}
                   time=""
+                  review={book.review}
                 />
               );
             })}

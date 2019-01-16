@@ -56,7 +56,12 @@ class NavBar extends Component {
           {/* <NavbarBrand href="/">
             J<FontAwesomeIcon icon="grin-alt" />Y
           </NavbarBrand> */}
-          <NavLink className="nav-item nav-link" to="/">
+          <NavLink
+            className="nav-item nav-link"
+            style={{ color: 'white', textDecoration: 'none' }}
+            activeStyle={{ color: 'white', textDecoration: 'none' }}
+            to="/"
+          >
             J<FaGrin />Y
           </NavLink>
           <NavbarToggler onClick={this.toggle} />

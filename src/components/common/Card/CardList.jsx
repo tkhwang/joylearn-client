@@ -50,9 +50,12 @@ class CardList extends React.Component {
   }
 
   handleClick = e => {
-    this.setState({
-      isClicked: true
-    });
+    const { type } = this.props;
+    if (type === 'instructor' || type === 'lecture' || type === 'book') {
+      this.setState({
+        isClicked: true
+      });
+    }
   };
 
   render() {

@@ -23,8 +23,8 @@ class List extends Component {
   async componentDidMount() {
     const apiEndpoint = `${SERVER_URL}/api/users/${this.props.user}`;
     const { data } = await http.get(apiEndpoint);
-    const avatar = data.user.avatar;
-    this.setState({ ...this.state, avatar: avatar });
+    // const avatar = data.user.avatar;
+    // this.setState({ ...this.state, avatar: avatar });
   }
 
   render() {
@@ -39,7 +39,8 @@ class List extends Component {
           type="instructor"
           small={<CommonCommentRender comments={comments} />}
           url={url}
-          avatar={this.state.avatar}
+          // avatar={this.state.avatar}
+          avatar=""
           user={user}
           time={updated_at}
         />

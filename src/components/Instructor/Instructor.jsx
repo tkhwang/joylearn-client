@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 import http from '../../services/httpService';
 
 // import Jit from './Jit/Jit';
@@ -106,7 +106,19 @@ class Instructor extends Component {
     return (
       <React.Fragment>
         <InstructorCard instructor={this.state.instructor} />
-        <BarChart reviews={this.props.storeInstructor.reviews} />
+
+        <DivContainer>
+          <DivAverage>
+            <PaperSheet title="Reviews Average">
+              <DivDetail>{`${this.state.instructor.review} / 5`}</DivDetail>
+            </PaperSheet>
+          </DivAverage>
+
+          <DivChart>
+            <BarChart reviews={this.props.storeInstructor.reviews} />
+          </DivChart>
+        </DivContainer>
+
         <PaperSheet title="Review">
           <CommonReview
             type="instructor"
@@ -115,6 +127,7 @@ class Instructor extends Component {
             reviews={reviews}
           />
         </PaperSheet>
+
         <PaperSheet title="Lectures">
           {this.state.lectures.map(lecture => {
             return (
@@ -153,6 +166,30 @@ class Instructor extends Component {
     );
   }
 }
+
+const DivContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const DivAverage = styled.div`
+  flex-shrink: 0;
+  flex-grow: 0;
+`;
+
+const DivDetail = styled.div`
+  font-size: 3rem;
+  padding: 1rem;
+  margin: 1rem;
+  flex-shrink: 0;
+`;
+
+const DivChart = styled.div`
+  margin: 1rem;
+  flex: 2;
+  flex-shrink: 1;
+  flex-grow: 3;
+`;
 
 export default connect(
   state => ({

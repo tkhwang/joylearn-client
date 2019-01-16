@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 
 import http from '../../services/httpService';
 import { Button } from 'reactstrap';
@@ -92,7 +93,28 @@ class Book extends Component {
     return (
       <React.Fragment>
         <BookCard book={this.state.book} instructor={this.state.instructor} />
-        <BarChart reviews={this.props.storeBook.reviews} />
+
+        <DivContainer>
+          <DivAverage>
+            <PaperSheet title="Reviews Average">
+              <DivDetail>{`${this.state.book.review} / 5`}</DivDetail>
+            </PaperSheet>
+          </DivAverage>
+
+          <DivChart>
+            <BarChart reviews={this.props.storeBook.reviews} />
+          </DivChart>
+        </DivContainer>
+
+        <PaperSheet title="Instructor" />
+
+        <CommonComment
+          type="book"
+          name={this.state.book.name}
+          user={user.name}
+          comments={comments}
+        />
+
         <PaperSheet title="Review">
           <CommonReview
             type="book"
@@ -112,6 +134,30 @@ class Book extends Component {
     );
   }
 }
+
+const DivContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const DivAverage = styled.div`
+  flex-shrink: 0;
+  flex-grow: 0;
+`;
+
+const DivDetail = styled.div`
+  font-size: 3rem;
+  padding: 1rem;
+  margin: 1rem;
+  flex-shrink: 0;
+`;
+
+const DivChart = styled.div`
+  margin: 1rem;
+  flex: 2;
+  flex-shrink: 1;
+  flex-grow: 3;
+`;
 
 export default connect(
   state => ({

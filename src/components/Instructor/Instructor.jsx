@@ -138,7 +138,7 @@ class Instructor extends Component {
                 url={book.url}
                 image={book.screenshot}
                 time=""
-                book={book.review}
+                review={book.review}
               />
             );
           })}

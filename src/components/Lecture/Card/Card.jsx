@@ -1,9 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import PaperSheet from '../../common/PaperSheet/PaperSheet';
 
+import { withStyles } from '@material-ui/core/styles';
+import { default as MaterialCard } from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardMedia from '@material-ui/core/CardMedia';
+
 const LectureCardInner = ({ instructor, lecture }) => {
-  console.log('in Card instructor : ', instructor);
-  console.log('in Card lecture : ', lecture);
   return (
     <ul>
       <li>
@@ -27,12 +32,51 @@ const LectureCardInner = ({ instructor, lecture }) => {
   );
 };
 
-const Card = ({ instructor, lecture }) => (
-  <React.Fragment>
-    <PaperSheet title={lecture.name}>
-      <LectureCardInner lecture={lecture} instructor={instructor} />
-    </PaperSheet>
-  </React.Fragment>
-);
+const styles = {
+  card: {
+    width: 150
+  },
+  media: {
+    height: 150
+  }
+};
 
-export default Card;
+class Card extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+  }
+
+  render() {
+    const { lecture, instructor, classes } = this.props;
+    return (
+      <React.Fragment>
+        <PaperSheet title={lecture.name}>
+          <DivContainer>
+            <MaterialCard className={classes.card}>
+              <CardActionArea>
+                <CardMedia
+                  className={classes.media}
+                  image={lecture.screenshot}
+                />
+              </CardActionArea>
+            </MaterialCard>
+            <LectureCardInner instructor={instructor} lecture={lecture} />
+          </DivContainer>
+        </PaperSheet>
+      </React.Fragment>
+    );
+  }
+}
+
+Card.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+const DivContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export default withStyles(styles)(Card);

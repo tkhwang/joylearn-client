@@ -53,7 +53,7 @@ class Instructor extends Component {
     const { name } = this.props.name.match.params;
     const { data } = await http.get(`${SERVER_URL}/instructor/${name}`);
     const { actionInstructor } = this.props;
-
+    console.log('did : ', data);
     console.log('[+] Insturcotr : props = ', data);
 
     const instructor = {

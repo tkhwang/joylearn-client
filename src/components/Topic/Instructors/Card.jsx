@@ -11,7 +11,6 @@ import Typography from '@material-ui/core/Typography';
 // import MaterialIcon, { colorPalette } from 'material-icons-react';
 
 import { Redirect } from 'react-router';
-import { Link } from 'react-router-dom';
 
 const styles = {
   card: {

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Loader from 'react-loader-spinner';
+// import Spinner from '../common/Spinner/Spinner';
 import CommonPaperSheet from '../common/PaperSheet/PaperSheet.jsx';
 import {
   InputGroup,
@@ -122,6 +123,7 @@ class Topics extends Component {
                 width="200"
               />
             </DivSpinner>
+            // <Spinner />
           )}
         </CommonPaperSheet>
       </React.Fragment>

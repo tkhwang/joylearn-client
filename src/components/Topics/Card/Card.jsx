@@ -35,8 +35,6 @@ class CardTopic extends Component {
     });
   }
 
-  // <Redirect to={`/topic?topic=${title}`} />
-
   render() {
     const { classes, image, title } = this.props;
     return (

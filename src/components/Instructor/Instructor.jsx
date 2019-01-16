@@ -106,6 +106,7 @@ class Instructor extends Component {
     return (
       <React.Fragment>
         <InstructorCard instructor={this.state.instructor} />
+
         <DivContainer>
           <DivAverage>
             <PaperSheet title="Reviews Average">
@@ -117,6 +118,16 @@ class Instructor extends Component {
             <BarChart reviews={this.props.storeInstructor.reviews} />
           </DivChart>
         </DivContainer>
+
+        <PaperSheet title="Review">
+          <CommonReview
+            type="instructor"
+            name={this.state.instructor.name}
+            user={user.name}
+            reviews={reviews}
+          />
+        </PaperSheet>
+
         <PaperSheet title="Lectures">
           {this.state.lectures.map(lecture => {
             return (
@@ -126,6 +137,7 @@ class Instructor extends Component {
                 url={lecture.url}
                 image={lecture.screenshot}
                 time=""
+                review={lecture.review}
               />
             );
           })}
@@ -139,25 +151,17 @@ class Instructor extends Component {
                 url={book.url}
                 image={book.screenshot}
                 time=""
+                review={book.review}
               />
             );
           })}
         </PaperSheet>
-
         <CommonComment
           type="instructor"
           name={this.state.instructor.name}
           user={user.name}
           comments={comments}
         />
-        <PaperSheet title="Review">
-          <CommonReview
-            type="instructor"
-            name={this.state.instructor.name}
-            user={user.name}
-            reviews={reviews}
-          />
-        </PaperSheet>
       </React.Fragment>
     );
   }

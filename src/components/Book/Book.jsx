@@ -93,6 +93,7 @@ class Book extends Component {
     return (
       <React.Fragment>
         <BookCard book={this.state.book} instructor={this.state.instructor} />
+
         <DivContainer>
           <DivAverage>
             <PaperSheet title="Reviews Average">
@@ -122,6 +123,13 @@ class Book extends Component {
             reviews={reviews}
           />
         </PaperSheet>
+        <PaperSheet title="Instructor" />
+        <CommonComment
+          type="book"
+          name={this.state.book.name}
+          user={user.name}
+          comments={comments}
+        />
       </React.Fragment>
     );
   }

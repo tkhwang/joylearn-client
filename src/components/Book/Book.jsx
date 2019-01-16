@@ -93,15 +93,6 @@ class Book extends Component {
       <React.Fragment>
         <BookCard book={this.state.book} instructor={this.state.instructor} />
         <BarChart reviews={this.props.storeBook.reviews} />
-        <PaperSheet title="Instructor" />
-
-        <CommonComment
-          type="book"
-          name={this.state.book.name}
-          user={user.name}
-          comments={comments}
-        />
-
         <PaperSheet title="Review">
           <CommonReview
             type="book"
@@ -110,6 +101,13 @@ class Book extends Component {
             reviews={reviews}
           />
         </PaperSheet>
+        <PaperSheet title="Instructor" />
+        <CommonComment
+          type="book"
+          name={this.state.book.name}
+          user={user.name}
+          comments={comments}
+        />
       </React.Fragment>
     );
   }

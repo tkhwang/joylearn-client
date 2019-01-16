@@ -107,6 +107,14 @@ class Instructor extends Component {
       <React.Fragment>
         <InstructorCard instructor={this.state.instructor} />
         <BarChart reviews={this.props.storeInstructor.reviews} />
+        <PaperSheet title="Review">
+          <CommonReview
+            type="instructor"
+            name={this.state.instructor.name}
+            user={user.name}
+            reviews={reviews}
+          />
+        </PaperSheet>
         <PaperSheet title="Lectures">
           {this.state.lectures.map(lecture => {
             return (
@@ -133,21 +141,12 @@ class Instructor extends Component {
             );
           })}
         </PaperSheet>
-
         <CommonComment
           type="instructor"
           name={this.state.instructor.name}
           user={user.name}
           comments={comments}
         />
-        <PaperSheet title="Review">
-          <CommonReview
-            type="instructor"
-            name={this.state.instructor.name}
-            user={user.name}
-            reviews={reviews}
-          />
-        </PaperSheet>
       </React.Fragment>
     );
   }

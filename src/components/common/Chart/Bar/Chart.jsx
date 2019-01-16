@@ -10,15 +10,15 @@ const Chart = ({ reviews }) => {
 
   if (reviews) {
     for (let i = 0; i < reviews.length; i++) {
-      if (reviews[i].review === '1') {
+      if (reviews[i].review === 1) {
         worst = worst + 1;
-      } else if (reviews[i].review === '2') {
+      } else if (reviews[i].review === 2) {
         bad = bad + 1;
-      } else if (reviews[i].review === '3') {
+      } else if (reviews[i].review === 3) {
         soso = soso + 1;
-      } else if (reviews[i].review === '4') {
+      } else if (reviews[i].review === 4) {
         better = better + 1;
-      } else if (reviews[i].review === '5') {
+      } else if (reviews[i].review === 5) {
         best = best + 1;
       }
     }

@@ -68,8 +68,8 @@ class Lecture extends Component {
     const { comments, reviews } = this.props.storeLecture;
     const { lecture } = this.state;
 
-    console.log('이거 확인 l: ', this.state.lecture);
-    console.log('이 녀석도 확인 i: ', this.state.instructor);
+    console.log('render l: ', this.state.lecture);
+    console.log('render i: ', this.state.instructor);
     return (
       <React.Fragment>
         <LectureCard

@@ -3,6 +3,7 @@ import Joi from 'joi-browser';
 import Form from '../common/Form';
 import * as userService from '../../services/userService';
 import auth from '../../services/authService';
+import CommonPaperSheet from '../common/PaperSheet/PaperSheet.jsx';
 
 class RegisterForm extends Form {
   state = {
@@ -42,14 +43,15 @@ class RegisterForm extends Form {
 
   render() {
     return (
-      <div className="login">
-        <h1>Register</h1>
-        <form onSubmit={this.handleSubmit}>
-          {this.renderInput('username', 'Email')}
-          {this.renderInput('password', 'Password', 'password')}
-          {this.renderInput('name', 'Nickname')}
-          {this.renderButton('Register')}
-        </form>
+      <div>
+        <CommonPaperSheet title="Register">
+          <form onSubmit={this.handleSubmit}>
+            {this.renderInput('username', 'Email')}
+            {this.renderInput('password', 'Password', 'password')}
+            {this.renderInput('name', 'Nickname')}
+            {this.renderButton('Register')}
+          </form>
+        </CommonPaperSheet>
       </div>
     );
   }

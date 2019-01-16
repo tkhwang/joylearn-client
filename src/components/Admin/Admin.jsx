@@ -6,6 +6,7 @@ import './Admin.css';
 import RegisterForm from '../LoginForm/RegisterForm';
 import Form from '../common/Form';
 import auth from '../../services/authService';
+import CommonPaperSheet from '../common/PaperSheet/PaperSheet.jsx';
 
 class Admin extends Form {
   state = {
@@ -43,14 +44,14 @@ class Admin extends Form {
     if (auth.getCurrentUser()) return <Redirect to="/" />;
 
     return (
-      <div className="login">
-        <h4>Admin : Only for local testing w/o social login.</h4>
-        <form onSubmit={this.handleSubmit}>
-          {this.renderInput('username', 'Email')}
-          {this.renderInput('password', 'Password', 'password')}
-          {this.renderButton('Login')}
-        </form>
-        <hr />
+      <div>
+        <CommonPaperSheet title="Admin : Only for local testing w/o social login.">
+          <form onSubmit={this.handleSubmit}>
+            {this.renderInput('username', 'Email')}
+            {this.renderInput('password', 'Password', 'password')}
+            {this.renderButton('Login')}
+          </form>
+        </CommonPaperSheet>
         <RegisterForm />
       </div>
     );

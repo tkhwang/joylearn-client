@@ -102,7 +102,10 @@ class Instructor extends Component {
     const { classes } = this.props;
     const { comments, reviews } = this.props.storeInstructor;
     console.log('[+] Instructor : comments = ', comments);
-
+    console.log(
+      'this.props.storeInstructor.reviews : ',
+      this.props.storeInstructor.reviews
+    );
     return (
       <React.Fragment>
         <InstructorCard instructor={this.state.instructor} />

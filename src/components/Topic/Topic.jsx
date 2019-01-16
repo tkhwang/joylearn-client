@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
+// import Spinner from '../common/Spinner/Spinner';
 
 import CommonCardList from '../common/Card/CardList.jsx';
 import PaperSheet from '../common/PaperSheet/PaperSheet.jsx';
@@ -29,7 +30,10 @@ class Topic extends Component {
       instructors: [],
       lectures: [],
       books: [],
-      courses: []
+      courses: [],
+      selectedInstructors: [],
+      selectedLectures: [],
+      selectedBooks: []
     };
   }
 
@@ -50,11 +54,64 @@ class Topic extends Component {
 
     const { data } = await http.get(`${SERVER_URL}/t/${topic}`);
 
+    console.log('did : ', data);
+
     this.setState({
       ...this.state,
       instructors: data.instructors,
       lectures: data.lectures,
       books: data.books
+    });
+
+    const selectedInstructors = [];
+    const selectedLectures = [];
+    const selectedBooks = [];
+
+    const sortedInstructors = data.instructors.sort((a, b) => {
+      if (a.review < b.review) {
+        return 1;
+      }
+      if (a.review > b.review) {
+        return -1;
+      }
+      return 0;
+    });
+
+    const sortedLectures = data.lectures.sort((a, b) => {
+      if (a.review < b.review) {
+        return 1;
+      }
+      if (a.review > b.review) {
+        return -1;
+      }
+      return 0;
+    });
+
+    const sortedBooks = data.books.sort((a, b) => {
+      if (a.review < b.review) {
+        return 1;
+      }
+      if (a.review > b.review) {
+        return -1;
+      }
+      return 0;
+    });
+
+    for (let i = 0; i < 3; i++) {
+      selectedInstructors.push(sortedInstructors[i]);
+      selectedLectures.push(sortedLectures[i]);
+      selectedBooks.push(sortedBooks[i]);
+    }
+
+    console.log('selectedInstructors : ', selectedInstructors);
+    console.log('selectedLectures : ', selectedLectures);
+    console.log('selectedBooks : ', selectedBooks);
+
+    this.setState({
+      ...this.state,
+      selectedInstructors: selectedInstructors,
+      selectedLectures: selectedLectures,
+      selectedBooks: selectedBooks
     });
   }
 
@@ -72,7 +129,7 @@ class Topic extends Component {
           }
         >
           <CardsContatiner>
-            {this.state.instructors.map(instructor => {
+            {this.state.selectedInstructors.map(instructor => {
               return (
                 <InstructorsCard
                   fullName={instructor.fullName}
@@ -86,6 +143,7 @@ class Topic extends Component {
               );
             })}
           </CardsContatiner>
+
           <PaperSheet title="More Instructors">
             {this.state.instructors.map(instructor => {
               return (
@@ -112,7 +170,7 @@ class Topic extends Component {
           }
         >
           <CardsContatiner>
-            {this.state.lectures.map(lecture => {
+            {this.state.selectedLectures.map(lecture => {
               return (
                 <LecturesCard
                   name={lecture.name}
@@ -124,6 +182,7 @@ class Topic extends Component {
               );
             })}
           </CardsContatiner>
+
           <PaperSheet title="More Lectures">
             {this.state.lectures.map(lecture => {
               return (
@@ -149,6 +208,20 @@ class Topic extends Component {
             </Link>
           }
         >
+          <CardsContatiner>
+            {this.state.selectedBooks.map(book => {
+              return (
+                <LecturesCard
+                  name={book.name}
+                  image={book.screenshot}
+                  url={book.url}
+                  lang={book.lang}
+                  free={book.free}
+                />
+              );
+            })}
+          </CardsContatiner>
+
           <PaperSheet title="More Books">
             {this.state.books.map(book => {
               return (
@@ -179,8 +252,6 @@ class Topic extends Component {
   };
 
   render() {
-    // console.log('topic / this.state : ', this.state);
-
     return (
       <React.Fragment>
         <Title title={this.state.topic} />
@@ -193,6 +264,7 @@ class Topic extends Component {
           <DivSpinner>
             <Loader type="Triangle" color="#00BFFF" height="200" width="200" />
           </DivSpinner>
+          // <Spinner />
         )}
       </React.Fragment>
     );

@@ -54,7 +54,6 @@ function CardList(props) {
     avatar,
     review
   } = props;
-  console.log('[+] /////////// ', props);
 
   return (
     <Card className={classes.card}>

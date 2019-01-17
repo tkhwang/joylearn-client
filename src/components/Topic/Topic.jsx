@@ -7,11 +7,13 @@ import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 // import Spinner from '../common/Spinner/Spinner';
 
+import Vote from '../common/Vote/Vote';
 import CommonCardList from '../common/Card/CardList.jsx';
 import PaperSheet from '../common/PaperSheet/PaperSheet.jsx';
 import Emoji from '../common/Emoji';
 import * as signinActions from '../../actions/signin';
 import * as topicsActions from '../../actions/topics';
+import * as lecturesActions from '../../actions/lectures';
 
 import Title from '../common/Title/Title';
 import InstructorsCard from '../Topic/Instructors/Card';
@@ -40,13 +42,21 @@ class Topic extends Component {
 
   async componentDidMount() {
     const { topic } = this.props.topic.match.params;
+    const { actionTopics, actionLectures } = this.props;
 
     this.setState({
       ...this.state,
       topic: topic
     });
 
-    const { topics } = this.props.storeTopics;
+    let { topics } = this.props.storeTopics;
+    // TODO: Workaround for loading
+    if (topics.length === 0) {
+      const data = await http.get(SERVER_URL + '/topics');
+
+      topics = data.data;
+      actionTopics.get_topics(data.data);
+    }
 
     const selectedTopic = topics.filter(obj => {
       return obj.name === topic;
@@ -294,10 +304,12 @@ const DivSpinner = styled.div`
 export default connect(
   state => ({
     storeSignin: state.signin,
-    storeTopics: state.topics
+    storeTopics: state.topics,
+    storeLectures: state.lectures
   }),
   dispatch => ({
     actionsSign: bindActionCreators(signinActions, dispatch),
-    actionTopics: bindActionCreators(topicsActions, dispatch)
+    actionTopics: bindActionCreators(topicsActions, dispatch),
+    actionLectures: bindActionCreators(lecturesActions, dispatch)
   })
 )(Topic);

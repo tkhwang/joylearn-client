@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
+// import Spinner from '../common/Spinner/Spinner';
 
 import Vote from '../common/Vote/Vote';
 import CommonCardList from '../common/Card/CardList.jsx';
@@ -17,6 +18,7 @@ import * as lecturesActions from '../../actions/lectures';
 import Title from '../common/Title/Title';
 import InstructorsCard from '../Topic/Instructors/Card';
 import LecturesCard from '../Topic/Lectures/Card';
+import BooksCard from '../Topic/Books/Card';
 // import Courses from './Courses/Courses';
 
 import config from '../../config';
@@ -31,7 +33,10 @@ class Topic extends Component {
       instructors: [],
       lectures: [],
       books: [],
-      courses: []
+      courses: [],
+      selectedInstructors: [],
+      selectedLectures: [],
+      selectedBooks: []
     };
   }
 
@@ -60,17 +65,65 @@ class Topic extends Component {
 
     const { data } = await http.get(`${SERVER_URL}/t/${topic}`);
 
-    this.setState(
-      {
-        ...this.state,
-        instructors: data.instructors,
-        lectures: data.lectures,
-        books: data.books
-      },
-      () => {
-        actionLectures.get_lectures(this.state.lectures);
+    console.log('did : ', data);
+
+    this.setState({
+      ...this.state,
+      instructors: data.instructors,
+      lectures: data.lectures,
+      books: data.books
+    });
+
+    const selectedInstructors = [];
+    const selectedLectures = [];
+    const selectedBooks = [];
+
+    const sortedInstructors = data.instructors.sort((a, b) => {
+      if (a.review < b.review) {
+        return 1;
       }
-    );
+      if (a.review > b.review) {
+        return -1;
+      }
+      return 0;
+    });
+
+    const sortedLectures = data.lectures.sort((a, b) => {
+      if (a.review < b.review) {
+        return 1;
+      }
+      if (a.review > b.review) {
+        return -1;
+      }
+      return 0;
+    });
+
+    const sortedBooks = data.books.sort((a, b) => {
+      if (a.review < b.review) {
+        return 1;
+      }
+      if (a.review > b.review) {
+        return -1;
+      }
+      return 0;
+    });
+
+    for (let i = 0; i < 3; i++) {
+      selectedInstructors.push(sortedInstructors[i]);
+      selectedLectures.push(sortedLectures[i]);
+      selectedBooks.push(sortedBooks[i]);
+    }
+
+    console.log('selectedInstructors : ', selectedInstructors);
+    console.log('selectedLectures : ', selectedLectures);
+    console.log('selectedBooks : ', selectedBooks);
+
+    this.setState({
+      ...this.state,
+      selectedInstructors: selectedInstructors,
+      selectedLectures: selectedLectures,
+      selectedBooks: selectedBooks
+    });
   }
 
   _renderTopic = () => {
@@ -79,28 +132,30 @@ class Topic extends Component {
       <React.Fragment>
         <PaperSheet
           title={
-            <Link to={`/i/${this.state.topic.name}`}>
-              <h3>
-                Instructors <Emoji symbol="🎓" label="smile" />
-              </h3>
-            </Link>
+            // <Link to={`/i/${this.state.topic.name}`}>
+            <h3>
+              Instructors <Emoji symbol="🎓" label="smile" />
+            </h3>
+            // </Link>
           }
         >
           <CardsContatiner>
-            {this.state.instructors.map(instructor => {
+            {this.state.selectedInstructors.map(instructor => {
               return (
                 <InstructorsCard
-                  fullName={instructor.fullName}
-                  name={instructor.name}
-                  git={instructor.gitHub}
-                  url={instructor.mainUrl}
-                  image={instructor.image}
-                  lang={instructor.lang}
-                  key={instructor.name}
+                  instructor={instructor}
+                  // fullName={instructor.fullName}
+                  // name={instructor.name}
+                  // git={instructor.gitHub}
+                  // url={instructor.mainUrl}
+                  // image={instructor.image}
+                  // lang={instructor.lang}
+                  // key={instructor.name}
                 />
               );
             })}
           </CardsContatiner>
+
           <PaperSheet title="More Instructors">
             {this.state.instructors.map(instructor => {
               return (
@@ -119,26 +174,28 @@ class Topic extends Component {
 
         <PaperSheet
           title={
-            <Link to={`/l/${this.state.topic.name}`}>
-              <h3>
-                Lectures <Emoji symbol="📘" label="smile" />
-              </h3>
-            </Link>
+            // <Link to={`/l/${this.state.topic.name}`}>
+            <h3>
+              Lectures <Emoji symbol="📘" label="smile" />
+            </h3>
+            // </Link>
           }
         >
           <CardsContatiner>
-            {this.state.lectures.map(lecture => {
+            {this.state.selectedLectures.map(lecture => {
               return (
                 <LecturesCard
-                  name={lecture.name}
-                  image={lecture.screenshot}
-                  url={lecture.url}
-                  lang={lecture.lang}
-                  free={lecture.free}
+                  lecture={lecture}
+                  // name={lecture.name}
+                  // image={lecture.screenshot}
+                  // url={lecture.url}
+                  // lang={lecture.lang}
+                  // free={lecture.free}
                 />
               );
             })}
           </CardsContatiner>
+
           <PaperSheet title="More Lectures">
             {this.state.lectures.map(lecture => {
               return (
@@ -157,13 +214,28 @@ class Topic extends Component {
 
         <PaperSheet
           title={
-            <Link to={`/b/${this.state.topic.name}`}>
-              <h3>
-                Books <Emoji symbol="📘" label="smile" />
-              </h3>
-            </Link>
+            // <Link to={`/b/${this.state.topic.name}`}>
+            <h3>
+              Books <Emoji symbol="📘" label="smile" />
+            </h3>
+            // </Link>
           }
         >
+          <CardsContatiner>
+            {this.state.selectedBooks.map(book => {
+              return (
+                <BooksCard
+                  book={book}
+                  // name={book.name}
+                  // image={book.screenshot}
+                  // url={book.url}
+                  // lang={book.lang}
+                  // free={book.free}
+                />
+              );
+            })}
+          </CardsContatiner>
+
           <PaperSheet title="More Books">
             {this.state.books.map(book => {
               return (
@@ -194,8 +266,6 @@ class Topic extends Component {
   };
 
   render() {
-    // console.log('topic / this.state : ', this.state);
-
     return (
       <React.Fragment>
         <Title title={this.state.topic} />
@@ -208,6 +278,7 @@ class Topic extends Component {
           <DivSpinner>
             <Loader type="Triangle" color="#00BFFF" height="200" width="200" />
           </DivSpinner>
+          // <Spinner />
         )}
       </React.Fragment>
     );

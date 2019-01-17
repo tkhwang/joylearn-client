@@ -67,12 +67,17 @@ class Topic extends Component {
 
     console.log('did : ', data);
 
-    this.setState({
-      ...this.state,
-      instructors: data.instructors,
-      lectures: data.lectures,
-      books: data.books
-    });
+    this.setState(
+      {
+        ...this.state,
+        instructors: data.instructors,
+        lectures: data.lectures,
+        books: data.books
+      },
+      () => {
+        actionLectures.get_lectures(this.state.lectures);
+      }
+    );
 
     const selectedInstructors = [];
     const selectedLectures = [];

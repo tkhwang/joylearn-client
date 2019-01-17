@@ -106,7 +106,7 @@ class SearchList extends Component {
             <CommonSearchListCard
               type=""
               title={array.name}
-              image={array.image}
+              image={array.logo}
               courseUnit={courseUnit}
               onClick={this.handleCardClick}
             />

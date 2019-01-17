@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 // import Spinner from '../common/Spinner/Spinner';
+import RecommendButton from '../common/RecommendButton/RecommendButton';
 
 import CommonCardList from '../common/Card/CardList.jsx';
 import PaperSheet from '../common/PaperSheet/PaperSheet.jsx';
@@ -34,7 +35,8 @@ class Topic extends Component {
       courses: [],
       selectedInstructors: [],
       selectedLectures: [],
-      selectedBooks: []
+      selectedBooks: [],
+      clicked: false
     };
   }
 
@@ -116,6 +118,12 @@ class Topic extends Component {
     });
   }
 
+  _handleClick = () => {
+    this.setState({
+      clicked: true
+    });
+  };
+
   _renderTopic = () => {
     // const avatar = localStorage.getItem('avatar');
     return (
@@ -159,6 +167,7 @@ class Topic extends Component {
                 />
               );
             })}
+            <RecommendButton type="instructor" instructor={'Instructor'} />
           </PaperSheet>
         </PaperSheet>
 
@@ -199,6 +208,7 @@ class Topic extends Component {
                 />
               );
             })}
+            <RecommendButton type="lecture" lecture={'Lecture'} />
           </PaperSheet>
         </PaperSheet>
 
@@ -240,6 +250,7 @@ class Topic extends Component {
               );
             })}
           </PaperSheet>
+          <RecommendButton type="book" book={'Book'} />
         </PaperSheet>
 
         <PaperSheet

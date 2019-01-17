@@ -5,11 +5,6 @@ import http from '../../services/httpService';
 
 // import Jit from './Jit/Jit';
 
-import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import { Button } from 'reactstrap';
-
 import InstructorCard from '../Instructor/Card/Card';
 import BarChart from '../common/Chart/Bar/Chart';
 import CommonCardList from '../common/Card/CardList.jsx';

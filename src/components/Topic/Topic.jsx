@@ -192,7 +192,7 @@ class Topic extends Component {
                 <LecturesCard
                   lecture={lecture}
                   // name={lecture.name}
-                  // image={lecture.screenshot}
+                  // image={lecture.image}
                   // url={lecture.url}
                   // lang={lecture.lang}
                   // free={lecture.free}
@@ -208,7 +208,7 @@ class Topic extends Component {
                   type="lecture"
                   title={lecture.name}
                   url={lecture.url}
-                  image={lecture.screenshot}
+                  image={lecture.image}
                   time=""
                   review={lecture.review}
                 />
@@ -232,7 +232,7 @@ class Topic extends Component {
                 <BooksCard
                   book={book}
                   // name={book.name}
-                  // image={book.screenshot}
+                  // image={book.image}
                   // url={book.url}
                   // lang={book.lang}
                   // free={book.free}
@@ -248,7 +248,7 @@ class Topic extends Component {
                   type="book"
                   title={book.name}
                   url={book.url}
-                  image={book.screenshot}
+                  image={book.image}
                   time=""
                   review={book.review}
                 />

@@ -136,7 +136,7 @@ class Lectures extends Component {
             <div>
               <LecturesCard
                 name={lecture.name}
-                image={lecture.screenshot}
+                image={lecture.image}
                 free={lecture.free}
                 lang={lecture.lang}
                 url={lecture.url}

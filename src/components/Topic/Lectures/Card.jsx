@@ -40,7 +40,7 @@ class Card extends Component {
 
   renderPage() {
     const { classes } = this.props;
-    const { name, screenshot, url, lang, free } = this.props.lecture;
+    const { name, image, url, lang, free } = this.props.lecture;
     return (
       <div onClick={this.handleClick}>
         {this.state.clicked ? (
@@ -48,11 +48,7 @@ class Card extends Component {
         ) : (
           <MaterialCard className={classes.card}>
             <CardActionArea>
-              <CardMedia
-                className={classes.media}
-                image={screenshot}
-                title={name}
-              />
+              <CardMedia className={classes.media} image={image} title={name} />
               <CardContent>
                 {name && (
                   <Typography gutterBottom variant="h5" component="h2">

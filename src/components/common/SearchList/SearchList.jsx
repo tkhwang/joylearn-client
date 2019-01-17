@@ -87,7 +87,7 @@ class SearchList extends Component {
   handleSubmitClick() {}
 
   render() {
-    const { title, arrays, courseUnit } = this.props;
+    const { title, type, arrays, courseUnit } = this.props;
     return (
       <React.Fragment>
         <InputGroup>
@@ -97,6 +97,11 @@ class SearchList extends Component {
           <Input
             type="text"
             name="title"
+            placeholder={
+              type === 'topic'
+                ? 'Type Topic name which you want to make course up.'
+                : 'Type Lecture name which you want to make course up. (Lecture should be registered in joy.'
+            }
             value={this.state.valueTitle}
             onChange={this.handleChange}
           />

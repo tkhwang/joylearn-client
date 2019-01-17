@@ -46,14 +46,16 @@ class Register extends Component {
     return (
       <React.Fragment>
         <CommonSearchList
-          courseUnit={this.courseUnit}
-          title="Select Topic"
+          type="topic"
+          title="Topic"
           arrays={topics}
+          courseUnit={this.courseUnit}
         />
         <CommonSearchList
-          courseUnit={this.courseUnit}
-          title="Search Lecture"
+          type="lecture"
+          title="Lecture"
           arrays={lectures}
+          courseUnit={this.courseUnit}
         />
         <Button
           color="primary"

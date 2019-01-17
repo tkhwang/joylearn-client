@@ -10,6 +10,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 // import MaterialIcon, { colorPalette } from 'material-icons-react';
 
+import urlencode from 'urlencode';
 import { Redirect } from 'react-router';
 
 const styles = {
@@ -38,27 +39,36 @@ class Card extends Component {
     });
   }
 
-  render() {
-    const { classes, fullName, name, git, url, image } = this.props;
+  renderPage() {
+    const { classes } = this.props;
+    const { fullName, name, gitHub, mainUrl, image } = this.props.instructor;
     return (
       <div onClick={this.handleClick}>
         {this.state.clicked ? (
-          <Redirect to={`/instructor/${name}`} />
+          <Redirect to={`/instructor/${urlencode(name)}`} />
         ) : (
           <MaterialCard className={classes.card}>
             <CardActionArea>
               <CardMedia className={classes.media} image={image} name={name} />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
-                  {fullName ? fullName : name}
+                  {fullName === undefined ? name : fullName}
                 </Typography>
-                <Typography component="p">{git}</Typography>
+                {gitHub && <Typography component="p">{gitHub}</Typography>}
                 {/* <Typography component="p">{url}</Typography> */}
               </CardContent>
             </CardActionArea>
           </MaterialCard>
         )}
       </div>
+    );
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        {this.props.instructor && this.renderPage()}
+      </React.Fragment>
     );
   }
 }

@@ -16,6 +16,7 @@ import * as topicsActions from '../../actions/topics';
 import Title from '../common/Title/Title';
 import InstructorsCard from '../Topic/Instructors/Card';
 import LecturesCard from '../Topic/Lectures/Card';
+import BooksCard from '../Topic/Books/Card';
 // import Courses from './Courses/Courses';
 
 import config from '../../config';
@@ -121,24 +122,25 @@ class Topic extends Component {
       <React.Fragment>
         <PaperSheet
           title={
-            <Link to={`/i/${this.state.topic.name}`}>
-              <h3>
-                Instructors <Emoji symbol="🎓" label="smile" />
-              </h3>
-            </Link>
+            // <Link to={`/i/${this.state.topic.name}`}>
+            <h3>
+              Instructors <Emoji symbol="🎓" label="smile" />
+            </h3>
+            // </Link>
           }
         >
           <CardsContatiner>
             {this.state.selectedInstructors.map(instructor => {
               return (
                 <InstructorsCard
-                  fullName={instructor.fullName}
-                  name={instructor.name}
-                  git={instructor.gitHub}
-                  url={instructor.mainUrl}
-                  image={instructor.image}
-                  lang={instructor.lang}
-                  key={instructor.name}
+                  instructor={instructor}
+                  // fullName={instructor.fullName}
+                  // name={instructor.name}
+                  // git={instructor.gitHub}
+                  // url={instructor.mainUrl}
+                  // image={instructor.image}
+                  // lang={instructor.lang}
+                  // key={instructor.name}
                 />
               );
             })}
@@ -162,22 +164,23 @@ class Topic extends Component {
 
         <PaperSheet
           title={
-            <Link to={`/l/${this.state.topic.name}`}>
-              <h3>
-                Lectures <Emoji symbol="📘" label="smile" />
-              </h3>
-            </Link>
+            // <Link to={`/l/${this.state.topic.name}`}>
+            <h3>
+              Lectures <Emoji symbol="📘" label="smile" />
+            </h3>
+            // </Link>
           }
         >
           <CardsContatiner>
             {this.state.selectedLectures.map(lecture => {
               return (
                 <LecturesCard
-                  name={lecture.name}
-                  image={lecture.screenshot}
-                  url={lecture.url}
-                  lang={lecture.lang}
-                  free={lecture.free}
+                  lecture={lecture}
+                  // name={lecture.name}
+                  // image={lecture.screenshot}
+                  // url={lecture.url}
+                  // lang={lecture.lang}
+                  // free={lecture.free}
                 />
               );
             })}
@@ -201,22 +204,23 @@ class Topic extends Component {
 
         <PaperSheet
           title={
-            <Link to={`/b/${this.state.topic.name}`}>
-              <h3>
-                Books <Emoji symbol="📘" label="smile" />
-              </h3>
-            </Link>
+            // <Link to={`/b/${this.state.topic.name}`}>
+            <h3>
+              Books <Emoji symbol="📘" label="smile" />
+            </h3>
+            // </Link>
           }
         >
           <CardsContatiner>
             {this.state.selectedBooks.map(book => {
               return (
-                <LecturesCard
-                  name={book.name}
-                  image={book.screenshot}
-                  url={book.url}
-                  lang={book.lang}
-                  free={book.free}
+                <BooksCard
+                  book={book}
+                  // name={book.name}
+                  // image={book.screenshot}
+                  // url={book.url}
+                  // lang={book.lang}
+                  // free={book.free}
                 />
               );
             })}

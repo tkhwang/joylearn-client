@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
+import urlencode from 'urlencode';
 import { withStyles } from '@material-ui/core/styles';
 import { default as MaterialCard } from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-// import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-// import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-// import MaterialIcon, { colorPalette } from 'material-icons-react';
-import { Redirect } from 'react-router';
-
-import urlencode from 'urlencode';
 
 const styles = {
   card: {
@@ -40,11 +36,11 @@ class Card extends Component {
 
   renderPage() {
     const { classes } = this.props;
-    const { name, screenshot, url, lang, free } = this.props.lecture;
+    const { name, screenshot, url, lang, free } = this.props.book;
     return (
       <div onClick={this.handleClick}>
         {this.state.clicked ? (
-          <Redirect to={`/lecture/${urlencode(name)}`} />
+          <Redirect to={`/book/${urlencode(name)}`} />
         ) : (
           <MaterialCard className={classes.card}>
             <CardActionArea>
@@ -77,8 +73,12 @@ class Card extends Component {
   }
 
   render() {
+    console.log('this.props : ', this.props);
+    console.log('this.props.book : ', this.props.book);
+    // const { classes, name, image, url, lang, free } = this.props;
+
     return (
-      <React.Fragment>{this.props.lecture && this.renderPage()}</React.Fragment>
+      <React.Fragment>{this.props.book && this.renderPage()}</React.Fragment>
     );
   }
 }

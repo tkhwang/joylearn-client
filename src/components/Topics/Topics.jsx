@@ -86,7 +86,7 @@ class Topics extends Component {
             {this.state.topics.map((topic, index, topics) => {
               return (
                 <TopicsCard
-                  image={topic.logo}
+                  image={topic.image}
                   title={topic.name}
                   description={''}
                   key={topic}

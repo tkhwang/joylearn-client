@@ -14,7 +14,7 @@ class Title extends Component {
       <PaperSheet>
         <DivContainer>
           {/* <DivTopic> */}
-          <TopicLogo image={this.props.title.logo} />
+          <TopicLogo image={this.props.title.image} />
           <DivTopicChildren>
             <H1TopicTitle>{this.props.title.name}</H1TopicTitle>
             <H3TopicContents>{`${

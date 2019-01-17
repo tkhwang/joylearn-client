@@ -30,15 +30,11 @@ class Card extends Component {
 
   render() {
     const { classes, tname } = this.props;
-    const { name, screenshot, url, free, lang } = this.props.lecture;
+    const { name, image, url, free, lang } = this.props.lecture;
     return (
       <MaterialCard className={classes.card}>
         <CardActionArea>
-          <CardMedia
-            className={classes.media}
-            image={screenshot}
-            title={name}
-          />
+          <CardMedia className={classes.media} image={image} title={name} />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
               {name}

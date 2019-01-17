@@ -138,7 +138,7 @@ class Instructor extends Component {
                 type="lecture"
                 title={lecture.name}
                 url={lecture.url}
-                image={lecture.screenshot}
+                image={lecture.image}
                 time=""
                 review={lecture.review}
               />
@@ -152,7 +152,7 @@ class Instructor extends Component {
                 type="book"
                 title={book.name}
                 url={book.url}
-                image={book.screenshot}
+                image={book.image}
                 time=""
                 review={book.review}
               />

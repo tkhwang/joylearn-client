@@ -57,7 +57,7 @@ class Card extends React.Component {
           <DivContainer>
             <MaterialCard className={classes.card}>
               <CardActionArea>
-                <CardMedia className={classes.media} image={book.screenshot} />
+                <CardMedia className={classes.media} image={book.image} />
               </CardActionArea>
             </MaterialCard>
             <BookCardInner book={book} instructor={instructor} />

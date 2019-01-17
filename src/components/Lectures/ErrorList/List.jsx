@@ -12,7 +12,7 @@ class LecturesList extends Component {
   render() {
     return (
       <div className="lecture">
-        <LectureScreenshot image={this.props.screenshot} />
+        <Lectureimage image={this.props.image} />
         <h3>{this.props.title}</h3>
         <h1>{this.props.name}</h1>
         <h3>{this.props.instructor}</h3>
@@ -24,7 +24,7 @@ class LecturesList extends Component {
   }
 }
 
-const LectureScreenshot = ({ image }) => {
+const Lectureimage = ({ image }) => {
   return <img className="lectureimage" src={image} alt="Lecture" />;
 };
 
@@ -32,7 +32,7 @@ const Free = ({ free }) => {
   return free === true ? <h5>free</h5> : <h5>paid</h5>;
 };
 
-LectureScreenshot.propTypes = {
+Lectureimage.propTypes = {
   image: PropTypes.string.isRequired
 };
 

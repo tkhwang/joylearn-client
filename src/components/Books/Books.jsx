@@ -90,7 +90,7 @@ class Books extends Component {
           return (
             <BooksCard
               name={book.name}
-              image={book.screenshot}
+              image={book.image}
               lang={book.lang}
               url={book.mainUrl}
               free={book.free}

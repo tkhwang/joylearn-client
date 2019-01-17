@@ -24,7 +24,7 @@ class Button extends Component {
       <Redirect to={`/topic?topic=${name}`} />
     ) : (
       <DivTopics onClick={() => this.handleClick(name)}>
-        <TopicsLogo image={this.props.logo} />
+        <TopicsLogo image={this.props.image} />
         <H1TopicsTitle className="topics-title">{name}</H1TopicsTitle>
       </DivTopics>
     );

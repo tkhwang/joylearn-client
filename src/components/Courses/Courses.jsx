@@ -9,6 +9,7 @@ import { bindActionCreators } from 'redux';
 // import auth from '../../services/authService';
 // import querystring from 'query-string';
 
+import CourseRegister from '../Courses/Register/Register.jsx';
 import PaperSheet from '../common/PaperSheet/PaperSheet.jsx';
 import Title from '../common/Title/Title';
 // import List from './List/List';
@@ -33,6 +34,7 @@ import 'react-vertical-timeline-component/style.min.css';
 import { FaJsSquare, FaReact, FaNodeJs } from 'react-icons/fa';
 import { Loader } from 'react-loader-spinner';
 import { blue } from '@material-ui/core/colors';
+import Course from '../Course/Course';
 
 class Courses extends Component {
   constructor(props) {
@@ -72,6 +74,7 @@ class Courses extends Component {
           return <List name={course.name} period={course.period} key={index} />;
         })} */}
         {/* <Filter /> */}
+        <CourseRegister />
         <PaperSheet title="Steps">
           <Steps direction="vertical">
             <Step title="javascript" description={'javascript'} />
@@ -205,10 +208,14 @@ class Courses extends Component {
 export default connect(
   state => ({
     storeSignin: state.signin,
-    storeTopics: state.topics
+    storeTopics: state.topics,
+    storeInstructor: state.instructor,
+    storeBook: state.book
   }),
   dispatch => ({
-    actionSign: bindActionCreators(signinActions, dispatch),
+    actionsSign: bindActionCreators(signinActions, dispatch),
     actionTopics: bindActionCreators(topicsActions, dispatch)
+    // actionInstructor: bindActionCreators(instructorActions, dispatch),
+    // actionBook: bindActionCreators(bookActions, dispatch)
   })
 )(Courses);

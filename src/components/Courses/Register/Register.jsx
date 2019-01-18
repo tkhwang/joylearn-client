@@ -4,6 +4,7 @@ import { InputGroup, InputGroupText, InputGroupAddon, Input } from 'reactstrap';
 
 import CommonSearchList from '../../common/SearchList/SearchList.jsx';
 import IntegrationAutosuggest from '../IntegrationAutosuggest/IntegrationAutosuggest.jsx';
+import CourseComment from '../../Courses/Comment/Comment.jsx';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -13,6 +14,9 @@ import * as instructorActions from '../../../actions/instructor';
 import * as bookActions from '../../../actions/book';
 import * as lectureActions from '../../../actions/lecture';
 import * as lecturesActions from '../../../actions/lectures';
+import * as courseActions from '../../../actions/course';
+
+import http, { SERVER_URL } from '../../../services/httpService.js';
 
 class Register extends Component {
   constructor(props) {
@@ -20,11 +24,11 @@ class Register extends Component {
 
     this.state = {
       valueTitle: '',
+      topic: '',
       courseUnit: 0
     };
 
     this.handleChangeTitle = this.handleChangeTitle.bind(this);
-    this.handleSubmitClick = this.handleSubmitClick.bind(this);
   }
 
   componentDidMount() {
@@ -38,11 +42,11 @@ class Register extends Component {
     this.setState({ valueTitle: event.target.value });
   }
 
-  handleSubmitClick() {}
-
   render() {
     const { topics } = this.props.storeTopics;
-    const { lectures } = this.props.storeLectures;
+    const { lectures } = this.props.storeCourse.data;
+    const { books } = this.props.storeCourse.data;
+    console.log('[+] //////// ', lectures, books);
     return (
       <React.Fragment>
         <CommonSearchList
@@ -57,14 +61,13 @@ class Register extends Component {
           arrays={lectures}
           courseUnit={this.courseUnit}
         />
-        <Button
-          color="primary"
-          size="lg"
-          block
-          onClick={this.handleSubmitClick}
-        >
-          Submit
-        </Button>
+        <CommonSearchList
+          type="book"
+          title="Book"
+          arrays={books}
+          courseUnit={this.courseUnit}
+        />
+        <CourseComment type="instructor" name="" user="" comments="" />
       </React.Fragment>
     );
   }
@@ -78,7 +81,8 @@ export default connect(
     storeInstructor: state.instructor,
     storeBook: state.book,
     storeLecture: state.lecture,
-    storeLectures: state.lectures
+    storeLectures: state.lectures,
+    storeCourse: state.course
   }),
   dispatch => ({
     actionsSign: bindActionCreators(signinActions, dispatch),
@@ -86,6 +90,7 @@ export default connect(
     actionInstructor: bindActionCreators(instructorActions, dispatch),
     actionBook: bindActionCreators(bookActions, dispatch),
     actionLecture: bindActionCreators(lectureActions, dispatch),
-    actionLectures: bindActionCreators(lecturesActions, dispatch)
+    actionLectures: bindActionCreators(lecturesActions, dispatch),
+    actionCourse: bindActionCreators(courseActions, dispatch)
   })
 )(Register);

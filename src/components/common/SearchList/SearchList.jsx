@@ -4,6 +4,7 @@ import { Button } from 'reactstrap';
 import CommonCardList from '../../common/Card/CardList.jsx';
 import CommonSearchListCard from '../../common/SearchList/SearchListCard.jsx';
 import filterByInput from '../../../services/searchService.js';
+import http, { SERVER_URL } from '../../../services/httpService.js';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -66,14 +67,22 @@ class SearchList extends Component {
     });
   };
 
-  handleCardClick = topic => {
+  handleCardClick = async topic => {
     console.log('[+] handleCardClick', topic);
     const { arrays, actionCourse } = this.props;
 
-    let course = {};
-    course.topic = topic;
-    course.courseUnit = this.state.courseUnit;
-    actionCourse.set_course(course);
+    if (this.props.type === 'topic') {
+      const { data } = await http.get(`${SERVER_URL}/t/${topic}`);
+      console.log('[+] ////// SearchList : data = ', data);
+
+      let course = {};
+      course.topic = topic;
+      course.data = {};
+      course.data.lectures = data.lectures;
+      course.data.books = data.books;
+
+      actionCourse.set_data(course);
+    }
 
     this.setState({
       ...this.state,

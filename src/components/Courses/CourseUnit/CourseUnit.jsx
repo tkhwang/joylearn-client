@@ -5,7 +5,7 @@ import { InputGroup, InputGroupText, InputGroupAddon, Input } from 'reactstrap';
 import CommonSearchList from '../../common/SearchList/SearchList.jsx';
 import IntegrationAutosuggest from '../IntegrationAutosuggest/IntegrationAutosuggest.jsx';
 import CourseComment from '../../Courses/Comment/Comment.jsx';
-
+import CommonPaperSheet from '../../common/PaperSheet/PaperSheet.jsx';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as signinActions from '../../../actions/signin';
@@ -18,14 +18,13 @@ import * as courseActions from '../../../actions/course';
 
 import http, { SERVER_URL } from '../../../services/httpService.js';
 
-class Register extends Component {
+class CourseUnit extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       valueTitle: '',
-      topic: '',
-      courseUnit: 0
+      topic: ''
     };
 
     this.handleChangeTitle = this.handleChangeTitle.bind(this);
@@ -48,32 +47,20 @@ class Register extends Component {
     const { books } = this.props.storeCourse.data;
     console.log('[+] //////// ', lectures, books);
     return (
-      <React.Fragment>
-        <CommonSearchList
-          type="topic"
-          title="Topic"
-          arrays={topics}
-          courseUnit={this.courseUnit}
-        />
-        <CommonSearchList
-          type="lecture"
-          title="Lecture"
-          arrays={lectures}
-          courseUnit={this.courseUnit}
-        />
-        <CommonSearchList
-          type="book"
-          title="Book"
-          arrays={books}
-          courseUnit={this.courseUnit}
-        />
+      <CommonPaperSheet title="CourseUnit">
+        <h5>1. Select Topic </h5>
+        <CommonSearchList type="topic" title="Topic" arrays={topics} />
+        <h5>2. Select Lecture or Book</h5>
+        <CommonSearchList type="lecture" title="Lecture" arrays={lectures} />
+        <CommonSearchList type="book" title="Book" arrays={books} />
+        <h5>3. Share why you recommend this.</h5>
         <CourseComment type="instructor" name="" user="" comments="" />
-      </React.Fragment>
+      </CommonPaperSheet>
     );
   }
 }
 
-// export default Register;
+// export default CourseUnit;
 export default connect(
   state => ({
     storeSignin: state.signin,
@@ -93,4 +80,4 @@ export default connect(
     actionLectures: bindActionCreators(lecturesActions, dispatch),
     actionCourse: bindActionCreators(courseActions, dispatch)
   })
-)(Register);
+)(CourseUnit);

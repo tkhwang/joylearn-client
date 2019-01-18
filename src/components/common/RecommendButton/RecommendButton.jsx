@@ -10,6 +10,10 @@ import {
 import http from '../../../services/httpService';
 import { SERVER_URL } from '../../../services/httpService';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as topicActions from '../../../actions/topic';
+
 class RecommendButton extends React.Component {
   constructor(props) {
     super(props);
@@ -55,38 +59,49 @@ class RecommendButton extends React.Component {
 
   submitClick = async e => {
     const { instructor, lecture, book } = this.state;
-    const { topic } = this.props;
+    const { topic, type, actionTopic } = this.props;
+
+    let apiEndpoint;
+    let data;
 
     if (instructor.name.length !== 0) {
-      const apiEndpoint = `${SERVER_URL}/instructor`;
-      const data = {
+      apiEndpoint = `${SERVER_URL}/instructor`;
+      data = {
         instructor: {
           ...this.state.instructor,
           topic: topic.name
         }
       };
-      await http.post(apiEndpoint, data);
+      // await http.post(apiEndpoint, data);
     } else if (lecture.name.length !== 0) {
-      const apiEndpoint = `${SERVER_URL}/lecture`;
-      const data = {
+      apiEndpoint = `${SERVER_URL}/lecture`;
+      data = {
         lecture: {
           ...this.state.lecture,
           free: this.state.lecture.free === 'Free' ? true : false,
           topic: topic.name
         }
       };
-      await http.post(apiEndpoint, data);
+      // await http.post(apiEndpoint, data);
     } else if (book.name.length !== 0) {
-      const apiEndpoint = `${SERVER_URL}/book`;
-      const data = {
+      apiEndpoint = `${SERVER_URL}/book`;
+      data = {
         book: {
           ...this.state.book,
           free: this.state.book.free === 'Free' ? true : false,
           topic: topic.name
         }
       };
-      await http.post(apiEndpoint, data);
     }
+
+    try {
+      await http.post(apiEndpoint, data);
+      console.log('[+] ///////// RecommendButton : ', type);
+
+      if (type === 'instructor') actionTopic.add_instructor(data.instructor);
+      else if (type === 'lecture') actionTopic.add_lecture(data.lecture);
+      else if (type === 'book') actionTopic.add_book(data.book);
+    } catch (ex) {}
   };
 
   submitChange = e => {
@@ -298,4 +313,12 @@ class RecommendButton extends React.Component {
   }
 }
 
-export default RecommendButton;
+// export default RecommendButton;
+export default connect(
+  state => ({
+    storeTopic: state.topic
+  }),
+  dispatch => ({
+    actionTopic: bindActionCreators(topicActions, dispatch)
+  })
+)(RecommendButton);

@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as signinActions from '../../../actions/signin';
 import * as topicsActions from '../../../actions/topics';
+import * as topicActions from '../../../actions/topic';
 import * as instructorActions from '../../../actions/instructor';
 import * as bookActions from '../../../actions/book';
 import * as courseActions from '../../../actions/course';
@@ -59,7 +60,7 @@ class SearchList extends Component {
   handleClick = event => {
     const { arrays } = this.props;
     const topicSelected = filterByInput(arrays, event.target.value);
-    console.log('[+] /////////// SearchList : handleClick ', topicSelected);
+
     this.setState({
       ...this.state,
       topic: event.target.value,
@@ -69,9 +70,9 @@ class SearchList extends Component {
 
   handleCardClick = async topic => {
     console.log('[+] handleCardClick', topic);
-    const { arrays, actionCourse } = this.props;
+    const { type, arrays, actionCourse } = this.props;
 
-    if (this.props.type === 'topic') {
+    if (type === 'topic') {
       const { data } = await http.get(`${SERVER_URL}/t/${topic}`);
       console.log('[+] ////// SearchList : data = ', data);
 
@@ -81,7 +82,11 @@ class SearchList extends Component {
       course.data.lectures = data.lectures;
       course.data.books = data.books;
 
-      actionCourse.set_data(course);
+      actionCourse.set_topic(course);
+    } else if (type === 'lecture') {
+      actionCourse.set_lecture(topic);
+    } else if (type === 'book') {
+      actionCourse.set_book(topic);
     }
 
     this.setState({
@@ -109,7 +114,9 @@ class SearchList extends Component {
             placeholder={
               type === 'topic'
                 ? 'Type Topic name which you want to make course up.'
-                : 'Type Lecture name which you want to make course up. (Lecture should be registered in joy.'
+                : type === 'lecture'
+                ? 'Type Lecture name'
+                : 'Type book name'
             }
             value={this.state.valueTitle}
             onChange={this.handleChange}
@@ -118,7 +125,7 @@ class SearchList extends Component {
         {this.state.topics.map(array => {
           return (
             <CommonSearchListCard
-              type=""
+              type={type}
               title={array.name}
               image={array.image}
               courseUnit={courseUnit}
@@ -137,6 +144,7 @@ export default connect(
   state => ({
     storeSignin: state.signin,
     storeTopics: state.topics,
+    storeTopic: state.topic,
     storeInstructor: state.instructor,
     storeBook: state.book,
     stroeCourse: state.course
@@ -144,6 +152,7 @@ export default connect(
   dispatch => ({
     actionsSign: bindActionCreators(signinActions, dispatch),
     actionTopics: bindActionCreators(topicsActions, dispatch),
+    actionTopic: bindActionCreators(topicActions, dispatch),
     actionInstructor: bindActionCreators(instructorActions, dispatch),
     actionBook: bindActionCreators(bookActions, dispatch),
     actionCourse: bindActionCreators(courseActions, dispatch)

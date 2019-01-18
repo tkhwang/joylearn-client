@@ -1,27 +1,31 @@
-export const COURSE_SET_COURSE = 'lecture/COURSE_SET_COURSE';
-export const COURSE_SET_DATA = 'lecture/COURSE_SET_DATA';
+export const COURSE_SET_TOPIC = 'course/COURSE_SET_TOPIC';
+export const COURSE_SET_LECTURE = 'course/COURSE_SET_LECTURE';
+export const COURSE_SET_BOOK = 'course/COURSE_SET_BOOK';
+export const COURSE_SET_COMMENT = 'course/COURSE_SET_COMMENT';
 
-export const set_data = course => {
+export const set_topic = course => {
   return {
-    type: COURSE_SET_DATA,
+    type: COURSE_SET_TOPIC,
     payload: {
       topic: course.topic,
-      data: {
-        lectures: course.data.lectures,
-        books: course.data.books
-      }
+      data: { lectures: course.data.lectures, books: course.data.books }
     }
   };
 };
 
-export const set_course = course => {
+export const set_lecture = lecture => {
   return {
-    type: COURSE_SET_COURSE,
+    type: COURSE_SET_LECTURE,
     payload: {
-      topic: course.topic,
-      courseUnit: course.courseUnit,
-      step: course.step,
-      lectures: course.lectures
+      lecture: lecture
     }
   };
+};
+
+export const set_book = book => {
+  return { type: COURSE_SET_BOOK, payload: { book: book } };
+};
+
+export const set_comment = comment => {
+  return { type: COURSE_SET_COMMENT, payload: { comment: comment } };
 };

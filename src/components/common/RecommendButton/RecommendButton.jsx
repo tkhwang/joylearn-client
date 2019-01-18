@@ -10,35 +10,6 @@ import {
 import http from '../../../services/httpService';
 import { SERVER_URL } from '../../../services/httpService';
 
-// const defaultState = {
-//   clicked: false,
-
-//   instructor: {
-//     name: '',
-//     fullName: '',
-//     gitHub: '',
-//     mainUrl: '',
-//     image: '',
-//     lang: 'eng'
-//   },
-//   lecture: {
-//     name: '',
-//     url: '',
-//     screenshot: '',
-//     free: 'Free',
-//     lang: 'eng'
-//   },
-//   book: {
-//     name: '',
-//     url: '',
-//     screenshot: '',
-//     free: 'Free',
-//     lang: 'eng'
-//   }
-// };
-
-const getDeepCopy = obj => JSON.parse(JSON.stringify(obj));
-
 class RecommendButton extends React.Component {
   constructor(props) {
     super(props);
@@ -69,8 +40,6 @@ class RecommendButton extends React.Component {
         lang: 'eng'
       }
     };
-    // this.state = getDeepCopy(defaultState);
-    // this.shadowState = getDeepCopy(defaultState);
 
     this.handleClick = this.handleClick.bind(this);
     this.submitClick = this.submitClick.bind(this);
@@ -95,14 +64,14 @@ class RecommendButton extends React.Component {
     } else if (lecture.name.length !== 0) {
       const data = {
         ...this.state.lecture,
-        free: this.state.lecture.free === "Free" ? true : false
+        free: this.state.lecture.free === 'Free' ? true : false
       };
       await http.post(apiEndpoint, data);
     } else if (book.name.length !== 0) {
       const data = {
         ...this.state.book,
-        free: this.state.book.free === "Free" ? true : false
-      }
+        free: this.state.book.free === 'Free' ? true : false
+      };
       await http.post(apiEndpoint, data);
     }
   };
@@ -135,57 +104,9 @@ class RecommendButton extends React.Component {
         }
       });
     }
-
-    // if (type === 'instructor') {
-    //   this.shadowState.instructor[e.target.name] = e.target.value;
-    // }
-    // if (type === 'lecture') {
-    //   this.shadowState.lecture[e.target.name] = e.target.value;
-    // }
-    // if (type === 'book') {
-    //   this.shadowState.book[e.target.name] = e.target.value;
-    // }
-    // if (this.shadowState.lecture.free === 'Free') {
-    //   this.shadowState.lecture.free = true;
-    // } else {
-    //   this.shadowState.lecture.free = false;
-    // }
-    // if (this.shadowState.book.free === 'Free') {
-    //   this.shadowState.book.free = true;
-    // } else {
-    //   this.shadowState.book.free = false;
-    // }
-
-    this.setState(this.shadowState);
-
-    // type === 'instructor'
-    //   ? this.setState({
-    //       ...this.state,
-    //       instructor: {
-    //         ...this.state.instructor,
-    //         [e.target.name]: e.target.value
-    //       }
-    //     })
-    //   : type === 'lecture'
-    //   ? this.setState({
-    //       ...this.state,
-    //       lecture: {
-    //         ...this.state.lecture,
-    //         [e.target.name]: e.target.value
-    //       }
-    //     })
-    //   : type === 'book' &&
-    //     this.setState({
-    //       ...this.state,
-    //       book: {
-    //         ...this.state.book,
-    //         [e.target.name]: e.target.value
-    //       }
-    //     });
   };
 
   render() {
-    console.log('렌더중');
     const { instructor, lecture, book } = this.props;
     return (
       <React.Fragment>

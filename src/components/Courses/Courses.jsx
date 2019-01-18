@@ -9,7 +9,7 @@ import { bindActionCreators } from 'redux';
 // import auth from '../../services/authService';
 // import querystring from 'query-string';
 
-import CourseRegister from '../Courses/Register/Register.jsx';
+import CourseUnit from '../Courses/CourseUnit/CourseUnit.jsx';
 import PaperSheet from '../common/PaperSheet/PaperSheet.jsx';
 import Title from '../common/Title/Title';
 // import List from './List/List';
@@ -74,7 +74,7 @@ class Courses extends Component {
           return <List name={course.name} period={course.period} key={index} />;
         })} */}
         {/* <Filter /> */}
-        <CourseRegister />
+        <CourseUnit />
         <PaperSheet title="Steps">
           <Steps direction="vertical">
             <Step title="javascript" description={'javascript'} />

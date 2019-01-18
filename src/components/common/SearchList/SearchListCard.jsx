@@ -2,6 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as topicActions from '../../../actions/topic';
+
 import moment from 'moment';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -52,7 +56,15 @@ class SearchListCard extends React.Component {
   }
 
   handleClick = e => {
+    const { actionTopic, type } = this.props;
+
     console.log('[+] SearchListCard : ', this, e.target.value);
+
+    // if (type === 'lecture') {
+    //   actionTopic.set_lecture(e.target.value);
+    // } else if (type === 'book') {
+    //   actionTopic.set_book(e.target.value);
+    // }
 
     this.props.onClick(this.props.title);
   };
@@ -60,7 +72,7 @@ class SearchListCard extends React.Component {
   render() {
     const { props } = this;
 
-    const { classes, theme, title, image } = props;
+    const { classes, theme, title, image, type } = props;
 
     return (
       <React.Fragment>
@@ -86,4 +98,12 @@ SearchListCard.propTypes = {
   theme: PropTypes.object.isRequired
 };
 
-export default withStyles(styles, { withTheme: true })(SearchListCard);
+// export default withStyles(styles, { withTheme: true })(SearchListCard);
+export default connect(
+  state => ({
+    storeTopic: state.topic
+  }),
+  dispatch => ({
+    actionTopic: bindActionCreators(topicActions, dispatch)
+  })
+)(withStyles(styles, { withTheme: true })(SearchListCard));

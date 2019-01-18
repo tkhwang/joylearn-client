@@ -208,6 +208,7 @@ class Topic extends Component {
               })}
             <RecommendButton
               type="instructor"
+              arrays={instructors}
               instructor={'Instructor'}
               topic={this.state.topic}
             />
@@ -251,6 +252,7 @@ class Topic extends Component {
             <RecommendButton
               type="lecture"
               lecture={'Lecture'}
+              arrays={lectures}
               topic={this.state.topic}
             />
           </PaperSheet>
@@ -291,7 +293,12 @@ class Topic extends Component {
                 );
               })}
           </PaperSheet>
-          <RecommendButton type="book" book={'Book'} topic={this.state.topic} />
+          <RecommendButton
+            type="book"
+            book={'Book'}
+            topic={this.state.topic}
+            arrays={books}
+          />
         </PaperSheet>
 
         <PaperSheet

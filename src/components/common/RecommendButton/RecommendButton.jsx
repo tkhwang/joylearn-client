@@ -55,19 +55,21 @@ class RecommendButton extends React.Component {
 
   submitClick = async e => {
     const { instructor, lecture, book } = this.state;
-    const apiEndpoint = `${SERVER_URL}/api/recommend`;
 
     if (instructor.name.length !== 0) {
+      const apiEndpoint = `${SERVER_URL}/api/instructor`;
       await http.post(apiEndpoint, {
         instructor: this.state.instructor
       });
     } else if (lecture.name.length !== 0) {
+      const apiEndpoint = `${SERVER_URL}/api/lecture`;
       const data = {
         ...this.state.lecture,
         free: this.state.lecture.free === 'Free' ? true : false
       };
       await http.post(apiEndpoint, data);
     } else if (book.name.length !== 0) {
+      const apiEndpoint = `${SERVER_URL}/api/book`;
       const data = {
         ...this.state.book,
         free: this.state.book.free === 'Free' ? true : false

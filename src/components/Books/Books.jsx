@@ -7,7 +7,6 @@ import Loader from 'react-loader-spinner';
 import {
   InputGroup,
   InputGroupAddon,
-  Button,
   Input as ReactstrapInput
 } from 'reactstrap';
 

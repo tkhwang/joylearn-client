@@ -1,25 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-// import { Link } from 'react-router-dom';
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Loader from 'react-loader-spinner';
 import {
   InputGroup,
   InputGroupAddon,
-  Button,
   Input as ReactstrapInput
 } from 'reactstrap';
 
 import http from '../../services/httpService';
-// import auth from '../../services/authService';
-// import querystring from 'query-string';
 
 import PaperSheet from '../common/PaperSheet/PaperSheet.jsx';
 import Title from '../common/Title/Title';
-// import List from './List/List';
-// import LecturesFilter from '../Lectures/Filter/Filter';
 import LecturesCard from '../Lectures/Card/Card';
 import filterByInput from '../../services/searchService';
 

@@ -7,14 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import SkipNextIcon from '@material-ui/icons/SkipNext';
-
-import CommonCommentRender from '../../../components/common/Comment/Render/Render.jsx';
-import http, { SERVER_URL } from '../../../services/httpService.js';
 
 const styles = theme => ({
   card: {
@@ -63,7 +56,6 @@ class CardList extends React.Component {
 
     const {
       classes,
-      theme,
       title,
       type,
       image,

@@ -8,7 +8,6 @@ import CommonPaperSheet from '../common/PaperSheet/PaperSheet.jsx';
 import {
   InputGroup,
   InputGroupAddon,
-  Button,
   Input as ReactstrapInput
 } from 'reactstrap';
 
@@ -20,7 +19,7 @@ import querystring from 'query-string';
 // import Button from './Button/Button';
 
 import TopicsCard from './Card/Card';
-import Input from '../common/Input/Input';
+// import Input from '../common/Input/Input';
 import filterByInput from '../../services/searchService';
 
 import * as signinActions from '../../actions/signin';
@@ -98,7 +97,7 @@ class Topics extends Component {
   };
 
   render() {
-    const { topics } = this.props.storeTopics;
+    // const { topics } = this.props.storeTopics;
     return (
       <React.Fragment>
         <CommonPaperSheet>

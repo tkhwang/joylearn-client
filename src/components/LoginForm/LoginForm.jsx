@@ -10,7 +10,6 @@ import './LoginForm.css';
 import SocialLoginButton from './SocialLoginButton';
 import Form from '../common/Form';
 import auth from '../../services/authService';
-import Emoji from '../common/Emoji';
 import CommonPaperSheet from '../common/PaperSheet/PaperSheet.jsx';
 
 class LoginForm extends Form {

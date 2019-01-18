@@ -8,7 +8,7 @@ import Loader from 'react-loader-spinner';
 // import Spinner from '../common/Spinner/Spinner';
 import RecommendButton from '../common/RecommendButton/RecommendButton';
 
-import Vote from '../common/Vote/Vote';
+// import Vote from '../common/Vote/Vote';
 import CommonCardList from '../common/Card/CardList.jsx';
 import PaperSheet from '../common/PaperSheet/PaperSheet.jsx';
 import Emoji from '../common/Emoji';
@@ -46,7 +46,7 @@ class Topic extends Component {
   async componentDidMount() {
     const { topic } = this.props.topic.match.params;
     const { actionTopic, actionTopics, actionLectures } = this.props;
-    const { instructors, lectures, books } = this.props.storeTopic;
+    // const { instructors, lectures, books } = this.props.storeTopic;
 
     this.setState({
       ...this.state,

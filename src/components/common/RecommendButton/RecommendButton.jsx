@@ -6,6 +6,8 @@ import {
   InputGroup,
   InputGroupAddon
 } from 'reactstrap';
+import { Typeahead } from 'react-bootstrap-typeahead';
+import Autosuggest from 'react-bootstrap-autosuggest';
 
 import http from '../../../services/httpService';
 import { SERVER_URL } from '../../../services/httpService';
@@ -135,94 +137,103 @@ class RecommendButton extends React.Component {
   };
 
   render() {
-    const { instructor, lecture, book } = this.props;
+    const { instructor, lecture, book, arrays } = this.props;
     return (
       <React.Fragment>
         {this.state.clicked ? (
           <React.Fragment>
-            <Button
-              color="secondary"
-              size="lg"
-              block
-              onClick={this.handleClick}
-            >
-              {`Submit New ${
-                instructor ? instructor : lecture ? lecture : book && book
-              }`}
-            </Button>
-            <FormGroup>
-              <InputGroup>
-                <InputGroupAddon addonType="prepend">Name </InputGroupAddon>
-                <Input
-                  placeholder={
-                    instructor
-                      ? "Instructor's name"
-                      : lecture
-                      ? "Lecture's name"
-                      : book && "Book's name"
-                  }
-                  name={'name'}
-                  value={
-                    instructor
-                      ? this.state.instructor.name
-                      : lecture
-                      ? this.state.lecture.name
-                      : book && this.state.book.name
-                  }
-                  onChange={this.submitChange}
+            <React.Fragment>
+              <Button
+                color="secondary"
+                size="lg"
+                block
+                onClick={this.handleClick}
+              >
+                {`Submit New ${
+                  instructor ? instructor : lecture ? lecture : book && book
+                }`}
+              </Button>
+              <FormGroup>
+                <Typeahead
+                  labelKey="name"
+                  multiple="false"
+                  options={arrays}
+                  placeholder="Choose a state..."
                 />
-              </InputGroup>
-
-              {instructor && (
                 <InputGroup>
-                  <InputGroupAddon addonType="prepend">
-                    Full Name
-                  </InputGroupAddon>
+                  <InputGroupAddon addonType="prepend">Name </InputGroupAddon>
                   <Input
-                    placeholder={"Instructor's Full Name"}
-                    name={'fullName'}
-                    value={this.state.instructor.fullName}
+                    placeholder={
+                      instructor
+                        ? "Instructor's name"
+                        : lecture
+                        ? "Lecture's name"
+                        : book && "Book's name"
+                    }
+                    name={'name'}
+                    value={
+                      instructor
+                        ? this.state.instructor.name
+                        : lecture
+                        ? this.state.lecture.name
+                        : book && this.state.book.name
+                    }
                     onChange={this.submitChange}
                   />
                 </InputGroup>
-              )}
 
-              {instructor && (
+                {instructor && (
+                  <InputGroup>
+                    <InputGroupAddon addonType="prepend">
+                      Full Name
+                    </InputGroupAddon>
+                    <Input
+                      placeholder={"Instructor's Full Name"}
+                      name={'fullName'}
+                      value={this.state.instructor.fullName}
+                      onChange={this.submitChange}
+                    />
+                  </InputGroup>
+                )}
+
+                {instructor && (
+                  <InputGroup>
+                    <InputGroupAddon addonType="prepend">
+                      GitHub
+                    </InputGroupAddon>
+                    <Input
+                      placeholder={"Instructor's GitHub URL"}
+                      name={'gitHub'}
+                      value={this.state.instructor.gitHub}
+                      onChange={this.submitChange}
+                    />
+                  </InputGroup>
+                )}
+
                 <InputGroup>
-                  <InputGroupAddon addonType="prepend">GitHub</InputGroupAddon>
+                  <InputGroupAddon addonType="prepend">URL</InputGroupAddon>
                   <Input
-                    placeholder={"Instructor's GitHub URL"}
-                    name={'gitHub'}
-                    value={this.state.instructor.gitHub}
+                    placeholder={
+                      instructor
+                        ? "Instructor's url"
+                        : lecture
+                        ? "Lecture's url"
+                        : book && "Book's url"
+                    }
+                    name={instructor ? 'mainUrl' : 'url'}
+                    value={
+                      instructor
+                        ? this.state.instructor.mainUrl
+                        : lecture
+                        ? this.state.lecture.url
+                        : book && this.state.book.url
+                    }
                     onChange={this.submitChange}
                   />
                 </InputGroup>
-              )}
 
-              <InputGroup>
-                <InputGroupAddon addonType="prepend">URL</InputGroupAddon>
-                <Input
-                  placeholder={
-                    instructor
-                      ? "Instructor's url"
-                      : lecture
-                      ? "Lecture's url"
-                      : book && "Book's url"
-                  }
-                  name={instructor ? 'mainUrl' : 'url'}
-                  value={
-                    instructor
-                      ? this.state.instructor.mainUrl
-                      : lecture
-                      ? this.state.lecture.url
-                      : book && this.state.book.url
-                  }
-                  onChange={this.submitChange}
-                />
-              </InputGroup>
-
-              {/* image 보류 */}
-              {/* <InputGroup>
+                {/* image 보류 */}
+                {/* <InputGroup>
                 <InputGroupAddon addonType="prepend">Image</InputGroupAddon>
                 <Input
                   placeholder={
@@ -235,71 +246,74 @@ class RecommendButton extends React.Component {
                 />
               </InputGroup> */}
 
-              {lecture && (
+                {lecture && (
+                  <InputGroup>
+                    <InputGroupAddon addonType="prepend">
+                      Free / Paid
+                    </InputGroupAddon>
+                    <Input
+                      type="select"
+                      bsSize="lg"
+                      name={'free'}
+                      value={this.state.lecture.free}
+                      onChange={this.submitChange}
+                    >
+                      <option>Free</option>
+                      <option>Paid</option>
+                    </Input>
+                  </InputGroup>
+                )}
+
+                {book && (
+                  <InputGroup>
+                    <InputGroupAddon addonType="prepend">
+                      Free / Paid
+                    </InputGroupAddon>
+                    <Input
+                      type="select"
+                      bsSize="lg"
+                      name={'free'}
+                      value={this.state.book.free}
+                      onChange={this.submitChange}
+                    >
+                      <option>Free</option>
+                      <option>Paid</option>
+                    </Input>
+                  </InputGroup>
+                )}
+
                 <InputGroup>
                   <InputGroupAddon addonType="prepend">
-                    Free / Paid
+                    Language
                   </InputGroupAddon>
                   <Input
                     type="select"
                     bsSize="lg"
-                    name={'free'}
-                    value={this.state.lecture.free}
                     onChange={this.submitChange}
+                    name={'lang'}
+                    value={
+                      instructor
+                        ? this.state.instructor.lang
+                        : lecture
+                        ? this.state.lecture.lang
+                        : book && this.state.book.lang
+                    }
                   >
-                    <option>Free</option>
-                    <option>Paid</option>
+                    <option>eng</option>
+                    <option>kor</option>
                   </Input>
                 </InputGroup>
-              )}
 
-              {book && (
-                <InputGroup>
-                  <InputGroupAddon addonType="prepend">
-                    Free / Paid
-                  </InputGroupAddon>
-                  <Input
-                    type="select"
-                    bsSize="lg"
-                    name={'free'}
-                    value={this.state.book.free}
-                    onChange={this.submitChange}
-                  >
-                    <option>Free</option>
-                    <option>Paid</option>
-                  </Input>
-                </InputGroup>
-              )}
-
-              <InputGroup>
-                <InputGroupAddon addonType="prepend">Language</InputGroupAddon>
-                <Input
-                  type="select"
-                  bsSize="lg"
-                  onChange={this.submitChange}
-                  name={'lang'}
-                  value={
-                    instructor
-                      ? this.state.instructor.lang
-                      : lecture
-                      ? this.state.lecture.lang
-                      : book && this.state.book.lang
-                  }
+                <Button
+                  color="primary"
+                  size="lg"
+                  block
+                  onClick={this.submitClick}
                 >
-                  <option>eng</option>
-                  <option>kor</option>
-                </Input>
-              </InputGroup>
-
-              <Button
-                color="primary"
-                size="lg"
-                block
-                onClick={this.submitClick}
-              >
-                Submit
-              </Button>
-            </FormGroup>
+                  Submit
+                </Button>
+              </FormGroup>
+            </React.Fragment>
           </React.Fragment>
         ) : (
           <Button color="primary" size="lg" block onClick={this.handleClick}>

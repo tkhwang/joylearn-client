@@ -14,6 +14,7 @@ import PaperSheet from '../common/PaperSheet/PaperSheet.jsx';
 import Emoji from '../common/Emoji';
 import * as signinActions from '../../actions/signin';
 import * as topicsActions from '../../actions/topics';
+import * as topicActions from '../../actions/topic';
 import * as lecturesActions from '../../actions/lectures';
 
 import Title from '../common/Title/Title';
@@ -44,7 +45,8 @@ class Topic extends Component {
 
   async componentDidMount() {
     const { topic } = this.props.topic.match.params;
-    const { actionTopics, actionLectures } = this.props;
+    const { actionTopic, actionTopics, actionLectures } = this.props;
+    const { instructors, lectures, books } = this.props.storeTopic;
 
     this.setState({
       ...this.state,
@@ -67,6 +69,15 @@ class Topic extends Component {
 
     const { data } = await http.get(`${SERVER_URL}/t/${topic}`);
 
+    actionTopic.set_all({
+      topic: topic,
+      instructors: data.instructors,
+      lectures: data.lectures,
+      books: data.books
+    });
+
+    console.log('did : ', data);
+
     this.setState(
       {
         ...this.state,
@@ -77,6 +88,9 @@ class Topic extends Component {
       () => {
         actionLectures.get_lectures(this.state.lectures);
       }
+      // () => {
+      //   actionLectures.get_lectures(this.state.lectures);
+      // }
     );
 
     // TODO: 기술발표 설명 예시
@@ -153,6 +167,7 @@ class Topic extends Component {
 
   _renderTopic = () => {
     // const avatar = localStorage.getItem('avatar');
+    const { instructors, lectures, books } = this.props.storeTopic;
     return (
       <React.Fragment>
         <PaperSheet
@@ -166,34 +181,31 @@ class Topic extends Component {
         >
           <CardsContatiner>
             {this.state.selectedInstructors.map(instructor => {
-              return (
-                <InstructorsCard
-                  instructor={instructor}
-                  // fullName={instructor.fullName}
-                  // name={instructor.name}
-                  // git={instructor.gitHub}
-                  // url={instructor.mainUrl}
-                  // image={instructor.image}
-                  // lang={instructor.lang}
-                  // key={instructor.name}
-                />
-              );
+              return <InstructorsCard instructor={instructor} />;
+              // fullName={instructor.fullName}
+              // name={instructor.name}
+              // git={instructor.gitHub}
+              // url={instructor.mainUrl}
+              // image={instructor.image}
+              // lang={instructor.lang}
+              // key={instructor.name}
             })}
           </CardsContatiner>
 
           <PaperSheet title="More Instructors">
-            {this.state.instructors.map(instructor => {
-              return (
-                <CommonCardList
-                  type="instructor"
-                  title={instructor.name}
-                  url={instructor.mainUrl}
-                  image={instructor.image}
-                  time=""
-                  review={instructor.review}
-                />
-              );
-            })}
+            {instructors &&
+              instructors.map(instructor => {
+                return (
+                  <CommonCardList
+                    type="instructor"
+                    title={instructor.name}
+                    url={instructor.mainUrl}
+                    image={instructor.image}
+                    time=""
+                    review={instructor.review}
+                  />
+                );
+              })}
             <RecommendButton
               type="instructor"
               instructor={'Instructor'}
@@ -213,32 +225,29 @@ class Topic extends Component {
         >
           <CardsContatiner>
             {this.state.selectedLectures.map(lecture => {
-              return (
-                <LecturesCard
-                  lecture={lecture}
-                  // name={lecture.name}
-                  // image={lecture.image}
-                  // url={lecture.url}
-                  // lang={lecture.lang}
-                  // free={lecture.free}
-                />
-              );
+              return <LecturesCard lecture={lecture} />;
+              // name={lecture.name}
+              // image={lecture.image}
+              // url={lecture.url}
+              // lang={lecture.lang}
+              // free={lecture.free}
             })}
           </CardsContatiner>
 
           <PaperSheet title="More Lectures">
-            {this.state.lectures.map(lecture => {
-              return (
-                <CommonCardList
-                  type="lecture"
-                  title={lecture.name}
-                  url={lecture.url}
-                  image={lecture.image}
-                  time=""
-                  review={lecture.review}
-                />
-              );
-            })}
+            {lectures &&
+              lectures.map(lecture => {
+                return (
+                  <CommonCardList
+                    type="lecture"
+                    title={lecture.name}
+                    url={lecture.url}
+                    image={lecture.image}
+                    time=""
+                    review={lecture.review}
+                  />
+                );
+              })}
             <RecommendButton
               type="lecture"
               lecture={'Lecture'}
@@ -258,32 +267,29 @@ class Topic extends Component {
         >
           <CardsContatiner>
             {this.state.selectedBooks.map(book => {
-              return (
-                <BooksCard
-                  book={book}
-                  // name={book.name}
-                  // image={book.image}
-                  // url={book.url}
-                  // lang={book.lang}
-                  // free={book.free}
-                />
-              );
+              return <BooksCard book={book} />;
+              // name={book.name}
+              // image={book.image}
+              // url={book.url}
+              // lang={book.lang}
+              // free={book.free}
             })}
           </CardsContatiner>
 
           <PaperSheet title="More Books">
-            {this.state.books.map(book => {
-              return (
-                <CommonCardList
-                  type="book"
-                  title={book.name}
-                  url={book.url}
-                  image={book.image}
-                  time=""
-                  review={book.review}
-                />
-              );
-            })}
+            {books &&
+              books.map(book => {
+                return (
+                  <CommonCardList
+                    type="book"
+                    title={book.name}
+                    url={book.url}
+                    image={book.image}
+                    time=""
+                    review={book.review}
+                  />
+                );
+              })}
           </PaperSheet>
           <RecommendButton type="book" book={'Book'} topic={this.state.topic} />
         </PaperSheet>
@@ -341,11 +347,13 @@ export default connect(
   state => ({
     storeSignin: state.signin,
     storeTopics: state.topics,
+    storeTopic: state.topic,
     storeLectures: state.lectures
   }),
   dispatch => ({
     actionsSign: bindActionCreators(signinActions, dispatch),
     actionTopics: bindActionCreators(topicsActions, dispatch),
+    actionTopic: bindActionCreators(topicActions, dispatch),
     actionLectures: bindActionCreators(lecturesActions, dispatch)
   })
 )(Topic);

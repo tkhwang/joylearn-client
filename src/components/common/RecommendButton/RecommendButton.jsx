@@ -60,24 +60,30 @@ class RecommendButton extends React.Component {
     if (instructor.name.length !== 0) {
       const apiEndpoint = `${SERVER_URL}/instructor`;
       const data = {
-        ...this.state.instructor,
-        topic: topic.name
+        instructor: {
+          ...this.state.instructor,
+          topic: topic.name
+        }
       };
       await http.post(apiEndpoint, data);
     } else if (lecture.name.length !== 0) {
       const apiEndpoint = `${SERVER_URL}/lecture`;
       const data = {
-        ...this.state.lecture,
-        free: this.state.lecture.free === 'Free' ? true : false,
-        topic: topic.name
+        lecture: {
+          ...this.state.lecture,
+          free: this.state.lecture.free === 'Free' ? true : false,
+          topic: topic.name
+        }
       };
       await http.post(apiEndpoint, data);
     } else if (book.name.length !== 0) {
       const apiEndpoint = `${SERVER_URL}/book`;
       const data = {
-        ...this.state.book,
-        free: this.state.book.free === 'Free' ? true : false,
-        topic: topic.name
+        book: {
+          ...this.state.book,
+          free: this.state.book.free === 'Free' ? true : false,
+          topic: topic.name
+        }
       };
       await http.post(apiEndpoint, data);
     }
@@ -200,7 +206,7 @@ class RecommendButton extends React.Component {
                 />
               </InputGroup>
 
-              {/* image는 user가 올리기 힘들기 때문에 */}
+              {/* image 보류 */}
               {/* <InputGroup>
                 <InputGroupAddon addonType="prepend">Image</InputGroupAddon>
                 <Input

@@ -48,7 +48,6 @@ class Instructor extends Component {
     const { name } = this.props.name.match.params;
     const { data } = await http.get(`${SERVER_URL}/instructor/${name}`);
     const { actionInstructor } = this.props;
-    console.log('did : ', data);
     console.log('[+] Insturcotr : props = ', data);
 
     const instructor = {
@@ -97,10 +96,6 @@ class Instructor extends Component {
     const { classes } = this.props;
     const { comments, reviews } = this.props.storeInstructor;
     console.log('[+] Instructor : comments = ', comments);
-    console.log(
-      'this.props.storeInstructor.reviews : ',
-      this.props.storeInstructor.reviews
-    );
     return (
       <React.Fragment>
         <InstructorCard instructor={this.state.instructor} />

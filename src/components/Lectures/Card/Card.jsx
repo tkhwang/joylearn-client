@@ -42,10 +42,7 @@ class Card extends Component {
   }
 
   render() {
-    // console.log(this.state.clicked);
     const { classes, image, name } = this.props;
-    // console.log('lectures list encodeing: ', urlencode(name));
-    // console.log('lectures list decodeing: ', urlencode.decode(name));
     return (
       <div onClick={this.handleClick}>
         {this.state.clicked ? (

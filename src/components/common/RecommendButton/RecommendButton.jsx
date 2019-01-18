@@ -7,7 +7,6 @@ import {
   InputGroupAddon
 } from 'reactstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
-import Autosuggest from 'react-bootstrap-autosuggest';
 
 import http from '../../../services/httpService';
 import { SERVER_URL } from '../../../services/httpService';

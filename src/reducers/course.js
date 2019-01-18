@@ -1,10 +1,17 @@
 import { handleActions } from 'redux-actions';
-import { COURSE_SET_DATA, COURSE_SET_COURSE } from '../actions/course.js';
+import {
+  COURSE_SET_TOPIC,
+  COURSE_SET_LECTURE,
+  COURSE_SET_BOOK,
+  COURSE_SET_COMMENT
+} from '../actions/course.js';
 
 const initialState = {
   topic: '',
+  lecture: '',
+  book: '',
+  comment: '',
   courseUnit: '',
-  step: 0,
   data: {
     lectures: [],
     books: []
@@ -13,7 +20,7 @@ const initialState = {
 
 export default handleActions(
   {
-    [COURSE_SET_DATA]: (state, action) => {
+    [COURSE_SET_TOPIC]: (state, action) => {
       return {
         ...state,
         topic: action.payload.topic,
@@ -24,10 +31,22 @@ export default handleActions(
         }
       };
     },
-    [COURSE_SET_COURSE]: (state, action) => {
+    [COURSE_SET_LECTURE]: (state, action) => {
       return {
         ...state,
-        topic: action.payload.topic
+        lecture: action.payload.lecture
+      };
+    },
+    [COURSE_SET_BOOK]: (state, action) => {
+      return {
+        ...state,
+        book: action.payload.book
+      };
+    },
+    [COURSE_SET_COMMENT]: (state, action) => {
+      return {
+        ...state,
+        comment: action.payload.comment
       };
     }
   },

@@ -67,8 +67,6 @@ class Topic extends Component {
 
     const { data } = await http.get(`${SERVER_URL}/t/${topic}`);
 
-    console.log('did : ', data);
-
     this.setState(
       {
         ...this.state,
@@ -81,49 +79,63 @@ class Topic extends Component {
       }
     );
 
+    // TODO: 기술발표 설명 예시
+
     const selectedInstructors = [];
     const selectedLectures = [];
     const selectedBooks = [];
 
-    const sortedInstructors = data.instructors.sort((a, b) => {
-      if (a.review < b.review) {
-        return 1;
-      }
-      if (a.review > b.review) {
-        return -1;
-      }
-      return 0;
-    });
+    const sortingMachine = arr => {
+      return arr.sort((a, b) => {
+        if (a.review < b.review) {
+          return 1;
+        }
+        if (a.review > b.review) {
+          return -1;
+        }
+        return 0;
+      });
+    };
 
-    const sortedLectures = data.lectures.sort((a, b) => {
-      if (a.review < b.review) {
-        return 1;
-      }
-      if (a.review > b.review) {
-        return -1;
-      }
-      return 0;
-    });
+    const sortedInstructors = sortingMachine(data.instructors);
+    const sortedLectures = sortingMachine(data.lectures);
+    const sortedBooks = sortingMachine(data.books);
 
-    const sortedBooks = data.books.sort((a, b) => {
-      if (a.review < b.review) {
-        return 1;
-      }
-      if (a.review > b.review) {
-        return -1;
-      }
-      return 0;
-    });
+    // const sortedInstructors = data.instructors.sort((a, b) => {
+    //   if (a.review < b.review) {
+    //     return 1;
+    //   }
+    //   if (a.review > b.review) {
+    //     return -1;
+    //   }
+    //   return 0;
+    // });
+
+    // const sortedLectures = data.lectures.sort((a, b) => {
+    //   if (a.review < b.review) {
+    //     return 1;
+    //   }
+    //   if (a.review > b.review) {
+    //     return -1;
+    //   }
+    //   return 0;
+    // });
+
+    // const sortedBooks = data.books.sort((a, b) => {
+    //   if (a.review < b.review) {
+    //     return 1;
+    //   }
+    //   if (a.review > b.review) {
+    //     return -1;
+    //   }
+    //   return 0;
+    // });
 
     for (let i = 0; i < 3; i++) {
       selectedInstructors.push(sortedInstructors[i]);
       selectedLectures.push(sortedLectures[i]);
       selectedBooks.push(sortedBooks[i]);
     }
-
-    console.log('selectedInstructors : ', selectedInstructors);
-    console.log('selectedLectures : ', selectedLectures);
-    console.log('selectedBooks : ', selectedBooks);
 
     this.setState({
       ...this.state,
@@ -182,7 +194,11 @@ class Topic extends Component {
                 />
               );
             })}
-            <RecommendButton type="instructor" instructor={'Instructor'} />
+            <RecommendButton
+              type="instructor"
+              instructor={'Instructor'}
+              topic={this.state.topic}
+            />
           </PaperSheet>
         </PaperSheet>
 
@@ -223,7 +239,11 @@ class Topic extends Component {
                 />
               );
             })}
-            <RecommendButton type="lecture" lecture={'Lecture'} />
+            <RecommendButton
+              type="lecture"
+              lecture={'Lecture'}
+              topic={this.state.topic}
+            />
           </PaperSheet>
         </PaperSheet>
 
@@ -265,7 +285,7 @@ class Topic extends Component {
               );
             })}
           </PaperSheet>
-          <RecommendButton type="book" book={'Book'} />
+          <RecommendButton type="book" book={'Book'} topic={this.state.topic} />
         </PaperSheet>
 
         <PaperSheet

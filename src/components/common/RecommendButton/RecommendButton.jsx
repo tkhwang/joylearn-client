@@ -28,14 +28,14 @@ class RecommendButton extends React.Component {
       lecture: {
         name: '',
         url: '',
-        screenshot: '',
+        image: '',
         free: 'Free',
         lang: 'eng'
       },
       book: {
         name: '',
         url: '',
-        screenshot: '',
+        image: '',
         free: 'Free',
         lang: 'eng'
       }
@@ -55,24 +55,29 @@ class RecommendButton extends React.Component {
 
   submitClick = async e => {
     const { instructor, lecture, book } = this.state;
+    const { topic } = this.props;
 
     if (instructor.name.length !== 0) {
-      const apiEndpoint = `${SERVER_URL}/api/instructor`;
-      await http.post(apiEndpoint, {
-        instructor: this.state.instructor
-      });
+      const apiEndpoint = `${SERVER_URL}/instructor`;
+      const data = {
+        ...this.state.instructor,
+        topic: topic.name
+      };
+      await http.post(apiEndpoint, data);
     } else if (lecture.name.length !== 0) {
-      const apiEndpoint = `${SERVER_URL}/api/lecture`;
+      const apiEndpoint = `${SERVER_URL}/lecture`;
       const data = {
         ...this.state.lecture,
-        free: this.state.lecture.free === 'Free' ? true : false
+        free: this.state.lecture.free === 'Free' ? true : false,
+        topic: topic.name
       };
       await http.post(apiEndpoint, data);
     } else if (book.name.length !== 0) {
-      const apiEndpoint = `${SERVER_URL}/api/book`;
+      const apiEndpoint = `${SERVER_URL}/book`;
       const data = {
         ...this.state.book,
-        free: this.state.book.free === 'Free' ? true : false
+        free: this.state.book.free === 'Free' ? true : false,
+        topic: topic.name
       };
       await http.post(apiEndpoint, data);
     }
@@ -120,7 +125,7 @@ class RecommendButton extends React.Component {
               block
               onClick={this.handleClick}
             >
-              {`Recommend ${
+              {`Submit New ${
                 instructor ? instructor : lecture ? lecture : book && book
               }`}
             </Button>
@@ -265,14 +270,19 @@ class RecommendButton extends React.Component {
                 </Input>
               </InputGroup>
 
-              <Button color="primary" onClick={this.submitClick}>
+              <Button
+                color="primary"
+                size="lg"
+                block
+                onClick={this.submitClick}
+              >
                 Submit
               </Button>
             </FormGroup>
           </React.Fragment>
         ) : (
           <Button color="primary" size="lg" block onClick={this.handleClick}>
-            {`Recommend ${
+            {`Submit New ${
               instructor ? instructor : lecture ? lecture : book && book
             }`}
           </Button>

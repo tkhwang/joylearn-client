@@ -81,20 +81,18 @@ class Topics extends Component {
   _renderTopics = () => {
     return (
       <React.Fragment>
-        <CommonPaperSheet>
-          <DivTopicsMenu>
-            {this.state.topics.map((topic, index, topics) => {
-              return (
-                <TopicsCard
-                  image={topic.image}
-                  title={topic.name}
-                  description={''}
-                  key={topic}
-                />
-              );
-            })}
-          </DivTopicsMenu>
-        </CommonPaperSheet>
+        <DivTopicsMenu>
+          {this.state.topics.map((topic, index, topics) => {
+            return (
+              <TopicsCard
+                image={topic.image}
+                title={topic.name}
+                description={''}
+                key={topic}
+              />
+            );
+          })}
+        </DivTopicsMenu>
       </React.Fragment>
     );
   };
@@ -134,7 +132,8 @@ class Topics extends Component {
 const DivTopicsMenu = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin: 30px 30px 30px 30px;
+  margin-top: 20px;
+  /* margin: 30px 30px 30px 30px; */
 `;
 
 const DivSpinner = styled.div`

@@ -52,10 +52,10 @@ class Card extends Component {
               <CardMedia className={classes.media} image={image} name={name} />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
-                  {fullName === undefined ? name : fullName}
+                  {fullName ? fullName : name}
                 </Typography>
                 {gitHub && <Typography component="p">{gitHub}</Typography>}
-                {/* <Typography component="p">{url}</Typography> */}
+                {mainUrl && <Typography component="p">{mainUrl}</Typography>}
               </CardContent>
             </CardActionArea>
           </MaterialCard>

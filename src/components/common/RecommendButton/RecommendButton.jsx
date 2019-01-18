@@ -43,6 +43,19 @@ class RecommendButton extends React.Component {
         image: '',
         free: 'Free',
         lang: 'eng'
+      },
+
+      errorsInstructor: {
+        name: '',
+        fullName: ''
+      },
+      errorsLecture: {
+        name: '',
+        url: ''
+      },
+      errorsBook: {
+        name: '',
+        url: ''
       }
     };
 
@@ -58,9 +71,138 @@ class RecommendButton extends React.Component {
     }));
   };
 
+  //-----
+
+  instructorNameValidate = () => {
+    const errorsInstructor = {};
+
+    if (this.state.instructor.name.length === 0) {
+      if (this.state.instructor.name.trim() === '') {
+        errorsInstructor.name = 'Name is Required';
+      }
+    }
+
+    if (errorsInstructor) {
+      return Object.keys(errorsInstructor).length === 0
+        ? null
+        : errorsInstructor;
+    }
+  };
+
+  instructorFullnameValidate = () => {
+    const errorsInstructor = {};
+
+    if (this.state.instructor.fullName.length === 0) {
+      if (this.state.instructor.fullName.trim() === '')
+        errorsInstructor.fullName = 'Full Name is Required.';
+    }
+
+    if (errorsInstructor) {
+      return Object.keys(errorsInstructor).length === 0
+        ? null
+        : errorsInstructor;
+    }
+  };
+
+  lectureNameValidate = () => {
+    const errorsLecture = {};
+
+    if (this.state.lecture.name.length === 0) {
+      if (this.state.lecture.name.trim() === '')
+        errorsLecture.name = 'Name is Required.';
+    }
+
+    if (errorsLecture) {
+      return Object.keys(errorsLecture).length === 0 ? null : errorsLecture;
+    }
+  };
+
+  lectureUrlValidate = () => {
+    const errorsLecture = {};
+
+    if (this.state.lecture.url.length === 0) {
+      if (this.state.lecture.url.trim() === '')
+        errorsLecture.url = 'URL is Required.';
+    }
+
+    if (errorsLecture) {
+      return Object.keys(errorsLecture).length === 0 ? null : errorsLecture;
+    }
+  };
+
+  bookNameValidate = () => {
+    const errorsBook = {};
+
+    if (this.state.book.name.length === 0) {
+      if (this.state.book.name.trim() === '')
+        errorsBook.name = 'Name is Required.';
+    }
+
+    if (errorsBook) {
+      return Object.keys(errorsBook).length === 0 ? null : errorsBook;
+    }
+  };
+
+  bookUrlValidate = () => {
+    const errorsBook = {};
+
+    if (this.setState.book.url.length === 0) {
+      if (this.state.book.url.trim() === '')
+        errorsBook.url = 'URL is Required.';
+    }
+
+    if (errorsBook) {
+      return Object.keys(errorsBook).length === 0 ? null : errorsBook;
+    }
+  };
+
+  //-----
+
   submitClick = async e => {
     const { instructor, lecture, book } = this.state;
     const { topic, type, actionTopic } = this.props;
+
+    if (instructor.name.length === 0) {
+      const errorsInstructor = this.instructorNameValidate();
+      this.setState({
+        ...this.state,
+        errorsInstructor
+      });
+    } else if (instructor.fullName.length === 0) {
+      const errorsInstructor = this.instructorFullnameValidate();
+      this.setState({
+        ...this.state,
+        errorsInstructor
+      });
+    } else if (lecture.name.length === 0) {
+      const errorsLecture = this.lectureNameValidate();
+      this.setState({
+        ...this.state,
+        errorsLecture
+      });
+    } else if (lecture.url.length === 0) {
+      const errorsLecture = this.lectureUrlValidate();
+      this.setState({
+        ...this.state,
+        errorsLecture
+      });
+    } else if (book.name.length === 0) {
+      const errorsBook = this.bookNameValidate();
+      this.setState({
+        ...this.state,
+        errorsBook
+      });
+    } else if (book.url.length === 0) {
+      const errorsBook = this.bookUrlValidate();
+      this.setState({
+        ...this.state,
+        errorsBook
+      });
+    }
+
+    // const errors = this.validate();
+    // this.setState({ errors });
+    // if (errors) return;
 
     let apiEndpoint;
     let data;
@@ -73,7 +215,6 @@ class RecommendButton extends React.Component {
           topic: topic.name
         }
       };
-      // await http.post(apiEndpoint, data);
     } else if (lecture.name.length !== 0) {
       apiEndpoint = `${SERVER_URL}/lecture`;
       data = {
@@ -83,7 +224,6 @@ class RecommendButton extends React.Component {
           topic: topic.name
         }
       };
-      // await http.post(apiEndpoint, data);
     } else if (book.name.length !== 0) {
       apiEndpoint = `${SERVER_URL}/book`;
       data = {
@@ -102,6 +242,11 @@ class RecommendButton extends React.Component {
       if (type === 'instructor') actionTopic.add_instructor(data.instructor);
       else if (type === 'lecture') actionTopic.add_lecture(data.lecture);
       else if (type === 'book') actionTopic.add_book(data.book);
+
+      this.setState({
+        clicked: false
+      });
+      
     } catch (ex) {}
   };
 
@@ -141,17 +286,16 @@ class RecommendButton extends React.Component {
       <React.Fragment>
         {this.state.clicked ? (
           <React.Fragment>
-            <React.Fragment>
-              <Button
-                color="secondary"
-                size="lg"
-                block
-                onClick={this.handleClick}
-              >
-                {`Submit New ${
-                  instructor ? instructor : lecture ? lecture : book && book
-                }`}
-              </Button>
+
+            <Button
+              color="secondary"
+              size="lg"
+              block
+              onClick={this.handleClick}
+            >
+              Close
+            </Button>
+            
               <FormGroup>
                 <Typeahead
                   labelKey="name"
@@ -180,8 +324,25 @@ class RecommendButton extends React.Component {
                     onChange={this.submitChange}
                   />
                 </InputGroup>
+                {this.state.errorsInstructor.name ? (
+                  <div className="alert alert-danger">
+                    {this.state.errorsInstructor.name}
+                  </div>
+                ) : this.state.errorsLecture.name ? (
+                  <div className="alert alert-danger">
+                    {this.state.errorsLecture.name}
+                  </div>
+                ) : (
+                  this.state.errorsBook.name && (
+                    <div className="alert alert-danger">
+                      {this.state.errorsBook.name}
+                    </div>
+                  )
+                )}
+              </div>
 
-                {instructor && (
+              {instructor && (
+                <div className="form-group">
                   <InputGroup>
                     <InputGroupAddon addonType="prepend">
                       Full Name
@@ -193,9 +354,16 @@ class RecommendButton extends React.Component {
                       onChange={this.submitChange}
                     />
                   </InputGroup>
-                )}
+                  {this.state.errorsInstructor.fullName && (
+                    <div className="alert alert-danger">
+                      {this.state.errorsInstructor.fullName}
+                    </div>
+                  )}
+                </div>
+              )}
 
-                {instructor && (
+              {instructor && (
+                <div className="form-group">
                   <InputGroup>
                     <InputGroupAddon addonType="prepend">
                       GitHub
@@ -207,8 +375,11 @@ class RecommendButton extends React.Component {
                       onChange={this.submitChange}
                     />
                   </InputGroup>
-                )}
+                  <div />
+                </div>
+              )}
 
+              <div className="form-group">
                 <InputGroup>
                   <InputGroupAddon addonType="prepend">URL</InputGroupAddon>
                   <Input
@@ -230,9 +401,21 @@ class RecommendButton extends React.Component {
                     onChange={this.submitChange}
                   />
                 </InputGroup>
+                {this.state.errorsLecture.url ? (
+                  <div className="alert alert-danger">
+                    {this.state.errorsLecture.url}
+                  </div>
+                ) : (
+                  this.state.errorsBook.url && (
+                    <div className="alert alert-danger">
+                      {this.state.errorsBook.url}
+                    </div>
+                  )
+                )}
+              </div>
 
-                {/* image 보류 */}
-                {/* <InputGroup>
+              {/* image 보류 */}
+              {/* <InputGroup>
                 <InputGroupAddon addonType="prepend">Image</InputGroupAddon>
                 <Input
                   placeholder={
@@ -326,7 +509,6 @@ class RecommendButton extends React.Component {
   }
 }
 
-// export default RecommendButton;
 export default connect(
   state => ({
     storeTopic: state.topic

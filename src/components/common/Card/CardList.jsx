@@ -166,9 +166,24 @@ class CardList extends React.Component {
                     )}
                   </Typography>
                 )}
-              </DivPointContainer>
-            </Card>
-          </DivCardContainer>
+                {url && (
+                  <Typography variant="subtitle1" color="textSecondary">
+                    <a href={url}>{url}</a>
+                  </Typography>
+                )}
+                {user && (
+                  <Typography variant="subtitle1" color="textSecondary">
+                    {user.id} @ {moment({ time }).fromNow()}
+                  </Typography>
+                )}
+                {small && (
+                  <Typography component="h6" variant="h6">
+                    {small}
+                  </Typography>
+                )}
+              </CardContent>
+            </div>
+          </Card>
         )}
       </React.Fragment>
     );

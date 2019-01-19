@@ -351,13 +351,20 @@ class Topic extends Component {
   };
 
   render() {
+    const { topic, instructors, lectures, books, courses } = this.state;
     return (
       <React.Fragment>
-        <Title title={this.state.topic} />
+        <Title
+          title={topic}
+          instructors={instructors}
+          lectures={lectures}
+          books={books}
+          courses={courses}
+        />
 
         <hr />
 
-        {this.state.instructors && this.state.lectures ? (
+        {instructors && lectures ? (
           this._renderTopic()
         ) : (
           <DivSpinner>

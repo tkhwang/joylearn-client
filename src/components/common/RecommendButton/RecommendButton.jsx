@@ -15,6 +15,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as topicActions from '../../../actions/topic';
 
+// TODO: 기술 발표 자료 얘시
 class RecommendButton extends React.Component {
   constructor(props) {
     super(props);
@@ -199,6 +200,51 @@ class RecommendButton extends React.Component {
         errorsBook
       });
     }
+
+    //-----
+
+    // if (instructor.name.length === 0) {
+    //   const errorsInstructor = this.instructorNameValidate();
+    //   this.setState({
+    //     ...this.state,
+    //     errorsInstructor
+    //   });
+    // }
+    // if (instructor.fullName.length === 0) {
+    //   const errorsInstructor = this.instructorFullnameValidate();
+    //   this.setState({
+    //     ...this.state,
+    //     errorsInstructor
+    //   });
+    // }
+    // if (lecture.name.length === 0) {
+    //   const errorsLecture = this.lectureNameValidate();
+    //   this.setState({
+    //     ...this.state,
+    //     errorsLecture
+    //   });
+    // }
+    // if (lecture.url.length === 0) {
+    //   const errorsLecture = this.lectureUrlValidate();
+    //   this.setState({
+    //     ...this.state,
+    //     errorsLecture
+    //   });
+    // }
+    // if (book.name.length === 0) {
+    //   const errorsBook = this.bookNameValidate();
+    //   this.setState({
+    //     ...this.state,
+    //     errorsBook
+    //   });
+    // }
+    // if (book.url.length === 0) {
+    //   const errorsBook = this.bookUrlValidate();
+    //   this.setState({
+    //     ...this.state,
+    //     errorsBook
+    //   });
+    // }
 
     // const errors = this.validate();
     // this.setState({ errors });

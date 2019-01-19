@@ -81,7 +81,8 @@ class Topics extends Component {
     return (
       <React.Fragment>
         <DivTopicsMenu>
-          {this.state.topics.map((topic, index, topics) => {
+          {this.state.topics.map(topic => {
+            // (topic, index, topics)
             return (
               <TopicsCard
                 image={topic.image}

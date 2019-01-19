@@ -41,8 +41,6 @@ class Chart extends React.Component {
   };
 
   render() {
-    console.log('chart info : ', this.props.reviews);
-
     const { reviews } = this.props.reviews;
 
     if (reviews) {

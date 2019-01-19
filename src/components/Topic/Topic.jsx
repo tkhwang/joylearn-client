@@ -80,8 +80,6 @@ class Topic extends Component {
       courses: data.courses
     });
 
-    console.log('did : ', data);
-
     this.setState(
       {
         ...this.state,

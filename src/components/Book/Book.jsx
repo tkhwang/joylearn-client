@@ -88,10 +88,6 @@ class Book extends Component {
     // const { classes } = this.props;
     const { comments, reviews } = this.props.storeBook;
     console.log('[+] Instructor : comments = ', comments);
-    console.log(
-      'this.props.storeBook.reviews : ',
-      this.props.storeBook.reviews
-    );
     return (
       <React.Fragment>
         <BookCard book={this.state.book} instructor={this.state.instructor} />

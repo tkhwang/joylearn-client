@@ -76,8 +76,6 @@ class Card extends Component {
   }
 
   render() {
-    console.log('this.props : ', this.props);
-    console.log('this.props.book : ', this.props.book);
     // const { classes, name, image, url, lang, free } = this.props;
 
     return (

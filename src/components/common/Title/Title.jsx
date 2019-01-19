@@ -6,7 +6,7 @@ import PaperSheet from '../PaperSheet/PaperSheet';
 class Title extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
-    logo: PropTypes.string.isRequired
+    image: PropTypes.string.isRequired
   };
 
   render() {

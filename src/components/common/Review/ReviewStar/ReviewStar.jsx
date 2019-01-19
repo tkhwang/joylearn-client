@@ -36,7 +36,7 @@ class ReviewStar extends Component {
     } = this.props;
 
     const name = decodeURIComponent(this.props.name);
-    const apiEndpoint = `${SERVER_URL}/api/review/${type}/${name}`;
+    let apiEndpoint = `${SERVER_URL}/api/review/${type}/${name}`;
 
     const { data: reviews } = await http.post(apiEndpoint, {
       writer: user,

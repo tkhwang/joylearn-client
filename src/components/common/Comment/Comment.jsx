@@ -54,7 +54,7 @@ class Comment extends React.Component {
     const apiEndpoint = `${SERVER_URL}/api/comment/${type}/${name}`;
 
     const { data } = await http.post(apiEndpoint, {
-      writer: this.props.user.id,
+      writer: this.props.user,
       content: this.state.text
     });
     console.log('[+] //////////////// data = ', data);
@@ -130,7 +130,7 @@ class Comment extends React.Component {
                     url=""
                     comments={comment.content}
                     small={comment.content}
-                    user={this.props.user}
+                    user={comment.writer}
                     updated_at={comment.updated_at}
                   />
                 );

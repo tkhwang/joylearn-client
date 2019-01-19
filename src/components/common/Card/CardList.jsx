@@ -117,7 +117,7 @@ class CardList extends React.Component {
 
                   {user && (
                     <Typography variant="subtitle1" color="textSecondary">
-                      {user.id} @ {moment({ time }).fromNow()}
+                      {user} @ {moment({ time }).fromNow()}
                     </Typography>
                   )}
                   {small && (

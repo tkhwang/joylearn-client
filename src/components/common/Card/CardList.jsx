@@ -115,9 +115,9 @@ class CardList extends React.Component {
                     </Typography>
                   )}
 
-                  {avatar && (
+                  {user && (
                     <Typography variant="subtitle1" color="textSecondary">
-                      {user} @ {moment({ time }).fromNow()}
+                      {user.id} @ {moment({ time }).fromNow()}
                     </Typography>
                   )}
                   {small && (

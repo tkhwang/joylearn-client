@@ -4,4 +4,8 @@ export default function filterByInput(array, input) {
   });
 }
 
-
+export function selectyObjectByName(array, name) {
+  return array.filter(obj => {
+    return obj.name === name;
+  });
+}

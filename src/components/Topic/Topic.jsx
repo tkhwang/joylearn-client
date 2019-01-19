@@ -21,6 +21,8 @@ import Title from '../common/Title/Title';
 import InstructorsCard from '../Topic/Instructors/Card';
 import LecturesCard from '../Topic/Lectures/Card';
 import BooksCard from '../Topic/Books/Card';
+import CoursesCard from '../Topic/Courses/Courses';
+import CourseRegister from '../Course/CourseRegister/CourseRegister.jsx';
 // import Courses from './Courses/Courses';
 
 import config from '../../config';
@@ -39,6 +41,7 @@ class Topic extends Component {
       selectedInstructors: [],
       selectedLectures: [],
       selectedBooks: [],
+      selectedCourses: [],
       clicked: false
     };
   }
@@ -73,7 +76,8 @@ class Topic extends Component {
       topic: topic,
       instructors: data.instructors,
       lectures: data.lectures,
-      books: data.books
+      books: data.books,
+      courses: data.courses
     });
 
     console.log('did : ', data);
@@ -83,7 +87,8 @@ class Topic extends Component {
         ...this.state,
         instructors: data.instructors,
         lectures: data.lectures,
-        books: data.books
+        books: data.books,
+        courses: data.courses
       },
       () => {
         actionLectures.get_lectures(this.state.lectures);
@@ -98,6 +103,7 @@ class Topic extends Component {
     const selectedInstructors = [];
     const selectedLectures = [];
     const selectedBooks = [];
+    const selectedCourses = [];
 
     const sortingMachine = arr => {
       return arr.sort((a, b) => {
@@ -114,6 +120,7 @@ class Topic extends Component {
     const sortedInstructors = sortingMachine(data.instructors);
     const sortedLectures = sortingMachine(data.lectures);
     const sortedBooks = sortingMachine(data.books);
+    const sortedCourses = sortingMachine(data.courses);
 
     // const sortedInstructors = data.instructors.sort((a, b) => {
     //   if (a.review < b.review) {
@@ -149,13 +156,15 @@ class Topic extends Component {
       selectedInstructors.push(sortedInstructors[i]);
       selectedLectures.push(sortedLectures[i]);
       selectedBooks.push(sortedBooks[i]);
+      selectedCourses.push(sortedCourses[i]);
     }
 
     this.setState({
       ...this.state,
       selectedInstructors: selectedInstructors,
       selectedLectures: selectedLectures,
-      selectedBooks: selectedBooks
+      selectedBooks: selectedBooks,
+      selectedCourses: selectedCourses
     });
   }
 
@@ -167,7 +176,7 @@ class Topic extends Component {
 
   _renderTopic = () => {
     // const avatar = localStorage.getItem('avatar');
-    const { instructors, lectures, books } = this.props.storeTopic;
+    const { instructors, lectures, books, courses } = this.props.storeTopic;
     return (
       <React.Fragment>
         <PaperSheet
@@ -292,13 +301,13 @@ class Topic extends Component {
                   />
                 );
               })}
+            <RecommendButton
+              type="book"
+              book={'Book'}
+              topic={this.state.topic}
+              arrays={books}
+            />
           </PaperSheet>
-          <RecommendButton
-            type="book"
-            book={'Book'}
-            topic={this.state.topic}
-            arrays={books}
-          />
         </PaperSheet>
 
         <PaperSheet
@@ -309,7 +318,34 @@ class Topic extends Component {
               </h3>
             </Link>
           }
-        />
+        >
+          <CardsContatiner>
+            {this.state.selectedCourses.map(course => {
+              return <CoursesCard course={course} />;
+              // name={book.name}
+              // image={book.image}
+              // url={book.url}
+              // lang={book.lang}
+              // free={book.free}
+            })}
+          </CardsContatiner>
+          <PaperSheet title="More Courses">
+            {courses &&
+              lectures.map(course => {
+                return (
+                  <CommonCardList
+                    type="course"
+                    title={course.name}
+                    url={course.url}
+                    image={course.image}
+                    time=""
+                    review={course.review}
+                  />
+                );
+              })}
+            <CourseRegister />
+          </PaperSheet>
+        </PaperSheet>
       </React.Fragment>
     );
   };

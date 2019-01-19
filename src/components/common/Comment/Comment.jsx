@@ -67,7 +67,12 @@ class Comment extends React.Component {
       actionBook.add_comments(data);
     }
 
-    this.setState({ ...this.state, text: '', comments: data });
+    this.setState(prevState => ({
+      ...this.state,
+      text: '',
+      comments: data,
+      clicked: !prevState.clicked
+    }));
   };
 
   render() {

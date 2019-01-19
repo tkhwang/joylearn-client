@@ -4,6 +4,7 @@ import { Button } from 'reactstrap';
 import CommonCardList from '../../common/Card/CardList.jsx';
 import CommonSearchListCard from '../../common/SearchList/SearchListCard.jsx';
 import filterByInput from '../../../services/searchService.js';
+import { selectyObjectByName } from '../../../services/searchService.js';
 import http, { SERVER_URL } from '../../../services/httpService.js';
 
 import { connect } from 'react-redux';
@@ -71,6 +72,7 @@ class SearchList extends Component {
   handleCardClick = async topic => {
     console.log('[+] handleCardClick', topic);
     const { type, arrays, actionCourse } = this.props;
+    const { lectures, books } = this.props.stroeCourse.data;
 
     if (type === 'topic') {
       const { data } = await http.get(`${SERVER_URL}/t/${topic}`);
@@ -84,9 +86,11 @@ class SearchList extends Component {
 
       actionCourse.set_topic(course);
     } else if (type === 'lecture') {
-      actionCourse.set_lecture(topic);
+      const selectedLecture = selectyObjectByName(lectures, topic)[0];
+      actionCourse.set_lecture(selectedLecture);
     } else if (type === 'book') {
-      actionCourse.set_book(topic);
+      const selectedBook = selectyObjectByName(books, topic)[0];
+      actionCourse.set_book(selectedBook);
     }
 
     this.setState({

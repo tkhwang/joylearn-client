@@ -32,6 +32,9 @@ const styles = theme => ({
   playIcon: {
     height: 38,
     width: 38
+  },
+  media: {
+    margin: '30'
   }
 });
 
@@ -78,6 +81,7 @@ class CardList extends React.Component {
                 className={classes.cover}
                 image={image}
                 title={title}
+                style={styles.media}
               />
             )}
             {avatar && <img src={avatar} alt="avatar" width="50" height="50" />}

@@ -3,15 +3,17 @@ import {
   COURSE_SET_TOPIC,
   COURSE_SET_LECTURE,
   COURSE_SET_BOOK,
-  COURSE_SET_COMMENT
+  COURSE_SET_COMMENT,
+  COURSE_ADD_COURSE
 } from '../actions/course.js';
 
 const initialState = {
   topic: '',
+  title: '',
+  courses: [],
   lecture: '',
   book: '',
   comment: '',
-  courseUnit: '',
   data: {
     lectures: [],
     books: []
@@ -47,6 +49,12 @@ export default handleActions(
       return {
         ...state,
         comment: action.payload.comment
+      };
+    },
+    [COURSE_ADD_COURSE]: (state, action) => {
+      return {
+        ...state,
+        courses: state.courses.concat(action.payload.course)
       };
     }
   },

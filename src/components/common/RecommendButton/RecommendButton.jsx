@@ -163,88 +163,92 @@ class RecommendButton extends React.Component {
     const { instructor, lecture, book } = this.state;
     const { topic, type, actionTopic } = this.props;
 
-    if (instructor.name.length === 0) {
-      const errorsInstructor = this.instructorNameValidate();
-      this.setState({
-        ...this.state,
-        errorsInstructor
-      });
-    } else if (instructor.fullName.length === 0) {
-      const errorsInstructor = this.instructorFullnameValidate();
-      this.setState({
-        ...this.state,
-        errorsInstructor
-      });
-    } else if (lecture.name.length === 0) {
-      const errorsLecture = this.lectureNameValidate();
-      this.setState({
-        ...this.state,
-        errorsLecture
-      });
-    } else if (lecture.url.length === 0) {
-      const errorsLecture = this.lectureUrlValidate();
-      this.setState({
-        ...this.state,
-        errorsLecture
-      });
-    } else if (book.name.length === 0) {
-      const errorsBook = this.bookNameValidate();
-      this.setState({
-        ...this.state,
-        errorsBook
-      });
-    } else if (book.url.length === 0) {
-      const errorsBook = this.bookUrlValidate();
-      this.setState({
-        ...this.state,
-        errorsBook
-      });
-    }
-
-    //-----
-
     // if (instructor.name.length === 0) {
     //   const errorsInstructor = this.instructorNameValidate();
     //   this.setState({
     //     ...this.state,
     //     errorsInstructor
     //   });
-    // }
-    // if (instructor.fullName.length === 0) {
+    // } else if (instructor.fullName.length === 0) {
     //   const errorsInstructor = this.instructorFullnameValidate();
     //   this.setState({
     //     ...this.state,
     //     errorsInstructor
     //   });
-    // }
-    // if (lecture.name.length === 0) {
+    // } else if (lecture.name.length === 0) {
     //   const errorsLecture = this.lectureNameValidate();
     //   this.setState({
     //     ...this.state,
     //     errorsLecture
     //   });
-    // }
-    // if (lecture.url.length === 0) {
+    // } else if (lecture.url.length === 0) {
     //   const errorsLecture = this.lectureUrlValidate();
     //   this.setState({
     //     ...this.state,
     //     errorsLecture
     //   });
-    // }
-    // if (book.name.length === 0) {
+    // } else if (book.name.length === 0) {
     //   const errorsBook = this.bookNameValidate();
     //   this.setState({
     //     ...this.state,
     //     errorsBook
     //   });
-    // }
-    // if (book.url.length === 0) {
+    // } else if (book.url.length === 0) {
     //   const errorsBook = this.bookUrlValidate();
     //   this.setState({
     //     ...this.state,
     //     errorsBook
     //   });
     // }
+
+    //-----
+
+    if (instructor.name.length !== 0 || instructor.fullName.length !== 0) {
+      if (instructor.name.length === 0) {
+        const errorsInstructor = this.instructorNameValidate();
+        this.setState({
+          ...this.state,
+          errorsInstructor
+        });
+      }
+      if (instructor.fullName.length === 0) {
+        const errorsInstructor = this.instructorFullnameValidate();
+        this.setState({
+          ...this.state,
+          errorsInstructor
+        });
+      }
+    } else if (lecture.name.length !== 0 || lecture.url.length !== 0) {
+      if (lecture.name.length === 0) {
+        const errorsLecture = this.lectureNameValidate();
+        this.setState({
+          ...this.state,
+          errorsLecture
+        });
+      }
+      if (lecture.url.length === 0) {
+        const errorsLecture = this.lectureUrlValidate();
+        this.setState({
+          ...this.state,
+          errorsLecture
+        });
+      }
+    } else if (book.name.length !== 0 || book.url.length !== 0) {
+      if (book.name.length === 0) {
+        const errorsBook = this.bookNameValidate();
+        this.setState({
+          ...this.state,
+          errorsBook
+        });
+      }
+      if (book.url.length === 0) {
+        const errorsBook = this.bookUrlValidate();
+        this.setState({
+          ...this.state,
+          errorsBook
+        });
+      }
+    }
 
     // const errors = this.validate();
     // this.setState({ errors });
@@ -253,7 +257,7 @@ class RecommendButton extends React.Component {
     let apiEndpoint;
     let data;
 
-    if (instructor.name.length !== 0) {
+    if (instructor.name.length !== 0 && instructor.fullName.length !== 0) {
       apiEndpoint = `${SERVER_URL}/instructor`;
       data = {
         instructor: {
@@ -261,7 +265,7 @@ class RecommendButton extends React.Component {
           topic: topic.name
         }
       };
-    } else if (lecture.name.length !== 0) {
+    } else if (lecture.name.length !== 0 && lecture.url.length !== 0) {
       apiEndpoint = `${SERVER_URL}/lecture`;
       data = {
         lecture: {
@@ -270,7 +274,7 @@ class RecommendButton extends React.Component {
           topic: topic.name
         }
       };
-    } else if (book.name.length !== 0) {
+    } else if (book.name.length !== 0 && book.url.length !== 0) {
       apiEndpoint = `${SERVER_URL}/book`;
       data = {
         book: {

@@ -133,36 +133,46 @@ class CardList extends React.Component {
                   <Typography component="h5" variant="h5">
                     {review === 5 ? (
                       <React.Fragment>
-                        <FaStar />
-                        <FaStar />
-                        <FaStar />
-                        <FaStar />
-                        <FaStar />
+                        <div style={{ color: 'orange' }}>
+                          <FaStar />
+                          <FaStar />
+                          <FaStar />
+                          <FaStar />
+                          <FaStar />
+                        </div>
                       </React.Fragment>
                     ) : review === 4 ? (
                       <React.Fragment>
-                        <FaStar />
-                        <FaStar />
-                        <FaStar />
-                        <FaStar />
+                        <div style={{ color: 'orange' }}>
+                          <FaStar />
+                          <FaStar />
+                          <FaStar />
+                          <FaStar />
+                        </div>
                       </React.Fragment>
                     ) : review === 3 ? (
                       <React.Fragment>
-                        <FaStar />
-                        <FaStar />
-                        <FaStar />
+                        <div style={{ color: 'orange' }}>
+                          <FaStar />
+                          <FaStar />
+                          <FaStar />
+                        </div>
                       </React.Fragment>
                     ) : review === 2 ? (
                       <React.Fragment>
-                        <FaStar />
-                        <FaStar />
+                        <div style={{ color: 'orange' }}>
+                          <FaStar />
+                          <FaStar />
+                        </div>
+                      </React.Fragment>
+                    ) : review === 1 ? (
+                      <React.Fragment>
+                        <div style={{ color: 'orange' }}>
+                          <FaStar />
+                        </div>
                       </React.Fragment>
                     ) : (
-                      review === 1 && (
-                        <React.Fragment>
-                          <FaStar />
-                        </React.Fragment>
-                      )
+                      review === 0 && null
                     )}
                   </Typography>
                 )}

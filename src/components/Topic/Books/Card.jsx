@@ -8,15 +8,16 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import { FaHome } from 'react-icons/fa';
 
 const styles = {
   card: {
     // width: 250,
-    width: 350,
+    width: 400,
     margin: 10
   },
   media: {
-    height: 300
+    height: 150
   }
 };
 
@@ -47,11 +48,17 @@ class Card extends Component {
               <CardMedia className={classes.media} image={image} title={name} />
               <CardContent>
                 {name && (
-                  <Typography gutterBottom variant="h5" component="h2">
+                  <Typography gutterBottom variant="h6" component="h6">
                     {name}
+                    {'   '}
+                    {url && (
+                      <a href={url}>
+                        <FaHome />
+                      </a>
+                    )}
                   </Typography>
                 )}
-                {url && <Typography component="p">{url}</Typography>}
+                {/* {url && <Typography component="p">{url}</Typography>}
                 {lang && (
                   <Typography component="p">{`language : ${lang}`}</Typography>
                 )}
@@ -59,7 +66,7 @@ class Card extends Component {
                   <Typography component="p">
                     {free ? 'Free' : 'Paid'}
                   </Typography>
-                )}
+                )} */}
               </CardContent>
             </CardActionArea>
           </MaterialCard>

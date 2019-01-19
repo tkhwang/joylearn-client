@@ -10,17 +10,18 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 // import MaterialIcon, { colorPalette } from 'material-icons-react';
 
+import { FaHome, FaGithub } from 'react-icons/fa';
 import urlencode from 'urlencode';
 import { Redirect } from 'react-router';
 
 const styles = {
   card: {
     // width: 250,
-    width: 350,
+    width: 200,
     margin: 10
   },
   media: {
-    height: 300
+    height: 200
   }
 };
 
@@ -53,9 +54,18 @@ class Card extends Component {
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
                   {fullName ? fullName : name}
+                  {'    '}
+                  {mainUrl && (
+                    <a href={mainUrl}>
+                      <FaHome />
+                    </a>
+                  )}{' '}
+                  {gitHub && (
+                    <a href={gitHub}>
+                      <FaGithub />
+                    </a>
+                  )}
                 </Typography>
-                {gitHub && <Typography component="p">{gitHub}</Typography>}
-                {mainUrl && <Typography component="p">{mainUrl}</Typography>}
               </CardContent>
             </CardActionArea>
           </MaterialCard>

@@ -152,7 +152,7 @@ class Topic extends Component {
     //   return 0;
     // });
 
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 4; i++) {
       selectedInstructors.push(sortedInstructors[i]);
       selectedLectures.push(sortedLectures[i]);
       selectedBooks.push(sortedBooks[i]);

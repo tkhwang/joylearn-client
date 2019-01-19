@@ -93,7 +93,7 @@ class Instructor extends Component {
 
   render() {
     const { user } = this.props.storeSignin;
-    const { classes } = this.props;
+    // const { classes } = this.props;
     const { comments, reviews } = this.props.storeInstructor;
     console.log('[+] Instructor : comments = ', comments);
     return (

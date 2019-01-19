@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import urlencode from 'urlencode';
 
 import http from '../../services/httpService';
-import { Button } from 'reactstrap';
 
-import urlencode from 'urlencode';
 import BookCard from '../Book/Card/Card';
 import BarChart from '../common/Chart/Bar/Chart';
 import CommonReview from '../common/Review/Review.jsx';
@@ -86,7 +85,7 @@ class Book extends Component {
 
   render() {
     const { user } = this.props.storeSignin;
-    const { classes } = this.props;
+    // const { classes } = this.props;
     const { comments, reviews } = this.props.storeBook;
     console.log('[+] Instructor : comments = ', comments);
     console.log(

@@ -113,7 +113,7 @@ class Book extends Component {
         <CommonComment
           type="book"
           name={this.state.book.name}
-          user={user.name}
+          user={user}
           comments={comments}
         />
 
@@ -129,7 +129,7 @@ class Book extends Component {
         <CommonComment
           type="book"
           name={this.state.book.name}
-          user={user.name}
+          user={user}
           comments={comments}
         />
       </React.Fragment>

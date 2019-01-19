@@ -111,7 +111,7 @@ class Lecture extends Component {
           <CommonComment
             type="lecture"
             name={this.state.lecture.name}
-            user={user}
+            user={user.name}
             comments={comments}
           />
         ) : null}

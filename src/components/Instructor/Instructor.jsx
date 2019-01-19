@@ -95,7 +95,7 @@ class Instructor extends Component {
     const { user } = this.props.storeSignin;
     // const { classes } = this.props;
     const { comments, reviews } = this.props.storeInstructor;
-    console.log('[+] Instructor : comments = ', comments);
+    console.log('[+] Instructor : reviews = ', reviews);
     return (
       <React.Fragment>
         <InstructorCard instructor={this.state.instructor} />
@@ -152,7 +152,7 @@ class Instructor extends Component {
         <CommonComment
           type="instructor"
           name={this.state.instructor.name}
-          user={user}
+          user={user.name}
           comments={comments}
         />
       </React.Fragment>

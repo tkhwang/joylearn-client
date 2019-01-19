@@ -110,12 +110,12 @@ class Book extends Component {
 
         <PaperSheet title="Instructor" />
 
-        <CommonComment
+        {/* <CommonComment
           type="book"
           name={this.state.book.name}
-          user={user}
+          user={user.name}
           comments={comments}
-        />
+        /> */}
 
         <PaperSheet title="Review">
           <CommonReview
@@ -129,7 +129,7 @@ class Book extends Component {
         <CommonComment
           type="book"
           name={this.state.book.name}
-          user={user}
+          user={user.name}
           comments={comments}
         />
       </React.Fragment>

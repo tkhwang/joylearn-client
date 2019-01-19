@@ -1,5 +1,5 @@
 import React from 'react';
-import { BarChart } from 'react-charts-d3';
+import { BarChart } from 'react-d3-components';
 
 const Chart = ({ reviews }) => {
   let worst = 0;
@@ -37,7 +37,16 @@ const Chart = ({ reviews }) => {
     }
   ];
 
-  return reviews.length !== 0 && <BarChart data={data} />;
+  return (
+    reviews.length !== 0 && (
+      <BarChart
+        data={data}
+        width={600} // 반응형으로 수정
+        height={200}
+        margin={{ top: 10, bottom: 50, left: 50, right: 10 }}
+      />
+    )
+  );
 };
 
 export default Chart;

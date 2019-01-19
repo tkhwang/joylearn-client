@@ -21,7 +21,7 @@ import Logout from './components/Logout';
 import ProtectedRoute from './components/common/ProtectedRoute';
 import Movies from './components/Movies/Movies';
 import Admin from './components/Admin/Admin';
-// import MenuAppBar from './components/MenuAppBar/MenuAppBar.jsx';
+import MenuAppBar from './components/MenuAppBar/MenuAppBar.jsx';
 import auth from './services/authService';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -42,7 +42,7 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        {/* <MenuAppBar user={this.state.user} /> */}
+        <MenuAppBar user={this.state.user} />
         <NavBar user={this.state.user} />
         <main className="content">
           <Switch>

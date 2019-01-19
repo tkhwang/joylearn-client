@@ -54,7 +54,7 @@ class Comment extends React.Component {
     const apiEndpoint = `${SERVER_URL}/api/comment/${type}/${name}`;
 
     const { data } = await http.post(apiEndpoint, {
-      writer: this.props.user,
+      writer: this.props.user.id,
       content: this.state.text
     });
     console.log('[+] //////////////// data = ', data);

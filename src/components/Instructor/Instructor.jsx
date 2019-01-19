@@ -152,7 +152,7 @@ class Instructor extends Component {
         <CommonComment
           type="instructor"
           name={this.state.instructor.name}
-          user={user.name}
+          user={user}
           comments={comments}
         />
       </React.Fragment>

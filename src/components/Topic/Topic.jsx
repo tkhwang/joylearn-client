@@ -209,6 +209,7 @@ class Topic extends Component {
                     type="instructor"
                     title={instructor.name}
                     url={instructor.mainUrl}
+                    github={instructor.gitHub}
                     image={instructor.image}
                     time=""
                     review={instructor.review}

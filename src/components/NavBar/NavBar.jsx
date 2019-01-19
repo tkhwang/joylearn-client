@@ -15,6 +15,7 @@ import UserButton from './UserButton';
 
 import auth from '../../services/authService';
 import * as signinActions from '../../actions/signin';
+import * as topicActions from '../../actions/topic';
 
 class NavBar extends Component {
   constructor(props) {
@@ -29,6 +30,8 @@ class NavBar extends Component {
 
   componentDidMount() {
     const { actionsSign } = this.props;
+    const { topic } = this.props.storeTopic;
+
     const user = auth.getCurrentUser();
 
     // this.setState(
@@ -50,9 +53,11 @@ class NavBar extends Component {
 
   render() {
     const { user } = this.props;
+    const { topic } = this.props.storeTopic;
+    const topicLink = `/t/${topic}`;
     return (
       <div>
-        <Navbar color="info" light expand="md">
+        <Navbar fixed={`top`} sticky={'top'} color="info" light expand="md">
           {/* <NavbarBrand href="/">
             J<FontAwesomeIcon icon="grin-alt" />Y
           </NavbarBrand> */}
@@ -67,18 +72,16 @@ class NavBar extends Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavLink className="nav-item nav-link" to="/movies">
-                (study) Movies
-              </NavLink>
-              <NavLink className="nav-item nav-link" to="/instructors">
-                Instructors
-              </NavLink>
-              <NavLink className="nav-item nav-link" to="/lectures">
-                Lectures
-              </NavLink>
-              <NavLink className="nav-item nav-link" to="/courses">
-                Courses
-              </NavLink>
+              {topic && (
+                <NavLink
+                  className="nav-item nav-link"
+                  style={{ color: 'white', textDecoration: 'none' }}
+                  activeStyle={{ color: 'white', textDecoration: 'none' }}
+                  to={topicLink}
+                >
+                  {topic}
+                </NavLink>
+              )}
               <UncontrolledDropdown nav inNavbar>
                 <UserButton user={user} />
               </UncontrolledDropdown>
@@ -93,9 +96,11 @@ class NavBar extends Component {
 // export default NavBar;
 export default connect(
   state => ({
-    storeSignin: state.signin
+    storeSignin: state.signin,
+    storeTopic: state.topic
   }),
   dispatch => ({
-    actionsSign: bindActionCreators(signinActions, dispatch)
+    actionsSign: bindActionCreators(signinActions, dispatch),
+    actionTopic: bindActionCreators(topicActions, dispatch)
   })
 )(NavBar);

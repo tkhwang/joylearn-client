@@ -23,9 +23,6 @@ const UserButton = ({ user }) => {
         </DropdownToggle>
       )}
       <DropdownMenu right>
-        <DropdownItem>Menu #1</DropdownItem>
-        <DropdownItem divider />
-        <DropdownItem>Menu #2</DropdownItem>
         <DropdownItem divider />
         {!user && (
           <DropdownItem>

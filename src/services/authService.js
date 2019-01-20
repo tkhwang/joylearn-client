@@ -1,9 +1,7 @@
 import jwtDecode from 'jwt-decode';
-import http from './httpService';
+import http, { SERVER_URL } from './httpService';
 
-import config from '../config';
-const { SERVER_URL } = config();
-
+import { KEY_TOPICS } from './topicService';
 export const KEY_TOKEN = 'token';
 export const KEY_USER = 'user';
 
@@ -35,6 +33,7 @@ export async function loginSocial(site) {
 export function logout() {
   localStorage.removeItem(KEY_TOKEN);
   localStorage.removeItem(KEY_USER);
+  localStorage.removeItem(KEY_TOPICS);
 }
 
 export function getCurrentUser() {

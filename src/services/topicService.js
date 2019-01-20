@@ -1,6 +1,6 @@
 import http, { SERVER_URL } from './httpService';
 
-const KEY_TOPICS = 'topics';
+export const KEY_TOPICS = 'topics';
 
 export async function getTopics() {
   let topics = JSON.parse(localStorage.getItem(KEY_TOPICS));

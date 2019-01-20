@@ -13,6 +13,8 @@ import {
 
 import http from '../../services/httpService';
 import auth from '../../services/authService';
+import * as topicService from '../../services/topicService';
+
 import querystring from 'query-string';
 
 // import Search from './Search/Search';
@@ -49,12 +51,12 @@ class Topics extends Component {
     const user = auth.getCurrentUser();
     actionsSign.signin(user);
 
-    const data = await http.get(SERVER_URL + '/topics');
+    const topics = await topicService.getTopics();
+    actionTopics.get_topics(topics);
 
-    actionTopics.get_topics(data.data);
     this.setState({
       ...this.state,
-      topics: data.data
+      topics: topics
     });
   }
 

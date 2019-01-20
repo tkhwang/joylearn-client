@@ -79,14 +79,6 @@ class Topic extends Component {
 
     const { data } = await http.get(`${SERVER_URL}/t/${topic}`);
 
-    actionTopic.set_all({
-      topic: topic,
-      instructors: data.instructors,
-      lectures: data.lectures,
-      books: data.books,
-      courses: data.courses
-    });
-
     this.setState(
       {
         ...this.state,
@@ -96,11 +88,15 @@ class Topic extends Component {
         courses: data.courses
       },
       () => {
+        actionTopic.set_all({
+          topic: topic,
+          instructors: data.instructors,
+          lectures: data.lectures,
+          books: data.books,
+          courses: data.courses
+        });
         actionLectures.get_lectures(this.state.lectures);
       }
-      // () => {
-      //   actionLectures.get_lectures(this.state.lectures);
-      // }
     );
 
     // TODO: 기술발표 설명 예시

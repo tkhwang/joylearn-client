@@ -28,11 +28,16 @@ const Chart = ({ reviews }) => {
     {
       key: 'review',
       values: [
-        { x: 'Worst', y: worst },
-        { x: 'Bad', y: bad },
-        { x: 'So so', y: soso },
-        { x: 'Better', y: better },
-        { x: 'Best', y: best }
+        // { x: 'Worst', y: worst },
+        // { x: 'Bad', y: bad },
+        // { x: 'So so', y: soso },
+        // { x: 'Better', y: better },
+        // { x: 'Best', y: best }
+        { x: '⭐', y: worst },
+        { x: '⭐⭐', y: bad },
+        { x: '⭐⭐⭐', y: soso },
+        { x: '⭐⭐⭐⭐', y: better },
+        { x: '⭐⭐⭐⭐⭐', y: best }
       ]
     }
   ];
@@ -41,8 +46,8 @@ const Chart = ({ reviews }) => {
     reviews.length !== 0 && (
       <BarChart
         data={data}
-        width={600} // 반응형으로 수정
-        height={200}
+        width={800}
+        height={220}
         margin={{ top: 10, bottom: 50, left: 50, right: 10 }}
       />
     )

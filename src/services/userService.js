@@ -1,6 +1,4 @@
-import http from './httpService';
-import config from '../config';
-const { SERVER_URL } = config();
+import http, { SERVER_URL } from './httpService';
 
 // MySQL
 const apiEndpoint = SERVER_URL + '/auth/join';

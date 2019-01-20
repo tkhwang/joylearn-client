@@ -16,7 +16,8 @@ import * as signinActions from '../../actions/signin';
 import * as topicsActions from '../../actions/topics';
 import * as topicActions from '../../actions/topic';
 import * as lecturesActions from '../../actions/lectures';
-
+import * as topicService from '../../services/topicService';
+import filterByInput from '../../services/searchService';
 import Title from '../common/Title/Title';
 import InstructorsCard from '../Topic/Instructors/Card';
 import LecturesCard from '../Topic/Lectures/Card';
@@ -48,22 +49,28 @@ class Topic extends Component {
 
   async componentDidMount() {
     const { topic } = this.props.topic.match.params;
+    // const topic = topicService.getTopic(this.props);
+
     const { actionTopic, actionTopics, actionLectures } = this.props;
     // const { instructors, lectures, books } = this.props.storeTopic;
 
-    this.setState({
-      ...this.state,
-      topic: topic
-    });
+    // this.setState({
+    //   ...this.state,
+    //   topic: topic
+    // });
 
-    let { topics } = this.props.storeTopics;
-    // TODO: Workaround for loading
-    if (topics.length === 0) {
-      const data = await http.get(SERVER_URL + '/topics');
+    const topics = await topicService.getTopics();
 
-      topics = data.data;
-      actionTopics.get_topics(data.data);
-    }
+    // let { topics } = this.props.storeTopics;
+    // // TODO: Workaround for loading
+    // if (topics.length === 0) {
+    //   const data = await http.get(SERVER_URL + '/topics');
+
+    //   topics = data.data;
+    //   actionTopics.get_topics(data.data);
+    // }
+
+    // const selectedTopic = filterByInput(topics, topic);
 
     const selectedTopic = topics.filter(obj => {
       return obj.name === topic;

@@ -46,7 +46,7 @@ const Chart = ({ reviews }) => {
     reviews.length !== 0 && (
       <BarChart
         data={data}
-        width={800}
+        width={700}
         height={220}
         margin={{ top: 10, bottom: 50, left: 50, right: 10 }}
       />

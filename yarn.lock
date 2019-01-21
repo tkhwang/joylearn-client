@@ -6332,7 +6332,7 @@ react-dev-utils@^5.0.1:
     strip-ansi "3.0.1"
     text-table "0.2.0"
 
-react-dom@^15.0.0, react-dom@^15.3.1:
+react-dom@^15.0.0, react-dom@^15.3.1, react-dom@^15.3.2:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.6.2.tgz#41cfadf693b757faf2708443a1d1fd5a02bef730"
   dependencies:
@@ -6543,6 +6543,14 @@ react-star-rating-component@^1.4.1:
     classnames "^2.2.5"
     prop-types "^15.6.1"
 
+react-stepper-horizontal@^1.0.11:
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/react-stepper-horizontal/-/react-stepper-horizontal-1.0.11.tgz#ac10549c2ccb2d39ce820bdfe4bfeac113c90813"
+  dependencies:
+    prop-types "^15.5.10"
+    react "^15.3.2"
+    react-dom "^15.3.2"
+
 react-svg@^7.2.2:
   version "7.2.2"
   resolved "https://registry.yarnpkg.com/react-svg/-/react-svg-7.2.2.tgz#cd914c92c3fccedcb06bfdff3cef64cdc2dace21"
@@ -6598,7 +6606,7 @@ react-visibility-sensor@^4.1.0:
     create-react-class "^15.6.3"
     prop-types "^15.6.2"
 
-react@^15.0.0, react@^15.3.1:
+react@^15.0.0, react@^15.3.1, react@^15.3.2:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/react/-/react-15.6.2.tgz#dba0434ab439cfe82f108f0f511663908179aa72"
   dependencies:

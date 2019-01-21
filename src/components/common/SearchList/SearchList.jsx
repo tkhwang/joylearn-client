@@ -26,7 +26,7 @@ class SearchList extends Component {
     this.handleCardClick = this.handleCardClick.bind(this);
 
     this.state = {
-      valueTitle: '',
+      text: '',
       courseUnit: 0,
       topics: [],
       course: []
@@ -43,16 +43,16 @@ class SearchList extends Component {
   handleChange = event => {
     this.setState(
       {
-        valueTitle: event.target.value
+        text: event.target.value
       },
       () => {
         const { arrays } = this.props;
         // let topicSelected = topics.filter(topic => {
         //   return topic.name.indexOf(this.state.value) !== -1;
-        let topicSelected = filterByInput(arrays, this.state.valueTitle);
+        let topicSelected = filterByInput(arrays, this.state.text);
         this.setState({
           ...this.state,
-          topics: this.state.valueTitle ? topicSelected : []
+          topics: this.state.text ? topicSelected : []
         });
       }
     );
@@ -65,7 +65,7 @@ class SearchList extends Component {
     this.setState({
       ...this.state,
       topic: event.target.value,
-      topics: filterByInput(arrays, event.target.valueTitle)
+      topics: filterByInput(arrays, event.target.text)
     });
   };
 
@@ -96,7 +96,7 @@ class SearchList extends Component {
     this.setState({
       ...this.state,
       topic: topic,
-      valueTitle: topic,
+      text: topic,
       courseUnit: this.state.courseUnit,
       topics: filterByInput(arrays, topic)
     });
@@ -122,7 +122,7 @@ class SearchList extends Component {
                 ? 'Type Lecture name'
                 : 'Type book name'
             }
-            value={this.state.valueTitle}
+            value={this.state.text}
             onChange={this.handleChange}
           />
         </InputGroup>

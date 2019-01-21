@@ -12,7 +12,7 @@ import Topics from './components/Topics/Topics';
 import Topic from './components/Topic/Topic';
 import Lectures from './components/Lectures/Lectures';
 import Lecture from './components/Lecture/Lecture';
-import Courses from './components/Courses/Courses';
+import Courses from './components/Course/Course';
 import Setting from './components/Setting/Setting';
 import NotFound from './components/notFound';
 import NavBar from './components/NavBar/NavBar';

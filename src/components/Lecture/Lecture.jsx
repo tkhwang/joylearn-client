@@ -13,7 +13,7 @@ import CommonReview from '../common/Review/Review.jsx';
 import CommonComment from '../common/Comment/Comment.jsx';
 import PaperSheet from '../common/PaperSheet/PaperSheet.jsx';
 // import LectureProfile from '../Lecture/Profile/Profile';
-import BarChart from '../common/Chart/Bar/Chart.1';
+import BarChart from '../common/Chart/Bar/Chart';
 // import LecturePie from '../Lecture/Pie/Pie';
 
 import * as signinActions from '../../actions/signin';

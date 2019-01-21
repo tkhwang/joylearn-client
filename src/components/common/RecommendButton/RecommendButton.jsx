@@ -157,51 +157,9 @@ class RecommendButton extends React.Component {
     }
   };
 
-  //-----
-
   submitClick = async e => {
     const { instructor, lecture, book } = this.state;
     const { topic, type, actionTopic } = this.props;
-
-    // if (instructor.name.length === 0) {
-    //   const errorsInstructor = this.instructorNameValidate();
-    //   this.setState({
-    //     ...this.state,
-    //     errorsInstructor
-    //   });
-    // } else if (instructor.fullName.length === 0) {
-    //   const errorsInstructor = this.instructorFullnameValidate();
-    //   this.setState({
-    //     ...this.state,
-    //     errorsInstructor
-    //   });
-    // } else if (lecture.name.length === 0) {
-    //   const errorsLecture = this.lectureNameValidate();
-    //   this.setState({
-    //     ...this.state,
-    //     errorsLecture
-    //   });
-    // } else if (lecture.url.length === 0) {
-    //   const errorsLecture = this.lectureUrlValidate();
-    //   this.setState({
-    //     ...this.state,
-    //     errorsLecture
-    //   });
-    // } else if (book.name.length === 0) {
-    //   const errorsBook = this.bookNameValidate();
-    //   this.setState({
-    //     ...this.state,
-    //     errorsBook
-    //   });
-    // } else if (book.url.length === 0) {
-    //   const errorsBook = this.bookUrlValidate();
-    //   this.setState({
-    //     ...this.state,
-    //     errorsBook
-    //   });
-    // }
-
-    //-----
 
     if (instructor.name.length !== 0 || instructor.fullName.length !== 0) {
       if (instructor.name.length === 0) {

@@ -122,7 +122,29 @@ class Instructor extends Component {
         </PaperSheet>
 
         <PaperSheet title="Lectures">
-          {this.state.lectures.map(lecture => {
+          {this.state.lectures
+            .sort((a, b) => {
+              if (a.review < b.review) {
+                return 1;
+              }
+              if (a.review > b.review) {
+                return -1;
+              }
+              return 0;
+            })
+            .map(lecture => {
+              return (
+                <CommonCardList
+                  type="lecture"
+                  title={lecture.name}
+                  url={lecture.url}
+                  image={lecture.image}
+                  time=""
+                  review={lecture.review}
+                />
+              );
+            })}
+          {/* {this.state.lectures.map(lecture => {
             return (
               <CommonCardList
                 type="lecture"
@@ -133,10 +155,32 @@ class Instructor extends Component {
                 review={lecture.review}
               />
             );
-          })}
+          })} */}
         </PaperSheet>
         <PaperSheet title="Books">
-          {this.state.books.map(book => {
+          {this.state.books
+            .sort((a, b) => {
+              if (a.review < b.review) {
+                return 1;
+              }
+              if (a.review > b.review) {
+                return -1;
+              }
+              return 0;
+            })
+            .map(book => {
+              return (
+                <CommonCardList
+                  type="book"
+                  title={book.name}
+                  url={book.url}
+                  image={book.image}
+                  time=""
+                  review={book.review}
+                />
+              );
+            })}
+          {/* {this.state.books.map(book => {
             return (
               <CommonCardList
                 type="book"
@@ -147,7 +191,7 @@ class Instructor extends Component {
                 review={book.review}
               />
             );
-          })}
+          })} */}
         </PaperSheet>
         <CommonComment
           type="instructor"

@@ -10,7 +10,8 @@ const initialState = {
   topic: '',
   instructors: [],
   lectures: [],
-  books: []
+  books: [],
+  courses: []
 };
 
 export default handleActions(
@@ -21,7 +22,8 @@ export default handleActions(
         topic: action.payload.topic,
         instructors: action.payload.instructors,
         lectures: action.payload.lectures,
-        books: action.payload.books
+        books: action.payload.books,
+        courses: action.payload.courses
       };
     },
     [TOPIC_ADD_INSTRUCTOR]: (state, action) => {

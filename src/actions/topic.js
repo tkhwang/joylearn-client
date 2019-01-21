@@ -2,6 +2,7 @@ export const TOPIC_SET_ALL = 'topics/TOPIC_SET_ALL';
 export const TOPIC_ADD_INSTRUCTOR = 'topics/TOPIC_ADD_INSTRUCTOR';
 export const TOPIC_ADD_LECTURE = 'topics/TOPIC_ADD_LECTURE';
 export const TOPIC_ADD_BOOK = 'topics/TOPIC_ADD_BOOK';
+export const TOPIC_ADD_COURSE = 'topics/TOPIC_ADD_COURSE';
 
 export const set_all = topic => {
   return {
@@ -10,7 +11,8 @@ export const set_all = topic => {
       topic: topic.topic,
       instructors: topic.instructors,
       lectures: topic.lectures,
-      books: topic.books
+      books: topic.books,
+      courses: topic.courses
     }
   };
 };
@@ -25,4 +27,8 @@ export const add_lecture = lecture => {
 
 export const add_book = book => {
   return { type: TOPIC_ADD_BOOK, payload: { books: book } };
+};
+
+export const add_course = course => {
+  return { type: TOPIC_ADD_COURSE, payload: { courses: course } };
 };

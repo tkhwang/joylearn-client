@@ -15,6 +15,7 @@ import Emoji from '../common/Emoji';
 import * as signinActions from '../../actions/signin';
 import * as topicsActions from '../../actions/topics';
 import * as topicActions from '../../actions/topic';
+import * as courseActions from '../../actions/course';
 import * as lecturesActions from '../../actions/lectures';
 import * as topicService from '../../services/topicService';
 import filterByInput from '../../services/searchService';
@@ -22,7 +23,7 @@ import Title from '../common/Title/Title';
 import InstructorsCard from '../Topic/Instructors/Card';
 import LecturesCard from '../Topic/Lectures/Card';
 import BooksCard from '../Topic/Books/Card';
-import CoursesCard from '../Topic/Courses/Courses';
+import CoursesCard from '../Topic/Courses/Card';
 import CourseRegister from '../Course/CourseRegister/CourseRegister.jsx';
 // import Courses from './Courses/Courses';
 
@@ -323,26 +324,23 @@ class Topic extends Component {
         >
           <CardsContatiner>
             {this.state.selectedCourses.map(course => {
-              return <CoursesCard course={course} />;
-              // name={book.name}
-              // image={book.image}
-              // url={book.url}
-              // lang={book.lang}
-              // free={book.free}
+              return <CoursesCard classes="" course={course} />;
             })}
           </CardsContatiner>
           <PaperSheet title="More Courses">
             {courses &&
-              lectures.map(course => {
+              courses.map(course => {
                 return (
-                  <CommonCardList
-                    type="course"
-                    title={course.name}
-                    url={course.url}
-                    image={course.image}
-                    time=""
-                    review={course.review}
-                  />
+                  <div>
+                    <CommonCardList
+                      type="course"
+                      title={course.name}
+                      url={course.url}
+                      image={course.image}
+                      time={course.updated_at}
+                      review={course.review}
+                    />
+                  </div>
                 );
               })}
             <CourseRegister />
@@ -400,12 +398,14 @@ export default connect(
     storeSignin: state.signin,
     storeTopics: state.topics,
     storeTopic: state.topic,
-    storeLectures: state.lectures
+    storeLectures: state.lectures,
+    storeCourse: state.course
   }),
   dispatch => ({
     actionsSign: bindActionCreators(signinActions, dispatch),
     actionTopics: bindActionCreators(topicsActions, dispatch),
     actionTopic: bindActionCreators(topicActions, dispatch),
-    actionLectures: bindActionCreators(lecturesActions, dispatch)
+    actionLectures: bindActionCreators(lecturesActions, dispatch),
+    actionCourse: bindActionCreators(courseActions, dispatch)
   })
 )(Topic);

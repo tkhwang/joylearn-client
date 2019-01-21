@@ -1,15 +1,17 @@
 import { handleActions } from 'redux-actions';
 import {
   COURSE_SET_TOPIC,
+  COURSE_SET_NAME,
   COURSE_SET_LECTURE,
   COURSE_SET_BOOK,
   COURSE_SET_COMMENT,
-  COURSE_ADD_COURSE
+  COURSE_ADD_COURSE,
+  COURSE_SET_REVIEW
 } from '../actions/course.js';
 
 const initialState = {
   topic: '',
-  title: '',
+  name: '',
   courses: [],
   lecture: '',
   book: '',
@@ -32,6 +34,9 @@ export default handleActions(
           books: action.payload.data.books
         }
       };
+    },
+    [COURSE_SET_NAME]: (state, action) => {
+      return { ...state, name: action.payload.name };
     },
     [COURSE_SET_LECTURE]: (state, action) => {
       return {
@@ -56,6 +61,9 @@ export default handleActions(
         ...state,
         courses: state.courses.concat(action.payload.course)
       };
+    },
+    [COURSE_SET_REVIEW]: (state, action) => {
+      return { ...state, review: action.payload.review };
     }
   },
   initialState

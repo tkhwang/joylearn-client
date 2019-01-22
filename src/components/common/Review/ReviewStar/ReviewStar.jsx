@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Button, ButtonGroup } from 'reactstrap';
-
+import { Button } from 'reactstrap';
+import styled from 'styled-components';
 import CommonPaperSheet from '../../../common/PaperSheet/PaperSheet.jsx';
 import http, { SERVER_URL } from '../../../../services/httpService.js';
 import StarRatingComponent from 'react-star-rating-component';
@@ -56,26 +56,40 @@ class ReviewStar extends Component {
     const { rating } = this.state;
     return (
       <div className="rating-stars">
-        <CommonPaperSheet title="Share your review with others :">
+        <CommonPaperSheet /*title="Share your review with others :"*/>
+          <DivReview>
+            <span>Share your review with others : </span>
+          </DivReview>
           <br />
-          <StarRatingComponent
-            className="star-rating"
-            name="rate1"
-            starCount={5}
-            value={rating}
-            onStarClick={this.onStarClick.bind(this)}
-          />
+          <br />
+          <DivStarRaing>
+            <StarRatingComponent
+              className="star-rating"
+              name="rate1"
+              starCount={5}
+              value={rating}
+              onStarClick={this.onStarClick.bind(this)}
+            />
+          </DivStarRaing>
+          <p />
+          <Button color="primary" block onClick={this.handleClick}>
+            Submit : {this.state.rSelected}
+          </Button>
         </CommonPaperSheet>
-        <p />
-        <Button color="primary" onClick={this.handleClick}>
-          Submit : {this.state.rSelected}
-        </Button>
       </div>
     );
   }
 }
 
-// export default ReviewStar;
+const DivReview = styled.div`
+  font-size: 1rem;
+`;
+
+const DivStarRaing = styled.div`
+  /* margin-left: 12px; */
+  font-size: 30px;
+`;
+
 export default connect(
   state => ({
     storeInstructor: state.instructor

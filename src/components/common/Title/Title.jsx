@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import PaperSheet from '../PaperSheet/PaperSheet';
+import { IoMdPerson, IoMdPlayCircle, IoIosBook } from 'react-icons/io';
+import { MdMap } from 'react-icons/md';
 import MaterialIcon /*, { colorPalette }*/ from 'material-icons-react';
 import { Typography } from '@material-ui/core';
 
@@ -22,16 +24,20 @@ class Title extends Component {
             <H3TopicContents>{`Tutorials and Courses`}</H3TopicContents>
             <DivCount>
               <Typography component="p">
-                <MaterialIcon icon="account_box" /> : {instructors.length}
+                {/* <MaterialIcon icon="account_box" /> : {instructors.length} */}
+                <IoMdPerson /> : {instructors.length}
               </Typography>
               <Typography component="p">
-                <MaterialIcon icon="picture_in_picture" /> : {lectures.length}
+                {/* <MaterialIcon icon="picture_in_picture" /> : {lectures.length} */}
+                <IoMdPlayCircle /> : {lectures.length}
               </Typography>
               <Typography component="p">
-                <MaterialIcon icon="book" /> : {books.length}
+                {/* <MaterialIcon icon="book" /> : {books.length} */}
+                <IoIosBook /> : {books.length}
               </Typography>
               <Typography component="p">
-                <MaterialIcon icon="extension" /> : {courses.length}
+                {/* <MaterialIcon icon="extension" /> : {courses.length} */}
+                <MdMap /> : {courses.length}
               </Typography>
             </DivCount>
             {/* <DivCount>

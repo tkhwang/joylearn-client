@@ -74,8 +74,16 @@ class Lecture extends Component {
         />
         <DivContainer>
           <DivAverage>
-            <PaperSheet title="Reviews Average">
+            <PaperSheet title="Reviews Average : ">
               <DivDetail>{`${this.state.lecture.review} / 5`}</DivDetail>
+              {reviews ? (
+                <CommonReview
+                  type="lecture"
+                  name={this.state.lecture.name}
+                  user={user.name}
+                  reviews={reviews}
+                />
+              ) : null}
             </PaperSheet>
           </DivAverage>
 
@@ -96,7 +104,7 @@ class Lecture extends Component {
             </DivProfileChart>
           </DivContainer>
         </PaperSheet> */}
-        <PaperSheet title="Review">
+        {/* <PaperSheet title="Review">
           {reviews ? (
             <CommonReview
               type="lecture"
@@ -105,7 +113,7 @@ class Lecture extends Component {
               reviews={reviews}
             />
           ) : null}
-        </PaperSheet>
+        </PaperSheet> */}
 
         {comments ? (
           <CommonComment
@@ -143,6 +151,7 @@ const DivAverage = styled.div`
 `;
 
 const DivDetail = styled.div`
+  text-align: center;
   font-size: 3rem;
   padding: 1rem;
   margin: 1rem;

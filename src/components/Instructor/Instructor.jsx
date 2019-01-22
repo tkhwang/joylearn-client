@@ -102,8 +102,16 @@ class Instructor extends Component {
 
         <DivContainer>
           <DivAverage>
-            <PaperSheet title="Reviews Average">
+            <PaperSheet title="Reviews Average : ">
               <DivDetail>{`${this.state.instructor.review} / 5`}</DivDetail>
+              {reviews ? (
+                <CommonReview
+                  type="instructor"
+                  name={this.state.instructor.name}
+                  user={user.name}
+                  reviews={reviews}
+                />
+              ) : null}
             </PaperSheet>
           </DivAverage>
 
@@ -111,7 +119,7 @@ class Instructor extends Component {
             <BarChart reviews={this.props.storeInstructor.reviews} />
           </DivChart>
         </DivContainer>
-
+        {/* 
         <PaperSheet title="Review">
           <CommonReview
             type="instructor"
@@ -119,7 +127,7 @@ class Instructor extends Component {
             user={user.name}
             reviews={reviews}
           />
-        </PaperSheet>
+        </PaperSheet> */}
 
         <PaperSheet title="Lectures">
           {this.state.lectures
@@ -215,10 +223,12 @@ const DivAverage = styled.div`
 `;
 
 const DivDetail = styled.div`
-  font-size: 3rem;
-  padding: 1rem;
-  margin: 1rem;
+  text-align: center;
+  font-size: 2.5rem;
+  /* padding: 1rem; */
+  /* margin: 1rem; */
   flex-shrink: 0;
+  /* border: 1px solid black; */
 `;
 
 const DivChart = styled.div`

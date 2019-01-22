@@ -1,5 +1,12 @@
 import React from 'react';
-import { BarChart } from 'react-d3-components';
+// import {
+//   ResponsiveBarChart,
+//   ResponsiveLineChart,
+//   ResponsiveAreaChart,
+//   ResponsiveScatterPlot,
+//   ResponsivePieChart
+// } from './ChartRes';
+import ResponsiveBarChart from './ChartRes';
 
 const Chart = ({ reviews }) => {
   let worst = 0;
@@ -42,15 +49,17 @@ const Chart = ({ reviews }) => {
     }
   ];
 
+  // the <div> tag is used to position and wrap the chart.
+  {
+    /* <div style={myPositionStyle}>
+  <ResponsiveBarChart data={myData} />
+</div>; */
+  }
+
   return (
-    reviews.length !== 0 && (
-      <BarChart
-        data={data}
-        width={700}
-        height={350}
-        margin={{ top: 10, bottom: 50, left: 50, right: 10 }}
-      />
-    )
+    <div /*style={myPositionStyle}*/>
+      <ResponsiveBarChart data={data} />
+    </div>
   );
 };
 

@@ -54,6 +54,7 @@ class Course extends Component {
   _renderPage = () => {};
 
   render() {
+    console.log('where are review : ', this.props);
     // console.log('[+] lecture = ', this.state.lecture);
     // console.log('[+] instrucgtor = ', this.state.instructor);
     const { user } = this.props.storeSignin;
@@ -68,20 +69,14 @@ class Course extends Component {
           <DivAverage>
             <PaperSheet title="Reviews Average : ">
               <DivDetail>{`${reviews} / 5`}</DivDetail>
-              {/* {reviews ? (
+              {reviews ? (
                 <CommonReview
                   type="course"
                   name={course.name}
                   user={user.name}
                   reviews={course.reviews}
                 />
-              ) : null} */}
-              <CommonReview
-                type="course"
-                name={course.name}
-                user={user.name}
-                reviews={course.reviews}
-              />
+              ) : null}
             </PaperSheet>
           </DivAverage>
 
@@ -90,7 +85,7 @@ class Course extends Component {
           </DivChart>
         </DivContainer>
 
-        <PaperSheet title="Review">
+        {/* <PaperSheet title="Review">
 
           {reviews ? (
             <CommonReview
@@ -101,7 +96,7 @@ class Course extends Component {
             />
           ) : null}
 
-        </PaperSheet>
+        </PaperSheet> */}
         {comments ? (
           <CommonComment
             type="course"

@@ -28,11 +28,6 @@ const Chart = ({ reviews }) => {
     {
       key: 'review',
       values: [
-        // { x: 'Worst', y: worst },
-        // { x: 'Bad', y: bad },
-        // { x: 'So so', y: soso },
-        // { x: 'Better', y: better },
-        // { x: 'Best', y: best }
         { x: '⭐', y: worst },
         { x: '⭐⭐', y: bad },
         { x: '⭐⭐⭐', y: soso },

@@ -39,7 +39,6 @@ class Course extends Component {
     const { actionCourse } = this.props;
 
     const { data } = await http.get(`${SERVER_URL}/course/${urlencode(name)}`);
-    console.log('데이터가 안 날아와 : ', data);
     this.setState(
       {
         ...this.state,
@@ -57,8 +56,6 @@ class Course extends Component {
   _renderPage = () => {};
 
   render() {
-    console.log('---- this.props : ', this.props);
-    console.log('---- this.state : ', this.state);
     const { user } = this.props.storeSignin;
     const { comments, reviews } = this.props.storeCourse;
     const { course, instructor } = this.state;

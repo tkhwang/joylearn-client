@@ -27,7 +27,6 @@ class Review extends Component {
   handleSubmit = () => {};
 
   render() {
-    console.log('reviews --> this.props : ', this.props);
     const { type, name, user } = this.props;
 
     return (

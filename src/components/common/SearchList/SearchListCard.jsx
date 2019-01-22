@@ -32,7 +32,8 @@ const styles = theme => ({
     flex: '1 0 auto'
   },
   cover: {
-    width: 151
+    width: 64,
+    margin: 5
   },
   controls: {
     display: 'flex',

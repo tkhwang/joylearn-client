@@ -17,34 +17,14 @@ const CourseCardInner = ({ course }) => {
   );
 };
 
-const styles = theme => ({
+const styles = {
   card: {
-    display: 'flex',
-    margin: 10
+    width: 150
   },
-  details: {
-    display: 'flex',
-    flexDirection: 'column'
-  },
-  content: {
-    flex: '1 0 auto',
-    width: 170
-  },
-  cover: {
-    width: 59,
-    margin: 5
-  },
-  controls: {
-    display: 'flex',
-    alignItems: 'center',
-    paddingLeft: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit
-  },
-  playIcon: {
-    height: 38,
-    width: 38
+  media: {
+    height: 150
   }
-});
+};
 
 class Card extends React.Component {
   constructor(props) {
@@ -60,19 +40,7 @@ class Card extends React.Component {
     return (
       <React.Fragment>
         {course && (
-          <div>
-            <CourseRender name={course.name} course={course} review="" />
-            <PaperSheet title={course.name}>
-              <DivContainer>
-                <MaterialCard className={classes.card}>
-                  <CardActionArea>
-                    <CardMedia className={classes.media} image={course.image} />
-                  </CardActionArea>
-                </MaterialCard>
-                <CourseCardInner course={course} />
-              </DivContainer>
-            </PaperSheet>
-          </div>
+          <CourseRender name={course.name} course={course} review="" />
         )}
       </React.Fragment>
     );

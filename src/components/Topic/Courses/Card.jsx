@@ -69,4 +69,16 @@ Card.propTypes = {
   period: PropTypes.number.isRequired
 };
 
-export default Card;
+const styles = {
+  card: {
+    // width: 250,
+    width: 400,
+    margin: 10
+  },
+  media: {
+    height: 150
+  }
+};
+
+// export default Card;
+export default withStyles(styles)(Card);

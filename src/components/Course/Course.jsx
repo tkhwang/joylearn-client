@@ -67,7 +67,7 @@ class Course extends Component {
         <DivContainer>
           <DivAverage>
             <PaperSheet title="Reviews Average : ">
-              <DivDetail>{`${reviews} / 5`}</DivDetail>
+              <DivDetail>{`${this.state.course.review} / 5`}</DivDetail>
               {/* {reviews ? (
                 <CommonReview
                   type="course"
@@ -80,18 +80,17 @@ class Course extends Component {
                 type="course"
                 name={course.name}
                 user={user.name}
-                reviews={course.reviews}
+                reviews={reviews}
               />
             </PaperSheet>
           </DivAverage>
 
           <DivChart>
-            <BarChart reviews={this.props.storeLecture.reviews} />
+            <BarChart reviews={reviews} />
           </DivChart>
         </DivContainer>
 
-        <PaperSheet title="Review">
-
+        {/* <PaperSheet title="Review">
           {reviews ? (
             <CommonReview
               type="course"
@@ -100,8 +99,7 @@ class Course extends Component {
               reviews={course.reviews}
             />
           ) : null}
-
-        </PaperSheet>
+        </PaperSheet> */}
         {comments ? (
           <CommonComment
             type="course"

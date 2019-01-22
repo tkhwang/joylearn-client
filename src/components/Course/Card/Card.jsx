@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import PaperSheet from '../../common/PaperSheet/PaperSheet';
 
+import CourseRender from '../CourseRender/CourseRender.jsx';
 import { withStyles } from '@material-ui/core/styles';
 import { default as MaterialCard } from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -16,14 +17,34 @@ const CourseCardInner = ({ course }) => {
   );
 };
 
-const styles = {
+const styles = theme => ({
   card: {
-    width: 150
+    display: 'flex',
+    margin: 10
   },
-  media: {
-    height: 150
+  details: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  content: {
+    flex: '1 0 auto',
+    width: 170
+  },
+  cover: {
+    width: 59,
+    margin: 5
+  },
+  controls: {
+    display: 'flex',
+    alignItems: 'center',
+    paddingLeft: theme.spacing.unit,
+    paddingBottom: theme.spacing.unit
+  },
+  playIcon: {
+    height: 38,
+    width: 38
   }
-};
+});
 
 class Card extends React.Component {
   constructor(props) {
@@ -34,18 +55,25 @@ class Card extends React.Component {
 
   render() {
     const { classes, course } = this.props;
+    console.log('[+] /////  CourseCard = ', course);
+
     return (
       <React.Fragment>
-        <PaperSheet title={course.name}>
-          <DivContainer>
-            <MaterialCard className={classes.card}>
-              <CardActionArea>
-                <CardMedia className={classes.media} image={course.image} />
-              </CardActionArea>
-            </MaterialCard>
-            <CourseCardInner course={course} />
-          </DivContainer>
-        </PaperSheet>
+        {course && (
+          <div>
+            <CourseRender name={course.name} course={course} review="" />
+            <PaperSheet title={course.name}>
+              <DivContainer>
+                <MaterialCard className={classes.card}>
+                  <CardActionArea>
+                    <CardMedia className={classes.media} image={course.image} />
+                  </CardActionArea>
+                </MaterialCard>
+                <CourseCardInner course={course} />
+              </DivContainer>
+            </PaperSheet>
+          </div>
+        )}
       </React.Fragment>
     );
   }

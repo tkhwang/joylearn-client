@@ -8,10 +8,11 @@ import http from '../../services/httpService';
 // import auth from '../../services/authService';
 // import querystring from 'query-string';
 
-import LectureCard from '../Lecture/Card/Card';
+import CourseCard from '../Course/Card/Card';
 import CommonReview from '../common/Review/Review.jsx';
 import CommonComment from '../common/Comment/Comment.jsx';
 import PaperSheet from '../common/PaperSheet/PaperSheet.jsx';
+
 // import LectureProfile from '../Lecture/Profile/Profile';
 import BarChart from '../common/Chart/Bar/Chart.1';
 // import LecturePie from '../Lecture/Pie/Pie';
@@ -19,6 +20,7 @@ import BarChart from '../common/Chart/Bar/Chart.1';
 import * as signinActions from '../../actions/signin';
 import * as topicsActions from '../../actions/topics';
 import * as lectureActions from '../../actions/lecture';
+import * as courseActions from '../../actions/course';
 
 import config from '../../config';
 const { SERVER_URL } = config();
@@ -28,8 +30,7 @@ class Course extends Component {
     super(props);
 
     this.state = {
-      lecture: {},
-      instructor: {},
+      course: {},
       comments: [],
       reviews: []
     };
@@ -43,18 +44,12 @@ class Course extends Component {
 
     const { data } = await http.get(`${SERVER_URL}/course/${name}`);
     // console.log('[+] ////////// data = ', data);
-    this.setState(
-      {
-        ...this.state,
-        lecture: data.lecture[0],
-        instructor: data.instructor[0],
-        reviews: data.reviews,
-        comments: data.comments
-      },
-      () => {
-        actionLecture.set_all(this.state);
-      }
-    );
+    this.setState({
+      ...this.state,
+      course: data.course,
+      reviews: data.reviews,
+      comments: data.comments
+    });
   }
 
   _renderPage = () => {};
@@ -63,19 +58,17 @@ class Course extends Component {
     // console.log('[+] lecture = ', this.state.lecture);
     // console.log('[+] instrucgtor = ', this.state.instructor);
     const { user } = this.props.storeSignin;
-    const { comments, reviews } = this.props.storeLecture;
-    const { lecture } = this.state;
+    const { comments, reviews } = this.props.storeCourse;
+    const { course } = this.state;
 
     return (
       <React.Fragment>
-        <LectureCard
-          lecture={this.state.lecture}
-          instructor={this.state.instructor}
-        />
+        <CourseCard course={course} />
+
         <DivContainer>
           <DivAverage>
             <PaperSheet title="Reviews Average">
-              <DivDetail>{`${this.state.lecture.review} / 5`}</DivDetail>
+              <DivDetail>{`${reviews} / 5`}</DivDetail>
             </PaperSheet>
           </DivAverage>
 
@@ -83,6 +76,7 @@ class Course extends Component {
             <BarChart reviews={this.props.storeLecture.reviews} />
           </DivChart>
         </DivContainer>
+
         {/* <PaperSheet title="Lecture : ">
           <DivContainer>
             <DivProfileChart>
@@ -99,20 +93,20 @@ class Course extends Component {
         <PaperSheet title="Review">
           {reviews ? (
             <CommonReview
-              type="lecture"
-              name={this.state.lecture.name}
+              type="course"
+              name={course.name}
               user={user.name}
-              reviews={reviews}
+              reviews={course.reviews}
             />
           ) : null}
         </PaperSheet>
 
-        {comments ? (
+        {course.comments ? (
           <CommonComment
-            type="lecture"
-            name={this.state.lecture.name}
+            type="course"
+            name={course.name}
             user={user.name}
-            comments={comments}
+            comments={course.comments}
           />
         ) : null}
       </React.Fragment>
@@ -160,11 +154,13 @@ export default connect(
   state => ({
     storeSignin: state.signin,
     storeTopics: state.topics,
-    storeLecture: state.lecture
+    storeLecture: state.lecture,
+    storeCourse: state.course
   }),
   dispatch => ({
     actionSign: bindActionCreators(signinActions, dispatch),
     actionTopics: bindActionCreators(topicsActions, dispatch),
-    actionLecture: bindActionCreators(lectureActions, dispatch)
+    actionLecture: bindActionCreators(lectureActions, dispatch),
+    actionCourse: bindActionCreators(courseActions, dispatch)
   })
 )(Course);

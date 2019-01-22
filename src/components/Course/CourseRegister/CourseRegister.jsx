@@ -132,7 +132,7 @@ class CourseRegister extends Component {
     const { topics } = this.props.storeTopics;
     const { lectures } = this.props.storeCourse.data;
     const { books } = this.props.storeCourse.data;
-    const { courses, name, review } = this.props.storeCourse;
+    const { course, courses, name, review } = this.props.storeCourse;
 
     return (
       <React.Fragment>
@@ -146,7 +146,12 @@ class CourseRegister extends Component {
             >
               Cancle to Register New Course
             </Button>
-            <CourseRender name={name} courses={courses} review={review} />
+            <CourseRender
+              name={name}
+              course={course}
+              courses={courses}
+              review={review}
+            />
             <Button
               color="primary"
               size="lg"

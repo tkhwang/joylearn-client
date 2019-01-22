@@ -16,12 +16,19 @@ import { Redirect } from 'react-router';
 
 const styles = {
   card: {
+    display: 'flex',
+    flexWrap: 'wrap',
     // width: 250,
-    width: 200,
+    width: '15rem',
     margin: 10
   },
   media: {
     height: 200
+  },
+  details: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between'
   }
 };
 
@@ -51,22 +58,24 @@ class Card extends Component {
           <MaterialCard className={classes.card}>
             <CardActionArea>
               <CardMedia className={classes.media} image={image} name={name} />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  {fullName ? fullName : name}
-                  {'    '}
-                  {mainUrl && (
-                    <a href={mainUrl}>
-                      <FaHome />
-                    </a>
-                  )}{' '}
-                  {gitHub && (
-                    <a href={gitHub}>
-                      <FaGithub />
-                    </a>
-                  )}
-                </Typography>
-              </CardContent>
+              <div className={classes.details}>
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    {fullName ? fullName : name}
+                    {'    '}
+                    {mainUrl && (
+                      <a href={mainUrl}>
+                        <FaHome />
+                      </a>
+                    )}{' '}
+                    {gitHub && (
+                      <a href={gitHub}>
+                        <FaGithub />
+                      </a>
+                    )}
+                  </Typography>
+                </CardContent>
+              </div>
             </CardActionArea>
           </MaterialCard>
         )}

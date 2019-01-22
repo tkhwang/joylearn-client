@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import http from '../../services/httpService';
 
-// import Jit from './Jit/Jit';
-
 import InstructorCard from '../Instructor/Card/Card';
 import BarChart from '../common/Chart/Bar/Chart';
 import CommonCardList from '../common/Card/CardList.jsx';
@@ -12,8 +10,6 @@ import CommonComment from '../common/Comment/Comment.jsx';
 import CommonReview from '../common/Review/Review.jsx';
 import PaperSheet from '../common/PaperSheet/PaperSheet.jsx';
 // import Svg from '../Instructor/Svg/Chart';
-// import Radar from '../Instructor/Radar/Chart';
-// import TestChart from '../Instructor/Svg/TestChart';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';

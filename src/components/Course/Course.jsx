@@ -14,8 +14,7 @@ import CommonComment from '../common/Comment/Comment.jsx';
 import PaperSheet from '../common/PaperSheet/PaperSheet.jsx';
 
 // import LectureProfile from '../Lecture/Profile/Profile';
-import BarChart from '../common/Chart/Bar/Chart.1';
-// import LecturePie from '../Lecture/Pie/Pie';
+import BarChart from '../common/Chart/Bar/Chart';
 
 import * as signinActions from '../../actions/signin';
 import * as topicsActions from '../../actions/topics';
@@ -67,8 +66,22 @@ class Course extends Component {
 
         <DivContainer>
           <DivAverage>
-            <PaperSheet title="Reviews Average">
+            <PaperSheet title="Reviews Average : ">
               <DivDetail>{`${reviews} / 5`}</DivDetail>
+              {/* {reviews ? (
+                <CommonReview
+                  type="course"
+                  name={course.name}
+                  user={user.name}
+                  reviews={course.reviews}
+                />
+              ) : null} */}
+              <CommonReview
+                type="course"
+                name={course.name}
+                user={user.name}
+                reviews={course.reviews}
+              />
             </PaperSheet>
           </DivAverage>
 
@@ -90,7 +103,7 @@ class Course extends Component {
             </DivProfileChart>
           </DivContainer>
         </PaperSheet> */}
-        <PaperSheet title="Review">
+        {/* <PaperSheet title="Review">
           {reviews ? (
             <CommonReview
               type="course"
@@ -99,7 +112,7 @@ class Course extends Component {
               reviews={course.reviews}
             />
           ) : null}
-        </PaperSheet>
+        </PaperSheet> */}
 
         {course.comments ? (
           <CommonComment
@@ -137,9 +150,10 @@ const DivAverage = styled.div`
 `;
 
 const DivDetail = styled.div`
+  text-align: center;
   font-size: 3rem;
-  padding: 1rem;
-  margin: 1rem;
+  /* padding: 1rem; */
+  /* margin: 1rem; */
   flex-shrink: 0;
 `;
 

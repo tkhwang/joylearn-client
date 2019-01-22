@@ -5,6 +5,8 @@ export const COURSE_SET_BOOK = 'course/COURSE_SET_BOOK';
 export const COURSE_SET_COMMENT = 'course/COURSE_SET_COMMENT';
 export const COURSE_SET_REVIEW = 'course/COURSE_SET_REVIEW';
 export const COURSE_ADD_COURSE = 'course/COURSE_ADD_COURSE';
+export const COURSE_ADD_COMMENTS = 'course/COURSE_ADD_COMMENTS';
+export const COURSE_ADD_REVIEWS = 'course/COURSE_ADD_REVIEWS';
 
 export const set_name = name => {
   return { type: COURSE_SET_NAME, payload: { name: name } };
@@ -43,4 +45,12 @@ export const add_course = course => {
 
 export const set_review = review => {
   return { type: COURSE_SET_REVIEW, payload: { review: review } };
+};
+
+export const add_comments = comment => {
+  return { type: COURSE_ADD_COMMENTS, payload: { comment: comment } };
+};
+
+export const add_reviews = review => {
+  return { type: COURSE_ADD_REVIEWS, payload: { review: review } };
 };

@@ -76,20 +76,6 @@ class Course extends Component {
             <BarChart reviews={this.props.storeLecture.reviews} />
           </DivChart>
         </DivContainer>
-
-        {/* <PaperSheet title="Lecture : ">
-          <DivContainer>
-            <DivProfileChart>
-              {this.state.lecture ? (
-                <LectureProfile
-                  lecture={this.state.lecture}
-                  tname={this.state.instructor.name}
-                />
-              ) : null}
-              <LecturePie />
-            </DivProfileChart>
-          </DivContainer>
-        </PaperSheet> */}
         <PaperSheet title="Review">
           {reviews ? (
             <CommonReview
@@ -100,31 +86,18 @@ class Course extends Component {
             />
           ) : null}
         </PaperSheet>
-
-        {course.comments ? (
+        {comments ? (
           <CommonComment
             type="course"
             name={course.name}
             user={user.name}
-            comments={course.comments}
+            comments={comments}
           />
         ) : null}
       </React.Fragment>
     );
   }
 }
-
-//       <React.Fragment>
-//         {this.state.lecture && this.state.instructor ? (
-//           this._renderPage()
-//         ) : (
-//           <DivSpinner>
-//             <Loader type="Triangle" color="#00BFFF" height="200" width="200" />
-//           </DivSpinner>
-//         )}
-//         {/* <LectureBar /> */}
-// {/* <LectureComments /> */ }
-//       </React.Fragment >
 
 const DivContainer = styled.div`
   display: flex;

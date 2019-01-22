@@ -10,6 +10,7 @@ import { bindActionCreators } from 'redux';
 import * as instructorActions from '../../../../actions/instructor';
 import * as lectureActions from '../../../../actions/lecture';
 import * as bookActions from '../../../../actions/book';
+import * as courseActions from '../../../../actions/course';
 import './ReviewStar.css';
 
 class ReviewStar extends Component {
@@ -32,7 +33,8 @@ class ReviewStar extends Component {
       user,
       actionInstructor,
       actionLecture,
-      actionBook
+      actionBook,
+      actionCourse
     } = this.props;
 
     const name = decodeURIComponent(this.props.name);
@@ -43,12 +45,16 @@ class ReviewStar extends Component {
       review: this.state.rating
     });
 
+    console.log('[+] /////////// ReviewStart clicked', type);
+
     if (type === 'instructor') {
       actionInstructor.add_reviews(reviews);
     } else if (type === 'lecture') {
       actionLecture.add_reviews(reviews);
     } else if (type === 'book') {
       actionBook.add_reviews(reviews);
+    } else if (type === 'course') {
+      actionCourse.add_reviews(reviews);
     }
   };
 
@@ -92,11 +98,13 @@ const DivStarRaing = styled.div`
 
 export default connect(
   state => ({
-    storeInstructor: state.instructor
+    storeInstructor: state.instructor,
+    storeCourse: state.course
   }),
   dispatch => ({
     actionInstructor: bindActionCreators(instructorActions, dispatch),
     actionLecture: bindActionCreators(lectureActions, dispatch),
-    actionBook: bindActionCreators(bookActions, dispatch)
+    actionBook: bindActionCreators(bookActions, dispatch),
+    actionCourse: bindActionCreators(courseActions, dispatch)
   })
 )(ReviewStar);

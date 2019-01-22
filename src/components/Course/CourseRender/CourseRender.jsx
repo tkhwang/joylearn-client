@@ -36,11 +36,13 @@ const CourseRender = ({ classes, name, course, courses, review }) => {
       {name && (
         <CommonPaperSheet title={name}>
           <DivContainer>
-            <MaterialCard className={classes.card}>
-              <CardActionArea>
-                <CardMedia className={classes.media} image={course.image} />
-              </CardActionArea>
-            </MaterialCard>
+            {course && (
+              <MaterialCard className={classes.card}>
+                <CardActionArea>
+                  <CardMedia className={classes.media} image={course.image} />
+                </CardActionArea>
+              </MaterialCard>
+            )}
           </DivContainer>
           {course &&
             course.courses.map(course => {

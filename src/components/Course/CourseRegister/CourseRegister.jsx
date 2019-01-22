@@ -125,6 +125,11 @@ class CourseRegister extends Component {
     const { data } = await http.post(apiEndpoint, {
       course: course
     });
+
+    this.setState({
+      ...this.state,
+      isClicked: false
+    });
     console.log('[+] handleClickSubmit in CourseRegister : data = ', data);
   };
 

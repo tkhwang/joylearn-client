@@ -22,19 +22,16 @@ class Title extends Component {
             <H3TopicContents>{`Tutorials and Courses`}</H3TopicContents>
             <DivCount>
               <Typography component="p">
-                <MaterialIcon icon="account_box" /> Instructors :
-                {instructors.length}
+                <MaterialIcon icon="account_box" /> : {instructors.length}
               </Typography>
               <Typography component="p">
-                <MaterialIcon icon="picture_in_picture" /> Lectures :
-                {lectures.length}
-              </Typography>
-
-              <Typography component="p">
-                <MaterialIcon icon="book" /> Books : {books.length}
+                <MaterialIcon icon="picture_in_picture" /> : {lectures.length}
               </Typography>
               <Typography component="p">
-                <MaterialIcon icon="extension" /> Courses : {courses.length}
+                <MaterialIcon icon="book" /> : {books.length}
+              </Typography>
+              <Typography component="p">
+                <MaterialIcon icon="extension" /> : {courses.length}
               </Typography>
             </DivCount>
             {/* <DivCount>

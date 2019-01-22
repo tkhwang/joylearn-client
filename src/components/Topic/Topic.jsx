@@ -12,6 +12,8 @@ import RecommendButton from '../common/RecommendButton/RecommendButton';
 import CommonCardList from '../common/Card/CardList.jsx';
 import PaperSheet from '../common/PaperSheet/PaperSheet.jsx';
 import Emoji from '../common/Emoji';
+import MaterialIcon from 'material-icons-react';
+import { Typography } from '@material-ui/core';
 import * as signinActions from '../../actions/signin';
 import * as topicsActions from '../../actions/topics';
 import * as topicActions from '../../actions/topic';
@@ -184,10 +186,17 @@ class Topic extends Component {
         <PaperSheet
           title={
             // <Link to={`/i/${this.state.topic.name}`}>
-            <h3>
-              Instructors <Emoji symbol="🎓" label="smile" />
-            </h3>
+            // <h3>
+            //   Instructors <Emoji symbol="🎓" label="smile" />
+            // </h3>
             // </Link>
+            <Typography component="h3">
+              <h3>
+                <MaterialIcon icon="account_box" />
+                {`  `}
+                Instructor
+              </h3>
+            </Typography>
           }
         >
           <CardsContatiner>
@@ -230,10 +239,17 @@ class Topic extends Component {
         <PaperSheet
           title={
             // <Link to={`/l/${this.state.topic.name}`}>
-            <h3>
-              Lectures <Emoji symbol="📘" label="smile" />
-            </h3>
+            // <h3>
+            //   Lectures <Emoji symbol="📘" label="smile" />
+            // </h3>
             // </Link>
+            <Typography component="h3">
+              <h3>
+                <MaterialIcon icon="picture_in_picture" />
+                {`  `}
+                Lecture
+              </h3>
+            </Typography>
           }
         >
           <CardsContatiner>
@@ -273,10 +289,17 @@ class Topic extends Component {
         <PaperSheet
           title={
             // <Link to={`/b/${this.state.topic.name}`}>
-            <h3>
-              Books <Emoji symbol="📘" label="smile" />
-            </h3>
+            // <h3>
+            //   Books <Emoji symbol="📘" label="smile" />
+            // </h3>
             // </Link>
+            <Typography component="h3">
+              <h3>
+                <MaterialIcon icon="book" />
+                {`  `}
+                Book
+              </h3>
+            </Typography>
           }
         >
           <CardsContatiner>
@@ -316,9 +339,16 @@ class Topic extends Component {
         <PaperSheet
           title={
             <Link to={`/c/${this.state.topic.name}`}>
-              <h3>
+              {/* <h3>
                 Courses <Emoji symbol="📘" label="smile" />
-              </h3>
+              </h3> */}
+              <Typography component="h3">
+                <h3>
+                  <MaterialIcon icon="extension" />
+                  {`  `}
+                  Courses
+                </h3>
+              </Typography>
             </Link>
           }
         >

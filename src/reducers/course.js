@@ -6,7 +6,9 @@ import {
   COURSE_SET_BOOK,
   COURSE_SET_COMMENT,
   COURSE_ADD_COURSE,
-  COURSE_SET_REVIEW
+  COURSE_SET_REVIEW,
+  COURSE_ADD_COMMENTS,
+  COURSE_ADD_REVIEWS
 } from '../actions/course.js';
 
 const initialState = {
@@ -19,7 +21,9 @@ const initialState = {
   data: {
     lectures: [],
     books: []
-  }
+  },
+  comments: [],
+  reviews: []
 };
 
 export default handleActions(
@@ -64,6 +68,18 @@ export default handleActions(
     },
     [COURSE_SET_REVIEW]: (state, action) => {
       return { ...state, review: action.payload.review };
+    },
+    [COURSE_ADD_COMMENTS]: (state, action) => {
+      return {
+        ...state,
+        comments: state.comments.concat(action.payload.comment)
+      };
+    },
+    [COURSE_ADD_REVIEWS]: (state, action) => {
+      return {
+        ...state,
+        reviews: state.reviews.concat(action.payload.review)
+      };
     }
   },
   initialState

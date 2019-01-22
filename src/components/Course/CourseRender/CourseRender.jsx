@@ -21,34 +21,14 @@ const DivContainer = styled.div`
   flex-direction: row;
 `;
 
-const styles = theme => ({
+const styles = {
   card: {
-    display: 'flex',
-    margin: 10
+    width: 150
   },
-  details: {
-    display: 'flex',
-    flexDirection: 'column'
-  },
-  content: {
-    flex: '1 0 auto',
-    width: 170
-  },
-  cover: {
-    width: 59,
-    margin: 5
-  },
-  controls: {
-    display: 'flex',
-    alignItems: 'center',
-    paddingLeft: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit
-  },
-  playIcon: {
-    height: 38,
-    width: 38
+  media: {
+    height: 150
   }
-});
+};
 
 const CourseRender = ({ classes, name, course, courses, review }) => {
   return (
@@ -57,11 +37,9 @@ const CourseRender = ({ classes, name, course, courses, review }) => {
         <CommonPaperSheet title={name}>
           <DivContainer>
             <MaterialCard className={classes.card}>
-              {course && (
-                <CardActionArea>
-                  <CardMedia className={classes.media} image={course.image} />
-                </CardActionArea>
-              )}
+              <CardActionArea>
+                <CardMedia className={classes.media} image={course.image} />
+              </CardActionArea>
             </MaterialCard>
           </DivContainer>
           {course &&

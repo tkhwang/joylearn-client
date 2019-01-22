@@ -55,7 +55,6 @@ class Books extends Component {
     });
 
     const { data } = await http.get(`${SERVER_URL}/b/${topic}`);
-    console.log('books data : ', data);
     this.setState({
       ...this.state,
       books: data.books,

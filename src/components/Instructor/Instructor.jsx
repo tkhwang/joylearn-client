@@ -9,7 +9,6 @@ import CommonCardList from '../common/Card/CardList.jsx';
 import CommonComment from '../common/Comment/Comment.jsx';
 import CommonReview from '../common/Review/Review.jsx';
 import PaperSheet from '../common/PaperSheet/PaperSheet.jsx';
-// import Svg from '../Instructor/Svg/Chart';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';

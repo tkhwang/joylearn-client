@@ -31,7 +31,6 @@ class SvgChart extends Component {
       ],
 
       captions: {
-        // columns
         battery: 'Battery Capacity',
         design: 'Design',
         useful: 'Usefulness',

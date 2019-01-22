@@ -91,8 +91,6 @@ class LoginForm extends Form {
   }
 }
 
-// export default LoginForm;
-
 export default connect(
   state => ({
     storeSignin: state.signin,

@@ -54,6 +54,7 @@ class Course extends Component {
   _renderPage = () => {};
 
   render() {
+    console.log('where are review : ', this.props);
     // console.log('[+] lecture = ', this.state.lecture);
     // console.log('[+] instrucgtor = ', this.state.instructor);
     const { user } = this.props.storeSignin;
@@ -91,6 +92,7 @@ class Course extends Component {
         </DivContainer>
 
         {/* <PaperSheet title="Review">
+
           {reviews ? (
             <CommonReview
               type="course"
@@ -99,6 +101,7 @@ class Course extends Component {
               reviews={course.reviews}
             />
           ) : null}
+
         </PaperSheet> */}
         {comments ? (
           <CommonComment

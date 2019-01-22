@@ -39,7 +39,6 @@ class LecturesFilter extends Component {
   render() {
     // console.log('filter box information : ', this.props);
     // this._getInformation();
-    console.log('filter box information : ', this.state);
     return (
       <React.Fragment>
         {/* {!(this.state.lectures && this.state.fullLectures) &&

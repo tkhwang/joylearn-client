@@ -14,6 +14,7 @@ import * as topicsActions from '../../../actions/topics';
 import * as instructorActions from '../../../actions/instructor';
 import * as bookActions from '../../../actions/book';
 import * as lectureActions from '../../../actions/lecture';
+import * as courseActions from '../../../actions/course';
 
 import http from '../../../services/httpService';
 import { SERVER_URL } from '../../../services/httpService';
@@ -48,7 +49,8 @@ class Comment extends React.Component {
       name,
       actionInstructor,
       actionLecture,
-      actionBook
+      actionBook,
+      actionCourse
     } = this.props;
 
     const apiEndpoint = `${SERVER_URL}/api/comment/${type}/${name}`;
@@ -58,6 +60,7 @@ class Comment extends React.Component {
       content: this.state.text
     });
     console.log('[+] //////////////// data = ', data);
+    console.log('[+] //////////////// type = ', type);
 
     if (type === 'instructor') {
       actionInstructor.add_comments(data);
@@ -65,6 +68,8 @@ class Comment extends React.Component {
       actionLecture.add_comments(data);
     } else if (type === 'book') {
       actionBook.add_comments(data);
+    } else if (type === 'course') {
+      actionCourse.add_comments(data);
     }
 
     this.setState(prevState => ({
@@ -161,13 +166,15 @@ export default connect(
     storeSignin: state.signin,
     storeTopics: state.topics,
     storeInstructor: state.instructor,
-    storeBook: state.book
+    storeBook: state.book,
+    storeCourse: state.course
   }),
   dispatch => ({
     actionsSign: bindActionCreators(signinActions, dispatch),
     actionTopics: bindActionCreators(topicsActions, dispatch),
     actionInstructor: bindActionCreators(instructorActions, dispatch),
     actionLecture: bindActionCreators(lectureActions, dispatch),
-    actionBook: bindActionCreators(bookActions, dispatch)
+    actionBook: bindActionCreators(bookActions, dispatch),
+    actionCourse: bindActionCreators(courseActions, dispatch)
   })
 )(Comment);

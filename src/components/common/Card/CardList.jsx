@@ -95,7 +95,9 @@ class CardList extends React.Component {
               )}
 
               {avatar && (
-                <img src={avatar} alt="avatar" width="50" height="50" />
+                <div style={{ marginTop: 15, marginLeft: 10, marginRight: 10 }}>
+                  <img src={avatar} alt="avatar" width="64" height="64" />
+                </div>
               )}
               <div className={classes.details}>
                 <CardContent className={classes.content}>

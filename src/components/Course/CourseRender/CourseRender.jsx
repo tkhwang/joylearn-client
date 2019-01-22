@@ -9,6 +9,7 @@ import CommonCommentRender from '../../common/Comment/Render/Render.jsx';
 import CommonPaperSheet from '../../common/PaperSheet/PaperSheet.jsx';
 import { FaJsSquare, FaReact, FaNodeJs } from 'react-icons/fa';
 import { red } from '@material-ui/core/colors/red';
+import CommonSearchListCard from '../../common/SearchList/SearchListCard.jsx';
 
 import styled from 'styled-components';
 import { withStyles } from '@material-ui/core/styles';
@@ -57,15 +58,35 @@ const CourseRender = ({ classes, name, course, courses, review }) => {
                     }}
                     icon={<FaJsSquare />}
                   >
-                    <h4 className="vertical-timeline-element-title">
+                    {course.topic}
+                    <br />
+                    {course.lecture && (
+                      <CommonSearchListCard
+                        type="course"
+                        title={course.lecture.name}
+                        image={course.lecture.image}
+                        courseUnit=""
+                        onClick=""
+                      />
+                    )}
+                    {course.book && (
+                      <CommonSearchListCard
+                        type="course"
+                        title={course.book.name}
+                        image={course.book.image}
+                        courseUnit=""
+                        onClick=""
+                      />
+                    )}
+                    {/* <h4 className="vertical-timeline-element-title">
                       {course.topic && course.topic}
-                    </h4>
-                    <h3 className="vertical-timeline-element-title">
+                    </h4> */}
+                    {/* <h3 className="vertical-timeline-element-title">
                       {course.lecture && course.lecture.name}
                     </h3>
                     <h3 className="vertical-timeline-element-title">
                       {course.book && course.book.name}
-                    </h3>
+                    </h3> */}
                     {course.comment && (
                       <CommonPaperSheet>{course.comment}</CommonPaperSheet>
                     )}
@@ -86,15 +107,35 @@ const CourseRender = ({ classes, name, course, courses, review }) => {
                     }}
                     icon={<FaJsSquare />}
                   >
-                    <h4 className="vertical-timeline-element-title">
+                    {course.topic}
+                    <br />
+                    {course.lecture && (
+                      <CommonSearchListCard
+                        type="course"
+                        title={course.lecture.name}
+                        image={course.lecture.image}
+                        courseUnit=""
+                        onClick=""
+                      />
+                    )}
+                    {course.book && (
+                      <CommonSearchListCard
+                        type="course"
+                        title={course.book.name}
+                        image={course.book.image}
+                        courseUnit=""
+                        onClick=""
+                      />
+                    )}
+                    {/* <h4 className="vertical-timeline-element-title">
                       {course.topic && course.topic}
-                    </h4>
-                    <h3 className="vertical-timeline-element-title">
+                    </h4> */}
+                    {/* <h3 className="vertical-timeline-element-title">
                       {course.lecture && course.lecture.name}
                     </h3>
                     <h3 className="vertical-timeline-element-title">
                       {course.book && course.book.name}
-                    </h3>
+                    </h3> */}
                     {course.comment && (
                       <CommonPaperSheet>{course.comment}</CommonPaperSheet>
                     )}

@@ -53,7 +53,9 @@ class Title extends Component {
 }
 
 const TopicLogo = ({ image }) => {
-  return <LogoImage src={image} alt="Selected Topic Logo" />;
+  return (
+    <LogoImage src={image} width="100" height="100" alt="Selected Topic Logo" />
+  );
 };
 
 TopicLogo.propTypes = {

@@ -8,6 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { Redirect } from 'react-router';
 
+/*
 const styles = {
   card: {
     width: 250,
@@ -17,6 +18,36 @@ const styles = {
     height: 90
   }
 };
+*/
+
+const styles = theme => ({
+  card: {
+    display: 'flex',
+    margin: 10
+  },
+  details: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  content: {
+    flex: '1 0 auto',
+    width: 130
+  },
+  cover: {
+    width: 59,
+    margin: 5
+  },
+  controls: {
+    display: 'flex',
+    alignItems: 'center',
+    paddingLeft: theme.spacing.unit,
+    paddingBottom: theme.spacing.unit
+  },
+  playIcon: {
+    height: 38,
+    width: 38
+  }
+});
 
 class CardTopic extends Component {
   constructor(props) {
@@ -32,10 +63,8 @@ class CardTopic extends Component {
     });
   }
 
-  render() {
-    const { classes, image, title } = this.props;
-    return (
-      <div onClick={this.handleClick}>
+  /*
+        <div onClick={this.handleClick}>
         {this.state.clicked ? (
           <Redirect to={`/t/${title}`} />
         ) : (
@@ -52,6 +81,27 @@ class CardTopic extends Component {
                 </Typography>
               </CardContent>
             </CardActionArea>
+          </Card>
+        )}
+      </div>
+  */
+
+  render() {
+    const { classes, image, title } = this.props;
+    return (
+      <div onClick={this.handleClick}>
+        {this.state.clicked ? (
+          <Redirect to={`/t/${title}`} />
+        ) : (
+          <Card className={classes.card}>
+            <div className={classes.details}>
+              <CardContent className={classes.content}>
+                <Typography component="h5" variant="h5">
+                  {title}
+                </Typography>
+              </CardContent>
+            </div>
+            <CardMedia className={classes.cover} image={image} title={title} />
           </Card>
         )}
       </div>

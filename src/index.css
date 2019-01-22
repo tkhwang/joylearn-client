@@ -11,7 +11,7 @@ body {
 main {
   /* margin-left: 2rem;
   margin-right: 2rem; */
-  margin: 2rem
+  margin: 1rem;
 }
 
 * {
@@ -19,7 +19,7 @@ main {
 }
 
 .navbar {
-  margin-bottom: 30px;
+  margin-bottom: 0px;
 }
 
 .clickable {

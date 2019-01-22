@@ -135,7 +135,7 @@ class CardList extends React.Component {
               </div>
 
               <DivPointContainer>
-                {review && (
+                {review !== 0 && (
                   <Typography component="h5" variant="h5">
                     {review === 5 ? (
                       <React.Fragment>

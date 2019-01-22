@@ -94,6 +94,7 @@ class CardTopic extends Component {
           <Redirect to={`/t/${title}`} />
         ) : (
           <Card className={classes.card}>
+            <CardMedia className={classes.cover} image={image} title={title} />
             <div className={classes.details}>
               <CardContent className={classes.content}>
                 <Typography component="h5" variant="h5">
@@ -101,7 +102,6 @@ class CardTopic extends Component {
                 </Typography>
               </CardContent>
             </div>
-            <CardMedia className={classes.cover} image={image} title={title} />
           </Card>
         )}
       </div>

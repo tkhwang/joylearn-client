@@ -10,6 +10,7 @@ import CommonPaperSheet from '../../common/PaperSheet/PaperSheet.jsx';
 import { FaJsSquare, FaReact, FaNodeJs } from 'react-icons/fa';
 import { red } from '@material-ui/core/colors/red';
 import CommonSearchListCard from '../../common/SearchList/SearchListCard.jsx';
+import CourseIcon from '../Icon/Icon';
 
 import styled from 'styled-components';
 import { withStyles } from '@material-ui/core/styles';
@@ -56,7 +57,8 @@ const CourseRender = ({ classes, name, course, courses, review }) => {
                       background: 'rgb(33, 150, 243)',
                       color: '#fff'
                     }}
-                    icon={<FaJsSquare />}
+                    // icon={<FaJsSquare />}
+                    icon={<CourseIcon topic={course.topic} />}
                   >
                     {course.topic}
                     <br />
@@ -105,7 +107,8 @@ const CourseRender = ({ classes, name, course, courses, review }) => {
                       background: 'rgb(33, 150, 243)',
                       color: '#fff'
                     }}
-                    icon={<FaJsSquare />}
+                    // icon={<FaJsSquare />}
+                    icon={<CourseIcon topic={course.topic} />}
                   >
                     {course.topic}
                     <br />
